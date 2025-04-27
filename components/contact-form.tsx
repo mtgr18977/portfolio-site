@@ -7,8 +7,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
+import { useLanguage } from "@/contexts/language-context"
 
 export default function ContactForm() {
+  const { t } = useLanguage()
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -20,8 +22,8 @@ export default function ContactForm() {
     await new Promise((resolve) => setTimeout(resolve, 1500))
 
     toast({
-      title: "Mensagem enviada!",
-      description: "Obrigado pelo seu contato. Retornarei em breve.",
+      title: t("contact.form.success.title"),
+      description: t("contact.form.success.description"),
     })
 
     setIsSubmitting(false)
@@ -36,18 +38,18 @@ export default function ContactForm() {
             htmlFor="name"
             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
-            Nome
+            {t("contact.form.name")}
           </label>
-          <Input id="name" placeholder="Seu nome" required />
+          <Input id="name" placeholder={t("contact.form.name.placeholder")} required />
         </div>
         <div className="space-y-2">
           <label
             htmlFor="email"
             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
-            Email
+            {t("contact.form.email")}
           </label>
-          <Input id="email" type="email" placeholder="Seu email" required />
+          <Input id="email" type="email" placeholder={t("contact.form.email.placeholder")} required />
         </div>
       </div>
       <div className="space-y-2">
@@ -55,21 +57,21 @@ export default function ContactForm() {
           htmlFor="subject"
           className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
-          Assunto
+          {t("contact.form.subject")}
         </label>
-        <Input id="subject" placeholder="Assunto da mensagem" required />
+        <Input id="subject" placeholder={t("contact.form.subject.placeholder")} required />
       </div>
       <div className="space-y-2">
         <label
           htmlFor="message"
           className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
-          Mensagem
+          {t("contact.form.message")}
         </label>
-        <Textarea id="message" placeholder="Sua mensagem" className="min-h-[150px]" required />
+        <Textarea id="message" placeholder={t("contact.form.message.placeholder")} className="min-h-[150px]" required />
       </div>
       <Button type="submit" className="w-full" disabled={isSubmitting}>
-        {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
+        {isSubmitting ? t("contact.form.submitting") : t("contact.form.submit")}
       </Button>
     </form>
   )
