@@ -1,30 +1,34 @@
 import type React from "react"
-import "@/app/globals.css"
+import "./globals.css"
+import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
-import { LanguageProvider } from "@/contexts/language-context"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata = {
-  title: "Paulo Guilherme Pilotti Duarte - Technical Writer & Translator",
-  description: "Portfolio of Paulo Guilherme Pilotti Duarte, Technical Writer & Translator",
+export const metadata: Metadata = {
+  title: "Ghost-like Blog",
+  description: "A blog system that reads Markdown files",
     generator: 'v0.dev'
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body className={inter.className}>
-        <LanguageProvider>
-          <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-            {children}
-          </ThemeProvider>
-        </LanguageProvider>
+        <ThemeProvider attribute="class" defaultTheme="light">
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   )
