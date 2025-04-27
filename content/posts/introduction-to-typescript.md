@@ -1,127 +1,29 @@
 ---
-title: "Introduction to TypeScript"
-date: "2023-06-15"
-coverImage: "/placeholder.svg?height=600&width=1200"
-excerpt: "Discover TypeScript, a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale."
-tags: ["typescript", "javascript", "programming"]
-author:
-  name: "Alex Johnson"
-  picture: "/placeholder.svg?height=100&width=100"
-  bio: "Software engineer with a focus on TypeScript and modern JavaScript frameworks."
+title: Rabbit R1 it's a SCAM
+date: 2025-04-16T18:48:16.921Z
+tags: [AI]
 ---
 
-# Introduction to TypeScript
+It’s not new that the promise of artificial intelligence capable of helping us and solving a series of problems we don't have has emerged. However, it is only from 2022 onwards that large models (LLM, LAM, and others) are gaining traction and attention worldwide. It started with OpenAI and ChatGPT, followed by Humana's AI Pin and Rabbit R1 from Rabbit Inc. Neither delivered on their promises, but the Rabbit R1 has an extra touch.
 
-TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale. It adds static type definitions to JavaScript, helping you catch errors early and making your code more robust.
+While Humane's brooch is just an overpriced product that doesn’t work properly, the Rabbit R1 is a mishmash of poorly executed features and a good dose of scams, especially coming from a company previously involved with NFTs and "pay-to-win" games (which use NFTs). Most of the instructions are hardcoded into the device, meaning that most actions are predefined according to the software/action requested. In the linked video below, Coffeezilla shows how actions fail when applications change their graphical interface - like Doordash, the US version of iFood, which altered a small hamburger menu in its interface, breaking the Rabbit R1’s action.
 
-## Why TypeScript?
+Later on, we see a more detailed explanation of how all this works, but to be generic, what Rabbit R1 does is similar to automation we perform when using Selenium IDE to input passwords, create users, send emails, and other tasks. From the outside, there's no AI or LAM in this implementation; it's just a large automation running on Rabbit Inc.'s servers. What this automation does is recognize spoken commands ("call an Uber to Santa Casa") and, based on your logins, it makes the request on the Uber app running remotely and sends the result back to you on the Rabbit R1. It doesn’t seem extraordinary (and it isn't) or very intelligent (and it really isn’t). You could do this using Shortcuts on your iOS right now.
 
-TypeScript offers several advantages over plain JavaScript:
+This whole issue ended up sparking [Coffeezilla](https://www.youtube.com/@Coffeezilla) to create two videos:
 
-1. **Static typing**: Catch type-related errors at compile time rather than runtime
-2. **Better IDE support**: Get intelligent code completion, navigation, and refactoring
-3. **Enhanced readability**: Types serve as documentation for your code
-4. **Safer refactoring**: Make changes with confidence, knowing the type checker has your back
-5. **Ecosystem compatibility**: Works with existing JavaScript code and libraries
+1. [$30,000,000 AI Is Hiding a Scam](https://www.youtube.com/watch?v=NPOHf20slZg)
+2. [Rabbit Gaslit Me, So I Dug Deeper](https://www.youtube.com/watch?v=zLvFc_24vSM)
 
-## Getting Started
+Yes, it gets much worse as the investigation progresses, but it’s worth reading because it’s essentially a $199 scam.
 
-To install TypeScript globally, run:
+Beneath the minimalist design of Teenage Engineering lies a big AI SCAM (possibly the first?) that resembles the NFT craze. Although tools like ChatGPT, GitHub Copilot, and other stochastic parrots are useful in specific contexts, AI still has nothing of "I"; on the contrary, what they really do is generate text that makes sense (grammatical text, as opposed to ungrammatical texts), which was already possible with Prolog in 2011.
 
-\`\`\`bash
-npm install -g typescript
-\`\`\`
+What comes after Rabbit Inc.'s gaslighting? I don’t know, but this is probably the new bubble (after BTC, ETH, and NFT).
 
-Create a simple TypeScript file (e.g., `hello.ts`):
+Extra: [Rabbit CEO Jesse Lyu on launching the R1, future of AI hardware, and going viral at CES | E1885](https://www.youtube.com/watch?v=X-MNgciL5hw) is an interview that, after the launch and recent events, is downright embarrassing.
 
-\`\`\`typescript
-function greet(name: string): string {
-  return `Hello, ${name}!`;
-}
+For other opinions, MKBHD made a video about the Rabbit R1: [Rabbit R1: Barely Reviewable](https://www.youtube.com/watch?v=ddTV12hErTc)
+LTT made a video attempting to use the Rabbit R1 (really trying, because it seems impossible): [An ignorant rabbit r1 unboxing](https://youtu.be/HcPjineZdqQ?si=dAHYqvIm7E4IkocW)
 
-console.log(greet("TypeScript"));
-\`\`\`
-
-Compile it to JavaScript:
-
-\`\`\`bash
-tsc hello.ts
-\`\`\`
-
-This will generate a `hello.js` file that you can run with Node.js.
-
-## Basic Types
-
-TypeScript supports several basic types:
-
-\`\`\`typescript
-// Boolean
-let isDone: boolean = false;
-
-// Number
-let decimal: number = 6;
-let hex: number = 0xf00d;
-let binary: number = 0b1010;
-
-// String
-let color: string = "blue";
-let greeting: string = `Hello, ${name}`;
-
-// Array
-let list: number[] = [1, 2, 3];
-let fruits: Array<string> = ["apple", "banana", "orange"];
-
-// Tuple
-let person: [string, number] = ["Alice", 30];
-
-// Enum
-enum Color {Red, Green, Blue}
-let c: Color = Color.Green;
-
-// Any
-let notSure: any = 4;
-notSure = "maybe a string";
-
-// Void
-function warnUser(): void {
-  console.log("This is a warning message");
-}
-
-// Null and Undefined
-let u: undefined = undefined;
-let n: null = null;
-
-// Never
-function error(message: string): never {
-  throw new Error(message);
-}
-\`\`\`
-
-## Interfaces
-
-Interfaces define the shape of objects in TypeScript:
-
-\`\`\`typescript
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  age?: number; // Optional property
-  readonly createdAt: Date; // Read-only property
-}
-
-function createUser(user: User): User {
-  return user;
-}
-
-const newUser = createUser({
-  id: 1,
-  name: "John Doe",
-  email: "john@example.com",
-  createdAt: new Date()
-});
-\`\`\`
-
-## Conclusion
-
-TypeScript is a powerful tool for building robust applications. By adding static types to JavaScript, it helps you write more maintainable code and catch errors before they reach production.
+It’s all downhill from here.
