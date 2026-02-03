@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Silêncio Seco</title>
+    <style>
+        /* --- CONFIGURAÇÃO VISUAL (CSS) --- */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #0a0a0a;
+            color: #dcdcdc;
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+            transition: background-color 2s ease;
+        }
+
+        /* BACKGROUND ANIMADO */
+        .fundo-base {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 90% 90%, rgba(0,0,0,0) 0%, rgba(20, 5, 0, 0.8) 60%),
+                radial-gradient(circle at 10% 10%, rgba(0,0,0,0) 0%, rgba(20, 5, 0, 0.8) 60%),
+                radial-gradient(circle at 50% 50%, rgba(60, 20, 10, 0.15), transparent 70%),
+                repeating-linear-gradient(45deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.01) 1px, transparent 1px, transparent 10px);
+            transition: all 2s ease;
+        }
+
+        #container-jogo {
+            width: 100%;
+            max-width: 650px;
+            position: relative;
+            z-index: 10;
+            background-color: rgba(30, 30, 30, 0.9);
+            backdrop-filter: blur(4px);
+            padding: 30px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            transition: border 0.3s;
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes tremer {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            100% { transform: translate(0, 0) rotate(0); }
+        }
+        .efeito-tremor { animation: tremer 0.5s; animation-iteration-count: 1; }
+
+        /* HUD */
+        #status-bar {
+            border-bottom: 1px solid #555;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+
+        h1 { 
+            color: #e67e22; 
+            text-align: center; margin-top: 0; font-size: 1.8em;
+            text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+            transition: color 2s;
+        }
+        
+        #texto-historia {
+            min-height: 120px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-size: 1.05em;
+        }
+
+        .botao-opcao {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 12px;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: #aaa;
+            border: 1px solid #555;
+            border-left: 4px solid #555;
+            cursor: pointer;
+            text-align: left;
+            font-family: inherit;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .botao-opcao:hover {
+            background-color: #e67e22;
+            color: #1a1a1a;
+            border-color: #e67e22;
+            padding-left: 20px;
+            font-weight: bold;
+        }
+        
+        /* ESTILOS DE TEXTO */
+        .destaque { color: #e67e22; font-weight: bold; }
+        .verde { color: #27ae60; font-weight: bold; }
+        .azul { color: #3498db; font-weight: bold; } /* Novo para chuva */
+        .item-secreto { color: #9b59b6; font-weight: bold; }
+
+        /* MODO CHUVA (Mudança visual no final) */
+        body.modo-chuva .fundo-base {
+            background-image: repeating-linear-gradient(180deg, rgba(52, 152, 219, 0.1) 0px, rgba(52, 152, 219, 0.1) 2px, transparent 2px, transparent 20px);
+            background-color: #0d1b2a;
+        }
+        body.modo-chuva h1 { color: #3498db; }
+        body.modo-chuva .botao-opcao:hover { background-color: #3498db; border-color: #3498db; }
+
+    </style>
+</head>
+<body>
+
+    <div class="fundo-base"></div>
+
+    <div id="container-jogo">
+        <div id="status-bar">
+            <span id="display-sede" style="color: #e74c3c;">Sede: 50%</span>
+            <span id="display-inventario" style="color: #3498db;">Mochila: Vazia</span>
+        </div>
+
+        <h1>O SILÊNCIO SECO</h1>
+        <div id="texto-historia"></div>
+        <div id="botoes-acao"></div>
+    </div>
+
+    <script>
+        // --- 1. ESTADO DO JOGO ---
+        let inventario = [];
+        let sede = 50;
+        let frequenciaRadio = 88.0; 
+        const frequenciaAlvo = 94.5; 
+
+        // --- 2. CENAS ---
+        const cenas = {
+            // ================= CAPÍTULO 1 =================
+            "inicio": {
+                texto: "O calor arrancou-te do sono. O ventilador de teto range, inútil. A tua boca está seca como lixa. <br><br>Estás na sala do 501. O ar é pesado e imóvel.",
+                opcoes: [
+                    { texto: "Ir à janela ver a rua", destino: "janela" },
+                    { texto: "Ir à cozinha (buscar água)", destino: "cozinha" },
+                    { texto: "Espreitar pelo olho mágico", destino: "porta" }
+                ]
+            },
+            "janela": {
+                texto: "A rua está deserta. O asfalto treme. Vês o Felipe do 502 na calçada. Ele larga a mangueira... o corpo dele seca e contorce-se num instante. Uma figura alta observa da esquina.",
+                efeito: "tremer",
+                opcoes: [{ texto: "Recuar para dentro com medo", destino: "inicio" }]
+            },
+            "cozinha": {
+                texto: "A cozinha cheira a mofo seco. Na geladeira, há uma garrafa de água pela metade.",
+                opcoes: [
+                    { texto: "Beber a água", destino: "beber_agua" },
+                    { texto: "Voltar para a sala", destino: "inicio" }
+                ]
+            },
+            "beber_agua": {
+                texto: "Bebes devagar. Sentes a vida voltar. A garrafa acabou, mas guardas a vazia.",
+                efeito: function() {
+                    if (sede > 0) { sede = 0; adicionarItem("Garrafa Vazia"); }
+                },
+                opcoes: [{ texto: "Voltar para a sala", destino: "inicio" }]
+            },
+            "porta": {
+                texto: "O instinto diz para não abrir. Ouves passos no corredor. Alguém parou em frente à tua porta.",
+                efeito: "tremer",
+                opcoes: [
+                    { texto: "Perguntar quem é", destino: "carlos_chega" },
+                    { texto: "Ficar em silêncio", destino: "inicio" }
+                ]
+            },
+            "carlos_chega": {
+                texto: "'Paulo? Abre aí, é o Carlos'. É o vizinho mecânico. A voz dele treme.",
+                opcoes: [
+                    { texto: "Abrir a porta", destino: "conversa_carlos" },
+                    { texto: "Ignorar", destino: "inicio" }
+                ]
+            },
+            "conversa_carlos": {
+                texto: "Carlos entra rápido. 'Vi gente secar na oficina, Paulo. O Seu Ramos tem um rádio no 601. Precisamos subir.'",
+                opcoes: [
+                    { texto: "Vamos embora agora", destino: "corredor_escada" },
+                    { texto: "Espera, preciso de água antes", destino: "cozinha" }
+                ]
+            },
+
+            // ================= CAPÍTULO 2 =================
+            "corredor_escada": {
+                texto: "O corredor está escuro. No lance de escadas acima, vês uma sombra alongada e ouves um zumbido de enxame...",
+                efeito: "tremer",
+                opcoes: [
+                    { texto: "Correr para o 601", destino: "morte_corredor" },
+                    { texto: "Parar e prender a respiração (Furtividade)", destino: "esconder_escada" }
+                ]
+            },
+            "morte_corredor": {
+                texto: "Corres. O barulho ecoa. A figura vira-se. Sentes um toque seco no braço. A tua água evapora num segundo. GAME OVER.",
+                efeito: "tremer",
+                opcoes: [{ texto: "Tentar de novo", destino: "reiniciar" }]
+            },
+            "esconder_escada": {
+                texto: "Ficas imóvel. A figura passa e desce as escadas. O caminho está livre.",
+                opcoes: [{ texto: "Subir para o 601", destino: "entrada_601" }]
+            },
+            "entrada_601": {
+                texto: "Entram no 601. Seu Ramos está pálido na poltrona. 'O rádio...', sussurra ele. 'Precisa de bateria e sintonizar.'",
+                opcoes: [
+                    { texto: "Falar com Seu Ramos", destino: "conversa_ramos" },
+                    { texto: "Examinar o Rádio", destino: "examina_radio" },
+                    { texto: "Procurar no quarto", destino: "quarto_ramos" }
+                ]
+            },
+            "conversa_ramos": {
+                texto: "Seu Ramos olha para ti com olhos cansados. Ele tira algo do bolso.<br>'Guarda isso. Se precisares um dia.'<br><br>Ele entrega-te um pequeno objeto preto. É um Pen Drive pesado.",
+                efeito: function() { adicionarItem("Pen Drive"); },
+                opcoes: [
+                    { texto: "Agradecer e ir ao rádio", destino: "examina_radio" },
+                    { texto: "Ir ao quarto", destino: "quarto_ramos" }
+                ]
+            },
+            
+            // ================= CAPÍTULO 3: O PUZZLE =================
+            "quarto_ramos": {
+                texto: "O quarto está revirado. Vês uma caixa de brinquedos velhos e água embaixo da cama.",
+                opcoes: [
+                    { texto: "Vasculhar brinquedos (Procurar Pilhas)", destino: "achar_pilhas" },
+                    { texto: "Pegar Água Mineral", destino: "pegar_agua_ramos" },
+                    { texto: "Voltar à sala", destino: "entrada_601" }
+                ]
+            },
+            "pegar_agua_ramos": {
+                texto: "Encontraste uma garrafa cheia! Bebes um gole e guardas o resto.",
+                efeito: function() { sede = 0; adicionarItem("Água Mineral"); },
+                opcoes: [{ texto: "Continuar a procurar", destino: "quarto_ramos" }]
+            },
+            "achar_pilhas": {
+                texto: "No fundo de um carrinho de controle remoto, encontras duas pilhas AA ainda boas!",
+                efeito: function() { adicionarItem("Pilhas"); },
+                opcoes: [{ texto: "Voltar para o Rádio", destino: "examina_radio" }]
+            },
+            "examina_radio": {
+                texto: "O rádio é velho. Está mudo. <br>Status: <span class='destaque'>" + (inventario.includes("Pilhas") ? "Energia OK" : "Sem Energia") + "</span>",
+                opcoes: [
+                    { texto: "Colocar Pilhas e Ligar", destino: "ligar_radio_check" },
+                    { texto: "Voltar a procurar itens", destino: "quarto_ramos" }
+                ]
+            },
+            "ligar_radio_check": {
+                texto: "Tentou ligar...",
+                efeito: function() {
+                    if (inventario.includes("Pilhas")) {
+                        mostrarCena("sintonizar_radio");
+                    } else {
+                        alert("Nada acontece. Precisas de pilhas.");
+                        mostrarCena("examina_radio");
+                    }
+                },
+                opcoes: [] 
+            },
+            "sintonizar_radio": {
+                texto: "Carregando...", 
+                opcoes: [
+                    { texto: "Girar para Direita (+)", destino: "aumentar_hz" },
+                    { texto: "Girar para Esquerda (-)", destino: "diminuir_hz" },
+                    { texto: "Desistir por agora", destino: "entrada_601" }
+                ]
+            },
+            "aumentar_hz": {
+                texto: "Ajustando...",
+                efeito: function() {
+                    if (frequenciaRadio < 108.0) { frequenciaRadio += 0.5; }
+                    verificarSintonia();
+                },
+                opcoes: []
+            },
+            "diminuir_hz": {
+                texto: "Ajustando...",
+                efeito: function() {
+                    if (frequenciaRadio > 87.0) { frequenciaRadio -= 0.5; }
+                    verificarSintonia();
+                },
+                opcoes: []
+            },
+            
+            // ================= O FINAL VERDADEIRO (FIEL AO CONTO) =================
+            "sucesso_radio": {
+                texto: "O chiado transforma-se em voz. <span class='verde'>'...atenção, comboio de resgate na zona sul... enviando botes...'</span><br><br>Carlos sorri. 'Alguém ouviu, Paulo!'. De repente, um som estrondoso corta o céu. Não é um avião.",
+                opcoes: [
+                    { texto: "Olhar para a janela", destino: "a_chuva" }
+                ]
+            },
+            "a_chuva": {
+                texto: "Um trovão. E depois, o barulho mais lindo do mundo: água a bater no vidro.<br><br><span class='azul'>A CHUVA COMEÇOU.</span><br><br>Lá fora, as figuras altas na rua começam a gritar. Elas tentam correr, mas a água dissolve-as como torrões de açúcar. O pó cinza vira lama.",
+                efeito: function() {
+                    document.body.classList.add("modo-chuva"); // Ativa visual de chuva
+                    sede = 0;
+                    atualizarHUD();
+                },
+                opcoes: [
+                    { texto: "Ajudar o Seu Ramos", destino: "chegada_resgate" }
+                ]
+            },
+            "chegada_resgate": {
+                texto: "Sirenes cortam a noite. Luzes vermelhas e azuis refletem nas paredes molhadas. Caminhões do Exército e botes param na frente do prédio. <br><br>Soldados com máscaras de gás entram no prédio aos berros: 'EVACUAÇÃO! JÁ!'",
+                opcoes: [
+                    { texto: "Descer as escadas com os soldados", destino: "ginasio" }
+                ]
+            },
+            "ginasio": {
+                texto: "CORTA PARA: Ginásio de Esportes (Abrigo).<br><br>O som da chuva no telhado de zinco é ensurdecedor. Estás sentado num colchonete. Carlos aproxima-se da janela, olhando os caminhões lá fora.",
+                opcoes: [
+                    { texto: "Perguntar se alguém mais saiu", destino: "conversa_final_carlos" }
+                ]
+            },
+            "conversa_final_carlos": {
+                texto: "'Achas que alguém conseguiu sair?' pergunta Carlos, baixo.<br><br>Tu olhas para o Pen Drive na tua mão. Seu Ramos dorme ao lado, o ombro enfaixado.",
+                opcoes: [
+                    { texto: "Responder que não sabes", destino: "final_jogo" },
+                    { texto: "Mostrar o Pen Drive a Carlos", destino: "final_secreto" }
+                ]
+            },
+            "final_jogo": {
+                texto: "<span class='destaque'>UMA SEMANA DEPOIS...</span><br><br>A água baixou. Voltaste ao 501, mas apenas para ver o mofo e a lama.<br><br>Felipe, o guri do 502, foi enterrado num caixão fechado. Causa da morte: 'Desidratação Aguda'.<br><br>Sobreviveste, mas o silêncio sobre o que aconteceu continua.<br><br><h1>FIM DE JOGO</h1>",
+                opcoes: [
+                    { texto: "Reiniciar", destino: "reiniciar" }
+                ]
+            },
+            "final_secreto": {
+                texto: "Mostras o arquivo a Carlos. Os olhos dele arregalam-se.<br>'Eles sabiam', diz ele. 'Experimentos de desidratação antes da enchente... Paulo, isto muda tudo.'<br><br>Na semana seguinte, enquanto a cidade enterrava os mortos como 'vítimas da seca', tu e Carlos faziam cópias dos arquivos.<br><br><span class='item-secreto'>A VERDADE NÃO VAI SECAR.</span><br><br><h1>FIM (ROTA VERDADEIRA)</h1>",
+                opcoes: [
+                    { texto: "Reiniciar", destino: "reiniciar" }
+                ]
+            },
+
+            // --- Game Over ---
+            "game_over_sede": {
+                texto: "A tua garganta fecha. Tornaste-te mais uma das figuras secas.",
+                efeito: "tremer",
+                opcoes: [{ texto: "Tentar de novo", destino: "reiniciar" }]
+            }
+        };
+
+        // --- 3. LÓGICA DO SISTEMA ---
+        
+        function verificarSintonia() {
+            let freqString = frequenciaRadio.toFixed(1); 
+            let alvoString = frequenciaAlvo.toFixed(1);
+
+            if (freqString === alvoString) {
+                mostrarCena("sucesso_radio");
+            } else {
+                let feedback = "Apenas ruído estático.";
+                if (Math.abs(frequenciaRadio - frequenciaAlvo) < 1.5) {
+                    feedback = "O chiado muda. Parece que há algo perto...";
+                }
+                cenas["sintonizar_radio"].texto = 
+                    "O rádio chia.<br>" +
+                    "Frequência Atual: <span class='destaque'>" + freqString + " MHz</span><br>" +
+                    "<small>" + feedback + "</small><br><br>" +
+                    "Seu Ramos sussurra: 'Tenta na faixa dos 94...'";
+                mostrarCena("sintonizar_radio");
+            }
+        }
+
+        function adicionarItem(item) {
+            if (!inventario.includes(item)) {
+                inventario.push(item);
+                alert("Pegaste: " + item);
+            }
+        }
+
+        function atualizarHUD() {
+            const spanSede = document.getElementById("display-sede");
+            spanSede.innerText = "Sede: " + sede + "%";
+            
+            const caixaJogo = document.getElementById("container-jogo");
+            
+            if (sede > 70 && !document.body.classList.contains("modo-chuva")) { 
+                spanSede.style.color = "red";
+                caixaJogo.style.borderColor = "red";
+            } else { 
+                spanSede.style.color = "#e74c3c"; 
+                caixaJogo.style.borderColor = "#444";
+            }
+            
+            const spanInv = document.getElementById("display-inventario");
+            spanInv.innerText = inventario.length === 0 ? "Mochila: Vazia" : "Mochila: " + inventario.join(", ");
+        }
+
+        function mostrarCena(nomeDaCena) {
+            if (nomeDaCena === "reiniciar") {
+                sede = 50;
+                inventario = [];
+                frequenciaRadio = 88.0;
+                document.body.classList.remove("modo-chuva"); // Reset visual
+                mostrarCena("inicio");
+                return;
+            }
+
+            // Custo de Sede (desligado durante o epílogo/chuva)
+            const cenasSemCusto = ["beber_agua", "game_over_sede", "inicio", "aumentar_hz", "diminuir_hz", "ligar_radio_check", "pegar_agua_ramos", "sintonizar_radio", "conversa_ramos", "a_chuva", "chegada_resgate", "ginasio", "conversa_final_carlos", "final_secreto", "final_jogo"];
+            
+            if (!cenasSemCusto.includes(nomeDaCena)) { sede += 4; }
+            if (sede >= 100) { nomeDaCena = "game_over_sede"; }
+
+            const cenaAtual = cenas[nomeDaCena];
+            
+            const container = document.getElementById("container-jogo");
+            container.classList.remove("efeito-tremor"); 
+            void container.offsetWidth; 
+            
+            if (cenaAtual.efeito === "tremer") {
+                container.classList.add("efeito-tremor");
+            } else if (typeof cenaAtual.efeito === "function") {
+                cenaAtual.efeito();
+                if(cenaAtual.opcoes.length === 0) return;
+            }
+
+            document.getElementById("texto-historia").innerHTML = cenaAtual.texto;
+            atualizarHUD(); 
+
+            const divBotoes = document.getElementById("botoes-acao");
+            divBotoes.innerHTML = "";
+            cenaAtual.opcoes.forEach(opcao => {
+                const botao = document.createElement("button");
+                botao.innerHTML = opcao.texto; 
+                botao.classList.add("botao-opcao");
+                
+                // Condição especial: Só mostra opção do Pen Drive se tiver o item
+                if (opcao.destino === "final_secreto" && !inventario.includes("Pen Drive")) {
+                    return; // Não cria o botão
+                }
+
+                botao.onclick = function() { mostrarCena(opcao.destino); };
+                divBotoes.appendChild(botao);
+            });
+        }
+
+        mostrarCena("inicio");
+    </script>
+</body>
+</html>

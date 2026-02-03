@@ -1,0 +1,722 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Documentação</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="231c6f7d-f2fd-808d-9e7c-fdbb871a4ea0" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">👽</span></div><h1 class="page-title">Documentação</h1><p class="page-description"></p></header><div class="page-body"><h2 id="231c6f7d-f2fd-80d4-8a27-ecd604880848" class="">Documento Técnico do Modelo Estatístico do Simulador de Campeonato Brasileiro</h2><h2 id="231c6f7d-f2fd-80e0-bb2b-e20744e98b97" class="">Introdução</h2><p id="231c6f7d-f2fd-802b-b55f-c4eba911a5b4" class="">Este documento descreve a arquitetura, a fundamentação estatística e a implementação do modelo híbrido desenvolvido para previsão de resultados de partidas do Campeonato Brasileiro de Futebol. O modelo combina a metodologia Elo para avaliação dinâmica de forças dos times com a modelagem de distribuição de gols baseada na distribuição de Poisson, criando um sistema que integra informações históricas e probabilísticas para estimar resultados futuros.</p><hr id="231c6f7d-f2fd-80b6-a6d8-f36909b9df45"/><h2 id="231c6f7d-f2fd-8087-bb47-c37c272be0f7" class="">1. Fundamentação Estatística do Modelo</h2><h3 id="231c6f7d-f2fd-8028-a40c-e3ecb6275ba9" class="">1.1 Modelo Elo Dinâmico para Força dos Times</h3><p id="231c6f7d-f2fd-80eb-b921-dda28916a3ce" class="">O sistema Elo é uma metodologia consagrada para avaliação de força relativa entre competidores, originalmente usada em xadrez, mas amplamente aplicada em esportes. No contexto do futebol:</p><ul id="231c6f7d-f2fd-8031-8d06-f9da22cd5191" class="bulleted-list"><li style="list-style-type:disc">Cada time inicia com uma pontuação inicial padrão (exemplo: 1500 pontos).</li></ul><ul id="231c6f7d-f2fd-8047-9592-d0c9f5a18b2f" class="bulleted-list"><li style="list-style-type:disc">Após cada partida, os ratings dos dois times são atualizados com base no resultado e na expectativa prévia.</li></ul><ul id="231c6f7d-f2fd-8026-b2f7-c2cac09c05b2" class="bulleted-list"><li style="list-style-type:disc">A fórmula principal utiliza um fator de ajuste <code>K</code> e a diferença entre resultado esperado e real para corrigir os ratings.</li></ul><ul id="231c6f7d-f2fd-80e1-a670-ea73b6f549ed" class="bulleted-list"><li style="list-style-type:disc">É aplicada uma vantagem para o time mandante, para refletir o benefício estatístico de jogar em casa.</li></ul><ul id="231c6f7d-f2fd-80b9-bbc3-c199e074b425" class="bulleted-list"><li style="list-style-type:disc">Margem de gols influencia o fator <code>K</code>, ponderando resultados mais expressivos.</li></ul><p id="231c6f7d-f2fd-802d-800c-ffd66ad5e040" class="">Este cálculo gera um histórico dinâmico que representa a força competitiva atualizada de cada time.</p><h3 id="231c6f7d-f2fd-8061-aa44-c346a8f93f0d" class="">1.2 Modelo Poisson para Distribuição de Gols</h3><p id="231c6f7d-f2fd-80d3-9ec2-ee520f64b2fb" class="">A previsão dos gols segue a distribuição de Poisson, que é adequada para modelar eventos discretos raros em intervalos fixos, como gols em uma partida:</p><ul id="231c6f7d-f2fd-8048-9ab1-e6faa63e3a8c" class="bulleted-list"><li style="list-style-type:disc">Calcula-se a força ofensiva e defensiva relativa de cada time com base em dados históricos.</li></ul><ul id="231c6f7d-f2fd-80ef-ba61-dde4d7cf9d1a" class="bulleted-list"><li style="list-style-type:disc">Estima-se a média esperada de gols para mandante e visitante considerando essas forças e a média geral da liga.</li></ul><ul id="231c6f7d-f2fd-8020-8245-f6bc0ef37aa5" class="bulleted-list"><li style="list-style-type:disc">Utiliza-se a distribuição de Poisson para calcular a probabilidade de ocorrer um determinado número de gols para cada time.</li></ul><ul id="231c6f7d-f2fd-808f-937a-d131ce7d3128" class="bulleted-list"><li style="list-style-type:disc">Combinando as probabilidades independentes de gols de mandante e visitante, obtém-se a matriz de probabilidades dos possíveis placares.</li></ul><ul id="231c6f7d-f2fd-807c-a244-d8c26ac29a4d" class="bulleted-list"><li style="list-style-type:disc">A partir da matriz, computa-se a probabilidade de vitória do mandante, empate e vitória do visitante.</li></ul><h3 id="231c6f7d-f2fd-8083-b2cf-c5a9b7b23ae5" class="">1.3 Modelo Híbrido (Ensemble)</h3><p id="231c6f7d-f2fd-808f-acce-e00ab0f3f5c4" class="">O modelo final combina o Elo e o Poisson:</p><ul id="231c6f7d-f2fd-80c9-9078-fd5446dd687a" class="bulleted-list"><li style="list-style-type:disc">Ajusta a expectativa de gols esperados pelo modelo Poisson com base na diferença de ratings Elo, ponderada por um fator de influência.</li></ul><ul id="231c6f7d-f2fd-80c4-8ac8-ef874eade6c5" class="bulleted-list"><li style="list-style-type:disc">Dessa forma, a força relativa dinâmica do Elo modifica diretamente as médias esperadas de gols.</li></ul><ul id="231c6f7d-f2fd-8097-a060-d287685301ed" class="bulleted-list"><li style="list-style-type:disc">Mantém a vantagem de jogar em casa dentro da avaliação.</li></ul><ul id="231c6f7d-f2fd-809c-942e-ddc5fd77a77f" class="bulleted-list"><li style="list-style-type:disc">Calcula as probabilidades finais de resultado (vitória, empate, derrota) a partir das distribuições ajustadas.</li></ul><hr id="231c6f7d-f2fd-80fd-817d-ccf404dbe74e"/><h2 id="231c6f7d-f2fd-8050-ab2e-e44713c7ff47" class="">2. Arquitetura do Sistema</h2><h3 id="231c6f7d-f2fd-8056-b06c-e58d67a80f5c" class="">2.1 Componentes Principais</h3><ul id="231c6f7d-f2fd-809c-ae76-eac4b8b3b9dc" class="bulleted-list"><li style="list-style-type:disc"><strong>Carregamento e Preprocessamento dos Dados:</strong><p id="231c6f7d-f2fd-8048-b3a2-df3e5d1625b4" class="">Lê o arquivo CSV contendo dados históricos do campeonato. Realiza limpeza básica e transformação de tipos.</p></li></ul><ul id="231c6f7d-f2fd-80bd-8cff-e5fa7691ec0e" class="bulleted-list"><li style="list-style-type:disc"><strong>Cálculo das Forças e Ratings:</strong><p id="231c6f7d-f2fd-8091-83bb-f1134011e25a" class="">Calcula forças ofensivas e defensivas para o modelo Poisson, vantagens de casa, e executa o cálculo dinâmico do rating Elo histórico.</p></li></ul><ul id="231c6f7d-f2fd-80f6-8f41-c37249ec610f" class="bulleted-list"><li style="list-style-type:disc"><strong>Simulador Paralelo:</strong><p id="231c6f7d-f2fd-80ff-b115-e69a70da865c" class="">Utiliza multiprocessamento para executar simulações de partidas com diferentes jogos e múltiplas repetições, aumentando desempenho.</p></li></ul><ul id="231c6f7d-f2fd-806f-b7fd-f0c444c1bb39" class="bulleted-list"><li style="list-style-type:disc"><strong>Interface Gráfica:</strong><p id="231c6f7d-f2fd-8094-ab42-e4d844720c8e" class="">Aplicação em Tkinter que permite inserir jogos, iniciar simulações, visualizar progresso e exibir resultados e rankings de Elo e xG.</p></li></ul><ul id="231c6f7d-f2fd-8007-bfe5-e77da7479c43" class="bulleted-list"><li style="list-style-type:disc"><strong>Geração de Relatórios:</strong><p id="231c6f7d-f2fd-80cb-b17a-e0627da1e9ba" class="">Após simulações, gera arquivo Markdown (.md) sumarizando probabilidades, gols esperados e palpites para cada jogo.</p></li></ul><h3 id="231c6f7d-f2fd-805c-b1d4-fc74f3118f0e" class="">2.2 Fluxo da Aplicação</h3><ol type="1" id="231c6f7d-f2fd-80d2-9737-cbe20cdc0eaa" class="numbered-list" start="1"><li>Usuário inicia o app, que carrega o CSV e calcula o Elo dinâmico, forças e médias da liga.</li></ol><ol type="1" id="231c6f7d-f2fd-80b5-b2a1-f77777200b35" class="numbered-list" start="2"><li>Usuário insere até 10 jogos (mandante e visitante) e escolhe número de simulações (ex: 10 mil).</li></ol><ol type="1" id="231c6f7d-f2fd-80c9-9c28-e4409cc0b8ef" class="numbered-list" start="3"><li>O app paraleliza a execução das simulações utilizando o modelo híbrido para cada partida.</li></ol><ol type="1" id="231c6f7d-f2fd-8097-8d4a-c1321ef83cb9" class="numbered-list" start="4"><li>Progresso da simulação é mostrado na interface.</li></ol><ol type="1" id="231c6f7d-f2fd-803b-b823-d4accadd6285" class="numbered-list" start="5"><li>Ao final, arquivo Markdown com resumo estatístico é salvo e exibido para o usuário.</li></ol><ol type="1" id="231c6f7d-f2fd-802e-bb10-e044ef634a8a" class="numbered-list" start="6"><li>O usuário pode também visualizar os rankings de Elo e xG gerados a partir dos dados carregados.</li></ol><hr id="231c6f7d-f2fd-80c4-b06f-db0a1a9b957b"/><h2 id="231c6f7d-f2fd-8012-8991-f3fdfdf48f00" class="">3. Implementação Técnica</h2><h3 id="231c6f7d-f2fd-8049-880c-d2e85e28f86f" class="">3.1 Linguagem e Bibliotecas</h3><ul id="231c6f7d-f2fd-807b-9390-e3d51c440883" class="bulleted-list"><li style="list-style-type:disc"><strong>Python 3.13+</strong> — linguagem principal.</li></ul><ul id="231c6f7d-f2fd-80c7-9727-e64fd13f8a68" class="bulleted-list"><li style="list-style-type:disc"><strong>Pandas</strong> — manipulação e análise de dados tabulares.</li></ul><ul id="231c6f7d-f2fd-80fd-9173-cd3037d7f129" class="bulleted-list"><li style="list-style-type:disc"><strong>NumPy</strong> — cálculo eficiente de matrizes e probabilidades.</li></ul><ul id="231c6f7d-f2fd-8002-9078-f56dca12a0d7" class="bulleted-list"><li style="list-style-type:disc"><strong>Tkinter</strong> — interface gráfica desktop.</li></ul><ul id="231c6f7d-f2fd-804a-86c8-c64fa79bb388" class="bulleted-list"><li style="list-style-type:disc"><strong>Multiprocessing</strong> — paralelização para acelerar simulações.</li></ul><ul id="231c6f7d-f2fd-8088-81d3-fb7d09d0ce6b" class="bulleted-list"><li style="list-style-type:disc"><strong>CSV</strong> — leitura e escrita do banco de dados histórico.</li></ul><h3 id="231c6f7d-f2fd-80bf-b446-e76cacdbb6dc" class="">3.2 Estrutura do Código</h3><ul id="231c6f7d-f2fd-8034-be9f-c7bfdba0ca14" class="bulleted-list"><li style="list-style-type:disc">Funções específicas para:<ul id="231c6f7d-f2fd-8097-938e-e703fd312e0f" class="bulleted-list"><li style="list-style-type:circle">Cálculo do Elo dinâmico (<code>atualizar_ratings_elo</code>).</li></ul><ul id="231c6f7d-f2fd-8004-98b7-cf1f6fe977af" class="bulleted-list"><li style="list-style-type:circle">Cálculo das forças ofensivas e defensivas (<code>calcular_forcas_poisson</code>).</li></ul><ul id="231c6f7d-f2fd-8079-8ffa-ebd5c30fdefa" class="bulleted-list"><li style="list-style-type:circle">Cálculo da distribuição de Poisson e previsão híbrida (<code>prever_partida_hibrido</code>).</li></ul><ul id="231c6f7d-f2fd-8058-b118-c0054ef80837" class="bulleted-list"><li style="list-style-type:circle">Execução paralela das simulações (<code>rodar_simulacao_paralela</code>).</li></ul><ul id="231c6f7d-f2fd-8022-8397-fb083ffd095d" class="bulleted-list"><li style="list-style-type:circle">Interface gráfica (classe <code>SimuladorApp</code>) com widgets para entrada, botões, barra de progresso e visualização.</li></ul><ul id="231c6f7d-f2fd-8025-a893-c4cdf9e0001e" class="bulleted-list"><li style="list-style-type:circle">Adição de novos resultados no CSV para atualização dos dados.</li></ul></li></ul><h3 id="231c6f7d-f2fd-80c5-a1b3-f8fe99b2d75b" class="">3.3 Otimizações</h3><ul id="231c6f7d-f2fd-809c-81d6-db0abefe8bb9" class="bulleted-list"><li style="list-style-type:disc">Cache das previsões para evitar recomputações.</li></ul><ul id="231c6f7d-f2fd-8027-999b-f375c6e3d448" class="bulleted-list"><li style="list-style-type:disc">Paralelização das simulações para uso efetivo dos núcleos da CPU.</li></ul><ul id="231c6f7d-f2fd-800f-8f5c-f377f4ee8527" class="bulleted-list"><li style="list-style-type:disc">Limitação máxima de gols para cálculo rápido da distribuição Poisson.</li></ul><ul id="231c6f7d-f2fd-8008-9505-fdf6ce0ee909" class="bulleted-list"><li style="list-style-type:disc">Atualização dinâmica dos ratings Elo a partir dos dados reais para manter modelo alinhado com desempenho histórico.</li></ul><hr id="231c6f7d-f2fd-8099-a5f0-c9be623fc40c"/><h2 id="231c6f7d-f2fd-80ae-a2ec-c486f3c22f48" class="">4. Conclusão</h2><p id="231c6f7d-f2fd-8034-9fb1-e8c223102f30" class="">Este modelo estatístico híbrido implementa um método robusto para previsão de resultados do Campeonato Brasileiro, combinando análise histórica e probabilística avançada. A arquitetura modular e a interface gráfica amigável permitem fácil uso, enquanto as técnicas de paralelização garantem performance adequada para grandes volumes de simulações.</p><p id="231c6f7d-f2fd-8050-9fba-e103ece66a0e" class="">Este sistema pode ser expandido para incorporar outros fatores (lesões, transferências, clima) e melhorar a precisão das previsões, além de servir como base para sistemas de análise esportiva e apostas inteligentess.</p><hr id="231c6f7d-f2fd-8094-9715-f35cd1fb97be"/><h2 id="231c6f7d-f2fd-80eb-9a20-f28d10eac2f4" class="">APX A: Definição Formal do Modelo Estatístico para Previsão de Resultados de Futebol</h2><h2 id="231c6f7d-f2fd-8053-bd9c-e8ec844e63ab" class="">O que é um Modelo?</h2><p id="231c6f7d-f2fd-8083-b64a-ca164c852159" class="">Um <strong>modelo</strong> é uma representação matemática, estatística ou computacional que busca descrever, explicar ou prever o comportamento de um sistema ou fenômeno real. No contexto da ciência de dados e estatística, modelos usam dados históricos para estimar relações entre variáveis e gerar previsões probabilísticas fundamentadas.</p><hr id="231c6f7d-f2fd-80e7-811d-c016dedb0ee2"/><h2 id="231c6f7d-f2fd-8083-aeb6-deffe10bb0d7" class="">O Modelo Estatístico Implementado</h2><p id="231c6f7d-f2fd-8069-87b3-ca367581ca55" class="">O código desenvolvido constitui um <strong>modelo estatístico preditivo para partidas de futebol</strong>, cuja finalidade é estimar os resultados futuros com base em dados históricos de partidas já disputadas.</p><p id="231c6f7d-f2fd-80c0-9579-decec617056d" class="">Ele combina dois métodos consagrados:</p><ol type="1" id="231c6f7d-f2fd-8070-840a-ec67ddaa7e33" class="numbered-list" start="1"><li><strong>Sistema Elo Dinâmico:</strong><ul id="231c6f7d-f2fd-80ff-9139-e21e4b281f8c" class="bulleted-list"><li style="list-style-type:disc">Avalia a força relativa dos times ao longo do tempo, ajustando a pontuação (rating) de cada clube conforme o histórico de resultados.</li></ul><ul id="231c6f7d-f2fd-80bc-a1ef-d7e9ed1b5df9" class="bulleted-list"><li style="list-style-type:disc">Considera a vantagem de jogar em casa e a margem de gols para refinar a avaliação.</li></ul></li></ol><ol type="1" id="231c6f7d-f2fd-8074-8166-f27c01c19a24" class="numbered-list" start="2"><li><strong>Modelo Poisson para Gols:</strong><ul id="231c6f7d-f2fd-801a-8184-d9223bc933d2" class="bulleted-list"><li style="list-style-type:disc">Estima a probabilidade de cada time marcar um certo número de gols usando a distribuição de Poisson, adequada para eventos discretos e independentes.</li></ul><ul id="231c6f7d-f2fd-80fb-86ea-e51e22963b4f" class="bulleted-list"><li style="list-style-type:disc">Leva em conta forças ofensivas e defensivas relativas, bem como médias gerais de gols no campeonato.</li></ul></li></ol><hr id="231c6f7d-f2fd-80da-ab30-ff5a0174f1c5"/><h2 id="231c6f7d-f2fd-8063-bb7d-e3e36f8914cc" class="">Natureza do Modelo</h2><ul id="231c6f7d-f2fd-80e1-9da2-ee1b84c499d5" class="bulleted-list"><li style="list-style-type:disc">É um <strong>modelo probabilístico</strong>, pois fornece distribuições de probabilidade para placares e resultados, não apenas previsões determinísticas.</li></ul><ul id="231c6f7d-f2fd-808e-908e-d5c596e68103" class="bulleted-list"><li style="list-style-type:disc">É <strong>dinâmico</strong>, pois os ratings Elo são recalculados conforme novos dados são adicionados, refletindo a evolução da performance dos times.</li></ul><ul id="231c6f7d-f2fd-8029-8d26-ca8e687beeb5" class="bulleted-list"><li style="list-style-type:disc">É um <strong>modelo híbrido (ensemble)</strong>, integrando informações de força relativa (Elo) e padrões de gols (Poisson) para melhorar a acurácia preditiva.</li></ul><hr id="231c6f7d-f2fd-8061-827c-da8352cf3ff0"/><h2 id="231c6f7d-f2fd-801a-ae5c-e97e25c3bd25" class="">Aplicação do Modelo</h2><ul id="231c6f7d-f2fd-80f6-be20-f13d9be74b5a" class="bulleted-list"><li style="list-style-type:disc"><strong>Entrada:</strong> Dados históricos de partidas (placares, times, local da partida).</li></ul><ul id="231c6f7d-f2fd-8001-b37b-fb2dd044f030" class="bulleted-list"><li style="list-style-type:disc"><strong>Processamento:</strong> Cálculo dos ratings Elo, forças ofensivas/defensivas, vantagem de casa e simulação das partidas usando distribuição de Poisson ajustada pelo Elo.</li></ul><ul id="231c6f7d-f2fd-8078-b482-cd568ff78391" class="bulleted-list"><li style="list-style-type:disc"><strong>Saída:</strong> Probabilidades de vitória, empate e derrota para cada jogo, gols esperados, e palpites de resultado mais provável.</li></ul><hr id="231c6f7d-f2fd-8081-bde7-f00d4e328cbd"/><h2 id="231c6f7d-f2fd-80e2-8f9f-f9fe59212d00" class="">Importância e Uso</h2><p id="231c6f7d-f2fd-80d4-a4f5-d6e2810a465b" class="">Este modelo permite análises quantitativas robustas, suporte a decisões (como apostas ou análises esportivas) e acompanhamento evolutivo do desempenho das equipes ao longo do tempo, oferecendo uma ferramenta computacional rigorosa baseada em fundamentos estatísticos sólidos.</p>
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+<h2>Referências:</h2>
+<li><a href="https://www.kaggle.com/code/paulopilotti/modelo-sassamaru-br-25">Kaggle</a></li>
+<li><a href="https://github.com/mtgr18977/sassamaru-br-25">GitHub</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Elo_rating_system">Elo Rating System - Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson Distribution - Wikipedia</a></li>
+<li><a href="https://docs.python.org/3/library/tkinter.html">Tkinter Documentation</a></li>
+<li><a href="https://pandas.pydata.org/docs/">Pandas Documentation</a></li>
+<li><a href="https://numpy.org/doc/">NumPy Documentation</a></li>

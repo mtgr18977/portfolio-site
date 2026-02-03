@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Calculadora PJ x CLT - Compare sua renda como pessoa jurídica versus CLT. Ferramenta completa para análise financeira." />
+<meta name="author" content="Paulo Guilherme Pilotti Duarte" />
+<meta property="og:title" content="Calculadora PJ x CLT — Paulo Guilherme Pilotti Duarte" />
+<meta property="og:description" content="Compare sua renda como PJ versus CLT com cálculos detalhados de impostos, benefícios e líquido real." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="pt_BR" />
+<meta name="twitter:card" content="summary" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧮</text></svg>" />
+<title>Calculadora PJ x CLT — Paulo Guilherme Pilotti Duarte</title>
+<style>
+  :root{
+    --color-primary: #1d4ed8;
+    --color-primary-dark: #1e40af;
+    --color-secondary: #ec4899;
+    --color-secondary-dark: #db2777;
+    --color-text: #222;
+    --color-text-muted: #555;
+    --color-text-light: #666;
+    --color-bg: #fafafa;
+    --color-bg-card: #ffffff;
+    --color-border: #e5e7eb;
+    --color-focus: #3b82f6;
+    --color-success: #10b981;
+    --color-success-bg: #ecfdf5;
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+    --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    --font-size-sm: 0.95rem;
+    --font-size-base: 1.05rem;
+    --font-size-lg: 1.3rem;
+    --font-size-xl: 1.9rem;
+    --line-height-tight: 1.4;
+    --line-height-normal: 1.6;
+    --transition-fast: 150ms ease-in-out;
+    --transition-normal: 250ms ease-in-out;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root{
+      --color-primary: #60a5fa;
+      --color-primary-dark: #3b82f6;
+      --color-secondary: #f472b6;
+      --color-secondary-dark: #ec4899;
+      --color-text: #e5e7eb;
+      --color-text-muted: #9ca3af;
+      --color-text-light: #6b7280;
+      --color-bg: #111827;
+      --color-bg-card: #1f2937;
+      --color-border: #374151;
+      --color-focus: #60a5fa;
+      --color-success: #34d399;
+      --color-success-bg: #064e3b;
+      --color-warning: #fbbf24;
+      --color-danger: #f87171;
+    }
+  }
+
+  *,*::before,*::after{box-sizing: border-box;}
+
+  body{
+    margin:0;
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: var(--line-height-normal);
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+  }
+
+  .skip-link{
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-sm) var(--space-md);
+    text-decoration: none;
+    z-index: 100;
+    font-weight: 600;
+    border-radius: 0 0 var(--radius-sm) 0;
+    transition: top var(--transition-fast);
+  }
+
+  .skip-link:focus-visible{
+    top: 0;
+    outline: 2px solid white;
+    outline-offset: -4px;
+  }
+
+  .app-container{
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    width: 100%;
+    height: 100%;
+  }
+
+  .sidebar{
+    background: var(--color-bg-card);
+    border-right: 1px solid var(--color-border);
+    padding: var(--space-xl);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    box-shadow: var(--shadow-sm);
+    z-index: 10;
+  }
+
+  .brand{
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .back-link{
+    display: inline-block;
+    margin-bottom: var(--space-md);
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+  }
+
+  .back-link:hover{
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+  }
+
+  .input-group h3{
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-sm) 0;
+    font-weight: 700;
+  }
+
+  .input-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+  }
+
+  .field{margin-bottom: var(--space-sm);}
+  .field.full{grid-column: span 2;}
+
+  label{
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+    color: var(--color-text-muted);
+  }
+
+  input{
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    transition: all var(--transition-fast);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+  }
+
+  input:focus{
+    outline: none;
+    border-color: var(--color-primary);
+    background: var(--color-bg-card);
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+  }
+
+  .clt-section input:focus{
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+  }
+
+  .clt-title{
+    color: var(--color-secondary) !important;
+    margin-top: var(--space-sm) !important;
+  }
+
+  .btn-action{
+    width: 100%;
+    padding: var(--space-md);
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: auto;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+    font-family: var(--font-sans);
+    font-size: var(--font-size-sm);
+  }
+
+  .btn-action:hover{
+    background: var(--color-primary-dark);
+  }
+
+  .btn-action:active{
+    transform: scale(0.98);
+  }
+
+  .btn-action:focus-visible{
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  .main-panel{
+    padding: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .dashboard-card{
+    background: var(--color-bg-card);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .tabs-header{
+    display: flex;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-bg);
+  }
+
+  .tab-btn{
+    padding: var(--space-md) var(--space-xl);
+    border: none;
+    background: transparent;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    position: relative;
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+    font-family: var(--font-sans);
+  }
+
+  .tab-btn:hover{
+    color: var(--color-text);
+    background: rgba(0,0,0,0.02);
+  }
+
+  .tab-btn:focus-visible{
+    outline: 2px solid var(--color-focus);
+    outline-offset: -2px;
+  }
+
+  .tab-btn.active{
+    color: var(--color-primary);
+    background: var(--color-bg-card);
+  }
+
+  .tab-btn.active::after{
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-primary);
+  }
+
+  .tab-btn[onclick*="compare"].active{
+    color: var(--color-secondary);
+  }
+
+  .tab-btn[onclick*="compare"].active::after{
+    background: var(--color-secondary);
+  }
+
+  .tab-content{
+    display: none;
+    padding: var(--space-2xl);
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .tab-content.active{
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn{
+    from{opacity: 0; transform: translateY(5px);}
+    to{opacity: 1; transform: translateY(0);}
+  }
+
+  .pj-dashboard{
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--space-2xl);
+    height: 100%;
+  }
+
+  .detail-section h2{
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    margin: 0 0 var(--space-lg) 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-weight: 600;
+  }
+
+  .bill-row{
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-sm) 0;
+    border-bottom: 1px dashed var(--color-border);
+    font-size: var(--font-size-sm);
+  }
+
+  .bill-row:last-child{border-bottom: none;}
+
+  .bill-row.highlight{
+    background: var(--color-bg);
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    border: none;
+    font-weight: 600;
+    margin: var(--space-xs) 0;
+  }
+
+  .bill-row.total-section{
+    margin-top: var(--space-md);
+    border-top: 2px solid var(--color-border);
+    border-bottom: none;
+    padding-top: var(--space-md);
+    font-weight: 700;
+    font-size: var(--font-size-base);
+  }
+
+  .tag{
+    font-size: 0.7em;
+    background: var(--color-border);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    vertical-align: middle;
+    margin-left: var(--space-xs);
+  }
+
+  .val{
+    font-family: var(--font-mono);
+    font-weight: 500;
+  }
+
+  .text-danger{color: var(--color-danger);}
+  .text-warning{color: var(--color-warning);}
+
+  .liquido-highlight-card{
+    background: linear-gradient(135deg, var(--color-success) 0%, #059669 100%);
+    color: white;
+    border-radius: var(--radius-md);
+    padding: var(--space-2xl);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4);
+    margin-top: auto;
+  }
+
+  .liquido-highlight-card .label{
+    opacity: 0.9;
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--space-xs);
+  }
+
+  .liquido-highlight-card .big-money{
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+  }
+
+  .comparison-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    height: 100%;
+  }
+
+  .compare-card{
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all var(--transition-normal);
+    background: var(--color-bg-card);
+  }
+
+  .compare-card.winner{
+    border: 2px solid var(--color-success);
+    background: var(--color-success-bg);
+    transform: scale(1.02);
+    z-index: 2;
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15);
+  }
+
+  .compare-card.winner::before{
+    content: '🏆 MELHOR OPÇÃO';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-success);
+    color: white;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .compare-header{
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .compare-header h3{
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+  }
+
+  .compare-header .big-val{
+    font-size: 2rem;
+    font-weight: 800;
+    margin-top: var(--space-xs);
+    display: block;
+  }
+
+  .pj-theme .compare-header h3{color: var(--color-primary);}
+  .pj-theme .compare-header .big-val{color: var(--color-primary);}
+  .clt-theme .compare-header h3{color: var(--color-secondary);}
+  .clt-theme .compare-header .big-val{color: var(--color-secondary);}
+
+  .compare-list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .compare-list li{
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  .compare-list li span:last-child{
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  @media (max-width: 900px){
+    .app-container{grid-template-columns: 1fr; overflow-y: auto; display: block;}
+    .sidebar{height: auto; border-right: none; border-bottom: 1px solid var(--color-border);}
+    .main-panel{height: auto; padding: var(--space-md);}
+    .pj-dashboard{grid-template-columns: 1fr;}
+    .comparison-container{grid-template-columns: 1fr;}
+    .compare-card.winner{transform: none;}
+    .liquido-highlight-card{margin-top: var(--space-lg);}
+  }
+
+  @media (max-width: 480px){
+    .sidebar{padding: var(--space-md);}
+    .main-panel{padding: var(--space-sm);}
+    .tab-content{padding: var(--space-md);}
+    .brand{font-size: var(--font-size-base);}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+    .compare-card.winner{transform: none;}
+  }
+
+  @media print{
+    body{background: white; color: black;}
+    .skip-link,.sidebar{display: none;}
+    .app-container{display: block;}
+    .main-panel{padding: 0;}
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+
+<div class="app-container">
+    <aside class="sidebar">
+        <a href="index.html" class="back-link">← Voltar ao início</a>
+        <div class="brand">
+            <span style="font-size: 1.5rem;">🧮</span> Calculadora PJ x CLT
+        </div>
+
+        <div class="input-group">
+            <h3>Dados PJ</h3>
+            <div class="field">
+                <label>Faturamento Bruto</label>
+                <input type="number" id="faturamento" value="12000">
+            </div>
+            
+            <div class="input-grid">
+                <div class="field">
+                    <label>Contador</label>
+                    <input type="number" id="contador" value="300">
+                </div>
+                <div class="field">
+                    <label>Saúde</label>
+                    <input type="number" id="saude" value="900">
+                </div>
+                <div class="field">
+                    <label>Aposentadoria</label>
+                    <input type="number" id="aposentadoria" value="900">
+                </div>
+                <div class="field">
+                    <label>Seguro DIT</label>
+                    <input type="number" id="dit" value="250">
+                </div>
+                <div class="field full">
+                    <label>Reserva Desemprego</label>
+                    <input type="number" id="reserva_desemprego" value="400">
+                </div>
+            </div>
+        </div>
+
+        <div class="input-group clt-section">
+            <h3 class="clt-title">Dados CLT (Comparação)</h3>
+            <div class="field">
+                <label>Salário Bruto</label>
+                <input type="number" id="clt_bruto" placeholder="Ex: 8000">
+            </div>
+            <div class="input-grid">
+                <div class="field">
+                    <label>V. Refeição</label>
+                    <input type="number" id="clt_va" value="0">
+                </div>
+                <div class="field">
+                    <label>Benef. Saúde</label>
+                    <input type="number" id="clt_saude" value="0">
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-action" onclick="calcular()">Atualizar Cálculo</button>
+    </aside>
+
+    <main class="main-panel" id="main">
+        <div class="dashboard-card">
+            <div class="tabs-header">
+                <button class="tab-btn active" onclick="switchTab('pj')">📊 Detalhamento PJ</button>
+                <button class="tab-btn" onclick="switchTab('compare')">⚖️ Comparativo PJ vs CLT</button>
+            </div>
+
+            <div id="tab-pj" class="tab-content active">
+                <div class="pj-dashboard">
+                    <div class="detail-section">
+                        <h2>🏢 Estrutura de Custos da Empresa</h2>
+                        <div class="bill-row">
+                            <span>Faturamento Bruto</span>
+                            <span class="val" id="res-faturamento">R$ 0,00</span>
+                        </div>
+                        <div class="bill-row">
+                            <span>(-) Imposto Simples <span class="tag">DAS ~6%</span></span>
+                            <span class="val text-danger" id="res-das">R$ 0,00</span>
+                        </div>
+                        <div class="bill-row">
+                            <span>(-) Contador</span>
+                            <span class="val text-danger" id="res-contador">R$ 0,00</span>
+                        </div>
+                        <div class="bill-row highlight">
+                            <span>= Caixa Disponível</span>
+                            <span class="val" id="res-saldo-empresa">R$ 0,00</span>
+                        </div>
+
+                        <h2 style="margin-top: 30px;">👤 Impostos & Benefícios Pessoais</h2>
+                        <div class="bill-row">
+                            <span>(-) INSS (11% do Pro-labore)</span>
+                            <span class="val text-warning" id="res-inss">R$ 0,00</span>
+                        </div>
+                        <div class="bill-row">
+                            <span>(-) IRPF (Tab. Progressiva)</span>
+                            <span class="val text-warning" id="res-irpf">R$ 0,00</span>
+                        </div>
+                        <div class="bill-row">
+                            <span>(-) Custos Vida (Saúde/Prev/Seguros)</span>
+                            <span class="val text-danger" id="res-custos-vida">R$ 0,00</span>
+                        </div>
+                        <div class="bill-row" style="background: #fff7ed; padding: 10px; border-radius: 6px;">
+                            <span>(-) Provisão Férias/13º (Guardar)</span>
+                            <span class="val" style="color: #c2410c;" id="res-ferias13">R$ 0,00</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-section" style="display: flex; flex-direction: column;">
+                        <div class="liquido-highlight-card">
+                            <span class="label">Seu Líquido Real Mensal</span>
+                            <span class="big-money" id="res-final">R$ 0,00</span>
+                            <div style="font-size: 0.8rem; margin-top: 10px; opacity: 0.8;">Livre para gastar (já blindado)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-compare" class="tab-content">
+                <div class="comparison-container">
+                    
+                    <div class="compare-card pj-theme" id="card-pj-compare">
+                        <div class="compare-header">
+                            <h3>Modelo PJ</h3>
+                            <span class="big-val" id="comp-pj-final">R$ 0,00</span>
+                            <span style="font-size: 0.8rem; color: #64748b;">Líquido Real no Bolso</span>
+                        </div>
+                        <ul class="compare-list">
+                            <li><span>Faturamento Bruto</span> <span id="comp-pj-bruto">R$ 0,00</span></li>
+                            <li><span>Total Impostos (DAS+PF)</span> <span id="comp-pj-impostos">R$ 0,00</span></li>
+                            <li><span>Benefícios Pagos</span> <span>Você paga</span></li>
+                            <li><span>Férias/13º</span> <span>Incluso na provisão</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="compare-card clt-theme" id="card-clt-compare">
+                        <div class="compare-header">
+                            <h3>Modelo CLT</h3>
+                            <span class="big-val" id="comp-clt-total">R$ 0,00</span>
+                            <span style="font-size: 0.8rem; color: #64748b;">Pacote Mensal Equivalente</span>
+                        </div>
+                        <ul class="compare-list">
+                            <li><span>Salário Bruto</span> <span id="comp-clt-bruto-val">R$ 0,00</span></li>
+                            <li><span>Líquido em Conta</span> <span id="comp-clt-liquido">R$ 0,00</span></li>
+                            <li><span>+ Benefícios (VA/Saúde)</span> <span id="comp-clt-beneficios">R$ 0,00</span></li>
+                            <li><span>+ Férias/13º (Mensalizado)</span> <span id="comp-clt-ferias13">R$ 0,00</span></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<script>
+    function switchTab(tabName) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        document.getElementById('tab-' + tabName).classList.add('active');
+        
+        const buttons = document.querySelectorAll('.tab-btn');
+        if(tabName === 'pj') buttons[0].classList.add('active');
+        else buttons[1].classList.add('active');
+    }
+
+    function formatMoney(value) {
+        return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function calcularIRPF(base) {
+        let imposto = 0;
+        if (base <= 2259.20) imposto = 0;
+        else if (base <= 2826.65) imposto = (base * 0.075) - 169.44;
+        else if (base <= 3751.05) imposto = (base * 0.15) - 381.44;
+        else if (base <= 4664.68) imposto = (base * 0.225) - 662.77;
+        else imposto = (base * 0.275) - 896.00;
+        return Math.max(0, imposto);
+    }
+
+    function calcularINSS_CLT(salario) {
+        let inss = 0;
+        if (salario <= 1412) inss = salario * 0.075;
+        else if (salario <= 2666.68) inss = (1412*0.075) + ((salario-1412)*0.09);
+        else if (salario <= 4000.03) inss = (1412*0.075) + ((2666.68-1412)*0.09) + ((salario-2666.68)*0.12);
+        else if (salario <= 7786.02) inss = (1412*0.075) + ((2666.68-1412)*0.09) + ((4000.03-2666.68)*0.12) + ((salario-4000.03)*0.14);
+        else inss = (1412*0.075) + ((2666.68-1412)*0.09) + ((4000.03-2666.68)*0.12) + ((7786.02-4000.03)*0.14);
+        return inss;
+    }
+
+    function calcular() {
+        const faturamento = parseFloat(document.getElementById('faturamento').value) || 0;
+        const contador = parseFloat(document.getElementById('contador').value) || 0;
+        const saude = parseFloat(document.getElementById('saude').value) || 0;
+        const aposentadoria = parseFloat(document.getElementById('aposentadoria').value) || 0;
+        const dit = parseFloat(document.getElementById('dit').value) || 0;
+        const reserva = parseFloat(document.getElementById('reserva_desemprego').value) || 0;
+        const depreciacao = 100;
+
+        const cltBruto = parseFloat(document.getElementById('clt_bruto').value) || 0;
+        const cltVA = parseFloat(document.getElementById('clt_va').value) || 0;
+        const cltSaude = parseFloat(document.getElementById('clt_saude').value) || 0;
+
+        const prolabore = faturamento * 0.28;
+        const das = faturamento * 0.06;
+        let inssPJ = Math.min(prolabore * 0.11, 908.85);
+        const irpfPJ = calcularIRPF(prolabore - inssPJ);
+        
+        const saldoEmpresa = faturamento - das - contador;
+        const disponivelPrePessoal = saldoEmpresa - inssPJ - irpfPJ;
+        const provisao = disponivelPrePessoal * 0.1111; 
+        const custosVida = saude + aposentadoria + dit + reserva + depreciacao;
+        const liquidoFinalPJ = disponivelPrePessoal - custosVida - provisao;
+
+        document.getElementById('res-faturamento').innerText = formatMoney(faturamento);
+        document.getElementById('res-das').innerText = formatMoney(das);
+        document.getElementById('res-contador').innerText = formatMoney(contador);
+        document.getElementById('res-saldo-empresa').innerText = formatMoney(saldoEmpresa);
+        document.getElementById('res-inss').innerText = formatMoney(inssPJ);
+        document.getElementById('res-irpf').innerText = formatMoney(irpfPJ);
+        document.getElementById('res-custos-vida').innerText = formatMoney(custosVida);
+        document.getElementById('res-ferias13').innerText = formatMoney(provisao);
+        document.getElementById('res-final').innerText = formatMoney(liquidoFinalPJ);
+
+        const inssCLT = calcularINSS_CLT(cltBruto);
+        const irpfCLT = calcularIRPF(cltBruto - inssCLT);
+        const liquidoContaCLT = cltBruto - inssCLT - irpfCLT;
+        const ferias13CLT = (liquidoContaCLT / 12) + (liquidoContaCLT / 3 / 12);
+        const beneficiosCLT = cltVA + cltSaude;
+        const totalPacoteCLT = liquidoContaCLT + beneficiosCLT + ferias13CLT;
+
+        document.getElementById('comp-pj-final').innerText = formatMoney(liquidoFinalPJ);
+        document.getElementById('comp-pj-bruto').innerText = formatMoney(faturamento);
+        document.getElementById('comp-pj-impostos').innerText = formatMoney(das + inssPJ + irpfPJ);
+
+        document.getElementById('comp-clt-total').innerText = formatMoney(totalPacoteCLT);
+        document.getElementById('comp-clt-bruto-val').innerText = formatMoney(cltBruto);
+        document.getElementById('comp-clt-liquido').innerText = formatMoney(liquidoContaCLT);
+        document.getElementById('comp-clt-beneficios').innerText = formatMoney(beneficiosCLT);
+        document.getElementById('comp-clt-ferias13').innerText = formatMoney(ferias13CLT);
+
+        const cardPJ = document.getElementById('card-pj-compare');
+        const cardCLT = document.getElementById('card-clt-compare');
+        
+        cardPJ.classList.remove('winner');
+        cardCLT.classList.remove('winner');
+
+        if (liquidoFinalPJ > totalPacoteCLT) cardPJ.classList.add('winner');
+        else if (totalPacoteCLT > liquidoFinalPJ) cardCLT.classList.add('winner');
+    }
+
+    window.onload = calcular;
+</script>
+
+</body>
+</html>

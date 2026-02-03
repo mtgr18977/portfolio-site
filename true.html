@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porto Alegre: Sombras de Vermelho</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-color: #cfd8dc;
+            --accent-color: #80cbc4;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 720px;
+            width: 100%;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        h1.main-title {
+            font-family: sans-serif;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            font-family: sans-serif;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(128, 203, 196, 0.3);
+            padding-bottom: 10px;
+            margin-top: 3rem;
+            color: var(--accent-color);
+        }
+
+        p {
+            text-align: justify;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Drop Cap Styling */
+        p.first-paragraph::first-letter {
+            float: left;
+            font-size: 3.5rem;
+            line-height: 1;
+            padding-right: 10px;
+            padding-top: 4px;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        em {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+
+        blockquote {
+            border-left: 3px solid var(--accent-color);
+            margin: 2rem 0;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            font-style: italic;
+        }
+
+        .nav-link {
+            display: block;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-family: sans-serif;
+            font-size: 0.9rem;
+            margin: 20px 0;
+            transition: opacity 0.3s;
+        }
+
+        .nav-link:hover {
+            opacity: 0.7;
+        }
+
+        .separator {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+            margin: 3rem 0;
+        }
+
+        footer {
+            margin-top: 4rem;
+            text-align: center;
+            border-top: 1px solid rgba(207, 216, 220, 0.1);
+            padding-top: 20px;
+        }
+
+        .meta-info {
+            font-style: italic;
+            font-size: 0.9rem;
+            color: #90a4ae;
+            margin-bottom: 2rem;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <a href="index.html" class="nav-link">← Voltar ao Índice</a>
+    </nav>
+
+    <h1 class="main-title">Capítulo 1 — A Primeira Sombra</h1>
+
+    <span class="meta-info">Janeiro de 2026 — Morro da Polícia, Porto Alegre.</span>
+
+    <p class="first-paragraph">Porto Alegre acordava encharcada depois de uma chuva torrencial que durou a noite inteira. O céu ainda estava cinza, mas o calor já voltava a apertar, transformando o ar em uma sopa úmida e grudenta. No Morro da Polícia — aquele morro íngreme coberto de antenas, casas de tijolo aparente e vielas de pedra escorregadia —, o cheiro de terra molhada misturava-se ao odor metálico de sangue fresco.</p>
+
+    <p>O corpo foi encontrado por volta das sete da manhã por um técnico de TV a cabo que subia para consertar uma antena caída. Ele ligou para a polícia quase gritando:</p>
+
+    <blockquote>
+        “Tem uma moça morta aqui em cima, parece coisa de filme de terror.”
+    </blockquote>
+
+    <p>A vítima era Juliana, 26 anos, conhecida nas ruas como <em>“Juli”</em> ou <em>“a loirinha da Tia Carmem”</em>. Trabalhava no sobrado da Rua da República, no Cidade Baixa, há uns três anos. Morena clara, cabelo tingido de loiro, tatuagem de borboleta no ombro esquerdo. Saiu do trabalho na noite anterior, por volta das duas da madrugada, dizendo que ia encontrar um cliente <em>“especial”</em> que pagava o dobro para levá-la até o amanhecer.</p>
+
+    <p>Quando a equipe da Homicídios chegou — Rafael Mendes e Laura Teixeira à frente —, o corpo ainda estava quente. Juliana jazia de costas no barro vermelho da encosta, os braços abertos e erguidos para cima, como se estivesse se rendendo a alguém invisível ou invocando algo. As mãos estavam abertas, palmas viradas para o céu, dedos ligeiramente curvados.</p>
+
+    <p>Não havia sinais de violência sexual: a roupa íntima estava intacta, o vestido curto preto levantado apenas pela posição do corpo, sem rasgos ou marcas de luta na região genital.</p>
+
+    <p>Mas o resto... o resto era ritual.</p>
+
+    <p>No peito nu, exposto onde o decote havia sido rasgado com precisão (não rasgado com violência, mas cortado com algo afiado, talvez uma faca cerimonial), havia pinturas vermelhas. Não era sangue — era tinta, ou batom grosso misturado com algo mais viscoso. Linhas geométricas: um círculo irregular ao redor dos seios, setas apontando para o coração, símbolos que pareciam cruzes invertidas ou runas mal feitas.</p>
+
+    <p>E na testa, o detalhe que ficaria marcado em todas as que viriam depois: um borrão de batom vermelho vivo, como uma assinatura apressada, mas deliberada.</p>
+
+    <p>- Isso não é crime passional — murmurou Rafael, agachado ao lado do corpo, o suor já escorrendo pela testa apesar do vento fresco que subia do Guaíba. — Alguém levou tempo aqui. Preparou o cenário.</p>
+
+    <p>Laura circulava devagar, fotografando cada ângulo com o celular. O barro grudava nas solas dos sapatos dela.</p>
+
+    <p>- Braços assim... parece oferenda. Ou crucificação invertida. Sem cordas, sem amarras. Ela estava viva quando pintaram?</p>
+
+    <p>O perito, um homem magro chamado Dr. Carlos, que usava luvas e máscara mesmo no calor, respondeu enquanto coletava amostras da tinta:</p>
+
+    <p>- Provavelmente sim. Não tem marcas de amarração nos pulsos. Pode ter sido dopada primeiro, ou convencida a ficar nessa posição. Causa da morte: asfixia mecânica, estrangulamento com as mãos nuas, pelo menos três minutos de pressão. Mas o ritual veio depois. Ou durante.</p>
+
+    <p>Rafael se levantou, olhando para a cidade lá embaixo: o Guaíba cinzento, o centro distante, os prédios do Menino Deus brilhando ao sol que começava a furar as nuvens.</p>
+
+    <p>- Tia Carmem vai ter que falar mais do que <em>“não sei de nada, delegado”</em>. Esse cliente <em>“especial”</em>... ela sabe quem é.</p>
+
+    <p>Eles desceram o morro em silêncio, o carro da polícia escorregando na lama. No rádio, já falavam da primeira vítima do que poderia virar série. Ninguém imaginava ainda que seriam quatro. Ou que o assassino estava só começando a assinar suas obras.</p>
+
+    <p>No final da tarde, no IML, confirmaram: sem sêmen, sem DNA óbvio além do dela. A tinta no corpo era batom comum, vermelho escarlate, marca barata vendida em qualquer farmácia. Mas o gesto — os braços para cima, a pintura, o batom na testa — era pessoal. Ritualístico. Como se o assassino estivesse dizendo: <em>“Eu controlo a morte. Eu decoro o corpo. Eu marco”</em>.</p>
+
+    <p>E Porto Alegre, com seu calor abafado e suas chuvas repentinas, continuou respirando. Por enquanto.</p>
+
+    <hr class="separator">
+
+    <h2>Capítulo 2 — A Segunda Marca</h2>
+
+    <span class="meta-info">Fim de janeiro de 2026 — Partenon, Porto Alegre.</span>
+
+    <p>Porto Alegre ainda não havia secado da chuva que trouxera o corpo de Juliana ao Morro da Polícia. O calor voltava a apertar, o ar carregado de umidade que fazia as roupas colarem no corpo como segunda pele.</p>
+
+    <p>No bairro Partenon, numa casa velha de dois pavimentos na Rua das Acácias — daquelas que ainda conservam o estilo antigo, com varanda de ferro e jardim mal cuidado —, o segundo corpo apareceu.</p>
+
+    <p>A vítima era Mariana, 28 anos, <em>“Mari”</em> para as colegas da Tia Carmem. Cabelo castanho ondulado, pele morena, uma cicatriz fina no queixo de uma briga antiga. Trabalhava no sobrado há quatro anos, era das mais experientes, das que sabiam acalmar cliente nervoso e cobrar adiantado. Saiu na noite de anteontem, dizendo que ia <em>“resolver um negócio particular”</em> e que voltava antes do amanhecer. Não voltou.</p>
+
+    <p>Quem encontrou foi o vizinho de cima, um aposentado que desceu para reclamar do cheiro. A porta da frente estava entreaberta, como se alguém tivesse saído às pressas.</p>
+
+    <p>Mariana estava no quarto dos fundos, deitada no chão de taco gasto, sobre um tapete improvisado de jornais velhos. Braços erguidos para cima, palmas viradas para o teto, dedos abertos como se tentasse alcançar algo invisível no alto.</p>
+
+    <p>Sem sinais de violência sexual: calcinha e sutiã intactos, sem marcas de penetração ou luta na região pélvica. A causa da morte, segundo o perito preliminar, era a mesma: estrangulamento manual, prolongado, com impressões digitais profundas no pescoço.</p>
+
+    <p>Mas o ritual havia evoluído — ou se refinado.</p>
+
+    <p>No torso nu (o vestido fora removido com cuidado, dobrado ao lado do corpo como roupa limpa), a pintura vermelha era mais elaborada. Não só batom: parecia uma mistura de tinta acrílica barata com algo mais espesso, talvez óleo ou vaselina para fixar. Um grande círculo irregular abrangia o abdômen, com linhas radiais saindo como raios de sol invertidos, apontando para o coração. No centro do círculo, uma cruz tosca, inclinada para a esquerda.</p>
+
+    <p>E nas costas, visíveis quando viraram o corpo, setas curvas formando um padrão que lembrava uma espiral ou um vórtice descendente. Na testa, o mesmo borrão de batom vermelho vivo, agora mais preciso, quase um selo.</p>
+
+    <p>Rafael Mendes chegou primeiro, estacionando o carro sem sirene para não alarmar os vizinhos curiosos que já se aglomeravam na calçada. Ele entrou pela porta da frente, o cheiro de mofo misturado ao de decomposição inicial batendo como um soco.</p>
+
+    <p>- Mesma pose — disse ele, voz baixa, enquanto Laura fotografava o quarto. — Braços pra cima, como oferenda. Sem pressa. Ele arrumou tudo aqui dentro.</p>
+
+    <p>Laura se agachou ao lado do corpo, examinando as pinturas sem tocar.</p>
+
+    <p>- Não tem luta visível. Nem hematoma nos braços de tentar se defender. Dopada? Sedada?</p>
+
+    <p>O perito, o mesmo Dr. Carlos do Morro, balançou a cabeça enquanto coletava amostras da tinta.</p>
+
+    <p>- Toxicologia vai demorar, mas não tem marcas de injeção aparentes. Pode ter sido algo no drink, ou ela confiou no cara. Cliente fixo de novo?</p>
+
+    <p>Rafael olhou para o criado-mudo: uma foto antiga de Mariana com uma criança pequena — talvez sobrinha ou filha que ela nunca mencionava. Ao lado, um copo vazio com resíduo de líquido âmbar.</p>
+
+    <p>- Tia Carmem jurou que não sabe quem era o <em>“negócio particular”</em>. Mas ontem à tarde, quando fomos lá, ela tremia. Disse que Mari tinha falado de um homem <em>“diferente”</em>, que pagava em dinheiro vivo, nunca cartão, e que gostava de <em>“falar de coisas antigas, rituais, essas bobagens”</em>.</p>
+
+    <p>Laura se levantou, limpando as mãos na calça apesar das luvas.</p>
+
+    <p>- Rituais. Ele está testando. A primeira foi no morro, exposta, quase pública. Essa aqui dentro de casa, mais íntima. Ele está aprendendo o terreno.</p>
+
+    <p>Eles saíram para o corredor. No banheiro, o espelho tinha uma marca: um dedo sujo de vermelho traçou um símbolo simples — um triângulo invertido com uma linha cortando no meio. Não era batom; era o mesmo material do corpo.</p>
+
+    <p>- Assinatura evoluindo — murmurou Rafael. — Ele quer que a gente veja o padrão. Quer que a gente saiba que é arte pra ele.</p>
+
+    <p>No fim da tarde, no Departamento de Homicídios, eles espalharam as fotos lado a lado na mesa: Juliana no barro do morro, braços abertos ao céu; Mariana no chão do quarto, mesma pose, pinturas mais complexas. O batom na testa idêntico em ambas.</p>
+
+    <p>- Duas em menos de dez dias — disse Laura, cruzando os braços. — Se for o mesmo cara, ele não vai parar. E Tia Carmem está escondendo algo. Amanhã a gente volta lá com mandado. Nada de cafezinho dessa vez.</p>
+
+    <p>Rafael assentiu, olhando pela janela para o céu que escurecia sobre o Guaíba. Porto Alegre seguia seu ritmo: trânsito na Ipiranga, barulho distante de um jogo de futebol no campinho, gente voltando do trabalho. Mas nas sombras do Cidade Baixa e do Partenon, algo novo se instalava: medo disfarçado de boato.</p>
+
+    <p>E o assassino, onde quer que estivesse, já escolhia a próxima. A tinta vermelha ainda secava em suas mãos.</p>
+
+    <hr class="separator">
+
+    <h2>Capítulo 3 — Sombras Particulares</h2>
+
+    <span class="meta-info">Fevereiro de 2026 — Porto Alegre.</span>
+
+    <p>Porto Alegre começava a sentir o peso do verão sem trégua. O sol batia forte nas ruas largas da Avenida Farrapos, transformando o asfalto em uma chapa quente que subia vapor.</p>
+
+    <p>Rafael Mendes morava num apartamento de dois quartos no terceiro andar de um prédio antigo, daqueles da década de 70, com fachada descascando e elevador que rangia como se estivesse prestes a desistir. O aluguel era baixo, o suficiente para sobrar um pouco depois de pagar a mensalidade da faculdade de Enfermagem da filha, Clara, que cursava o terceiro semestre na Ulbra.</p>
+
+    <p>Divorciado há cinco anos, Rafael ainda recebia mensagens esporádicas da ex-esposa cobrando atrasos ou reclamando que ele <em>“não aparecia o suficiente”</em>. Ele respondia com monossílabos e transferências bancárias pontuais. Era o que restava de pai.</p>
+
+    <p>Naquela noite, depois de deixar a cena da segunda vítima no Partenon, ele chegou em casa por volta das dez. O apartamento cheirava a café requentado e cigarro velho — ele tentava parar, mas o caso estava pesando. Jogou as chaves na mesinha da sala, tirou os sapatos e foi direto para a geladeira pegar uma long neck. Sentou no sofá puído, olhando para a TV desligada.</p>
+
+    <p>No celular, uma mensagem de Clara:</p>
+
+    <blockquote>
+        “Pai, a prova de anatomia foi hoje. Acho que fui bem. Te amo.”
+    </blockquote>
+
+    <p>Ele sorriu pela primeira vez no dia, digitou <em>“Orgulho de você, filha. Qualquer coisa me liga”</em> e guardou o aparelho.</p>
+
+    <p>Rafael era o mais antigo da Polícia Civil na Delegacia de Homicídios da Capital. Quinze anos de casa, promoções lentas, cicatrizes de operações que deram errado. Quando o delegado precisou montar a dupla para investigar as mortes das garotas da Tia Carmem, não pensou duas vezes: Rafael e Laura Teixeira. Ela era a segunda mais antiga na equipe, transferida de Canoas há dois anos, com fama de resolver casos que outros empacavam. Juntos, eram a memória viva da delegacia — sabiam quem mentia olhando nos olhos, quem devia favor a quem, e onde as ruas guardavam segredos.</p>
+
+    <hr class="separator">
+
+    <p>Laura morava num sobrado pequeno no bairro Lindóia, na Zona Norte. Casada há sete anos com Carla, uma professora de história do ensino médio. Elas se casaram numa cerimônia discreta no cartório, com poucos amigos e muita cerveja depois.</p>
+
+    <p>Mas, nos últimos meses, Laura vinha carregando um segredo que pesava mais que qualquer caso: um caso amoroso com a esposa de um colega. A mulher se chamava Fernanda, casada com o investigador Sérgio, que trabalhava na mesma delegacia, no setor de roubos. Fernanda era quieta, de riso fácil, trabalhava como designer freelancer em casa.</p>
+
+    <p>Tudo começou num churrasco de fim de ano da delegacia, um olhar demorado demais, uma conversa na cozinha que durou horas. Agora se encontravam às escondidas, em motéis da BR-116 ou no apartamento vazio de uma amiga quando Carla viajava para congressos.</p>
+
+    <p>Naquela mesma noite, enquanto Rafael estava sozinho na Farrapos, Laura estava no Lindóia. Carla tinha ido dormir cedo, cansada de corrigir provas. Laura disse que precisava <em>“dar uma volta para espairecer”</em>. Dirigiu até uma rua escura perto do Aeroporto, onde Fernanda a esperava num carro estacionado.</p>
+
+    <p>Elas não falaram muito. Beijaram-se com urgência, como quem sabe que o tempo é roubado. Depois, sentadas no banco de trás, Laura acendeu um cigarro e contou sobre o caso.</p>
+
+    <p>- Duas garotas mortas do mesmo jeito. Braços pra cima, pinturas vermelhas, batom na testa. É ritualístico, Fer. O cara está contando uma história com os corpos.</p>
+
+    <p>Fernanda passou a mão no cabelo dela.</p>
+
+    <p>- E você e o Rafael vão pegar ele?</p>
+    <p>- Vamos tentar. Ele é bom nisso. Calmo demais às vezes, mas vê coisas que eu não vejo.</p>
+    <p>- E você? Tá aguentando?</p>
+
+    <p>Laura deu uma tragada longa.</p>
+
+    <p>- Não sei. Às vezes acho que a gente investiga essas mortes pra não pensar nas nossas próprias merdas.</p>
+
+    <p>Fernanda riu baixinho, triste.</p>
+
+    <p>- A gente sempre acha que o perigo está lá fora. Mas ele mora dentro da gente também.</p>
+
+    <p>Elas se despediram com um beijo rápido. Laura voltou para casa antes da meia-noite, tomou banho quente para tirar o cheiro de cigarro e perfume alheio, deitou ao lado de Carla e fingiu dormir. No escuro, pensava nas garotas pintadas de vermelho, nos braços erguidos pedindo algo que ninguém dava.</p>
+
+    <hr class="separator">
+
+    <p>Na manhã seguinte, Rafael e Laura se encontraram na delegacia cedo. Ele trouxe café preto em copos de isopor; ela trouxe os relatórios preliminares da toxicologia. Sentaram na sala de reuniões, espalhando fotos e papéis na mesa comprida.</p>
+
+    <p>- A segunda vítima tinha resíduo de benzodiazepínico no sangue — disse Laura. — Dose alta, mas não letal. Ele dopou ela antes do estrangulamento. Deixou ela consciente o suficiente pra posar, mas sem forças pra reagir.</p>
+
+    <p>Rafael assentiu, olhando para as fotos comparadas.</p>
+
+    <p>- Ele está ganhando confiança. A primeira foi exposta no morro. A segunda, dentro de casa, mais tempo pra arrumar o cenário. Se for o mesmo cara, a terceira vai ser pior.</p>
+
+    <p>Laura cruzou os braços.</p>
+
+    <p>- Tia Carmem marcou de falar com a gente hoje à tarde. Disse que <em>“lembrou de algo”</em>. Vamos apertar ela até sangrar.</p>
+
+    <p>Rafael tomou um gole do café frio.</p>
+
+    <p>- Vamos. E depois eu te levo pra tomar um chimarrão na Redenção. Pra respirar um pouco antes da próxima cena do crime.</p>
+
+    <p>Ela sorriu de lado.</p>
+
+    <p>- Combinado. Mas sem chimarrão doce, hein?</p>
+
+    <p>Eles saíram da sala juntos, dois policiais antigos carregando seus próprios fantasmas enquanto caçavam um assassino que pintava a morte de vermelho. Porto Alegre fervia lá fora, indiferente às sombras que cresciam dentro e fora deles.</p>
+
+    <hr class="separator">
+
+    <h2>Capítulo 4 — A Tia das Sombras</h2>
+
+    <span class="meta-info">Início de fevereiro de 2026 — Cidade Baixa, Porto Alegre.</span>
+
+    <p>Porto Alegre pulsava com o calor que não dava trégua, o sol escaldante refletindo nos vidros dos prédios do Centro e transformando as calçadas em fornalhas.</p>
+
+    <p>Na Rua da República, no coração do Cidade Baixa, o sobrado de Tia Carmem parecia um relicário esquecido: fachada branca descascando, varanda com flores plásticas murchas, e uma placa discreta que dizia “Pensão Familiar” — eufemismo para o que acontecia lá dentro.</p>
+
+    <p>O prostíbulo funcionava há décadas, passado de mãe para filha, ou assim contavam as lendas das ruas. Tia Carmem, cujo nome verdadeiro era Carmen Oliveira, 62 anos, era a atual guardiã. Nascida no Bom Fim, filha de uma costureira e de um pai que sumiu quando ela tinha dez anos, Carmen aprendeu cedo que a vida em Porto Alegre era uma negociação constante: proteção por lealdade, silêncio por favores.</p>
+
+    <p>Rafael e Laura chegaram por volta das duas da tarde, com mandado em mãos. O ar dentro do sobrado era denso, cheiro de perfume barato misturado a incenso e cigarro. As meninas — as que restavam, pois muitas haviam fugido depois das mortes — estavam sentadas na sala de espera, maquiagem borrada pelo suor, olhares nervosos desviando para o chão. Tia Carmem as mandou para os quartos com um aceno seco.</p>
+
+    <p>- Delegados, que bom que vieram — disse ela, voz rouca de anos de fumo, levando-os para a cozinha nos fundos. Serviu café em xícaras lascadas, mas dessa vez sem o sorriso acolhedor. Seus olhos, pintados de delineador grosso, pareciam poços escuros. — Eu lembrei de algo, como prometi.</p>
+
+    <p>Rafael sentou à mesa de fórmica. Laura ficou de pé, encostada na porta, braços cruzados.</p>
+
+    <p>- Vamos começar pelo básico, Tia — disse Rafael, ignorando o café. — Você conhece Eduardo Vargas? Contador, casado, frequenta aqui há uns seis meses. Pagava em dinheiro, sempre pedia <em>“conversas profundas”</em> com as meninas.</p>
+
+    <p>Carmen hesitou, acendendo um cigarro com mãos trêmulas. O isqueiro clicou três vezes antes de acender. </p>
+
+    <p>- Vargas... sim, ele vinha. Educado, terno limpo, cheiro de colônia cara. Dizia que era viúvo, mas eu sei que mentia. As meninas gostavam dele porque não era violento. Pagava extra pra elas ouvirem suas histórias. Falava de rituais antigos, coisas de livros que ele lia. Dizia que <em>“a morte é uma arte, precisa de assinatura”</em>. Juliana ria disso, achava bobagem. Mariana... ela gravou uma conversa uma vez, pra se proteger.</p>
+
+    <p>Laura se aproximou, inclinando-se sobre a mesa.</p>
+
+    <p>- Gravou? Onde está isso?</p>
+
+    <p>Carmen apagou o cigarro no pires, o rosto endurecendo.</p>
+
+    <p>- Apaguei. Não queria encrenca. Mas ele mudou depois da primeira morte. Veio aqui na noite depois que acharam a Juliana no morro. Estava nervoso, suando, pediu pra ver a Bruna — a terceira que vocês vão encontrar morta em breve, se não pararem ele.</p>
+
+    <p>Rafael trocou um olhar com Laura. Ainda não havia terceira vítima, mas o tom de Carmen sugeria que ela sabia mais.</p>
+
+    <p>- Como você sabe que é ele? — perguntou Laura, voz afiada. — E por que não falou antes?</p>
+
+    <p>Carmen se levantou devagar, indo até um armário e pegando uma caixa velha de sapatos. Dentro, pilhas de fotos antigas, recibos amarelados e um caderno de anotações.</p>
+
+    <p>- Porque eu tenho meus próprios segredos, delegada. Eu não nasci <em>“tia”</em>. Aos 20 anos, eu era como elas: trabalhava na noite, no Centro, quando a Cidade Baixa ainda era mato. Tive um <em>“cliente especial”</em> como Vargas. Um homem que pintava as meninas com símbolos vermelhos antes de... bem, antes de sumir com elas. Ele foi pego em 1985, enforcado na cadeia.</p>
+
+    <p>Mas Vargas... ele me lembra dele. Mesmos olhos vazios. E tem mais: ele me deve dinheiro. Emprestava pra mim, pra manter o sobrado aberto. Dívida de jogo, vocês sabem como é. Eu devia a agiotas, ele cobria. Em troca, eu indicava as meninas que <em>“mereciam lição”</em>, segundo ele. As que falavam demais, que ameaçavam sair.</p>
+
+    <p>O silêncio caiu pesado na cozinha. Rafael folheou o caderno: nomes de clientes, das, valores. Vargas aparecia repetidamente, com anotações como <em>“ritual discutido”</em> e <em>“marca vermelha aprovada”</em>.</p>
+
+    <p>- Você o ajudou? — murmurou Laura, o nojo mal disfarçado.</p>
+
+    <p>Carmen negou com a cabeça, lágrimas escorrendo pelo rímel borrado.</p>
+
+    <p>- Não diretamente. Mas eu sabia que ele era perigoso. Achei que era só conversa. Quando Juliana morreu, eu quis avisar, mas ele ameaçou queimar o sobrado com todas dentro. Eu protejo minhas meninas, delegados. Sempre protegi. Mas às vezes... a proteção custa caro.</p>
+
+    <p>Rafael guardou o caderno na pasta.</p>
+
+    <p>- Você vem com a gente. Depoimento oficial. E se tiver mais gravações ou provas, é melhor entregar agora.</p>
+
+    <p>Enquanto algemavam Carmen — mais por formalidade, pois ela não resistiu —, Laura pensou em suas próprias sombras: o caso com Fernanda, o casamento com Carla que rangia como porta velha. Rafael, no carro a caminho da delegacia, lembrou da filha Clara, da faculdade que ele pagava para dar a ela uma vida melhor que a dele.</p>
+
+    <p>Tia Carmem, no banco de trás, chorava baixinho, murmurando <em>“Eu só queria proteger...”</em>.</p>
+
+    <hr class="separator">
+
+    <p>Na delegacia, o interrogatório durou horas. Carmen revelou mais: Vargas tinha um esconderijo no Três Figueiras, um porão onde guardava <em>“livros de arte antiga”</em> e tintas vermelhas. Ela deu o endereço exato, um sobrado discreto na Rua das Figueiras. Era a pista que faltava.</p>
+
+    <p>Mas enquanto saíam para checar, o rádio chiou: terceira vítima encontrada no Bom Fim, braços erguidos, pinturas mais intrincadas que nunca. O ritual acelerava. E Tia Carmem, agora cúmplice involuntária, era a chave que abria as portas para o inferno particular de Vargas.</p>
+
+    <hr class="separator">
+
+    <h2>Capítulo 5 — O Portal das Sombras</h2>
+
+    <span class="meta-info">Meados de fevereiro de 2026 — Centro Histórico, Porto Alegre.</span>
+
+    <p>Porto Alegre fervia sob um sol implacável, o Guaíba refletindo o céu azul como um espelho rachado. No Palácio da Polícia, sede da Polícia Civil do Rio Grande do Sul, no Centro Histórico, o ar-condicionado lutava contra o calor invasor.</p>
+
+    <p>Rafael Mendes e Laura Teixeira foram convocados para uma reunião urgente no gabinete do delegado chefe, Dr. Mauro Bianchi, 55 anos, um homem de bigode grisalho e olhos penetrantes que comandava a Homicídios com mão de ferro há uma década.</p>
+
+    <p>Mas nos bastidores, sussurravam que ele tinha conexões altas — inclusive com o Secretário de Segurança Pública do Estado, que na época atuava como Secretário de Justiça interino devido a uma reestruturação governamental. O secretário em questão era Dr. Victor Almeida, 48 anos, um advogado formado na UFRGS. Almeida havia sido delegado nos anos 90, e nunca largou o cheiro de arquivo e café frio.</p>
+
+    <p>Rafael e Laura entraram no gabinete de Bianchi, o ar pesado com cheiro de cigarro proibido. Almeida estava lá, sentado à cabeceira da mesa, folheando o dossiê do caso. Bianchi acenou para que se sentassem.</p>
+
+    <p>- Mendes, Teixeira — começou Bianchi, voz grave. — O secretário Almeida veio pessoalmente. Esse caso das garotas da Tia Carmem está virando manchete nacional. Quatro mortes agora? Precisamos de resultados.</p>
+
+    <p>A terceira vítima, Bruna, havia sido encontrada no Bom Fim dois dias antes: braços erguidos em um porão abandonado, pinturas vermelhas formando um portal simbólico no torso — linhas que se curvavam como um vórtice, com símbolos que pareciam portões antigos.</p>
+
+    <p>A quarta, uma garota chamada Sofia, aparecera naquela manhã no Morro Santa Teresa, pose idêntica, mas com um detalhe novo: runas gravadas na pele com algo afiado, sangrando tinta vermelha misturada a sangue real.</p>
+
+    <p>Almeida se inclinou para frente, olhos fixos em Rafael.</p>
+
+    <p>- Eu conheço Carmen Oliveira desde os anos 80. Ela era <em>“protegida”</em> por gente influente. Mas isso... rituais? Vargas é só a ponta do iceberg. Bianchi aqui me garantiu que vocês estão perto.</p>
+
+    <p>Laura trocou um olhar com Rafael. Eles haviam invadido o porão de Vargas no Três Figueiras na noite anterior, encontrando livros ocultos sobre portais dimensionais, tintas vermelhas e fotos das vítimas com anotações: <em>“Sacrifício para o véu se abrir”</em>.</p>
+
+    <p>Vargas confessara parte: sim, matara as garotas, seguindo <em>“instruções”</em>. Mas quem dava as instruções?</p>
+
+    <p>Bianchi pigarreou.</p>
+
+    <p>- Vamos ser francos. Eu estou envolvido nisso, mas não como vocês pensam.</p>
+
+    <p>O silêncio cortou o ar como uma lâmina. Rafael apertou a mão no braço da cadeira.</p>
+
+    <p>- Como assim, delegado?</p>
+
+    <p>Bianchi se levantou, trancando a porta. Almeida assentiu, como se soubesse o que viria.</p>
+
+    <p>- Os crimes não são só assassinatos. São rituais para abrir um portal. Não um portal místico de filme — algo real, temporal. Duas empresas da Serra Gaúcha, vinícolas poderosas em Bento Gonçalves e Caxias do Sul, financiam isso. Elas querem <em>“admirar o passado”</em>: acessar visões históricas para replicar vinhos antigos, técnicas perdidas do século 19, antes das pragas que destruíram vinhedos europeus.</p>
+
+    <p>Elas acreditam que, com sacrifícios precisos — sangue jovem, poses de oferenda, símbolos vermelhos —, podem rasgar o véu do tempo. Eu... eu coordenei. Vargas era o executor, Tia Carmem a fornecedora. Eu recebia ordens das empresas, via Almeida.</p>
+
+    <p>Almeida ergueu a mão.</p>
+
+    <p>- Eu não! Eu descobri há uma semana. Bianchi veio a mim pedindo ajuda para encobrir, mas eu recusei. Estou aqui para expor. Ele me confessou tudo: as empresas pagam milhões em propina para autoridades, usando o portal como <em>“tecnologia ancestral”</em>. Loucura, mas eles têm provas — visões testadas em rituais menores.</p>
+
+    <p>Laura se levantou, mão no coldre.</p>
+
+    <p>- Você está preso, Bianchi. E se Almeida estiver mentindo...</p>
+
+    <p>Mas Bianchi riu, amargo.</p>
+
+    <p>- Tarde demais. O quinto ritual é hoje, no Beira-Rio, durante o jogo. A multidão vermelha, os sinalizadores... é o clímax. O portal se abre no meio da torcida, e as empresas verão o passado gaúcho, vinhedos imaculados.</p>
+
+    <p>Rafael sacou a arma, mas Almeida interveio.</p>
+
+    <p>- Calma. Eu chamei vocês porque confio nos antigos. Vamos pará-lo. Mas precisamos de prova: o porão das empresas na Serra.</p>
+
+    <hr class="separator">
+
+    <p>Enquanto isso, no carro rumo ao estádio, Laura ligou para Fernanda às escondidas:</p>
+
+    <blockquote>
+        “Se eu não voltar, diga a Carla que eu amava ela”.
+    </blockquote>
+
+    <p>Rafael pensou em Clara, na faculdade que ele pagava para um futuro sem sombras.</p>
+
+    <p>O caso virara um vórtice: não só mortes, mas um portal para o passado, orquestrado por um delegado corrupto e empresas ambiciosas. E o fim se aproximava no rugido colorado do Beira-Rio.</p>
+
+    <footer>
+        <a href="index.html" class="nav-link">← Voltar ao Índice</a>
+        <p>&copy; 2026 - Crônicas de Porto Alegre</p>
+    </footer>
+</div>
+
+</body>
+</html>

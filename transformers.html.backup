@@ -1,0 +1,927 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Explicando transformers</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="23ec6f7d-f2fd-804d-9cea-cdf773579d00" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🤖</span></div><h1 class="page-title"><strong>Explicando transformers</strong></h1><div class="page-body"><h2 id="23ec6f7d-f2fd-804e-9926-e1929dca27a0" class="">Introdução</h2><p id="23ec6f7d-f2fd-808b-9568-ebbdc913f37e" class="">Em 2017, a Google Brain lançou o artigo <em>“Attention is All you Need”</em>, que introduziu para o mundo o Transformer, uma arquitetura para redes neurais para transdução de sequências baseada em atenção que permitiu a criação de modelos que superaram todos os outros modelos anteriores em tradução entre idiomas.</p><p id="23ec6f7d-f2fd-80fa-b697-c429fa24fe14" class="">Anos depois, essa arquitetura gerou diversas variações que alcançaram o estado da arte em várias aplicações, em especial na criação de modelos de linguagem, que popularizaram fortemente o uso de IA Generativa para muitas aplicações de processamento de linguagem natural. No momento de escrita, são variações dos Transformers (como os <em>Generative Pretrained Transformers</em> ou GPTs) que estão sendo usadas por trás de inteligências artificiais avançadas como ChatGPT, Claude e Gemini, mostrando o potencial dessa arquitetura e o seu legado na história da inteligência artificial.</p><p id="23ec6f7d-f2fd-804a-8571-eaa8b8914813" class="">Quando eu estava aprendendo como esses modelos funcionavam, encontrei diversos bons recursos explicando a arquitetura. No entanto, senti falta de uma explicação conceitual e prática de ponta a ponta, que permitisse compreender o funcionamento desses modelos a partir de uma única fonte. Quando precisei aprender sobre o tema, tive que recorrer a várias referências simultaneamente para obter uma visão abrangente, o que é especialmente desafiador para quem busca um aprendizado mais prático e deseja criar uma versão funcional do modelo. Além disso, embora existam excelentes materiais em inglês e outros idiomas, praticamente não há recursos em português que abordem Transformers no nível de profundidade que considero ideal. Acredito que isso seja um fator limitante para explicar o assunto no Brasil e em outros países lusófonos.</p><p id="23ec6f7d-f2fd-8076-b7f8-d2111ec13b7d" class="">Por isso, meu objetivo é apresentar uma explicação de ponta a ponta sobre o funcionamento dos Transformers, abordando o contexto em que surgiram, o funcionamento conceitual de seus principais componentes e a arquitetura desses modelos. Vou ilustrar todos esses conceitos com exemplos práticos e implementações funcionais em PyTorch, de forma que você possa criar um modelo funcional usando apenas a teoria e o código apresentados aqui. Ementa</p><h2 id="23ec6f7d-f2fd-8032-9a32-f0c9f8d83889" class="">O guia é dividido em 7 partes:</h2><ol type="1" id="23ec6f7d-f2fd-80aa-9be7-d596121557e2" class="numbered-list" start="1"><li><strong>Introdução</strong></li></ol><ol type="1" id="23ec6f7d-f2fd-80d3-a5d6-edc4177bd597" class="numbered-list" start="2"><li><strong>Tokens e </strong><em><strong>embeddings</strong></em></li></ol><ol type="1" id="23ec6f7d-f2fd-80f5-a35e-f33dc1cfe10c" class="numbered-list" start="3"><li><strong>Atenção</strong></li></ol><ol type="1" id="23ec6f7d-f2fd-80a9-9a71-fde6d618b8b3" class="numbered-list" start="4"><li><strong>Positional Encoding</strong></li></ol><ol type="1" id="23ec6f7d-f2fd-8089-8188-db06c7cad890" class="numbered-list" start="5"><li><strong>Modelos autoregressivos</strong></li></ol><ol type="1" id="23ec6f7d-f2fd-8060-a18d-c45e3ca0bf8f" class="numbered-list" start="6"><li><strong>Juntando tudo</strong></li></ol><ol type="1" id="23ec6f7d-f2fd-8004-ba5f-f1be97494bc0" class="numbered-list" start="7"><li><strong>Treinamento</strong></li></ol><h2 id="23ec6f7d-f2fd-80af-b526-c54f9079d7b6" class="">Pré-requisitos</h2><p id="23ec6f7d-f2fd-8037-a85e-c0bac27e7cf4" class="">Infelizmente, se eu não assumir absolutamente nenhum pré-requisito, o conteúdo ficará extenso demais para ser feito de uma vez. Pretendo escrever outros guias explicando esses pré-requisitos no futuro, e vou listar alguns recursos que você pode usar para estudar esses assuntos antes. Porém, para entender tudo que vou explicar aqui, é importante que você compreenda esses tópicos dos conteúdos a seguir:</p><h2 id="23ec6f7d-f2fd-80db-9d27-c13c5df2db02" class="">Álgebra linear</h2><p id="23ec6f7d-f2fd-8045-8518-c2627d4933e1" class="">Vamos trabalhar com conceitos como vetores, matrizes, tensores, produto escalar, produto vetorial e transposição de matrizes. Eu aprendi álgebra linear pelo livro “Álgebra Linear” de J.L. Boldrini na faculdade, mas hoje recomendo buscar conteúdos em português, como as aulas da UNIVESP ou da Khan Academy, que são ótimas para revisar ou aprender do zero.</p><h2 id="23ec6f7d-f2fd-80d2-b951-d8e0802d0f45" class="">Python e PyTorch</h2><p id="23ec6f7d-f2fd-80a3-a676-d15430baebd3" class="">Você vai precisar conhecer o básico de Python: laços, estruturas de dados, condicionais, funções e um pouco de orientação a objetos (como criar classes, objetos e usar módulos). Todo o código do guia será feito em PyTorch, então é importante entender os conceitos principais do framework, como manipulação de tensores, uso de dispositivos, autograd e o submódulo torch.nn.</p><p id="23ec6f7d-f2fd-807d-8d43-f871a7f1cfdb" class="">Se você nunca usou PyTorch antes, recomendo começar pelo tutorial oficial, que explica bem os conceitos básicos do framework. Se já tem alguma experiência e quer revisar, o curso aberto de Deep Learning da University of Amsterdam (UvA) tem um tutorial que resume de forma prática como programar redes neurais em PyTorch. Para quem prefere materiais em português, os primeiros capítulos da versão traduzida do livro “Dive into Deep Learning” (D2L) também são uma ótima opção, mesmo cobrindo mais assuntos do que o necessário para ler este guia.</p><p id="23ec6f7d-f2fd-8002-ac3a-ef4834d15f2a" class="">Mas, principalmente quando o assunto é manipulação de tensores, muita coisa fará mais sentido na prática do que tentando decorar todos os métodos de uma vez. Se você já entende o básico, pode ir aprendendo os métodos novos conforme eles forem aparecendo ao longo do guia.</p><h2 id="23ec6f7d-f2fd-8054-a87f-cbd7ed454a5e" class="">Deep Learning</h2><p id="23ec6f7d-f2fd-80b4-9f84-c1c7e581ebb1" class="">Como transformers são redes neurais, vamos usar todos os conceitos envolvendo redes feedforward ou perceptrons multicamada (MLPs), como o uso do gradiente descendente, funções de ativação e backpropagation.</p><p id="23ec6f7d-f2fd-80f2-a0f1-c384a3aa75d0" class="">Como sugestão de formas de estudar sobre o tema, existem ótimos conteúdos sobre o tema em inglês. O curso Neural Networks and Deep Learning na Coursera é completo e muito acessível, e o capítulo 10 no livro Introduction to Statistical Learning, que é gratuito e possui exemplos em Python e caso precise, tem explicações sobre vários outros temas de aprendizado de máquina, explica o tema conceitualmente em um nível que trará uma compreensão ampla sobre problemas de modelagem.</p><p id="23ec6f7d-f2fd-80a1-a03d-ca5ad8e64912" class="">Porém, assim como discutido anteriormente, conteúdos disponíveis em inglês tornam o conteúdo menos acessível (em especial quando parte do conteúdo requer uma assinatura). Em português, além do livro “Dive into Deep Learning”, sugiro os capítulos 7 e 8 do livro Aprendizado de Máquina - Uma Abordagem Estatística, que cobrem redes neurais (e caso ainda não tenha familiaridade com aprendizado de máquina, sugiro os capítulos anteriores também).</p><p id="23ec6f7d-f2fd-80d1-90cb-f80d806d17c4" class="">Para uma leitura mais prática, outra sugestão é a Parte II do livro “Mãos à Obra: Aprendizado de Máquina com Scikit-Learn, Keras &amp; TensorFlow”, embora esse livro cubra muito mais assuntos do que redes neurais e outros frameworks no lugar de PyTorch.</p><p id="23ec6f7d-f2fd-806b-a695-e32d834bc704" class="">Se quiser se aprofundar mais, os tutoriais 3, 4 e 5 do curso da UvA trazem explicações bem interessantes sobre outros componentes e arquiteturas de redes neurais. Eles ajudam a ampliar a visão sobre como criar e otimizar modelos similares, mostrando melhor o motivo de algumas escolhas na criação dos Transformers.</p><h2 id="23ec6f7d-f2fd-804c-8f6c-de73c638b765" class="">Conclusão</h2><p id="23ec6f7d-f2fd-803b-876f-c3c5be939276" class="">Como o guia traz bastante código, você pode acessar tudo de forma separada na biblioteca language-models. Todo o código das funções e classes apresentadas aqui está organizado lá. O projeto é open source e pode ser instalado como uma biblioteca, embora ainda não esteja disponível no PyPI.</p><p id="23ec6f7d-f2fd-8002-8da8-e2d96cdda873" class="">E, com isso, concluímos a apresentação. No próximo post, vamos iniciar o guia trazendo uma introdução sobre os Transformers e falando do seu contexto histórico. 🇧🇷 Explicando Transformers</p><hr id="23ec6f7d-f2fd-80ee-b444-cc624a95bddc"/><h1 id="23ec6f7d-f2fd-806f-8828-e6425c2d6545" class=""><strong>Introdução</strong></h1><p id="23ec6f7d-f2fd-80c4-975e-eebb961c03ef" class="">Nesse post, será feita uma introdução aos Transformers, explicando os problemas que estamos tentando resolver com essa arquitetura, introduzindo o contexto histórico que levou à sua criação e os desafios presentes na criação desse tipo de modelo.</p><h2 id="23ec6f7d-f2fd-8087-968a-d76e0cbe50ce" class=""><strong>Objetivo</strong></h2><p id="23ec6f7d-f2fd-80d0-b6ae-c21d485a8214" class="">De forma geral, Transformers são utilizados para resolver problemas de transdução de sequências, ou seja, tarefas em que é necessário gerar uma nova sequência de elementos a partir de uma sequência recebida. Essa abordagem permite que diversas aplicações sejam modeladas como transdução de sequências, incluindo tradução automática, geração de texto, sumarização e até mesmo síntese de moléculas.</p><p id="23ec6f7d-f2fd-800a-9c9d-f564b175fd80" class="">Formalmente, um modelo de transdução de sequências estabelece uma relação entre uma sequência ordenada s=⟨s1,s2,⋯ ,sn⟩, composta por elementos de um conjunto enumerável SS, e outra sequência t=⟨t1,t2,⋯ ,tm⟩⟩, composta por elementos de um conjunto enumerável TT.</p><p id="23ec6f7d-f2fd-803b-a700-f8d06492aabc" class="">Para facilitar a compreensão do funcionamento dos Transformers, muitos exemplos ao longo deste guia serão apresentados no contexto de uma aplicação específica. Considerando a relevância dos Transformers para o avanço de modelos de linguagem, como os Large Language Models, os exemplos deste guia focarão na construção de um modelo de linguagem.</p><p id="23ec6f7d-f2fd-80dd-9ff9-e2a55d7e832a" class="">O objetivo de um modelo de linguagem é prever os próximos trechos de um texto com base nos anteriores, de forma semelhante ao que fazem os corretores automáticos em teclados de smartphones.</p><p id="23ec6f7d-f2fd-80df-9d49-ec03a22c6c7e" class="">Adaptando a definição formal, um modelo de linguagem relaciona um texto s=⟨s1,s2,⋯ ,sn⟩, composto por caracteres do vocabulário S, a outro texto s′=⟨s1′,s2′,⋯ ,sm′⟩⟩, também formado por caracteres do mesmo vocabulário S. Vale notar que o fato de S e T serem iguais é uma particularidade de tarefas como modelos de linguagem. Em tradução automática, por exemplo, as sequências podem pertencer a idiomas diferentes, e portanto, os vocabulários também podem ser distintos.</p><p id="23ec6f7d-f2fd-8089-a750-dd8abb05709b" class="">Uma observação: além de criar um modelo de linguagem, outro grande desafio no desenvolvimento de redes neurais é garantir que o modelo seja eficiente do ponto de vista computacional. Embora seja possível implementar um Transformer usando apenas variáveis, listas e laços de repetição, esse tipo de abordagem costuma ser muito lenta para treinar e utilizar na prática, devido ao grande número de operações realizadas de forma sequencial e ineficiente.</p><p id="23ec6f7d-f2fd-80b1-8dc6-f942b3b075ac" class="">Para obter bons desempenhos, é fundamental considerar o paralelismo desde o início da implementação. A maneira mais eficiente de fazer isso é aproveitar a capacidade dos dispositivos modernos (como GPUs e TPUs) de executar operações matemáticas sobre vetores, matrizes e tensores em paralelo. Por isso, ao projetar os algoritmos e a representação dos dados já pensando em estruturas multidimensionais, é possível criar implementações muito mais rápidas e escaláveis, sem aumentar a complexidade do código.</p><h3 id="23ec6f7d-f2fd-8091-be77-d57217283a49" class=""><strong>Um pouco de história</strong></h3><p id="23ec6f7d-f2fd-8085-bd73-c7f9ed407947" class="">Durante muitos anos, criar modelos eficientes para transdução de sequências foi um desafio em aberto para a comunidade científica. O principal obstáculo era superar limitações presentes nas arquiteturas anteriores aos Transformers. Mesmo após o surgimento dos Transformers, ainda não existem soluções plenamente satisfatórias para todas as aplicações desse tipo.</p><p id="23ec6f7d-f2fd-8019-a6ca-dd31ed4550f8" class="">Antes dos Transformers, as técnicas baseadas em redes neurais recorrentes (RNNs) apresentavam o melhor desempenho em tarefas como tradução automática, sendo a base da arquitetura utilizada pelo Google Tradutor em 2014, conforme descrito no artigo “Sequence to Sequence Learning with Neural Networks”. Embora a explicação detalhada dessas arquiteturas esteja fora do escopo deste guia, vale destacar que o processo de treinamento das RNNs enfrentava alguns problemas que motivaram a busca por alternativas mais eficientes:</p><ol type="1" id="23ec6f7d-f2fd-8069-a084-c3b5b10ba7a2" class="numbered-list" start="1"><li>A natureza recursiva das RNNs pode causar o problema de <em>gradient vanishing</em>, em que os gradientes calculados durante o backpropagation se tornam tão pequenos que o modelo não consegue aprender de forma eficiente, dificultando a convergência para o mínimo global da função de perda.</li></ol><ol type="1" id="23ec6f7d-f2fd-8092-a335-f1d0a40a7c3e" class="numbered-list" start="2"><li>Como algumas operações precisam ser realizadas de forma sequencial, a inferência nesses modelos pode ser muito lenta, tornando o treinamento e o uso prático inviáveis em muitos casos.</li></ol><ol type="1" id="23ec6f7d-f2fd-805d-b2ba-df19f05f6262" class="numbered-list" start="3"><li>Sem o uso de atenção, as RNNs têm dificuldade para capturar o significado de um trecho considerando o contexto completo da frase, o que pode prejudicar a qualidade do texto gerado.</li></ol><p id="23ec6f7d-f2fd-80f1-af33-f5f4afe4d2b4" class="">Esses problemas eram críticos para o uso prático dessas arquiteturas, motivando a busca por alternativas que convergissem mais rápido e apresentassem melhor desempenho. Em especial, a necessidade de modelos capazes de interpretar palavras conforme o contexto impulsionou o estudo dos mecanismos de atenção, desenvolvidos justamente para esse fim.</p><p id="23ec6f7d-f2fd-80a4-ab09-f4e670af300c" class="">Como em grande parte da pesquisa em redes neurais, muitas decisões e convenções adotadas nos Transformers derivam dos melhores resultados experimentais. No entanto, no caso dos Transformers, várias escolhas também foram feitas para garantir eficiência computacional tanto no treinamento quanto na inferência, além de evitar os problemas de convergência das arquiteturas anteriores.</p><p id="23ec6f7d-f2fd-803c-9853-cee467b5a962" class="">O grande diferencial dos Transformers é serem baseados exclusivamente em redes neurais feedforward e mecanismos de atenção. Isso permite resolver os problemas mencionados e alcançar desempenho superior em tarefas de transdução de sequências.</p><p id="23ec6f7d-f2fd-80e3-9957-cc19441573fb" class="">Essa abordagem justifica o nome do artigo: do ponto de vista arquitetural, não são necessárias redes neurais recorrentes para criar modelos eficientes. Basta o uso de mecanismos de atenção, ou seja, “<em>Attention is All you Need</em>”.</p><h2 id="23ec6f7d-f2fd-8046-99bf-c69332a55473" class=""><strong>Conclusão</strong></h2><p id="23ec6f7d-f2fd-8020-a80c-d2f6c0dde26f" class="">Os Transformers marcaram um avanço importante ao superar as limitações das arquiteturas anteriores em tarefas de transdução de sequências, tanto em desempenho quanto em eficiência computacional. Obter esses resultados usando apenas mecanismos de atenção combinados com redes neurais simples mostrou o quanto essa abordagem pode ser poderosa. Isso abriu caminho para grandes progressos em áreas como tradução automática, geração de texto e inteligência artificial conversacional, entre outros.</p><p id="23ec6f7d-f2fd-80c9-829f-ddc99868ce6c" class="">Na próxima parte deste guia, vamos ver como os dados são representados nos Transformers, entendendo melhor como esses modelos recebem sequências e explicando conceitos como tokens e embeddings durante o caminho.</p><hr id="23ec6f7d-f2fd-8008-8c04-e23a1f338bc0"/><h1 id="23ec6f7d-f2fd-8013-b325-d968429da9d0" class="">Atenção</h1><p id="23ec6f7d-f2fd-80d5-9ad2-c449b6f92528" class="">Neste post, vou explicar o que é atenção e como funcionam os mecanismos apresentados no artigo “Attention is All You Need”. No caminho, vamos ver como funcionam os mecanismos Scaled Dot-Product Attention e Multihead Attention, e ao final, também vamos implementar esses mecanismos do zero em PyTorch com foco em eficiência computacional.</p><h2 id="23ec6f7d-f2fd-8004-8112-dbdb7dc07fe7" class="">O que é atenção?</h2><p id="23ec6f7d-f2fd-8022-a24e-c3651acc8425" class="">No contexto de redes neurais para transdução de sequências, atenção refere-se à capacidade do modelo de considerar o contexto de cada elemento da sequência ao gerar um novo valor para cada elemento de entrada. Ou seja, o modelo pode “prestar atenção” em diferentes partes da sequência para produzir saídas mais precisas e contextualizadas.</p><p id="23ec6f7d-f2fd-80bd-abbb-c8df72d4cc11" class="">Nesse processo, os pesos de atenção formam uma sequência intermediária que indica o quanto cada elemento da entrada deve ser considerado na geração de cada novo elemento. Ao aplicar esses pesos sobre os elementos originais, é gerada uma nova sequência de elementos para representar o conteúdo da sequência recebida, dessa vez representando melhor o contexto de cada elemento.</p><p id="23ec6f7d-f2fd-80a9-abe6-ded321fc3992" class="">O uso de mecanismos de atenção dessa forma permite que os modelos compreendam melhor o contexto em que cada trecho está inserido. Isso torna o treinamento mais rápido e eficiente por realizar menos operações, além de ajudar o modelo a lidar com trechos ambíguos ao considerar o contexto completo ao interpretar cada elemento da sequência.</p><p id="23ec6f7d-f2fd-805d-9d18-f891669e9f08" class="">Por exemplo, considere o texto: João pensou: O trem estava cheio, mas ele conseguiu uma cadeira livre.</p><p id="23ec6f7d-f2fd-8073-a2b9-d1a18677df80" class="">Para simplificar, vamos ignorar os tokens especiais e assumir que cada palavra já foi convertida em um embedding (representado por Emb(X)). Assim, o texto se transforma na seguinte sequência:</p><figure id="23ec6f7d-f2fd-8045-bce2-ddb57ecb441d" class="image"><a href="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeiy7I_1zdvmKMkZv57ygpM3Z7Cef7f_3OvALQ_pL1yfYf_BhKYNkTFubYHao8KUk9QJ-u8mWr7as328HrgigyROs0lslwYht-xI7ME3W4qCxd8kqf3RJpqRRT9WBOAb5TBCqFA?key=PmlNYZSfo3jiOeJhIl2G_w"><img style="width:617px" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeiy7I_1zdvmKMkZv57ygpM3Z7Cef7f_3OvALQ_pL1yfYf_BhKYNkTFubYHao8KUk9QJ-u8mWr7as328HrgigyROs0lslwYht-xI7ME3W4qCxd8kqf3RJpqRRT9WBOAb5TBCqFA?key=PmlNYZSfo3jiOeJhIl2G_w"/></a></figure><p id="23ec6f7d-f2fd-8002-a1e9-e19da850789d" class="">Então, um mecanismo de atenção recebe essa sequência e gera outra de mesmo comprimento, onde o embedding que representa a palavra “ele” será composto de embeddings mais próximos do trecho que compõe a palavra “João” do que da palavra “trem”:</p><figure id="23ec6f7d-f2fd-80be-a4de-c90a2526f1e0" class="image"><a href="https://lh7-rt.googleusercontent.com/docsz/AD_4nXef0CjWVgrbw25d3WLYWBcrGxEcplW-zZs9_8HwRys8Q5XEE5oR2B0HOKKGNQwRxyFZguARUpKKy6W0MoQx7CGf-H1zspnxkSolwSRti5xAEXkg2NdGbcss_PqrCAkR7wBHU7KJ9g?key=PmlNYZSfo3jiOeJhIl2G_w"><img style="width:602px" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXef0CjWVgrbw25d3WLYWBcrGxEcplW-zZs9_8HwRys8Q5XEE5oR2B0HOKKGNQwRxyFZguARUpKKy6W0MoQx7CGf-H1zspnxkSolwSRti5xAEXkg2NdGbcss_PqrCAkR7wBHU7KJ9g?key=PmlNYZSfo3jiOeJhIl2G_w"/></a></figure><h3 id="23ec6f7d-f2fd-80db-af5e-f8abca7df7b4" class=""><strong>Self-Attention</strong></h3><p id="23ec6f7d-f2fd-804c-b031-ceb7c6717198" class="">Todos os mecanismos utilizados na arquitetura dos Transformers funcionam combinando os próprios elementos da sequência recebida entre si para calcular a atenção de cada elemento. Ou seja, a atenção atribuída a cada elemento da sequência é baseada apenas nos elementos da sequência recebida, sem depender de informações externas.</p><p id="23ec6f7d-f2fd-8060-91d6-f445f8856772" class="">No entanto, nem todos os mecanismos de atenção funcionam dessa forma. Alguns dependem de informações externas, como variáveis adicionais ou outros modelos, para calcular a atenção. Por isso, dizemos que os mecanismos explicados aqui utilizam Self-Attention: a atenção de cada elemento é determinada apenas com base nos próprios elementos da sequência, sem depender de fontes externas.</p><h3 id="23ec6f7d-f2fd-8005-8aa7-dee6d6afb616" class=""><strong>Queries, Keys e Values</strong></h3><p id="23ec6f7d-f2fd-80f8-94ca-f3164a1e45e6" class="">Para explicar conceitualmente o funcionamento desses mecanismos, é importante destacar que, embora os termos dessas operações sejam numericamente iguais no início, cada um deles recebe um nome abstrato diferente para facilitar a compreensão do papel que desempenham no mecanismo de atenção.</p><p id="23ec6f7d-f2fd-8040-9fe6-ecfbb7675642" class="">De forma simplificada, um mecanismo de atenção pode ser comparado a um dicionário em Python: chaves (keys ou K) são associadas a valores (values ou V), e é possível recuperar um valor a partir de uma consulta (query ou Q). No contexto do mecanismo de atenção, os papéis de query, key e value são desempenhados pelos próprios elementos da sequência recebida, conforme descrito a seguir:</p><ul id="23ec6f7d-f2fd-8009-96ff-d8145746fc35" class="bulleted-list"><li style="list-style-type:disc">Query: O elemento da sequência para o qual queremos representar de outra forma. No exemplo anterior, seria a palavra “ele”.</li></ul><ul id="23ec6f7d-f2fd-8043-b6e0-c3a137470e3a" class="bulleted-list"><li style="list-style-type:disc">Keys: Todos os elementos da sequência recebida, que funcionam como possíveis referências para determinar o contexto da query.</li></ul><ul id="23ec6f7d-f2fd-807d-b200-f1eb02670c87" class="bulleted-list"><li style="list-style-type:disc">Value: Um novo elemento que representa o significado da query, calculado a partir do elemento original e das keys.<ul id="23ec6f7d-f2fd-80e0-abb0-edc7161f1f0d" class="bulleted-list"><li style="list-style-type:circle">Se a query for ambígua, o value será ajustado para refletir melhor seu significado no contexto. No exemplo anterior, para “ele”, o value ficará mais próximo do elemento que representa “João”.</li></ul><ul id="23ec6f7d-f2fd-8041-9148-e3711f5d1545" class="bulleted-list"><li style="list-style-type:circle">Se não houver ambiguidade, o value pode ser igual ou muito próximo ao embedding original da query. No exemplo anterior, para “João”, o value praticamente não muda.</li></ul></li></ul><p id="23ec6f7d-f2fd-80f9-a13b-d595a82e29c9" class="">O exemplo a seguir ilustra essa analogia:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="23ec6f7d-f2fd-8027-83d8-db59eaba8da9" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">sequence = keys = values = [
+    &#x27;João&#x27;,
+    &#x27;pensou&#x27;,
+    &#x27;O&#x27;,
+    &#x27;trem&#x27;,
+    &#x27;estava&#x27;,
+    &#x27;cheio&#x27;,
+    &#x27;mas&#x27;,
+    &#x27;ele&#x27;,
+    ...
+]
+
+mechanism = AttentionMechanism(keys, values)
+query = &#x27;ele&#x27;
+
+assert mechanism[query] == &#x27;João&#x27;</code></pre><p id="23ec6f7d-f2fd-804d-a305-d07e52b10c0e" class="">No entanto, diferentemente do exemplo acima, retornar apenas um elemento das keys para uma query geralmente não é suficiente para capturar corretamente o contexto, especialmente em situações ambíguas. Por exemplo: Vi João e Maria ontem. Eles estavam juntos.</p><p id="23ec6f7d-f2fd-8005-b915-c6f96ce30989" class="">Nesse caso, a palavra “Eles” é ambígua, pois pode se referir tanto a “João” quanto a “Maria”. Assim, um mecanismo de atenção não atribui todo o peso a um único value, mas distribui a atenção em diferentes proporções entre os possíveis valores, indicando o quanto cada um deve ser considerado:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="23ec6f7d-f2fd-800f-828d-c7964730f2a0" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">sequence = keys = values = [
+    &#x27;Vi&#x27;,
+    &#x27;João&#x27;,
+    &#x27;e&#x27;,
+    &#x27;Maria&#x27;,
+    &#x27;ontem.&#x27;,
+    &#x27;Eles&#x27;,
+    ...
+]
+
+mechanism = AttentionMechanism(keys, values)
+query = &#x27;ele&#x27;
+
+assert mechanism[query] == {
+    &#x27;Vi&#x27;: 0.01,
+    &#x27;João&#x27;: 0.45,
+    &#x27;e&#x27;: 0.01,
+    &#x27;Maria&#x27;: 0.45,
+    &#x27;ontem.&#x27;: 0.01,
+    &#x27;Eles&#x27;: 0.01,
+    ...
+}</code></pre><p id="23ec6f7d-f2fd-8007-8d94-f936aa46938a" class="">Essas frações são chamadas de pesos de atenção e formam uma sequência normalizada, ou seja, a soma de todos os elementos é igual a 1. Como os pesos são normalizados e, nos Transformers, as sequências de entrada são representadas por embeddings, é possível calcular uma média ponderada desses embeddings usando os pesos de atenção para gerar uma nova representação. Essa média será a saída do mecanismo de atenção.</p><p id="23ec6f7d-f2fd-800d-b84d-e9599b8f7455" class="">A normalização garante que a quantidade total de atenção distribuída entre os elementos seja limitada, permitindo que o mecanismo funcione corretamente. Assim, se o peso de um elemento aumenta em relação aos outros, pelo menos um dos demais pesos precisa diminuir proporcionalmente para que a somatória continue sendo igual a 1.</p><figure id="23ec6f7d-f2fd-80c7-81f5-fb9251e4ea17" class="image"><a href="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe5w4prMTpFqQOYzeOnkOs0ytkZbP4zlwB0cfqjqTXuaOx05frCg76TC0W-4HSIDezRNsxvcojsKZ2QZ18lpTc5dTboy9Sw_bs5XOpWz3oI3AR4HFcTpsj1HFtpiMNDdyRKf6IdeQ?key=PmlNYZSfo3jiOeJhIl2G_w"><img style="width:554px" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe5w4prMTpFqQOYzeOnkOs0ytkZbP4zlwB0cfqjqTXuaOx05frCg76TC0W-4HSIDezRNsxvcojsKZ2QZ18lpTc5dTboy9Sw_bs5XOpWz3oI3AR4HFcTpsj1HFtpiMNDdyRKf6IdeQ?key=PmlNYZSfo3jiOeJhIl2G_w"/></a></figure><p id="23ec6f7d-f2fd-808c-9cc8-ff661da21e42" class="">Como nos Transformers é necessário <em>transformar </em>cada elemento da sequência recebida, o mecanismo de atenção pode ser acelerado ao ser aplicado em batch, utilizando toda a sequência como queries. Assim, as queries correspondem à própria sequência recebida, permitindo processar todos os elementos simultaneamente.</p><figure id="23ec6f7d-f2fd-803a-a6fa-ee67384934a4" class="image"><a href="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeHIlrAFMJEXoko5Dm3eiep6ipy4HerHYGhqV5u3hc5VWfj0XWtXr9BnmBYwPsnORecQuqlwpUqglJ0H_IRfS_34u8PbfPbissn49VfEmaeEuLWb9yMIrz6jNJRwRFcycKcYdElpw?key=PmlNYZSfo3jiOeJhIl2G_w"><img style="width:575px" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeHIlrAFMJEXoko5Dm3eiep6ipy4HerHYGhqV5u3hc5VWfj0XWtXr9BnmBYwPsnORecQuqlwpUqglJ0H_IRfS_34u8PbfPbissn49VfEmaeEuLWb9yMIrz6jNJRwRFcycKcYdElpw?key=PmlNYZSfo3jiOeJhIl2G_w"/></a></figure><p id="23ec6f7d-f2fd-8078-80e0-d4ccd9de49ec" class="">Por isso, embora queries, keys e values sejam inicialmente derivados da mesma sequência, é importante destacar que cada um desempenha um papel específico e distinto para o mecanismo de atenção.</p><h3 id="23ec6f7d-f2fd-8015-ad0e-d6599bb7cbe4" class=""><strong>Mecanismos de atenção</strong></h3><h3 id="23ec6f7d-f2fd-803e-889c-e10be6e9197b" class=""><strong>Dot-Product Attention (DPA)</strong></h3><p id="23ec6f7d-f2fd-80b8-8650-d78392b142db" class="">Nesse mecanismo, os pesos de atenção de cada elemento são calculados usando o produto interno (dot product) entre as queries e as keys correspondentes.</p><figure id="23ec6f7d-f2fd-804c-ac02-e6a419f14e6b" class="image"><a href="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfjVihk7nhExZ8lZve0_8lhVODMwRA_jCePOg89x9m-h5DQVgTqdzbzWXe75nnXuwwKlEjfRt0ZuIKcoZZ4__v0C3GYGcvAqubl5hTF0ix--_qz1YAfaxHITqCb0Bt968ackzp66Q?key=PmlNYZSfo3jiOeJhIl2G_w"><img style="width:267px" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfjVihk7nhExZ8lZve0_8lhVODMwRA_jCePOg89x9m-h5DQVgTqdzbzWXe75nnXuwwKlEjfRt0ZuIKcoZZ4__v0C3GYGcvAqubl5hTF0ix--_qz1YAfaxHITqCb0Bt968ackzp66Q?key=PmlNYZSfo3jiOeJhIl2G_w"/></a></figure><p id="23ec6f7d-f2fd-80ab-b56d-df8d1627602f" class="">Ao calcular a nova sequência em batch, o DPA pode ser definido da seguinte forma:</p><figure id="23ec6f7d-f2fd-806f-a01d-d890d7e8b335" class="image"><a href="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcqBl8OGuHUjwAxnU7yPJ6eGLD9LTPvBKY0Z_NUDL6B6fQD1GEFQtdF5l0UhSaF6yN8b0RATkVQZp2w1LWmNGcHL_esuS0CSdKmSkP_1xl0_o0wRkd4fw79jXAOVNwhXevoZq3R4g?key=PmlNYZSfo3jiOeJhIl2G_w"><img style="width:451px" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcqBl8OGuHUjwAxnU7yPJ6eGLD9LTPvBKY0Z_NUDL6B6fQD1GEFQtdF5l0UhSaF6yN8b0RATkVQZp2w1LWmNGcHL_esuS0CSdKmSkP_1xl0_o0wRkd4fw79jXAOVNwhXevoZq3R4g?key=PmlNYZSfo3jiOeJhIl2G_w"/></a></figure><p id="23ec6f7d-f2fd-8004-902c-d86d09ff0ec0" class="">No entanto, dessa forma, o produto interno entre dois vetores pode assumir valores de −∞ a ∞. Isso significa que o mecanismo de atenção pode, potencialmente, atribuir atenção excessiva a determinados elementos, o que pode enviesar o modelo e prejudicar seu funcionamento. Para evitar esse problema e garantir que os pesos de atenção sejam normalizados, aplica-se a função softmax sobre esses valores.</p><figure id="23ec6f7d-f2fd-80c5-ad5d-dea96ae22836" class="image"><a href="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcPhYznbISenA-qGZ31oBLg4KGvTWv01pVk2f-ruhkjtqbEnBiiOcioO8jZsTJugedMlSABISqtUYJeoHIeKUUMGlvEWg42iXF5Ab4d8cZs1ZBqST1RvewtC8GvJs4N6yU6kucJ?key=PmlNYZSfo3jiOeJhIl2G_w"><img style="width:315px" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcPhYznbISenA-qGZ31oBLg4KGvTWv01pVk2f-ruhkjtqbEnBiiOcioO8jZsTJugedMlSABISqtUYJeoHIeKUUMGlvEWg42iXF5Ab4d8cZs1ZBqST1RvewtC8GvJs4N6yU6kucJ?key=PmlNYZSfo3jiOeJhIl2G_w"/></a></figure><h3 id="23ec6f7d-f2fd-8028-bf04-fd4c8463b395" class=""><strong>Scaled Dot-Product Attention (SDPA)</strong></h3><p id="23ec6f7d-f2fd-80a4-9e6b-c98c3765cc65" class="">Essa variação do DPA inclui um termo de normalização nos pesos para estabilizar os gradientes durante o backpropagation.</p><figure id="23ec6f7d-f2fd-809d-b558-dd807f1110d5" class="image"><a href="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd8kCXrwXTQOYO0578SzWNpi_IFuJfleBpJM85uyjAYmwdZS--Aui-CGOvx5D00S0cAGoRKibitfXe7dMrX2l9BPHWBT0RyYwTRJR-nvOX2GD5h6bSOMBiwrxeL1oyZnXYRiHnPXw?key=PmlNYZSfo3jiOeJhIl2G_w"><img style="width:352px" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd8kCXrwXTQOYO0578SzWNpi_IFuJfleBpJM85uyjAYmwdZS--Aui-CGOvx5D00S0cAGoRKibitfXe7dMrX2l9BPHWBT0RyYwTRJR-nvOX2GD5h6bSOMBiwrxeL1oyZnXYRiHnPXw?key=PmlNYZSfo3jiOeJhIl2G_w"/></a></figure><p id="23ec6f7d-f2fd-805e-912e-c31e39420a06" class="">A normalização pelo fator sqrt(d) tem base empírica. Antes dos Transformers, experimentos já mostravam que normalizar a variância dos gradientes gerados por camadas ocultas ajuda a evitar problemas como gradient vanishing e neurônios mortos durante o treinamento. Por isso, essa prática foi incorporada à arquitetura dos Transformers.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="23ec6f7d-f2fd-80f2-955f-f515cf618c81" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">def apply_scaled_dot_product_attention(
+    queries: torch.Tensor,
+    keys: torch.Tensor,
+    values: torch.Tensor,
+) -&gt; torch.Tensor:
+    keys = keys.transpose(2, 3)
+    scores = queries @ keys / (split_embed_dim**0.5)
+
+    if mask is not None:
+        scores = scores.masked_fill(mask, float(&quot;-inf&quot;))
+
+    weights = F.softmax(scores, dim=3)
+    outputs = weights @ values
+
+    return outputs</code></pre><h3 id="23ec6f7d-f2fd-800b-9887-fb789a550e9d" class=""><strong>Projeções lineares</strong></h3><p id="23ec6f7d-f2fd-807e-bfb1-fcdec5224246" class="">Uma das maneiras para melhorar a performance dos Transformers é aplicar projeções lineares separadas às queries, keys e values antes do seu uso nos mecanismos de atenção, multiplicando cada uma por uma matriz de parâmetros treinável específica (W^q, W^K e W^V). Isso faz com que queries, keys e values passem a pertencer a espaços diferentes, permitindo que o modelo aprenda, durante o treinamento, como transformar os embeddings originais em representações mais adequadas ao contexto de cada token. Essas projeções são otimizadas para melhorar a capacidade do Transformer de capturar relações contextuais relevantes entre os elementos da sequência.</p><figure id="23ec6f7d-f2fd-801c-983a-fddd85f9452b" class="image"><a href="https://lh7-rt.googleusercontent.com/docsz/AD_4nXc_Vr9MrCF7ujTSjFChrhdZcxjhnnnp93lozbWuKnq-FiKsFUJ111-DCZs5tI4oeiFXV2ejzL0B-dF2BIKFJG7_zHVgbkJZ4UVQsz9dz2Q3NtztP2IPgre30HWMKiBplG134yND2A?key=PmlNYZSfo3jiOeJhIl2G_w"><img style="width:585px" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXc_Vr9MrCF7ujTSjFChrhdZcxjhnnnp93lozbWuKnq-FiKsFUJ111-DCZs5tI4oeiFXV2ejzL0B-dF2BIKFJG7_zHVgbkJZ4UVQsz9dz2Q3NtztP2IPgre30HWMKiBplG134yND2A?key=PmlNYZSfo3jiOeJhIl2G_w"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="23ec6f7d-f2fd-80a5-b5e5-d4ac38add2fa" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">queries_projection = nn.Linear(embed_dim, embed_dim, bias=False)
+keys_projection = nn.Linear(embed_dim, embed_dim, bias=False)
+values_projection = nn.Linear(embed_dim, embed_dim, bias=False)
+queries = queries_projection(queries)
+keys = keys_projection(keys)
+values = values_projection(values)
+embeddings = apply_scaled_dot_product_attention(queries, keys, values)</code></pre><h3 id="23ec6f7d-f2fd-8001-8c3e-cb70a2aca03f" class=""><strong>Multihead Attention (MHA)</strong></h3><p id="23ec6f7d-f2fd-80b3-ad12-d8ea36216c8b" class="">Essa variação do SDPA aplica o mecanismo de atenção hh vezes em paralelo, cada uma com diferentes projeções lineares dos elementos da sequência. O número de cabeças hh é um hiperparâmetro do modelo.</p><p id="23ec6f7d-f2fd-80b6-9ee9-e44e37b85661" class="">Como os pesos no SDPA são normalizados, cada cabeça de atenção não pode “prestar atenção” igualmente em todos os elementos ao mesmo tempo. O objetivo do uso de MHA é permitir que cada cabeça (ou seja, cada SDPA sendo realizado em paralelo) foque em diferentes padrões ou relações no contexto, enriquecendo a representação aprendida pelo modelo durante o treinamento.</p><p id="23ec6f7d-f2fd-8073-8699-ebe8be317629" class="">Usando uma analogia, o MHA seria como ler um texto hh vezes, focando em partes diferentes a cada leitura para compreender melhor o contexto de cada palavra. No mecanismo, porém, todas essas “leituras” acontecem simultaneamente.</p><p id="23ec6f7d-f2fd-808c-8aa0-e3068ba285bd" class="">Embora esse mecanismo otimize o modelo, se implementado literalmente, seria necessário calcular o SDPA hh vezes, tornando o MHA hh vezes mais lento, o que pode tornar o mecanismo inviável computacionalmente. Para evitar esse problema, utiliza-se a adaptação a seguir no algoritmo, que permite que a sua complexidade computacional não cresça com o número de cabeças, mantendo a escalabilidade do modelo:</p><ol type="1" id="23ec6f7d-f2fd-805f-99db-cfe427e4abed" class="numbered-list" start="1"><li>Dividir as queries, keys e values em hh partes, transformando as dimensões do batch de b×t×d para b×t×h×dh.</li></ol><ol type="1" id="23ec6f7d-f2fd-8054-86e6-f7a94960f4e8" class="numbered-list" start="2"><li>Transpor o tensor para que a dimensão das cabeças venha antes da dimensão das sequências, mudando de b×t×h×d para b×h×t×d.</li></ol><ol type="1" id="23ec6f7d-f2fd-806d-99a8-f1fafea7729d" class="numbered-list" start="3"><li>Aplicar o SDPA separadamente em cada cabeça, usando projeções diferentes para cada uma.</li></ol><ol type="1" id="23ec6f7d-f2fd-800c-9fa0-f9b5ed5b5a7e" class="numbered-list" start="4"><li>Concatenar os embeddings resultantes de todas as cabeças.</li></ol><ol type="1" id="23ec6f7d-f2fd-8004-bd8d-fd752b00cb5e" class="numbered-list" start="5"><li>Transpor o tensor para restaurar a ordem original das dimensões, voltando para b×t×d.</li></ol><ol type="1" id="23ec6f7d-f2fd-80cf-8d2b-e1962008abb9" class="numbered-list" start="6"><li>Aplicar uma projeção linear W^O ao tensor.</li></ol><p id="23ec6f7d-f2fd-80fd-822e-f3f460c8ed5a" class="">Após a etapa 3, o funcionamento do algoritmo pode ser representado pela seguinte equação:</p><figure id="23ec6f7d-f2fd-80df-b86f-ee8adf232619" class="image"><a href="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfjQLeJ7cSRihKsDtK9R6-LXvC0TqwsAf56pVidrWZE1bq9DHASZAj68pv10xe_jh20O_ENOzdGz8DvAERhjVjrDE4kblTy2g3IZwEKbbW2KB0zeMAr2r_hfqqCZHChyUviw9ek?key=PmlNYZSfo3jiOeJhIl2G_w"><img style="width:521px" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfjQLeJ7cSRihKsDtK9R6-LXvC0TqwsAf56pVidrWZE1bq9DHASZAj68pv10xe_jh20O_ENOzdGz8DvAERhjVjrDE4kblTy2g3IZwEKbbW2KB0zeMAr2r_hfqqCZHChyUviw9ek?key=PmlNYZSfo3jiOeJhIl2G_w"/></a></figure><p id="23ec6f7d-f2fd-80d4-bb86-e76ac1f980c2" class="">Assim, o SDPA é aplicado hh vezes, mas como cada cabeça opera em uma dimensão 1h menor, cada operação é proporcionalmente mais rápida. Isso garante que a complexidade computacional do MHA permaneça equivalente à do SDPA, mesmo com múltiplas cabeças.</p><p id="23ec6f7d-f2fd-8020-912c-e69372291842" class="">Na prática, o MHA ainda é um pouco mais lento que o SDPA devido à projeção linear W^O ao final, mas a complexidade computacional não cresce com o número de cabeças ou o tamanho das sequências.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="23ec6f7d-f2fd-8056-8606-f691866bf8fe" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">n_heads = 8
+split_embed_dim = embed_dim // n_heads
+outputs_projection = nn.Linear(embed_dim, embed_dim, bias=False)
+
+
+def split_embeddings(
+    embeddings: torch.Tensor,
+    batch_size: int,
+    n_tokens: int,
+) -&gt; torch.Tensor:
+    splitted = embeddings.view(batch_size, n_tokens, n_heads, split_embed_dim)
+    splitted = splitted.transpose(1, 2)
+
+    return splitted
+
+
+def join_embeddings(
+    embeddings: torch.Tensor,
+    batch_size: int,
+    n_tokens: int,
+) -&gt; torch.Tensor:
+    joined = embeddings.transpose(1, 2)
+    joined = joined.contiguous()
+    joined = joined.view(batch_size, n_tokens, embed_dim)
+    return joined
+
+
+def apply_multihead_attention(
+    queries: torch.Tensor,
+    keys: torch.Tensor,
+    values: torch.Tensor,
+) -&gt; torch.Tensor:
+    batch_size, n_tokens, _ = queries.size()
+
+    queries = queries_projection(queries)
+    keys = keys_projection(keys)
+    values = values_projection(values)
+
+    queries = split_embeddings(queries, batch_size, n_tokens)
+    keys = split_embeddings(keys, batch_size, n_tokens)
+    values = split_embeddings(values, batch_size, n_tokens)
+
+    keys = keys.transpose(2, 3)
+    scores = queries @ keys / (split_embed_dim**0.5)
+    weights = F.softmax(scores, dim=3)
+
+    outputs = weights @ values
+    outputs = join_embeddings(outputs, batch_size, n_tokens)
+    outputs = outputs_projection(outputs)
+
+    return outputs
+
+class MultiheadAttention(nn.Module):
+    def __init__(self: Self, embed_dim: int, n_heads: int) -&gt; None:
+        super().__init__()
+
+        self.embed_dim = embed_dim
+        self.n_heads = n_heads
+        self.split_embed_dim = self.embed_dim // self.n_heads
+
+        self.queries_projection = nn.Linear(self.embed_dim, self.embed_dim, bias=False)
+        self.keys_projection = nn.Linear(self.embed_dim, self.embed_dim, bias=False)
+        self.values_projection = nn.Linear(self.embed_dim, self.embed_dim, bias=False)
+        self.outputs_projection = nn.Linear(self.embed_dim, self.embed_dim, bias=False)
+
+    def split_embeddings(
+        self: Self,
+        embeddings: torch.Tensor,
+        batch_size: int,
+        n_tokens: int,
+    ) -&gt; torch.Tensor:
+        splitted = embeddings.view(
+            batch_size,
+            n_tokens,
+            self.n_heads,
+            self.split_embed_dim,
+        )
+
+        splitted = splitted.transpose(1, 2)
+
+        return splitted
+
+    def join_embeddings(
+        self: Self,
+        embeddings: torch.Tensor,
+        batch_size: int,
+        n_tokens: int,
+    ) -&gt; torch.Tensor:
+        joined = embeddings.transpose(1, 2)
+        joined = joined.contiguous()
+        joined = joined.view(batch_size, n_tokens, self.embed_dim)
+
+        return joined
+
+    def forward(
+        self: Self,
+        queries: torch.Tensor,
+        keys: torch.Tensor,
+        values: torch.Tensor,
+    ) -&gt; torch.Tensor:
+        batch_size, n_tokens, _ = queries.size()
+
+        queries = self.queries_projection(queries)
+        keys = self.keys_projection(keys)
+        values = self.values_projection(values)
+
+        queries = self.split_embeddings(queries, batch_size, n_tokens)
+        keys = self.split_embeddings(keys, batch_size, n_tokens)
+        values = self.split_embeddings(values, batch_size, n_tokens)
+
+        keys = keys.transpose(2, 3)
+
+        scores = queries @ keys / (self.split_embed_dim**0.5)
+        weights = F.softmax(scores, dim=3)
+
+        outputs = weights @ values
+        outputs = self.join_embeddings(outputs, batch_size, n_tokens)
+        outputs = self.outputs_projection(outputs)
+
+        return outputs</code></pre><h2 id="23ec6f7d-f2fd-80aa-bc31-efcf0b562f38" class=""><strong>Conclusão</strong></h2><p id="23ec6f7d-f2fd-801e-9a4f-fb9616cf1388" class="">Os mecanismos de atenção são uma maneira eficiente de ajustar as representações dos valores para que reflitam melhor seu significado no contexto. A eficiência do MHA nessa tarefa faz toda a diferença quando combinada com outras técnicas para criar Transformers capazes de realizar bem várias tarefas.</p><p id="23ec6f7d-f2fd-8072-856c-e32e38c5ca1a" class="">Apesar disso, a atenção sozinha pode ter algumas limitações. No próximo post, vamos ver como o Positional Encoding pode ajudar a representar a posição dos elementos em uma sequência e superar esses problemas.</p><hr id="23ec6f7d-f2fd-80c8-ba46-cafc5e35c48f"/><h1 id="23ec6f7d-f2fd-8037-b5f2-c0d6815ca9bd" class=""><strong>Positional Encoding</strong></h1><p id="23ec6f7d-f2fd-80c8-a97c-f86c7545f9bb" class="">No post anterior, vimos como funcionam mecanismos de atenção e concluímos que existem algumas limitações no seu uso direto. Nesse post, explicarei como funciona o Positional Encoding, uma técnica complementar à atenção para representar a posição dos elementos na sequência recebida.</p><h2 id="23ec6f7d-f2fd-8092-8b16-e5d1dc51e89c" class=""><strong>Positional Encoding (PE)</strong></h2><p id="23ec6f7d-f2fd-803a-9a37-f80ef2790eb6" class="">Os mecanismos de atenção apresentados até aqui não levam em conta a posição dos elementos na sequência recebida ao gerar a sequência de saída. Isso significa que, se a ordem dos elementos for alterada, o resultado permanecerá o mesmo. Esse efeito é indesejado e pode introduzir vieses no modelo durante o treinamento.</p><p id="23ec6f7d-f2fd-8086-b952-f3743547f0ba" class="">Antes de aplicar qualquer mecanismo de atenção, é necessário representar na sequência recebida a posição de cada elemento de alguma forma. Na arquitetura, essa representação é feita usando Positional Encoding (PE), técnica que gera uma sequência de embeddings especiais: cada um representa a posição de um elemento na sequência, permitindo que o modelo entenda a ordem dos elementos a partir apenas dos elementos da sequência recebida.</p><p id="23ec6f7d-f2fd-8001-9309-c917850da66a" class="">A técnica de PE utilizada nos Transformers é baseada na seguinte função:</p><figure id="23ec6f7d-f2fd-80bd-84f0-e22e6e88eeff" class="image"><a href="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcCApZk5A41sCtAqJNhgjofLQbgpDRw5dJxe9yWbpwkGnvfmzJs9Sl-wzKVTNyRLp4YBRdtgWDXdZ13_NkwObtg2-9C35hqc_QSN_JWBSbiUQaF86pkcieDQt3BEPy_rLTh67aC?key=PmlNYZSfo3jiOeJhIl2G_w"><img style="width:331px" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcCApZk5A41sCtAqJNhgjofLQbgpDRw5dJxe9yWbpwkGnvfmzJs9Sl-wzKVTNyRLp4YBRdtgWDXdZ13_NkwObtg2-9C35hqc_QSN_JWBSbiUQaF86pkcieDQt3BEPy_rLTh67aC?key=PmlNYZSfo3jiOeJhIl2G_w"/></a></figure><p id="23ec6f7d-f2fd-80f1-b82c-feb559f7d83d" class="">Onde:</p><ul id="23ec6f7d-f2fd-809c-bb8b-f002ac2d082f" class="bulleted-list"><li style="list-style-type:disc">p é a posição de um elemento na sequência recebida.</li></ul><ul id="23ec6f7d-f2fd-8057-95c7-f825c680213f" class="bulleted-list"><li style="list-style-type:disc">j é a posição de um item escalar em um elemento da sequência recebida.</li></ul><ul id="23ec6f7d-f2fd-8098-97b1-d2dc5c8099ef" class="bulleted-list"><li style="list-style-type:disc">i é um índice auxiliar tal que 0 ≤ i &lt;d/2 , e i é incrementado a cada dois itens consecutivos de j.</li></ul><ul id="23ec6f7d-f2fd-8071-a5d6-fd995927bbea" class="bulleted-list"><li style="list-style-type:disc">θ é um hiperparâmetro que representa a escala das posições.</li></ul><p id="23ec6f7d-f2fd-80b1-b982-fd36aafbd63d" class="">Os embeddings gerados pelo PE são incorporados à sequência de embeddings original ao serem somados com o valor dos token embeddings. Nos Transformers, essa função foi escolhida porque equivale a aplicar uma matriz de rotação aos embeddings dos elementos da sequência, em que o ângulo de rotação de cada elemento é determinado por sua posição.</p><p id="23ec6f7d-f2fd-8030-9d36-fe208d0ec5c7" class="">O uso de PE é uma forma de codifição relativa, ou seja, ao analisar os valores para toda a sequência simultaneamente, essa técnica prioriza ser mais efetiva em representar a posição de um elemento em relação aos seus vizinhos ao invés de ser mais efetiva em representar a ordem de todos os elementos de forma absoluta.</p><p id="23ec6f7d-f2fd-8082-b68c-d2d312e898f7" class="">Para ilustrar o cálculo de P^E em batch, considere uma sequência de embeddings de comprimento t=5, dimensão d=4 e θ=10000. A matriz de embeddings posicionais que será somada à sequência recebida será calculada da seguinte forma:</p><figure id="23ec6f7d-f2fd-80a4-9afe-d5353370dbfa" class="image"><a href="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd_TEIHfdXYHVpjthUmiQMsQvkALo6hcKcJ2ly-PTXgvZ_o5FhUFSYN7YVWRB14hSIcgtX6NndupxAHyP77_5DCctsQkn-TY3DiXS4FW0j1XNkGhmAl_aFJ0BO50HAf12TSEsAwTQ?key=PmlNYZSfo3jiOeJhIl2G_w"><img style="width:516px" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd_TEIHfdXYHVpjthUmiQMsQvkALo6hcKcJ2ly-PTXgvZ_o5FhUFSYN7YVWRB14hSIcgtX6NndupxAHyP77_5DCctsQkn-TY3DiXS4FW0j1XNkGhmAl_aFJ0BO50HAf12TSEsAwTQ?key=PmlNYZSfo3jiOeJhIl2G_w"/></a></figure><p id="23ec6f7d-f2fd-804f-98cb-c485f0d3349c" class="">No PyTorch, é possível calcular o PE em batch de forma vetorizada, sem a necessidade de laços de repetição, o que torna a operação muito mais eficiente:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="23ec6f7d-f2fd-8003-8877-ed5cab9935a2" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">@dataclass
+class PositionalEncoderConfig:
+    embed_dim: int
+    theta: int = 10000</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="23ec6f7d-f2fd-8059-9d01-d4a8bb15baac" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">class PositionalEncoder(nn.Module):
+    def __init__(self: Self, config: PositionalEncoderConfig) -&gt; None:
+        super().__init__()
+        self.config = config
+
+    @torch.no_grad()
+    def forward(self: Self, embeddings: torch.Tensor) -&gt; torch.Tensor:
+        batch_size, n_tokens, _ = embeddings.size()
+
+        indexes = torch.arange(self.config.embed_dim, dtype=torch.float)
+
+        positions = torch.arange(n_tokens, dtype=torch.float)
+        positions = positions.view(n_tokens, 1)
+
+        i = torch.arange(self.config.embed_dim // 2)
+        i = i.float()
+        i = i.repeat_interleave(2)
+
+        cos_indexes = indexes % 2
+        cos_indexes = cos_indexes.bool()
+        cos_indexes = cos_indexes.expand((n_tokens, self.config.embed_dim))
+
+        sin_indexes = ~cos_indexes
+
+        encodings = positions / (self.config.theta ** (2 * i / self.config.embed_dim))
+
+        encodings[sin_indexes] = encodings[sin_indexes].sin()
+        encodings[cos_indexes] = encodings[cos_indexes].cos()
+
+        encodings = encodings.expand((batch_size, n_tokens, self.config.embed_dim))
+
+        return embeddings + encodings</code></pre><h2 id="23ec6f7d-f2fd-80a5-9f5b-c118a15f81e8" class=""><strong>Conclusão</strong></h2><p id="23ec6f7d-f2fd-80e9-9209-e204c11f9a4b" class="">O Positional Encoding é fundamental para que os mecanismos de atenção consigam entender a ordem dos elementos em uma sequência. Com isso, estamos quase prontos para montar um Transformer completo.</p><p id="23ec6f7d-f2fd-808a-8a94-f769b432f7c2" class="">No próximo post, para facilitar a explicação da arquitetura, vamos entender como funcionam modelos autoregressivos, e ver como toda essa representação de dados pode ser usada para gerar outras formas de dados complexos, como textos e outros tipos de sequências.</p><hr id="23ec6f7d-f2fd-8045-b3e9-cb7f678125f9"/><h1 id="23ec6f7d-f2fd-80d4-be85-cd8d06b669ac" class=""><strong>Modelos Autoregressivos</strong></h1><p id="23ec6f7d-f2fd-806b-be1b-d0c302f1ed73" class="">Nesse post, antes de entendermos a estrutura de um Transformer, vamos entender primeiro como funcionam os modelos autoregressivos. Eles são uma classe de modelos que recebem sequências de dados e geram novas sequências, um elemento por vez. Isso deixará mais simples o entendimento da arquitetura dos Transformers em breve.</p><h2 id="23ec6f7d-f2fd-8096-bf59-c08b4746f17a" class=""><strong>Modelos autoregressivos</strong></h2><p id="23ec6f7d-f2fd-802f-8726-d951a2e5946c" class="">Transformers são modelos que realizam transdução de sequências utilizando um processo autoregressivo. Essa característica define como os diferentes componentes do modelo são organizados e combinados ao longo da arquitetura.</p><p id="23ec6f7d-f2fd-80fa-a503-e7ecbcf24181" class="">Quando um modelo de transdução de sequências é autoregressivo, ele é treinado para modificar a sequência recebida por meio de um processo chamado shift, no qual:</p><ul id="23ec6f7d-f2fd-8043-8b9d-e864c1e601e4" class="bulleted-list"><li style="list-style-type:disc">O primeiro elemento é removido.</li></ul><ul id="23ec6f7d-f2fd-8071-aaa3-e0f34f5bed6e" class="bulleted-list"><li style="list-style-type:disc">Todos os elementos são deslocados uma posição para trás.</li></ul><ul id="23ec6f7d-f2fd-803f-acfd-fffa665439ac" class="bulleted-list"><li style="list-style-type:disc">A última posição é preenchida com um novo elemento gerado pelo modelo.</li></ul><p id="23ec6f7d-f2fd-8054-b837-c751508aecd0" class="">O modelo gera um novo elemento, que é adicionado ao início da sequência gerada. Em seguida, a sequência pós-shift se torna a nova sequência recebida, e o processo se repete: a cada iteração, um novo elemento é gerado e acrescentado à sequência, até que algum critério de parada seja atingido.</p><p id="23ec6f7d-f2fd-807f-b0e8-d7cc67c4ce2e" class="">Os critérios de parada podem ser:</p><ol type="1" id="23ec6f7d-f2fd-8053-ad2f-c5d3771243f1" class="numbered-list" start="1"><li>Definir um número máximo de iterações.</li></ol><ol type="1" id="23ec6f7d-f2fd-8080-865e-d241a633b937" class="numbered-list" start="2"><li>Encerrar o algoritmo quando o último elemento gerado for igual a um valor especial, como o token &lt;eos&gt;.</li></ol><p id="23ec6f7d-f2fd-8038-95cc-e99d7febdcca" class="">O exemplo a seguir mostra como funciona a tradução autoregressiva da palavra “cachorro” em Português para “dog” em Inglês. Os tokens especiais são usados para separar o texto de entrada do texto gerado, formando a sequência &lt;bos&gt;cachorro&lt;eos&gt;&lt;bos&gt;dog&lt;eos&gt;.</p><figure id="23ec6f7d-f2fd-801c-9d9a-fdb648f9d6d9" class="image"><a href="https://lh7-rt.googleusercontent.com/docsz/AD_4nXde-aL7oKwHBGvRHs_hF5Qgrtwam7kt7GmHLezd08IAlkXQ9jCUD-upfcpxQrbgkS7xBmAbwM0x19aWLeRC5b-P6B-EjxCBkI7UdxEQEmXxQUMMjtE-gPb_RREjWi46uDN4E9zdiA?key=PmlNYZSfo3jiOeJhIl2G_w"><img style="width:624px" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXde-aL7oKwHBGvRHs_hF5Qgrtwam7kt7GmHLezd08IAlkXQ9jCUD-upfcpxQrbgkS7xBmAbwM0x19aWLeRC5b-P6B-EjxCBkI7UdxEQEmXxQUMMjtE-gPb_RREjWi46uDN4E9zdiA?key=PmlNYZSfo3jiOeJhIl2G_w"/></a></figure><p id="23ec6f7d-f2fd-8098-85a6-e4eff0dd127b" class="">Observe que, no primeiro shift, o resultado é sempre o mesmo: o token &lt;bos&gt; que está no início do texto é movido para o final. Esse padrão será útil para o treinamento dos Transformers no futuro.</p><p id="23ec6f7d-f2fd-8057-b6c6-ef7b00da353c" class="">Além disso, observe que o tamanho da sequência gerada depende apenas da quantidade de shifts realizados, e não do tamanho da sequência recebida. Assim, modelos autoregressivos permitem gerar sequências de qualquer comprimento.</p><p id="23ec6f7d-f2fd-808c-b43a-f362677d7d80" class="">Todos os mecanismos de atenção explicados utilizam todos os elementos da sequência recebida para gerar um novo elemento. Assim, o elemento na posição ii da sequência gerada pode depender dos elementos nas posições i+1, i+2 e seguintes. Durante o treinamento, isso pode introduzir um viés indesejado no modelo.</p><p id="23ec6f7d-f2fd-8090-b52c-ea307e9a7f05" class="">Esse viés acontece porque a função de perda compara a sequência pós-shift com a sequência gerada. Ou seja, para todos os elementos, exceto o último, a perda é calculada verificando se o i-ésimo elemento da sequência gerada corresponde ao i+1-ésimo elemento da sequência recebida. Assim, se o modelo puder acessar o i+1-ésimo elemento durante a geração, ele sempre irá copiar esse valor.</p><p id="23ec6f7d-f2fd-804b-ad9c-e967d076761e" class="">Esse padrão causa um vazamento de dados. Se não for corrigido, o modelo pode ter dificuldade para gerar corretamente o último elemento da sequência. Por isso, é importante limitar o acesso do modelo aos elementos posteriores durante a geração, permitindo que ele aprenda os padrões de atenção de forma adequada durante o treinamento.</p><p id="23ec6f7d-f2fd-80ef-9e02-e56d02beb6f1" class="">Essa limitação é feita nos Transformers com o uso de uma attention mask, que zera parte dos pesos para garantir que um novo elemento não seja baseado nos valores dos elementos seguintes.</p><p id="23ec6f7d-f2fd-8093-b7b3-e35957627a49" class="">A aplicação da attention mask é feita somando −∞ aos elementos da matriz triangular superior dos pesos de atenção. Assim, esses elementos se tornam 0 após a aplicação da função Softmax.</p><figure id="23ec6f7d-f2fd-8094-b719-e03c6e2ee1e7" class="image"><a href="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe_E1TYlrPd82fNs1l9ySP3QaAVmI_VKoGNLpJUZ5DKMqkmqSOo4j-OnRhuuMLg3sBVhmw-iEvv7fdWZXapnZDe2XKEMI67WN5hhMmPiFr3o3CnTndGVY60MOFemyNKbJ5Bz7z19g?key=PmlNYZSfo3jiOeJhIl2G_w"><img style="width:531px" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe_E1TYlrPd82fNs1l9ySP3QaAVmI_VKoGNLpJUZ5DKMqkmqSOo4j-OnRhuuMLg3sBVhmw-iEvv7fdWZXapnZDe2XKEMI67WN5hhMmPiFr3o3CnTndGVY60MOFemyNKbJ5Bz7z19g?key=PmlNYZSfo3jiOeJhIl2G_w"/></a></figure><p id="23ec6f7d-f2fd-8051-8150-f9d3149770d1" class="">Apesar da motivação explicada agora para o seu uso, em alguns casos, esse vazamento não causará problemas. Nesses casos, para compatibilidade, a attention mask aplicada será apenas um tensor nulo.</p><figure id="23ec6f7d-f2fd-800d-ad1b-daa2171521f8" class="image"><a href="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd5HY4kl5So8WBr93l4lXznYSQWDFr7ZTXd-axauoQl_EIL65wxyYG5X5cD83a6syjysihjoLDymzcqCq3uZf0Sg-NRJxvQxg3SO40GvZwpsT6b8JS2qsBinllbczUngDP7Jqhd?key=PmlNYZSfo3jiOeJhIl2G_w"><img style="width:515px" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd5HY4kl5So8WBr93l4lXznYSQWDFr7ZTXd-axauoQl_EIL65wxyYG5X5cD83a6syjysihjoLDymzcqCq3uZf0Sg-NRJxvQxg3SO40GvZwpsT6b8JS2qsBinllbczUngDP7Jqhd?key=PmlNYZSfo3jiOeJhIl2G_w"/></a></figure><p id="23ec6f7d-f2fd-8002-b9fd-e3ebbf864579" class="">Você pode obter a attention mask de um tensor arbitrário da seguinte forma:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="23ec6f7d-f2fd-80c8-ab0c-e9ce582c02c5" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">def attn_mask_like(size: tuple[int]) -&gt; torch.Tensor:
+    mask = torch.ones(size)
+    mask = mask.triu(diagonal=1)
+    mask = mask.bool()
+    return mask</code></pre><h2 id="23ec6f7d-f2fd-80b5-9f26-df1ab41cf99e" class=""><strong>Conclusão</strong></h2><p id="23ec6f7d-f2fd-8058-8227-fbba7f73fe57" class="">Usando um processo autogressivo, é possível criar modelos capazes de gerar sequências inteiras de elementos de forma iterativa. Esse é o segredo para criar inteligências artificiais capazes de traduzir textos, responder perguntas, e outras aplicações.</p><p id="23ec6f7d-f2fd-8024-9def-db5dc318d5f4" class="">Agora temos todas as peças para montar nosso próprio modelo desse tipo. No próximo post, vamos ver como foi feita a arquitetura do primeiro Transformer, como descrito no artigo original.</p><p id="24dc6f7d-f2fd-80dd-9bb6-e83e741d30f0" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

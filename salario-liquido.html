@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora Salário Líquido CLT Brasil 2026</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  color: #333;
+}
+
+.container {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+p.intro {
+  text-align: center;
+  color: #7f8c8d;
+  margin-bottom: 30px;
+}
+
+.form-group { margin-bottom: 20px; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #e1e8ed;
+  border-radius: 10px;
+  font-size: 1em;
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 15px;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.checkbox-item input {
+  margin-right: 10px;
+  transform: scale(1.2);
+}
+
+.btn-calcular {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+#result { margin-top: 30px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: right;
+}
+
+th { text-align: left; }
+
+tr.final td {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #28a745;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>💰 Calculadora Salário Líquido CLT 2026</h1>
+<p class="intro">Paulo Duarte - 2026</p>
+
+<div class="form-group">
+  <label>Salário Bruto Mensal</label>
+  <input type="number" id="salarioBruto" value="0">
+</div>
+
+<h3>➕ Valores de Benefícios e Gratificações</h3>
+
+<div class="form-row">
+  <div class="form-group">
+    <label>Plano odontológico (R$)</label>
+    <input type="number" id="valorOdonto" value="0">
+  </div>
+
+  <div class="form-group">
+    <label>Gratificações (R$)</label>
+    <input type="number" id="valorGrat" value="0">
+  </div>
+
+  <div class="form-group">
+    <label>VA (R$)</label>
+    <input type="number" id="valorVA" value="0">
+  </div>
+</div>
+
+<h3>Seleções</h3>
+
+<div class="checkbox-group">
+  <div class="checkbox-item">
+    <input type="checkbox" id="odonto" checked>
+    <label>Plano odontológico</label>
+  </div>
+
+  <div class="checkbox-item">
+    <input type="checkbox" id="va" checked>
+    <label>Vale Alimentação</label>
+  </div>
+
+  <div class="checkbox-item">
+    <input type="checkbox" id="plr">
+    <label>PLR (1.3x)</label>
+  </div>
+</div>
+
+<button class="btn-calcular" onclick="calcular()">Calcular</button>
+<div id="result"></div>
+
+</div>
+
+<script>
+function calcular() {
+  const salario = Number(salarioBruto.value) || 0;
+
+  const odonto = odontoCheckbox();
+  const grat = Number(valorGrat.value) || 0;
+  const va = Number(valorVA.value) || 0;
+  const plr = document.getElementById('plr').checked ? salario * 1.3 : 0;
+
+  const inss = salario * 0.14;
+  const irrf = salario * 0.12;
+
+  const liquido =
+    salario +
+    grat +
+    plr -
+    inss -
+    irrf -
+    odonto;
+
+  result.innerHTML = `
+    <table>
+      <tr><th>Descrição</th><th>Valor</th></tr>
+      <tr><td>Salário</td><td>R$ ${salario.toFixed(2)}</td></tr>
+      <tr><td>Gratificações</td><td>R$ ${grat.toFixed(2)}</td></tr>
+      <tr><td>PLR</td><td>R$ ${plr.toFixed(2)}</td></tr>
+      <tr><td>INSS</td><td>- R$ ${inss.toFixed(2)}</td></tr>
+      <tr><td>IRRF</td><td>- R$ ${irrf.toFixed(2)}</td></tr>
+      <tr><td>Plano odontológico</td><td>- R$ ${odonto.toFixed(2)}</td></tr>
+      <tr class="final"><td>Líquido</td><td>R$ ${liquido.toFixed(2)}</td></tr>
+    </table>
+
+    <p><strong>Benefícios indiretos:</strong> VA R$ ${va.toFixed(2)}</p>
+  `;
+}
+
+function odontoCheckbox() {
+  return document.getElementById('odonto').checked
+    ? Number(valorOdonto.value) || 0
+    : 0;
+}
+</script>
+
+</body>
+</html>

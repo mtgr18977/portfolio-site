@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Rate Limiting Guide</title>
+    <style>
+        /* --- TECHNICAL DOCS THEME (DARK MODE) --- */
+        :root {
+            --bg-color: #121212;
+            --sidebar-bg: #1a1a1a;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent-color: #82aaff; /* Tech Blue */
+            --code-bg: #1e1e1e;
+            --border-color: #333;
+            --font-main: 'Segoe UI', Inter, Roboto, sans-serif;
+            --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .doc-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* --- NAVIGATION --- */
+        .nav-bar { margin-bottom: 40px; }
+        .back-link {
+            text-decoration: none;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        /* --- TYPOGRAPHY --- */
+        h1 { font-size: 2.5rem; margin-bottom: 10px; color: #fff; letter-spacing: -0.5px; }
+        h2 { font-size: 1.8rem; margin-top: 50px; margin-bottom: 20px; color: #fff; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        h3 { font-size: 1.3rem; margin-top: 30px; margin-bottom: 15px; color: var(--accent-color); }
+        
+        p { margin-bottom: 20px; }
+        
+        ul { margin-bottom: 20px; padding-left: 25px; color: var(--text-muted); }
+        li { margin-bottom: 8px; }
+
+        strong { color: var(--text-main); font-weight: 600; }
+
+        /* --- CODE BLOCKS --- */
+        pre {
+            background-color: var(--code-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+            margin: 25px 0;
+            font-size: 0.9rem;
+        }
+
+        code {
+            font-family: var(--font-mono);
+            color: #d6deeb;
+        }
+
+        /* Inline code */
+        p code, li code {
+            background-color: rgba(130, 170, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--accent-color);
+            font-size: 0.9em;
+        }
+
+        /* --- TABLE STYLES --- */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 30px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #1a1a1a;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        td { color: var(--text-muted); }
+
+        /* --- PROS & CONS STYLING --- */
+        .pros-cons {
+            background-color: var(--sidebar-bg);
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--border-color);
+        }
+
+        .tag-pro { color: #98c379; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; margin-right: 8px; }
+        .tag-con { color: #e06c75; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; margin-right: 8px; }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: 80px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.85rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="doc-container">
+        
+        <div class="nav-bar">
+            <a href="portfolio.html" class="back-link">← Back to Portfolio</a>
+        </div>
+
+        <header>
+            <h1>API Rate Limiting</h1>
+            <p style="color: var(--text-muted); font-size: 1.2rem;">A comprehensive guide to protecting systems and sustaining performance.</p>
+        </header>
+
+        <article>
+            <p>API rate limiting protects systems from overload, promotes fair usage, and sustains performance during traffic spikes. For developer platforms, it builds trust by delivering predictable behavior—preventing one rogue client from disrupting everyone else.</p>
+            <p>This guide covers the essentials: what rate limiting entails, popular strategies with their pros and cons, implementation patterns in modern systems, and a polished Node.js example. You'll walk away equipped to design limits that balance protection with usability.</p>
+
+            <h2>What Is API Rate Limiting?</h2>
+            <p>API rate limiting caps the number of requests a client can send within a specific timeframe, often tied to identifiers like API keys, user IDs, IP addresses, or access tokens.</p>
+            <p>It achieves key objectives:</p>
+            <ul>
+                <li><strong>Shields backend services</strong> from excessive load or crashes.</li>
+                <li><strong>Blocks abuse</strong>, such as denial-of-service (DoS) attacks or scraping.</li>
+                <li><strong>Distributes resources fairly</strong> among users.</li>
+                <li><strong>Guarantees consistent performance</strong>, even under bursts.</li>
+            </ul>
+            <p>Public APIs treat rate limits as a core contract with developers—clearly documented and consistently enforced.</p>
+
+            <h3>Common Use Cases</h3>
+            <p>Apply rate limiting to vulnerable or resource-intensive endpoints:</p>
+            <ul>
+                <li>Public APIs open to external developers.</li>
+                <li>Authentication flows (e.g., login attempts to thwart brute-force).</li>
+                <li>Expensive operations like searches, analytics reports, or data exports.</li>
+                <li>Tiered subscription plans (freemium vs. enterprise).</li>
+                <li>Webhooks or event streams prone to feedback loops.</li>
+            </ul>
+
+            <h2>Rate Limiting Strategies</h2>
+            <p>Choose based on your traffic patterns, scale, and fairness needs. Each tracks requests against time-based counters or queues.</p>
+
+            <h3>Fixed Window</h3>
+            <p><strong>How it works:</strong> Tally requests in rigid intervals (e.g., 100 requests per 60-second window). At the boundary (e.g., :59 to :00), the counter resets to zero.</p>
+            <div class="pros-cons">
+                <p><span class="tag-pro">Pros</span> Dead simple to code and debug. Low memory and CPU overhead.</p>
+                <p><span class="tag-con">Cons</span> <strong>Burst risks:</strong> Clients pile on just before reset, causing spikes. <strong>Unfairness:</strong> A request at 59:59 counts against the next window, even if early in it.</p>
+            </div>
+            <p><em>Best for: Internal tools or low-stakes APIs with steady traffic.</em></p>
+
+            <h3>Sliding Window</h3>
+            <p><strong>How it works:</strong> Track timestamps of recent requests in a rolling window (e.g., last 60 seconds). Reject if the count exceeds the limit.</p>
+            <div class="pros-cons">
+                <p><span class="tag-pro">Pros</span> Even distribution—no hard boundaries. Precise enforcement using exact timings.</p>
+                <p><span class="tag-con">Cons</span> Needs sorted storage (e.g., Redis sorted sets), raising complexity and cost. Slower lookups for high-volume APIs.</p>
+            </div>
+            <p><em>Best for: Variable public traffic where fairness matters.</em></p>
+
+            <h3>Token Bucket</h3>
+            <p><strong>How it works:</strong> Maintain a bucket of "tokens" that refills at a steady rate (e.g., 100 tokens/minute). Each request consumes one; wait or reject if empty. Bursts deplete the initial fill.</p>
+            <div class="pros-cons">
+                <p><span class="tag-pro">Pros</span> Handles short bursts gracefully (e.g., page loads). Smooth long-term averaging. Industry standard (used by AWS, Stripe).</p>
+                <p><span class="tag-con">Cons</span> <strong>Stateful:</strong> Persist buckets across restarts or instances (e.g., via Redis). Tuning refill rate and bucket size is tricky.</p>
+            </div>
+            <p><em>Best for: Developer APIs needing burst tolerance.</em></p>
+
+            <h3>Leaky Bucket</h3>
+            <p><strong>How it works:</strong> Queue requests and process at a fixed rate (like a bucket leaking at constant speed). Overflow drops requests.</p>
+            <div class="pros-cons">
+                <p><span class="tag-pro">Pros</span> Ironclad backend smoothing—never overwhelms downstream services. Predictable throughput.</p>
+                <p><span class="tag-con">Cons</span> No bursts; clients face queues or drops during peaks. Queue management adds latency.</p>
+            </div>
+            <p><em>Best for: Strict SLAs or microservices with fixed capacity.</em></p>
+
+            <h2>Comparing Strategies</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Strategy</th>
+                            <th>Burst Handling</th>
+                            <th>Complexity</th>
+                            <th>Accuracy</th>
+                            <th>Storage Needs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Fixed Window</strong></td>
+                            <td>Poor</td>
+                            <td>Low</td>
+                            <td>Medium</td>
+                            <td>Minimal</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sliding Window</strong></td>
+                            <td>Good</td>
+                            <td>Medium</td>
+                            <td>High</td>
+                            <td>High (timestamps)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Token Bucket</strong></td>
+                            <td>Very Good</td>
+                            <td>Medium</td>
+                            <td>High</td>
+                            <td>Moderate (per-client state)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Leaky Bucket</strong></td>
+                            <td>Poor</td>
+                            <td>Medium</td>
+                            <td>High</td>
+                            <td>High (queue)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>Node.js Example: Token Bucket with Express</h2>
+            <p>This production-ready snippet uses proportional refills for accuracy. It stores state in-memory (fine for prototypes; swap with Redis for scale).</p>
+
+<pre><code>const express = require('express');
+
+const app = express();
+app.use(express.json());
+const PORT = 3000;
+
+// Config: 100 tokens every 60s (1.67/sec)
+const MAX_TOKENS = 100;
+const REFILL_RATE = MAX_TOKENS / (60 * 1000); // tokens per ms
+const buckets = new Map(); // clientId -> {tokens, lastRefill}
+
+function rateLimiter(req, res, next) {
+  // Flexible ID: IP or API Key
+  const clientId = req.ip || req.get('X-API-Key'); 
+  const now = Date.now();
+  
+  let bucket = buckets.get(clientId);
+  if (!bucket) {
+    bucket = { tokens: MAX_TOKENS, lastRefill: now };
+    buckets.set(clientId, bucket);
+  }
+
+  // Proportional refill
+  const elapsedMs = now - bucket.lastRefill;
+  const tokensToAdd = elapsedMs * REFILL_RATE;
+  
+  bucket.tokens = Math.min(MAX_TOKENS, bucket.tokens + tokensToAdd);
+  bucket.lastRefill = now;
+
+  if (bucket.tokens >= 1) {
+    bucket.tokens -= 1;
+    const resetTime = Math.ceil((MAX_TOKENS / REFILL_RATE - elapsedMs) / 1000);
+    
+    // Standard Headers
+    res.set({
+      'X-RateLimit-Limit': MAX_TOKENS,
+      'X-RateLimit-Remaining': Math.floor(bucket.tokens),
+      'X-RateLimit-Reset': resetTime,
+    });
+    
+    next();
+  } else {
+    res.status(429).json({
+      error: 'Rate limit exceeded',
+      message: 'Too many requests. Try again soon.',
+    });
+  }
+}
+
+// Apply globally to /api
+app.use('/api', rateLimiter);
+
+app.get('/api/data', (req, res) => {
+  res.json({ message: 'Success! Data here.' });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server on http://localhost:${PORT}`);
+});</code></pre>
+
+            <h3>Key Improvements in Code</h3>
+            <ul>
+                <li><strong>Proportional refill:</strong> Handles fractions accurately.</li>
+                <li><strong>Flexible client ID:</strong> Can use IP or API Key.</li>
+                <li><strong>Proper headers:</strong> Compliant with RFC 6585.</li>
+            </ul>
+
+            <h2>Best Practices</h2>
+            <p><strong>Tailor to patterns:</strong> Use Token Bucket for bursts, Leaky Bucket for steady streams.</p>
+            <p><strong>Standard Headers & UX:</strong> Always expose <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code>, and <code>X-RateLimit-Reset</code>. On 429 errors, include a <code>Retry-After</code> header.</p>
+            <p><strong>Never silent-throttle:</strong> Always return a 429 status code with guidance.</p>
+            <p><strong>Monitor & adapt:</strong> Track 429s and P99 latency. Perform A/B testing on limits to find the sweet spot.</p>
+
+        </article>
+
+        <footer>
+            <a href="portfolio.html" class="back-link">Back to Portfolio</a>
+        </footer>
+
+    </div>
+
+</body>
+</html>

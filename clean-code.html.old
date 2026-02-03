@@ -1,0 +1,713 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Clean Architecture e Separação em Camadas</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="22fc6f7d-f2fd-803c-94ac-d5279c150c11" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🤖</span></div><h1 class="page-title">Clean Architecture e Separação em Camadas</h1><p class="page-description"></p></header><div class="page-body"><h2 id="22fc6f7d-f2fd-806e-a4dc-e050c19c090d" class="">📚 Roteiro de Estudos:</h2><h3 id="22fc6f7d-f2fd-8065-aad7-f512801a4acc" class="">Semana 1 e 2: Fundamentos de Clean Architecture e Separação em Camadas</h3><ul id="22fc6f7d-f2fd-80cf-a332-f0e208a5630c" class="bulleted-list"><li style="list-style-type:disc"><strong>Objetivos:</strong><ul id="22fc6f7d-f2fd-8079-bc37-ccdcb4426f7c" class="bulleted-list"><li style="list-style-type:circle">Entender fundamentos da arquitetura limpa (Clean Architecture)</li></ul><ul id="22fc6f7d-f2fd-80d3-98d9-c5c2269f5632" class="bulleted-list"><li style="list-style-type:circle">Compreender separação clara entre apresentação, domínio e infraestrutura.</li></ul></li></ul><ul id="22fc6f7d-f2fd-80b2-a895-d361db05bc3f" class="bulleted-list"><li style="list-style-type:disc"><strong>Passos:</strong><ol type="1" id="22fc6f7d-f2fd-8061-985e-ddfa565de502" class="numbered-list" start="1"><li>Assista vídeos introdutórios sobre Clean Architecture do Uncle Bob:<ul id="22fc6f7d-f2fd-8090-add2-f8039b77c6b4" class="bulleted-list"><li style="list-style-type:disc">Recomendações em Português:<ul id="22fc6f7d-f2fd-8055-b8a5-fa50688f5ea6" class="bulleted-list"><li style="list-style-type:circle">Canal Otávio Lemos (<a href="https://www.youtube.com/watch?v=HVrwudzbSVI">Clean Architecture Explicada</a>)</li></ul><ul id="22fc6f7d-f2fd-802c-b473-e343605a8708" class="bulleted-list"><li style="list-style-type:circle">Canal Rodrigo Branas (<a href="https://www.youtube.com/watch?v=DTZiNk1eiU8">Clean Architecture - Rodrigo Branas</a>)</li></ul></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-8079-a17a-d04661fda8ca" class="numbered-list" start="2"><li>Leia resumos curtos no Medium:<ul id="22fc6f7d-f2fd-8099-b3da-f9f0239e9e51" class="bulleted-list"><li style="list-style-type:disc"><a href="https://medium.com/@romulovicentini/clean-architecture-arquitetura-limpa-para-seu-software-747ca8a3e6da">Introdução ao Clean Architecture – Medium</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-801a-a19c-ea10805a1125" class="numbered-list" start="3"><li>Aprenda na prática organizando um projeto simples em 3 camadas: Apresentação (UI/API), Domínio (Regras de Negócio) e Infraestrutura (banco de dados, chamadas HTTP).</li></ol></li></ul><h3 id="22fc6f7d-f2fd-80cc-ab9f-d8eda91b4368" class="">Semana 3: Princípios SOLID</h3><ul id="22fc6f7d-f2fd-808d-ae1b-d2ef39691d51" class="bulleted-list"><li style="list-style-type:disc"><strong>Objetivos:</strong><ul id="22fc6f7d-f2fd-8086-93d7-ffc7dbd11e9f" class="bulleted-list"><li style="list-style-type:circle">Começar aprimorando qualidade e legibilidade do código com SOLID, especialmente SRP e DIP.</li></ul></li></ul><ul id="22fc6f7d-f2fd-80b8-ae3d-e4c50c5345ad" class="bulleted-list"><li style="list-style-type:disc"><strong>Passos:</strong><ol type="1" id="22fc6f7d-f2fd-807c-806b-d608e4534515" class="numbered-list" start="1"><li>Assista esses vídeos introdutórios:<ul id="22fc6f7d-f2fd-808c-8c89-f9d9490aeada" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=6SfrO3D4dHM">SOLID em 5 minutos – canal Código Fonte</a></li></ul><ul id="22fc6f7d-f2fd-80e2-a70b-f69426a264d4" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=vAV4Vy4jfkc">SOLID com exemplos em JavaScript – canal Henrique Bastos</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-80e5-86d9-d6b2607871aa" class="numbered-list" start="2"><li>Foque principalmente em:<ul id="22fc6f7d-f2fd-80c3-b49c-fce74d42cda5" class="bulleted-list"><li style="list-style-type:disc">SRP (Single Responsibility Principle — Responsabilidade Única)</li></ul><ul id="22fc6f7d-f2fd-8069-9650-d4279ef3057a" class="bulleted-list"><li style="list-style-type:disc">DIP (Dependency Inversion Principle — Inversão de Dependência)</li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-800d-b6e5-dcadce238a5f" class="numbered-list" start="3"><li>Crie pequenos exemplos de código, aplicando explicitamente SRP e DIP na sua linguagem preferida.</li></ol></li></ul><h3 id="22fc6f7d-f2fd-8094-9499-f5d768fc8a9a" class="">Semana 4: Injeção de Dependências (Dependency Injection)</h3><ul id="22fc6f7d-f2fd-800a-a345-cfa6f9a38530" class="bulleted-list"><li style="list-style-type:disc"><strong>Objetivos:</strong><ul id="22fc6f7d-f2fd-80e2-b2ab-c47bab6599fb" class="bulleted-list"><li style="list-style-type:circle">Entender conceito fundamental de DI e começar a aplicá-lo sem necessariamente usar frameworks.</li></ul></li></ul><ul id="22fc6f7d-f2fd-8042-8544-c2fd8f4dd635" class="bulleted-list"><li style="list-style-type:disc"><strong>Passos:</strong><ol type="1" id="22fc6f7d-f2fd-806b-9939-c2048644c8d8" class="numbered-list" start="1"><li>Vídeos recomendados:<ul id="22fc6f7d-f2fd-80f3-b21a-e18c0204ee57" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=IKD2-MAkXyQ">Injeção de Dependência e IoC – Código Fonte TV</a></li></ul><ul id="22fc6f7d-f2fd-8058-a32a-c78568711b21" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=tYiiY1rt1YE">Dependency Injection explicado (Gustavo Guanabara)</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-80e0-866f-f3a8ae440baf" class="numbered-list" start="2"><li>Leia artigos curtos:<ul id="22fc6f7d-f2fd-80e1-8335-cbbd52909b94" class="bulleted-list"><li style="list-style-type:disc"><a href="https://medium.com/@marcelo.leite.costa/entendendo-inje%C3%A7%C3%A3o-de-depend%C3%AAncia-finalmente-88fae3ca60be">Entendendo Injeção de Dependências (Medium)</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-8029-91dc-f1a5719ef00b" class="numbered-list" start="3"><li>Implemente DI simples na mão, sem biblioteca/framework, para entender a lógica e prática.</li></ol></li></ul><h3 id="22fc6f7d-f2fd-8066-9266-e54ef2881855" class="">Semana 5: Domain-Driven Design Básico (DDD)</h3><ul id="22fc6f7d-f2fd-8087-9708-e4ad3e6920d0" class="bulleted-list"><li style="list-style-type:disc"><strong>Objetivos:</strong><ul id="22fc6f7d-f2fd-809a-8c6e-fe9d58683805" class="bulleted-list"><li style="list-style-type:circle">Entender conceitos básicos: Entidade, Value Object, Agregados, Serviços de Domínio.</li></ul></li></ul><ul id="22fc6f7d-f2fd-807a-80c2-ff4846aa082f" class="bulleted-list"><li style="list-style-type:disc"><strong>Passos:</strong><ol type="1" id="22fc6f7d-f2fd-80c8-9a8c-e8b4554c3278" class="numbered-list" start="1"><li>Vídeos introdutórios sobre DDD:<ul id="22fc6f7d-f2fd-80e0-801d-e7652efe3090" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=hYykca6Koog">O que é Domain Driven Design? – Otávio Lemos</a></li></ul><ul id="22fc6f7d-f2fd-80b2-a0a4-e0c87c20182f" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=vn77KZCEdDs">DDD básico (Full Cycle)</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-8044-807e-d7500e7706ee" class="numbered-list" start="2"><li>Artigos no Medium:<ul id="22fc6f7d-f2fd-803d-89fb-c02736e327bc" class="bulleted-list"><li style="list-style-type:disc"><a href="https://medium.com/@adrianosander/domain-driven-design-ddd-de-forma-simples-e-pr%C3%A1tica-4d26e8c9b299">DDD simplificado – Entidade, Value Object, Agregados</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-808c-a846-d2f9b1b67d77" class="numbered-list" start="3"><li>Modele um domínio básico de negócio utilizando os conceitos aprendidos.</li></ol></li></ul><h3 id="22fc6f7d-f2fd-8077-9214-cf842d884a25" class="">Semana 6: Design Patterns</h3><ul id="22fc6f7d-f2fd-8036-ad0c-d780c957400e" class="bulleted-list"><li style="list-style-type:disc"><strong>Objetivos:</strong><ul id="22fc6f7d-f2fd-80b0-b194-c90d30dcce72" class="bulleted-list"><li style="list-style-type:circle">Identificar e aprender principais padrões: Factory, Strategy, Adapter.</li></ul></li></ul><ul id="22fc6f7d-f2fd-80e6-8113-f535c3d7163d" class="bulleted-list"><li style="list-style-type:disc"><strong>Passos:</strong><ol type="1" id="22fc6f7d-f2fd-80d5-b2b6-e98bd3e178e2" class="numbered-list" start="1"><li>Vídeos introdutórios:<ul id="22fc6f7d-f2fd-8053-bde5-f8944634366c" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=zHiWqnTWsn4">Design Patterns do zero - código fonte</a></li></ul><ul id="22fc6f7d-f2fd-801c-ab83-e1164bd563ac" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=lQk-nTVtyB0">Padrões Factory, Strategy, Adapter – Refatorando na Prática</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-80ba-a641-c9a2dca5f4c6" class="numbered-list" start="2"><li>Material escrito:<ul id="22fc6f7d-f2fd-8060-9b33-e6d8adf22c54" class="bulleted-list"><li style="list-style-type:disc"><a href="https://medium.com/thiago-aragao/design-patterns-em-5-minutos-82e4da4712f1">Resumo claro dos Design Patterns no Medium</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-80e6-a36e-c606b3965c55" class="numbered-list" start="3"><li>Implemente exemplos pequenos usando esses padrões na linguagem que você conhece (Java, JavaScript, C#, Python, etc.).</li></ol></li></ul><hr id="22fc6f7d-f2fd-80c5-993d-e891a3c8bd9e"/><h2 id="22fc6f7d-f2fd-8095-b116-cb15d9822739" class="">📌 Bibliografia recomendada:</h2><ul id="22fc6f7d-f2fd-80bf-a1ef-ce11cf08b60f" class="bulleted-list"><li style="list-style-type:disc"><strong>Clean Architecture</strong><ul id="22fc6f7d-f2fd-8064-944c-ef6cbc505a89" class="bulleted-list"><li style="list-style-type:circle">Livro: &quot;Arquitetura Limpa&quot; (Robert C. Martin)</li></ul></li></ul><ul id="22fc6f7d-f2fd-801d-bb8e-d1c34406bfe3" class="bulleted-list"><li style="list-style-type:disc"><strong>SOLID</strong><ul id="22fc6f7d-f2fd-8069-a7df-dee06ac34c42" class="bulleted-list"><li style="list-style-type:circle">Livro: &quot;Código Limpo&quot; (Clean Code) - Robert C. Martin</li></ul><ul id="22fc6f7d-f2fd-8066-942a-f2630cf092ad" class="bulleted-list"><li style="list-style-type:circle">Livro: &quot;Clean Architecture&quot; - Robert C. Martin (aborda SOLID junto com arquitetura)</li></ul></li></ul><ul id="22fc6f7d-f2fd-80c2-bd9b-d56bab7d14f2" class="bulleted-list"><li style="list-style-type:disc"><strong>Injeção de Dependência</strong><ul id="22fc6f7d-f2fd-807e-936b-d11980f6ab8b" class="bulleted-list"><li style="list-style-type:circle">Livro: &quot;Dependency Injection Principles, Practices, and Patterns&quot; - Mark Seemann, Steven van Deursen (avançado mas excelente)</li></ul><ul id="22fc6f7d-f2fd-80a3-aed9-e6b261150d7a" class="bulleted-list"><li style="list-style-type:circle">Artigos médium sugeridos acima já são suficientes</li></ul></li></ul><ul id="22fc6f7d-f2fd-8026-a850-f5e369b8dfed" class="bulleted-list"><li style="list-style-type:disc"><strong>Domain-Driven Design (DDD): básico</strong><ul id="22fc6f7d-f2fd-80b3-9d76-f4d1ad910a72" class="bulleted-list"><li style="list-style-type:circle">Livro curto: &quot;DDD Distilled&quot; - Vaughn Vernon (aborda conceitos essenciais)</li></ul><ul id="22fc6f7d-f2fd-80d0-a21a-c605b0d79f1f" class="bulleted-list"><li style="list-style-type:circle">Livro original completo é recomendado futuramente: &quot;Domain-Driven Design&quot; - Eric Evans (apenas se aprofundar muito depois)</li></ul></li></ul><ul id="22fc6f7d-f2fd-80d7-93ab-e6a2e42e61df" class="bulleted-list"><li style="list-style-type:disc"><strong>Design Patterns</strong><ul id="22fc6f7d-f2fd-80bd-938b-f90cb0700bc4" class="bulleted-list"><li style="list-style-type:circle">Livro clássico com exemplos interessantes para referência futura: &quot;Head First Design Patterns&quot; – Freeman &amp; Freeman</li></ul><ul id="22fc6f7d-f2fd-8097-871d-d3aca8abc94e" class="bulleted-list"><li style="list-style-type:circle">Livro Original Gang of Four (GoF) (mais conceitual e avançado)</li></ul></li></ul><hr id="22fc6f7d-f2fd-80e8-90a7-dbc4d9504656"/><h3 id="22fc6f7d-f2fd-8073-8021-f40545dfba4e" class="">🔖 Dicas adicionais:</h3><ul id="22fc6f7d-f2fd-80fe-ac61-d5e603a278f3" class="bulleted-list"><li style="list-style-type:disc">Use um repositório GitHub ou GitLab para praticar cada conceito isoladamente em mini-projetos.</li></ul><ul id="22fc6f7d-f2fd-80b0-9fd0-e4b06e329b2d" class="bulleted-list"><li style="list-style-type:disc">Revise semanalmente; uma revisão constante ajuda na consolidação.</li></ul><ul id="22fc6f7d-f2fd-8072-86c1-d65bf2d8c08e" class="bulleted-list"><li style="list-style-type:disc">Não apenas siga tutoriais, mas tente relacionar conceitos diretamente com códigos e sistemas reais que você já trabalha ou já criou.</li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

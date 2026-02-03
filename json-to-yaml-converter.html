@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON ⇄ YAML Converter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f6fa;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            max-width: 1400px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 0.95em;
+            font-weight: 400;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 0.9em;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .btn-convert {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-convert:hover {
+            background: #2980b9;
+        }
+
+        .btn-convert:active {
+            transform: translateY(0);
+        }
+
+        .btn-clear {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-clear:hover {
+            background: #7f8c8d;
+        }
+
+        .btn-copy {
+            background: #16a085;
+            color: white;
+        }
+
+        .btn-copy:hover {
+            background: #138d75;
+        }
+
+        .btn-swap {
+            background: #34495e;
+            color: white;
+        }
+
+        .btn-swap:hover {
+            background: #2c3e50;
+        }
+
+        .btn-download {
+            background: #9b59b6;
+            color: white;
+        }
+
+        .btn-download:hover {
+            background: #8e44ad;
+        }
+
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 968px) {
+            .editor-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .editor-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .editor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: #34495e;
+            color: white;
+            border-radius: 6px 6px 0 0;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .editor-header .arrow {
+            font-size: 1.5em;
+        }
+
+        textarea {
+            flex: 1;
+            min-height: 400px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .message {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+            display: block;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+            display: block;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 20px;
+            background: #fafbfc;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .examples {
+            padding: 20px;
+            background: #fafbfc;
+            border-radius: 6px;
+        }
+
+        .examples h3 {
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-size: 1em;
+            font-weight: 500;
+        }
+
+        .example-btn {
+            padding: 8px 16px;
+            margin: 4px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.2s ease;
+        }
+
+        .example-btn:hover {
+            background: #2980b9;
+        }
+
+        .upload-section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #fafbfc;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .upload-section h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1em;
+            font-weight: 500;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-input-label {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9em;
+            transition: all 0.2s ease;
+        }
+
+        .file-input-label:hover {
+            background: #2980b9;
+        }
+
+        .file-name {
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            color: #95a5a6;
+            font-size: 0.85em;
+            border-top: 1px solid #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>JSON ⇄ YAML Converter</h1>
+            <p class="subtitle">Converta facilmente entre JSON e YAML</p>
+        </header>
+
+        <div id="message" class="message"></div>
+
+        <div class="upload-section">
+            <h3>📁 Upload de Arquivo</h3>
+            <div class="file-input-wrapper">
+                <input type="file" id="fileInput" accept=".json,.yaml,.yml" onchange="handleFileUpload(event)">
+                <label for="fileInput" class="file-input-label">
+                    📤 Escolher Arquivo (JSON ou YAML)
+                </label>
+            </div>
+            <div class="file-name" id="fileName"></div>
+        </div>
+
+        <div class="controls">
+            <button class="btn-convert" onclick="convertToYAML()">
+                📄 JSON → YAML
+            </button>
+            <button class="btn-convert" onclick="convertToJSON()">
+                📋 YAML → JSON
+            </button>
+            <button class="btn-swap" onclick="swapContent()">
+                🔃 Trocar
+            </button>
+            <button class="btn-copy" onclick="copyOutput()">
+                📋 Copiar Saída
+            </button>
+            <button class="btn-download" onclick="downloadOutput()">
+                💾 Baixar Arquivo
+            </button>
+            <button class="btn-clear" onclick="clearAll()">
+                🗑️ Limpar Tudo
+            </button>
+        </div>
+
+        <div class="editor-container">
+            <div class="editor-section">
+                <div class="editor-header">
+                    <span>Entrada</span>
+                </div>
+                <textarea id="input" placeholder="Cole seu JSON ou YAML aqui..."></textarea>
+            </div>
+
+            <div class="editor-section">
+                <div class="editor-header">
+                    <span>Saída</span>
+                    <span class="arrow">→</span>
+                </div>
+                <textarea id="output" placeholder="O resultado aparecerá aqui..." readonly></textarea>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="inputLines">0</div>
+                <div class="stat-label">Linhas Entrada</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="inputChars">0</div>
+                <div class="stat-label">Caracteres Entrada</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="outputLines">0</div>
+                <div class="stat-label">Linhas Saída</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="outputChars">0</div>
+                <div class="stat-label">Caracteres Saída</div>
+            </div>
+        </div>
+
+        <div class="examples">
+            <h3>📚 Exemplos Rápidos:</h3>
+            <button class="example-btn" onclick="loadExample('simple')">JSON Simples</button>
+            <button class="example-btn" onclick="loadExample('nested')">JSON Aninhado</button>
+            <button class="example-btn" onclick="loadExample('array')">JSON com Arrays</button>
+            <button class="example-btn" onclick="loadExample('yaml')">YAML Exemplo</button>
+        </div>
+
+        <footer>
+            <p>💡 Dica: Cole seu conteúdo e clique em "JSON → YAML" ou "YAML → JSON"</p>
+        </footer>
+    </div>
+
+    <script>
+        // Funções utilitárias para conversão JSON ↔ YAML
+        
+        function jsonToYaml(obj, indent = 0) {
+            const spaces = '  '.repeat(indent);
+            
+            // Null e undefined
+            if (obj === null || obj === undefined) {
+                return indent === 0 ? 'null' : 'null';
+            }
+            
+            // Primitivos: strings
+            if (typeof obj === 'string') {
+                // Strings que precisam de aspas
+                const needsQuotes = 
+                    obj.includes(':') || obj.includes('#') || obj.includes('[') || obj.includes(']') || 
+                    obj.includes('{') || obj.includes('}') || obj.includes(',') || obj.includes('&') ||
+                    obj.includes('*') || obj.includes('!') || obj.includes('|') || obj.includes('>') ||
+                    obj.includes("'") || obj.includes('"') || obj.startsWith(' ') || obj.endsWith(' ') ||
+                    obj.includes('\n') || obj === 'true' || obj === 'false' || obj === 'null' || obj === 'yes' ||
+                    obj === 'no' || obj === 'on' || obj === 'off' || obj.match(/^-?\d+$/) || obj.match(/^-?\d*\.\d+$/);
+                
+                if (needsQuotes) {
+                    return "'" + obj.replace(/'/g, "''") + "'";
+                }
+                return obj;
+            }
+            
+            // Primitivos: números e booleanos
+            if (typeof obj === 'number' || typeof obj === 'boolean') {
+                return String(obj);
+            }
+            
+            // Arrays
+            if (Array.isArray(obj)) {
+                if (obj.length === 0) return '[]';
+                
+                let result = '';
+                obj.forEach(item => {
+                    if (item === null || item === undefined) {
+                        result += '\n' + spaces + '- null';
+                    } else if (typeof item === 'object' && !Array.isArray(item)) {
+                        // Objeto dentro de array
+                        const keys = Object.keys(item);
+                        if (keys.length === 0) {
+                            result += '\n' + spaces + '- {}';
+                        } else {
+                            keys.forEach((key, idx) => {
+                                const value = item[key];
+                                const keyStr = jsonToYaml(key, 0);
+                                
+                                if (idx === 0) {
+                                    // Primeira propriedade na mesma linha do hífen
+                                    result += '\n' + spaces + '- ' + keyStr + ':';
+                                } else {
+                                    // Propriedades subsequentes com indentação +2
+                                    result += '\n' + spaces + '  ' + keyStr + ':';
+                                }
+                                
+                                // Valor da propriedade
+                                if (value === null || value === undefined) {
+                                    result += ' null';
+                                } else if (typeof value === 'object' && !Array.isArray(value)) {
+                                    const innerYaml = jsonToYaml(value, indent + 2);
+                                    result += '\n' + innerYaml;
+                                } else if (Array.isArray(value)) {
+                                    if (value.length === 0) {
+                                        result += ' []';
+                                    } else {
+                                        result += jsonToYaml(value, indent + 2);
+                                    }
+                                } else {
+                                    result += ' ' + jsonToYaml(value, 0);
+                                }
+                            });
+                        }
+                    } else if (Array.isArray(item)) {
+                        // Array dentro de array
+                        if (item.length === 0) {
+                            result += '\n' + spaces + '- []';
+                        } else {
+                            result += '\n' + spaces + '-' + jsonToYaml(item, indent + 1);
+                        }
+                    } else {
+                        // Primitivo dentro de array
+                        result += '\n' + spaces + '- ' + jsonToYaml(item, 0);
+                    }
+                });
+                return result;
+            }
+            
+            // Objetos
+            if (typeof obj === 'object') {
+                const keys = Object.keys(obj);
+                if (keys.length === 0) return '{}';
+                
+                let result = '';
+                keys.forEach((key, idx) => {
+                    const value = obj[key];
+                    const keyStr = jsonToYaml(key, 0);
+                    const prefix = idx === 0 && indent === 0 ? '' : (idx === 0 ? '' : '\n' + spaces);
+                    
+                    if (indent === 0 && idx > 0) {
+                        result += '\n';
+                    }
+                    
+                    if (value === null || value === undefined) {
+                        result += prefix + keyStr + ': null';
+                    } else if (typeof value === 'object' && !Array.isArray(value)) {
+                        if (Object.keys(value).length === 0) {
+                            result += prefix + keyStr + ': {}';
+                        } else {
+                            const innerYaml = jsonToYaml(value, indent + 1);
+                            result += prefix + keyStr + ':\n' + innerYaml;
+                        }
+                    } else if (Array.isArray(value)) {
+                        if (value.length === 0) {
+                            result += prefix + keyStr + ': []';
+                        } else {
+                            const innerYaml = jsonToYaml(value, indent + 1);
+                            result += prefix + keyStr + ':' + innerYaml;
+                        }
+                    } else {
+                        result += prefix + keyStr + ': ' + jsonToYaml(value, 0);
+                    }
+                });
+                return result;
+            }
+            
+            return String(obj);
+        }
+
+        function yamlToJson(yamlStr) {
+            const lines = yamlStr.split('\n').filter(line => line.trim() && !line.trim().startsWith('#'));
+            const root = {};
+            const stack = [{ obj: root, indent: -1 }];
+
+            lines.forEach(line => {
+                const indent = line.search(/\S/);
+                const trimmed = line.trim();
+
+                if (trimmed.startsWith('-')) {
+                    const value = trimmed.substring(1).trim();
+                    let parent = stack[stack.length - 1];
+
+                    while (parent.indent >= indent && stack.length > 1) {
+                        stack.pop();
+                        parent = stack[stack.length - 1];
+                    }
+
+                    if (!Array.isArray(parent.obj[parent.key])) {
+                        parent.obj[parent.key] = [];
+                    }
+
+                    if (value.includes(':')) {
+                        const newObj = {};
+                        parent.obj[parent.key].push(newObj);
+                        const [k, v] = value.split(':').map(s => s.trim());
+                        newObj[k] = parseValue(v);
+                        stack.push({ obj: newObj, key: k, indent });
+                    } else {
+                        parent.obj[parent.key].push(parseValue(value));
+                    }
+                } else if (trimmed.includes(':')) {
+                    const [key, ...valueParts] = trimmed.split(':');
+                    const value = valueParts.join(':').trim();
+
+                    while (stack.length > 1 && stack[stack.length - 1].indent >= indent) {
+                        stack.pop();
+                    }
+
+                    const parent = stack[stack.length - 1].obj;
+
+                    if (value === '' || value === '{}' || value === '[]') {
+                        parent[key.trim()] = value === '[]' ? [] : {};
+                        stack.push({ obj: parent, key: key.trim(), indent });
+                    } else {
+                        parent[key.trim()] = parseValue(value);
+                    }
+                }
+            });
+
+            return root;
+        }
+
+        function parseValue(str) {
+            if (!str || str === 'null') return null;
+            if (str === 'true') return true;
+            if (str === 'false') return false;
+            if (!isNaN(str) && str.trim() !== '') return Number(str);
+            if (str.startsWith('"') && str.endsWith('"')) return str.slice(1, -1);
+            if (str.startsWith("'") && str.endsWith("'")) return str.slice(1, -1);
+            return str;
+        }
+
+        // Funções de conversão
+        function convertToYAML() {
+            const input = document.getElementById('input').value.trim();
+            
+            if (!input) {
+                showMessage('Por favor, insira algum JSON para converter.', 'error');
+                return;
+            }
+
+            try {
+                const json = JSON.parse(input);
+                const yaml = jsonToYaml(json);
+                document.getElementById('output').value = yaml;
+                showMessage('✅ Conversão JSON → YAML realizada com sucesso!', 'success');
+                updateStats();
+            } catch (error) {
+                showMessage('❌ Erro: JSON inválido. Verifique a sintaxe.', 'error');
+                console.error(error);
+            }
+        }
+
+        function convertToJSON() {
+            const input = document.getElementById('input').value.trim();
+            
+            if (!input) {
+                showMessage('Por favor, insira algum YAML para converter.', 'error');
+                return;
+            }
+
+            try {
+                const json = yamlToJson(input);
+                const output = JSON.stringify(json, null, 2);
+                document.getElementById('output').value = output;
+                showMessage('✅ Conversão YAML → JSON realizada com sucesso!', 'success');
+                updateStats();
+            } catch (error) {
+                showMessage('❌ Erro: YAML inválido. Verifique a sintaxe.', 'error');
+                console.error(error);
+            }
+        }
+
+        function swapContent() {
+            const input = document.getElementById('input');
+            const output = document.getElementById('output');
+            const temp = input.value;
+            input.value = output.value;
+            output.value = temp;
+            showMessage('🔃 Conteúdo trocado!', 'success');
+            updateStats();
+        }
+
+        function copyOutput() {
+            const output = document.getElementById('output');
+            if (!output.value) {
+                showMessage('Nada para copiar. Faça uma conversão primeiro.', 'error');
+                return;
+            }
+            output.select();
+            document.execCommand('copy');
+            showMessage('📋 Copiado para a área de transferência!', 'success');
+        }
+
+        function downloadOutput() {
+            const output = document.getElementById('output');
+            if (!output.value) {
+                showMessage('Nada para baixar. Faça uma conversão primeiro.', 'error');
+                return;
+            }
+
+            // Detectar tipo de conteúdo
+            const content = output.value.trim();
+            let filename, mimeType;
+
+            if (content.startsWith('{') || content.startsWith('[')) {
+                filename = 'converted.json';
+                mimeType = 'application/json';
+            } else {
+                filename = 'converted.yaml';
+                mimeType = 'text/yaml';
+            }
+
+            // Criar blob e download
+            const blob = new Blob([output.value], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showMessage(`💾 Arquivo ${filename} baixado com sucesso!`, 'success');
+        }
+
+        function clearAll() {
+            document.getElementById('input').value = '';
+            document.getElementById('output').value = '';
+            document.getElementById('fileName').textContent = '';
+            showMessage('🗑️ Campos limpos!', 'success');
+            updateStats();
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const fileName = file.name;
+            const fileExt = fileName.split('.').pop().toLowerCase();
+
+            // Validar extensão
+            if (!['json', 'yaml', 'yml'].includes(fileExt)) {
+                showMessage('❌ Tipo de arquivo inválido. Use .json, .yaml ou .yml', 'error');
+                return;
+            }
+
+            // Mostrar nome do arquivo
+            document.getElementById('fileName').textContent = `📄 ${fileName}`;
+
+            // Ler o arquivo
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const content = e.target.result;
+                document.getElementById('input').value = content;
+                updateStats();
+                showMessage(`✅ Arquivo "${fileName}" carregado com sucesso!`, 'success');
+
+                // Auto-detectar e converter
+                if (fileExt === 'json') {
+                    setTimeout(() => convertToYAML(), 500);
+                } else {
+                    setTimeout(() => convertToJSON(), 500);
+                }
+            };
+            reader.onerror = function() {
+                showMessage('❌ Erro ao ler o arquivo', 'error');
+            };
+            reader.readAsText(file);
+        }
+
+        function showMessage(text, type) {
+            const msg = document.getElementById('message');
+            msg.textContent = text;
+            msg.className = 'message ' + type;
+            setTimeout(() => {
+                msg.className = 'message';
+            }, 3000);
+        }
+
+        function updateStats() {
+            const input = document.getElementById('input').value;
+            const output = document.getElementById('output').value;
+
+            document.getElementById('inputLines').textContent = input.split('\n').length;
+            document.getElementById('inputChars').textContent = input.length;
+            document.getElementById('outputLines').textContent = output.split('\n').length;
+            document.getElementById('outputChars').textContent = output.length;
+        }
+
+        function loadExample(type) {
+            const examples = {
+                simple: `{
+  "name": "João Silva",
+  "age": 30,
+  "city": "São Paulo",
+  "active": true
+}`,
+                nested: `{
+  "user": {
+    "name": "Maria Santos",
+    "contact": {
+      "email": "maria@example.com",
+      "phone": "+55 11 99999-9999"
+    },
+    "address": {
+      "street": "Rua das Flores",
+      "number": 123,
+      "city": "Rio de Janeiro"
+    }
+  }
+}`,
+                array: `{
+  "company": "Tech Corp",
+  "employees": [
+    {
+      "name": "Pedro",
+      "role": "Developer"
+    },
+    {
+      "name": "Ana",
+      "role": "Designer"
+    },
+    {
+      "name": "Carlos",
+      "role": "Manager"
+    }
+  ],
+  "departments": ["IT", "HR", "Sales"]
+}`,
+                yaml: `name: João Silva
+age: 30
+city: São Paulo
+active: true
+skills:
+  - JavaScript
+  - Python
+  - Docker
+contact:
+  email: joao@example.com
+  phone: +55 11 98888-8888`
+            };
+
+            document.getElementById('input').value = examples[type];
+            document.getElementById('output').value = '';
+            updateStats();
+            showMessage('📝 Exemplo carregado! Clique em converter.', 'success');
+        }
+
+        // Event listeners
+        document.getElementById('input').addEventListener('input', updateStats);
+        document.getElementById('output').addEventListener('input', updateStats);
+
+        // Atalhos de teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    convertToYAML();
+                } else if (e.key === 'b' || e.key === 'B') {
+                    e.preventDefault();
+                    convertToJSON();
+                } else if (e.key === 's' || e.key === 'S') {
+                    e.preventDefault();
+                    swapContent();
+                }
+            }
+        });
+
+        // Inicializar stats
+        updateStats();
+    </script>
+</body>
+</html>

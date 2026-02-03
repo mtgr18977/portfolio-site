@@ -1,0 +1,713 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>LLM e IA</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="22fc6f7d-f2fd-8005-b4e5-c92550e2eede" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🤖</span></div><h1 class="page-title">LLM e IA</h1><p class="page-description"></p><h2 id="22fc6f7d-f2fd-80d1-b7da-ed83e15ecec7" class="">📚 Roteiro estruturado para estudar Fundamentos de IA &amp; LLMs:</h2><h3 id="22fc6f7d-f2fd-80a1-90f3-d7f90032dd29" class="">🔸 Semana 1: Fundamentos gerais de IA e Machine Learning</h3><p id="22fc6f7d-f2fd-809b-8183-d07d7ee17546" class=""><strong>Objetivos:</strong></p><ul id="22fc6f7d-f2fd-80c2-8bfb-ef780aba8392" class="bulleted-list"><li style="list-style-type:disc">Compreender conceitos básicos de inteligência artificial.</li></ul><ul id="22fc6f7d-f2fd-8076-86a0-fa5de23d7d00" class="bulleted-list"><li style="list-style-type:disc">Entender o que é aprendizado supervisionado, não supervisionado e reforço.</li></ul><p id="22fc6f7d-f2fd-8061-a105-c0045b94ff16" class=""><strong>Passos:</strong></p><ol type="1" id="22fc6f7d-f2fd-807c-9792-eb3ccae102d2" class="numbered-list" start="1"><li>Assista vídeos introdutórios:<ul id="22fc6f7d-f2fd-80aa-8036-f4dcdf9aca36" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=WWdUnbgXy4Q">Inteligência Artificial Explicada em 8 minutos - Canal Ciência Todo Dia</a></li></ul><ul id="22fc6f7d-f2fd-80b3-9d3c-e5506bc3be7a" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=qes_86N8Oeo">Introdução a Machine Learning (Pedro Domingos) – TEDx</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-807c-8d4a-f8efe6794003" class="numbered-list" start="2"><li>Leia artigos introdutórios:<ul id="22fc6f7d-f2fd-8003-b02e-da3c6d1d487b" class="bulleted-list"><li style="list-style-type:disc"><a href="https://medium.com/data-hackers/ia-machine-learning-deep-learning-qual-a-diferen%C3%A7a-862f68fd6708">Inteligência Artificial, Aprendizado de Máquina e Deep Learning: Qual é a diferença? - André Coelho no Medium</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-80e0-b5d6-d40ce803d749" class="numbered-list" start="3"><li>Faça o curso gratuito introdutório recomendado:<ul id="22fc6f7d-f2fd-8067-a127-f02d21348f5c" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.coursera.org/learn/ai-for-everyone">&quot;AI for Everyone&quot; - Andrew Ng (Coursera)</a></li></ul></li></ol><hr id="22fc6f7d-f2fd-80e7-9360-fa6b0ffe6c8c"/><h3 id="22fc6f7d-f2fd-809f-a798-e0a42a72050c" class="">🔸 Semana 2: Fundamentos de Deep Learning e Redes Neurais</h3><p id="22fc6f7d-f2fd-807c-a343-e5b39ae36ea8" class=""><strong>Objetivos:</strong></p><ul id="22fc6f7d-f2fd-80fc-a3c2-cc3ba2e81df6" class="bulleted-list"><li style="list-style-type:disc">Entender conceitos gerais de Redes Neurais.</li></ul><ul id="22fc6f7d-f2fd-804a-90a2-e5fab5dd2a44" class="bulleted-list"><li style="list-style-type:disc">Saber o que é Deep Learning e sua importância prática.</li></ul><p id="22fc6f7d-f2fd-8042-b31b-edc9d6e778f6" class=""><strong>Passos:</strong></p><ol type="1" id="22fc6f7d-f2fd-8022-96f0-f9496e983ab5" class="numbered-list" start="1"><li>Assista vídeos introdutórios sobre Deep Learning:<ul id="22fc6f7d-f2fd-8058-9c4d-e64114fcab08" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=aircAruvnKk">&quot;O que é uma Rede Neural?&quot; (Canal USP São Carlos)</a></li></ul><ul id="22fc6f7d-f2fd-80cc-afa6-d37fe2b463ac" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=tch5gYaevto">&quot;Aprendizado Profundo explicado em 5 minutos&quot; (Canal Estats)</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-808f-bec2-faff3810b9a9" class="numbered-list" start="2"><li>Leia artigos introdutórios:<ul id="22fc6f7d-f2fd-80ca-948a-cbcf835c7eb7" class="bulleted-list"><li style="list-style-type:disc"><a href="https://medium.com/data-hackers/redes-neurais-para-quem-nunca-ouviu-falar-2912478dbb1c">Redes Neurais para quem nunca ouviu falar - Medium</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-809e-ba91-c047329ed648" class="numbered-list" start="3"><li>Realize o curso introdutório prático:<ul id="22fc6f7d-f2fd-80ba-a22a-e2c7b47e3a96" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.kaggle.com/learn/intro-to-deep-learning">&quot;Introduction to Deep Learning&quot; - Kaggle Learn</a></li></ul></li></ol><hr id="22fc6f7d-f2fd-8015-9d3f-de984d0837dd"/><h3 id="22fc6f7d-f2fd-80f1-a5cb-f93650a444be" class="">🔸 Semana 3: Introdução à NLP (Processamento de Linguagem Natural)</h3><p id="22fc6f7d-f2fd-808c-a41b-c20d0b5f52c8" class=""><strong>Objetivos:</strong></p><ul id="22fc6f7d-f2fd-800c-8eb1-d1ff72d9cc58" class="bulleted-list"><li style="list-style-type:disc">Entender o que é NLP e suas aplicações no contexto de IA.</li></ul><ul id="22fc6f7d-f2fd-80c6-920f-da3759ffe2bd" class="bulleted-list"><li style="list-style-type:disc">Conhecer conceitos básicos: Tokenização, Word Embeddings, Modelagem de linguagem.</li></ul><p id="22fc6f7d-f2fd-80c1-a70c-ee36c2b1c901" class=""><strong>Passos:</strong></p><ol type="1" id="22fc6f7d-f2fd-80b9-9c3f-fc2c47367f58" class="numbered-list" start="1"><li>Assista vídeos introdutórios:<ul id="22fc6f7d-f2fd-80ef-8ef8-d1d18c83dab3" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=CN4uOX5Fhfw">&quot;Processamento de Linguagem Natural (NLP) explicado&quot; – Canal Data Viking</a></li></ul><ul id="22fc6f7d-f2fd-804d-aa2d-ed2a06ea5115" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=k4n6CWFeWeU">&quot;Introdução ao NLP – Canal USPCodeLab&quot;</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-80b3-ab3f-cec0534c913c" class="numbered-list" start="2"><li>Leia artigos introdutórios sobre NLP:<ul id="22fc6f7d-f2fd-80e1-8711-cffdfa996f99" class="bulleted-list"><li style="list-style-type:disc"><a href="https://medium.com/data-hackers/introdu%C3%A7%C3%A3o-ao-processamento-de-linguagem-natural-em-python-1a0541a5babd">Introdução ao NLP com Python simplificado - Medium</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-80f7-b874-d7b0dfa2a153" class="numbered-list" start="3"><li>Faça um miniprojeto prático com NLP usando NLTK ou spaCy (Python).</li></ol><hr id="22fc6f7d-f2fd-8032-a5c3-ee39e4338b3e"/><h3 id="22fc6f7d-f2fd-8084-92e4-c82065bf4ee9" class="">🔸 Semana 4: Fundamentos de Modelos de Linguagem e LLMs (Large Language Models)</h3><p id="22fc6f7d-f2fd-800f-ad14-fb2148bca887" class=""><strong>Objetivos:</strong></p><ul id="22fc6f7d-f2fd-805a-9b7e-f3ca2393d645" class="bulleted-list"><li style="list-style-type:disc">Entender conceito básico de Language Models e o que são LLMs.</li></ul><ul id="22fc6f7d-f2fd-8058-83cd-ebb862a580fd" class="bulleted-list"><li style="list-style-type:disc">Conhecer evolução histórica de GPT até ChatGPT, Bard e outros modelos recentes.</li></ul><p id="22fc6f7d-f2fd-8087-8bd2-d510862ea578" class=""><strong>Passos:</strong></p><ol type="1" id="22fc6f7d-f2fd-802b-9688-d9c5abe53b8d" class="numbered-list" start="1"><li>Vídeos introdutórios sobre LLMs:<ul id="22fc6f7d-f2fd-804d-84fb-f91bb84d99d7" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=ZXsQAXx_ao0">&quot;O que são Large Language Models e Transformers?&quot; - Stanford HAI</a></li></ul><ul id="22fc6f7d-f2fd-804a-ad2e-d8e1158afe49" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=H_LLeLbCpoo">&quot;Como funcionam modelos como ChatGPT?&quot; – Ciência Todo Dia</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-80b9-bc12-cf6d06fe94e8" class="numbered-list" start="2"><li>Leitura:<ul id="22fc6f7d-f2fd-8010-9455-c72c97130202" class="bulleted-list"><li style="list-style-type:disc"><a href="https://medium.com/@thiagolcmelo/o-que-s%C3%A3o-large-language-models-llm-e-o-que-eles-podem-fazer-f0fc574293c">Uma introdução rápida ao GPT e LLMs (Medium)</a></li></ul><ul id="22fc6f7d-f2fd-8092-8bc0-fe1d4aa96073" class="bulleted-list"><li style="list-style-type:disc"><a href="https://towardsdatascience.com/openai-gpt-model-explained-9a32e290360c">OpenAI GPT Explained (Towards Data Science)</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-809b-9faa-ea4921bce995" class="numbered-list" start="3"><li>Explore na prática APIs abertas do GPT e modelos no HuggingFace:<ul id="22fc6f7d-f2fd-803d-a9f2-d9221386187c" class="bulleted-list"><li style="list-style-type:disc"><a href="https://chat.openai.com/">OpenAI Playground ou ChatGPT</a></li></ul><ul id="22fc6f7d-f2fd-8022-ae21-d208c0c4d8d4" class="bulleted-list"><li style="list-style-type:disc"><a href="https://huggingface.co/">Transformers no HuggingFace</a></li></ul></li></ol><hr id="22fc6f7d-f2fd-800a-afe1-c8d34e2cd820"/><h3 id="22fc6f7d-f2fd-8003-908e-eda22e384e81" class="">🔸 Semana 5: Prompt Engineering e Aplicações Práticas de LLMs</h3><p id="22fc6f7d-f2fd-8001-832a-c99c1890eabe" class=""><strong>Objetivos:</strong></p><ul id="22fc6f7d-f2fd-80f1-a5ba-e6f2ea1588d5" class="bulleted-list"><li style="list-style-type:disc">Aprender a criar bons prompts (Prompt Engineering).</li></ul><ul id="22fc6f7d-f2fd-8096-9e3c-c1b62caf296a" class="bulleted-list"><li style="list-style-type:disc">Testar aplicações práticas usando LLMs (Chatbots, geração de texto, sumarização).</li></ul><p id="22fc6f7d-f2fd-8005-997d-ff02a91a9cc8" class=""><strong>Passos:</strong></p><ol type="1" id="22fc6f7d-f2fd-808b-9d3e-f87f0c1accba" class="numbered-list" start="1"><li>Assista vídeos sobre &quot;Prompt Engineering&quot;:<ul id="22fc6f7d-f2fd-80ea-9c89-eaee4bb5b18d" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=yyNz1aONX_g">&quot;Prompt Engineering básico em 10 minutos&quot; - Valdir Cechinel</a></li></ul><ul id="22fc6f7d-f2fd-80bc-9ecd-e9757db4b0d6" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=lF9qaxzqZpE">&quot;Prompt Engineering para ChatGPT - FreeCodeCamp&quot;</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-805b-8247-c9efc217695e" class="numbered-list" start="2"><li>Artigos de apoio:<ul id="22fc6f7d-f2fd-8014-8df2-dc93095c2be9" class="bulleted-list"><li style="list-style-type:disc"><a href="https://medium.com/neuralbrasil/tudo-que-voc%C3%AA-precisa-saber-sobre-prompt-engineering-ca7c34496161">Guia introdutório para Prompt Engineering - Medium</a></li></ul></li></ol><ol type="1" id="22fc6f7d-f2fd-80cb-bc86-f9f8071e0a4f" class="numbered-list" start="3"><li>Experimente você mesmo criar interações úteis com modelos no HuggingFace, ChatGPT ou Gemini.</li></ol><hr id="22fc6f7d-f2fd-8047-b44d-eb227bb2766f"/><h3 id="22fc6f7d-f2fd-80a5-9fb3-ca5a3872bec7" class="">🎯 Bibliografia Recomendada</h3><h3 id="22fc6f7d-f2fd-805f-9b33-c9da2e4ca2dc" class="">Livros introdutórios:</h3><ul id="22fc6f7d-f2fd-80af-afb5-c903b016cfd5" class="bulleted-list"><li style="list-style-type:disc">&quot;AI for People and Business&quot; - Alex Castrounis</li></ul><ul id="22fc6f7d-f2fd-801f-9e6b-c3bcb239fad4" class="bulleted-list"><li style="list-style-type:disc">&quot;Redes Neurais e Deep Learning&quot; - Charu C. Aggarwal</li></ul><ul id="22fc6f7d-f2fd-80a1-b0a5-e82a0c8821b3" class="bulleted-list"><li style="list-style-type:disc">&quot;Natural Language Processing with Python&quot; – Steven Bird, Ewan Klein and Edward Loper (NLP introdutório)</li></ul><h3 id="22fc6f7d-f2fd-800a-ab0d-dec38221d5d9" class="">Livros intermediários:</h3><ul id="22fc6f7d-f2fd-8092-8900-efcc8e4293d7" class="bulleted-list"><li style="list-style-type:disc">&quot;Deep Learning com Python&quot; - François Chollet</li></ul><ul id="22fc6f7d-f2fd-80d8-9cd1-f771a2837c23" class="bulleted-list"><li style="list-style-type:disc">&quot;Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow&quot; - Aurélien Géron</li></ul><ul id="22fc6f7d-f2fd-80c2-ac5b-ce22a659e999" class="bulleted-list"><li style="list-style-type:disc">&quot;Natural Language Processing in Action&quot; - Hobson Lane, Cole Howard, e Hannes Hapke</li></ul><h3 id="22fc6f7d-f2fd-80e0-92e4-c821b85701cb" class="">Sobre LLM / GPT / Transformer Models:</h3><ul id="22fc6f7d-f2fd-806a-a6e0-de589ca63bb9" class="bulleted-list"><li style="list-style-type:disc">Artigos originais do Google sobre &quot;Attention is All You Need&quot; e &quot;BERT: Pre-training of Deep Bidirectional Transformers&quot;</li></ul><ul id="22fc6f7d-f2fd-8036-be43-d8fda11f6dab" class="bulleted-list"><li style="list-style-type:disc">&quot;Mastering Transformers&quot; - Lewis Tunstall, Leandro von Werra e Thomas Wolf (livro bem prático sobre o HuggingFace Transformer)</li></ul><hr id="22fc6f7d-f2fd-80e2-a9e6-dd630da79ece"/><h3 id="22fc6f7d-f2fd-804c-8113-f6aa29897642" class="">🔖 Dicas Extras</h3><ul id="22fc6f7d-f2fd-80a6-8dc7-d7bb99c7c383" class="bulleted-list"><li style="list-style-type:disc">Use o Google Colab para executar notebooks e tutoriais práticos sem configurar sua máquina.</li></ul><ul id="22fc6f7d-f2fd-80ea-b0a7-ded8c07d06d4" class="bulleted-list"><li style="list-style-type:disc">Utilize o HuggingFace para explorar e interagir com modelos abertos gratuitamente.</li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

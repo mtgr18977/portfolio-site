@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Glosário de Street Fighter — Referência</title>
+  <style>
+    :root {
+      --bg: #0f1724;
+      --card: #0b1220;
+      --muted: #b0bac9;
+      --accent: #4fd1c5;
+      --glass: rgba(255, 255, 255, 0.03);
+      --text: #f5f8fa;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      margin: 0;
+      background: linear-gradient(180deg, #071022 0%, #071822 100%);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+    
+    header {
+      padding: 32px 28px 20px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(11, 18, 32, 0.5);
+    }
+    
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .brand h1 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 0.3px;
+      color: var(--text);
+    }
+    
+    .brand p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 28px;
+      padding: 28px;
+      max-width: 1400px;
+      margin: 24px auto;
+    }
+
+    nav.sidebar {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 14px;
+      height: calc(100vh - 200px);
+      overflow: auto;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .search {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    
+    .search input {
+      flex: 1;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      color: inherit;
+      font-size: 14px;
+    }
+    
+    .search input::placeholder {
+      color: var(--muted);
+    }
+    
+    .shortlist-toggle {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .toc {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0;
+    }
+    
+    .toc li {
+      margin: 8px 0;
+    }
+    
+    .toc a {
+      color: #8dd9e0;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    
+    .toc a:hover {
+      text-decoration: underline;
+      color: var(--accent);
+    }
+
+    main {
+      padding: 24px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      min-height: 60vh;
+    }
+    
+    .section {
+      margin-bottom: 28px;
+      padding: 18px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+    
+    .section h2 {
+      margin: 0 0 14px 0;
+      font-size: 20px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    
+    .term {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      margin-bottom: 12px;
+      transition: all 0.2s;
+    }
+    
+    .term:hover {
+      background: rgba(0, 0, 0, 0.18);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    
+    .term .left {
+      max-width: 78%;
+    }
+    
+    .term h3 {
+      margin: 0;
+      font-size: 17px;
+      color: var(--text);
+      font-weight: 600;
+    }
+    
+    .term p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    .example {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 8px;
+      padding-left: 12px;
+      border-left: 2px solid rgba(79, 209, 197, 0.3);
+    }
+    
+    .controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    
+    button.copy {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    
+    button.copy:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+    }
+    
+    button.copy:active {
+      transform: translateY(1px);
+    }
+
+    .badge {
+      background: rgba(79, 209, 197, 0.1);
+      color: var(--accent);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid rgba(79, 209, 197, 0.2);
+    }
+
+    footer {
+      padding: 16px 28px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 880px) {
+      .container {
+        grid-template-columns: 1fr;
+        padding: 16px;
+      }
+      
+      .sidebar {
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>Glosário de Street Fighter</h1>
+      <p>Referência rápida — termos, definições, exemplos e dicas de treino</p>
+    </div>
+    <div style="margin-left:auto;display:flex;gap:12px;align-items:center">
+      <a href="index.html" class="copy" style="text-decoration:none;display:flex;align-items:center;height:32px">← Voltar</a>
+      <span style="color:var(--muted);font-size:13px">Paulo — referência pessoal</span>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar" aria-label="Navegação de termos">
+      <div class="search">
+        <input id="search" placeholder="Buscar termo ou exemplo (ex.: shimmy, whiff)" aria-label="Buscar termos" />
+        <button id="clear" class="copy" title="Limpar busca">✕</button>
+      </div>
+
+      <div class="shortlist-toggle"><input id="onlyCore" type="checkbox"/> <label for="onlyCore">Mostrar só essenciais (shortlist)</label></div>
+
+      <strong style="color:var(--muted);font-size:13px">Índice</strong>
+      <ul class="toc" id="toc">
+        <li><a href="#fundamentos">Fundamentos</a></li>
+        <li><a href="#frames">Frames e Segurança</a></li>
+        <li><a href="#defesa">Defesa e Pressão</a></li>
+        <li><a href="#ataque">Ataque e Combos</a></li>
+        <li><a href="#jogo-mental">Jogo Mental</a></li>
+        <li><a href="#sf6">Específicos SF6</a></li>
+      </ul>
+
+      <div style="margin-top:14px;color:var(--muted);font-size:13px">Use a busca para filtrar termos. Clique no botão copiar para copiar a definição.</div>
+    </nav>
+
+    <main>
+
+      <section id="fundamentos" class="section">
+        <h2>Fundamentos</h2>
+
+        <div class="term" data-term="footsies" data-core="true">
+          <div class="left">
+            <h3>Footsies</h3>
+            <p>Jogo neutro: controle de espaço com normais para ganhar posição e criar oportunidades.</p>
+            <div class="example">Ex.: usar cr.MK para manter distância segura e pescar um whiff do adversário.</div>
+          </div>
+          <div class="controls"><span class="badge">essencial</span><button class="copy" data-copy="Footsies — Jogo neutro: controle de espaço com normais para ganhar posição e criar oportunidades. Ex.: usar cr.MK para manter distância segura e pescar um whiff do adversário.">Copiar</button></div>
+        </div>
+
+        <div class="term" data-term="neutral" data-core="true">
+          <div class="left"><h3>Neutral</h3><p>Situação onde nenhum jogador tem vantagem — ambos buscam criar oportunidades.</p></div>
+          <div class="controls"><span class="badge">essencial</span><button class="copy" data-copy="Neutral — Situação onde nenhum jogador tem vantagem — ambos buscam criar oportunidades.">Copiar</button></div>
+        </div>
+
+        <div class="term" data-term="anti-air aa" data-core="true">
+          <div class="left"><h3>Anti-air (AA)</h3><p>Golpe usado para punir ou deter pulo do oponente.</p></div>
+          <div class="controls"><span class="badge">essencial</span><button class="copy" data-copy="Anti-air (AA) — Golpe usado para punir ou deter pulo do oponente.">Copiar</button></div>
+        </div>
+
+        <div class="term" data-term="poke" data-core="true">
+          <div class="left"><h3>Poke</h3><p>Normal rápido e seguro usado para controlar distância e punir erros.</p></div>
+          <div class="controls"><button class="copy" data-copy="Poke — Normal rápido e seguro usado para controlar distância e punir erros.">Copiar</button></div>
+        </div>
+
+        <div class="term" data-term="whiff" data-core="true">
+          <div class="left"><h3>Whiff</h3><p>Quando um ataque erra no vazio; deixa o atacante vulnerável.</p></div>
+          <div class="controls"><button class="copy" data-copy="Whiff — Quando um ataque erra no vazio; deixa o atacante vulnerável.">Copiar</button></div>
+        </div>
+
+        <div class="term" data-term="whiff punish" data-core="true">
+          <div class="left"><h3>Whiff punish</h3><p>Punir um golpe que whiffou, entrando com um ataque rápido ou combo.</p></div>
+          <div class="controls"><button class="copy" data-copy="Whiff punish — Punir um golpe que whiffou, entrando com um ataque rápido ou combo.">Copiar</button></div>
+        </div>
+
+        <div class="term" data-term="shimmy" data-core="true">
+          <div class="left"><h3>Shimmy</h3><p>Técnica de bait que força o oponente a tentar throw tech e whiffar, para então punir.</p>
+            <div class="example">Ex.: andar pra frente, recuar um passo curto; se o oponente apertar tech, whiff → punish.</div>
+          </div>
+          <div class="controls"><button class="copy" data-copy="Shimmy — Técnica de bait que força o oponente a tentar throw tech e whiffar, para então punir. Ex.: andar pra frente, recuar um passo curto; se o oponente apertar tech, whiff → punish.">Copiar</button></div>
+        </div>
+
+      </section>
+
+      <section id="frames" class="section">
+        <h2>Frames e Segurança</h2>
+
+        <div class="term" data-term="frame data" data-core="true">
+          <div class="left"><h3>Frame data</h3><p>Informações sobre startup, active e recovery — essenciais para saber o que é punishable.</p></div>
+          <div class="controls"><span class="badge">essencial</span><button class="copy" data-copy="Frame data — Informações sobre startup, active e recovery — essenciais para saber o que é punishable.">Copiar</button></div>
+        </div>
+
+        <div class="term" data-term="startup active recovery" data-core="true">
+          <div class="left"><h3>Startup / Active / Recovery</h3><p>Startup: frames antes do golpe sair. Active: frames que podem acertar. Recovery: frames até voltar ao neutro.</p></div>
+          <div class="controls"><button class="copy" data-copy="Startup / Active / Recovery — Startup: frames antes do golpe sair. Active: frames que podem acertar. Recovery: frames até voltar ao neutro.">Copiar</button></div>
+        </div>
+
+        <div class="term" data-term="plus minus on block" data-core="true">
+          <div class="left"><h3>Plus on block / Minus on block</h3><p>Indica vantagem (+ frames) ou desvantagem (- frames) quando um golpe é bloqueado.</p></div>
+          <div class="controls"><button class="copy" data-copy="Plus on block / Minus on block — Indica vantagem (+ frames) ou desvantagem (- frames) quando um golpe é bloqueado.">Copiar</button></div>
+        </div>
+
+        <div class="term" data-term="punishable" data-core="true">
+          <div class="left"><h3>Punishable</h3><p>Golpe que pode ser punido após ser bloqueado — usar frame data para identificar.</p></div>
+          <div class="controls"><button class="copy" data-copy="Punishable — Golpe que pode ser punido após ser bloqueado — usar frame data para identificar.">Copiar</button></div>
+        </div>
+      </section>
+
+      <section id="defesa" class="section">
+        <h2>Defesa e Pressão</h2>
+
+        <div class="term" data-term="tick throw" data-core="false">
+          <div class="left"><h3>Tick throw</h3><p>Pressão usando golpe leve seguido de agarrão rápido para abrir defesa.</p></div>
+          <div class="controls"><button class="copy" data-copy="Tick throw — Pressão usando golpe leve seguido de agarrão rápido para abrir defesa.">Copiar</button></div>
+        </div>
+
+        <div class="term" data-term="throw tech" data-core="true">
+          <div class="left"><h3>Throw tech</h3><p>Defesa contra agarrão (LP+LK). Pode whiffar se mal-timed — explorável com shimmy.</p></div>
+          <div class="controls"><button class="copy" data-copy="Throw tech — Defesa contra agarrão (LP+LK). Pode whiffar se mal-timed — explorável com shimmy.">Copiar</button></div>
+        </div>
+
+        <div class="term" data-term="cross-up overhead low" data-core="true">
+          <div class="left"><h3>Cross-up / Overhead / Low</h3><p>Cross-up: bate por trás. Overhead: acertar em pé. Low: acertar agachado — mistura para quebrar defesa.</p></div>
+          <div class="controls"><button class="copy" data-copy="Cross-up / Overhead / Low — Cross-up: bate por trás. Overhead: acertar em pé. Low: acertar agachado — mistura para quebrar defesa.">Copiar</button></div>
+        </div>
+
+        <div class="term" data-term="pressure blockstring" data-core="true">
+          <div class="left"><h3>Pressure / Blockstring</h3><p>Sequência de ataques para manter o oponente defendendo; seu timing define se é seguro.</p></div>
+          <div class="controls"><button class="copy" data-copy="Pressure / Blockstring — Sequência de ataques para manter o oponente defendendo; seu timing define se é seguro.">Copiar</button></div>
+        </div>
+
+      </section>
+
+      <section id="ataque" class="section">
+        <h2>Ataque e Combos</h2>
+
+        <div class="term" data-term="hit confirm" data-core="true">
+          <div class="left"><h3>Hit confirm</h3><p>Observar o acerto do golpe e então converter em combo; evita punir por tentar combo em block.</p></div>
+          <div class="controls"><span class="badge">essencial</span><button class="copy" data-copy="Hit confirm — Observar o acerto do golpe e então converter em combo; evita punir por tentar combo em block.">Copiar</button></div>
+        </div>
+
+        <div class="term" data-term="meaty okizeme reset safe jump" data-core="true">
+          <div class="left"><h3>Meaty / Okizeme / Reset / Safe jump</h3>
+            <p>Meaty: atacar no momento que o oponente levanta. Okizeme: pressão pós-knockdown. Reset: interromper combo para mix-up. Safe jump: pulo que é seguro contra DP.</p>
+          </div>
+          <div class="controls"><button class="copy" data-copy="Meaty / Okizeme / Reset / Safe jump — Meaty: atacar no momento que o oponente levanta. Okizeme: pressão pós-knockdown. Reset: interromper combo para mix-up. Safe jump: pulo que é seguro contra DP.">Copiar</button></div>
+        </div>
+
+      </section>
+
+      <section id="jogo-mental" class="section">
+        <h2>Jogo mental</h2>
+
+        <div class="term" data-term="bait mindgame conditioning" data-core="false">
+          <div class="left"><h3>Bait / Mindgame / Conditioning</h3><p>Fingir opções para forçar respostas previsíveis; alternar para explorar.</p></div>
+          <div class="controls"><button class="copy" data-copy="Bait / Mindgame / Conditioning — Fingir opções para forçar respostas previsíveis; alternar para explorar.">Copiar</button></div>
+        </div>
+
+      </section>
+
+      <section id="sf6" class="section">
+        <h2>Específicos de SF6</h2>
+
+        <div class="term" data-term="drive impact" data-core="true">
+          <div class="left"><h3>Drive Impact (DI)</h3><p>Ataque ofensivo com propriedades especiais (absorve hits ou causa parede); uso arriscado se lido pelo oponente.</p></div>
+          <div class="controls"><button class="copy" data-copy="Drive Impact (DI) — Ataque ofensivo com propriedades especiais (absorve hits ou causa parede); uso arriscado se lido pelo oponente.">Copiar</button></div>
+        </div>
+
+        <div class="term" data-term="drive rush" data-core="true">
+          <div class="left"><h3>Drive Rush (DR)</h3><p>Cancelamento que dá forte vantagem de frames e permite pressão estendida.</p></div>
+          <div class="controls"><button class="copy" data-copy="Drive Rush (DR) — Cancelamento que dá forte vantagem de frames e permite pressão estendida.">Copiar</button></div>
+        </div>
+
+        <div class="term" data-term="drive parry perfect parry" data-core="true">
+          <div class="left"><h3>Drive Parry / Perfect Parry</h3><p>Defesa ativa com redução de dano; Perfect Parry oferece oportunidades de punir com alto ganho.</p></div>
+          <div class="controls"><button class="copy" data-copy="Drive Parry / Perfect Parry — Defesa ativa com redução de dano; Perfect Parry oferece oportunidades de punir com alto ganho.">Copiar</button></div>
+        </div>
+
+        <div class="term" data-term="punish counter" data-core="false">
+          <div class="left"><h3>Punish Counter</h3><p>Versão mais forte de counter hit, geralmente resultando em dano ou vantagem maior.</p></div>
+          <div class="controls"><button class="copy" data-copy="Punish Counter — Versão mais forte de counter hit, geralmente resultando em dano ou vantagem maior.">Copiar</button></div>
+        </div>
+
+      </section>
+
+    
+
+      <section id="frame-data" class="section">
+        <h2>Frame Data</h2>
+        <p style="color:var(--muted);margin-top:0">Tabela para registrar e consultar frame data — filtrável, exportável em CSV e com busca rápida.</p>
+
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px">
+          <input id="fd-filter" placeholder="Buscar por personagem (ex.: Ryu, Ken, Chun-Li)" style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" />
+          <button id="fd-export" class="copy">Exportar CSV</button>
+          <button id="fd-add" class="copy">Adicionar linha</button>
+        </div>
+
+        <div style="overflow:auto;margin-top:12px">
+          <table id="fd-table" style="width:100%;border-collapse:collapse;min-width:900px">
+            <thead>
+              <tr style="text-align:left;color:var(--muted);font-size:13px;border-bottom:1px solid rgba(255,255,255,0.03)">
+                <th style="padding:8px">Personagem</th>
+                <th style="padding:8px">Movimento</th>
+                <th style="padding:8px">Input</th>
+                <th style="padding:8px">Startup</th>
+                <th style="padding:8px">Active</th>
+                <th style="padding:8px">Recovery</th>
+                <th style="padding:8px">On Block</th>
+                <th style="padding:8px">On Hit</th>
+                <th style="padding:8px">Notas</th>
+              </tr>
+            </thead>
+            <tbody id="fd-body">
+              <tr>
+                <td style="padding:8px">Ryu</td>
+                <td style="padding:8px">Hadoken (cru)</td>
+                <td style="padding:8px">QCF+P</td>
+                <td style="padding:8px">14</td>
+                <td style="padding:8px">N/A</td>
+                <td style="padding:8px">45</td>
+                <td style="padding:8px">-6</td>
+                <td style="padding:8px">0</td>
+                <td style="padding:8px">Projétil; geralmente punishable em close range</td>
+              </tr>
+              <tr>
+                <td style="padding:8px">Chun-Li</td>
+                <td style="padding:8px">cr.MK</td>
+                <td style="padding:8px">cr.MK</td>
+                <td style="padding:8px">6</td>
+                <td style="padding:8px">3</td>
+                <td style="padding:8px">18</td>
+                <td style="padding:8px">-2</td>
+                <td style="padding:8px">+1</td>
+                <td style="padding:8px">Bom poke para footsies</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <template id="fd-row-tpl">
+          <tr>
+            <td style="padding:8px"><input class="edit" data-col="personagem" placeholder="Personagem" style="width:100%;background:transparent;border:none;color:inherit"/></td>
+            <td style="padding:8px"><input class="edit" data-col="movimento" placeholder="Movimento" style="width:100%;background:transparent;border:none;color:inherit"/></td>
+            <td style="padding:8px"><input class="edit" data-col="input" placeholder="Input" style="width:100%;background:transparent;border:none;color:inherit"/></td>
+            <td style="padding:8px"><input class="edit" data-col="startup" placeholder="Startup" style="width:100%;background:transparent;border:none;color:inherit"/></td>
+            <td style="padding:8px"><input class="edit" data-col="active" placeholder="Active" style="width:100%;background:transparent;border:none;color:inherit"/></td>
+            <td style="padding:8px"><input class="edit" data-col="recovery" placeholder="Recovery" style="width:100%;background:transparent;border:none;color:inherit"/></td>
+            <td style="padding:8px"><input class="edit" data-col="onblock" placeholder="On Block" style="width:100%;background:transparent;border:none;color:inherit"/></td>
+            <td style="padding:8px"><input class="edit" data-col="onhit" placeholder="On Hit" style="width:100%;background:transparent;border:none;color:inherit"/></td>
+            <td style="padding:8px"><input class="edit" data-col="notes" placeholder="Notas" style="width:100%;background:transparent;border:none;color:inherit"/></td>
+          </tr>
+        </template>
+
+        <div style="color:var(--muted);font-size:13px;margin-top:8px">Dica: preencha startup/active/recovery em números de frames. Use On Block/On Hit como + / - / advantage values.</div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <footer>Arquivo: Glosário de Street Fighter — referencial rápido. Use a busca e o filtro de essenciais para estudar.</footer>
+
+  <script src="sf6-frame-data.js"></script>
+  <script>
+    // Search and shortlist logic for Glossary
+    const search = document.getElementById('search');
+    const clear = document.getElementById('clear');
+    const onlyCore = document.getElementById('onlyCore');
+    const terms = Array.from(document.querySelectorAll('.term'));
+
+    function normalize(s){return s.toLowerCase();}
+
+    function applyGlossaryFilter(){
+      const q = normalize(search.value.trim());
+      const core = onlyCore.checked;
+      terms.forEach(t => {
+        const text = normalize(t.getAttribute('data-term') + ' ' + t.innerText);
+        const isCore = t.getAttribute('data-core') === 'true';
+        const matchesQ = q === '' || text.indexOf(q) !== -1;
+        const matchesCore = !core || isCore;
+        t.style.display = (matchesQ && matchesCore) ? 'flex' : 'none';
+      });
+    }
+
+    search.addEventListener('input', applyGlossaryFilter);
+    clear.addEventListener('click', ()=>{search.value=''; applyGlossaryFilter(); search.focus();});
+    onlyCore.addEventListener('change', applyGlossaryFilter);
+
+    // Copy buttons
+    document.querySelectorAll('button.copy').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const text = btn.getAttribute('data-copy') || btn.parentElement.parentElement.querySelector('h3').innerText;
+        try{
+          await navigator.clipboard.writeText(text);
+          const original = btn.textContent;
+          btn.textContent = '✔';
+          setTimeout(()=>btn.textContent=original,800);
+        }catch(err){
+          alert('Copiar falhou — selecione o texto manualmente.');
+        }
+      });
+    });
+
+    // Smooth anchor scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (ev)=>{
+        ev.preventDefault();
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    });
+
+    // Frame Data Logic
+    const fdBody = document.getElementById('fd-body');
+    const fdFilter = document.getElementById('fd-filter');
+    const fdMsg = document.createElement('div');
+    fdMsg.style.cssText = 'padding:20px;text-align:center;color:var(--muted);font-style:italic';
+    fdMsg.textContent = 'Digite o nome de um personagem ou movimento acima para ver os dados.';
+    document.querySelector('#frame-data').insertBefore(fdMsg, document.querySelector('#frame-data .table-container') || document.querySelector('#fd-table').parentNode);
+
+    function renderFrameData(query){
+      if(typeof SF6_FRAME_DATA === 'undefined') return;
+      
+      const q = normalize(query);
+      fdBody.innerHTML = '';
+      
+      // Show empty table if no query
+      if(q === '') {
+        fdMsg.style.display = 'block';
+        fdMsg.textContent = 'Digite o nome de um personagem acima para ver os dados.';
+        return;
+      }
+      
+      const fragment = document.createDocumentFragment();
+      let matchCount = 0;
+      const MAX_ROWS = 100; // Cap rendering for performance
+
+      for(const [char, moves] of Object.entries(SF6_FRAME_DATA)){
+        const charName = char.charAt(0).toUpperCase() + char.slice(1);
+        
+        // Only filter by character name
+        if(charName.toLowerCase().includes(q)) {
+            // Character matches - add all their moves
+            for(const m of moves){
+                if(matchCount >= MAX_ROWS) break;
+                appendRow(fragment, charName, m);
+                matchCount++;
+            }
+        }
+        if(matchCount >= MAX_ROWS) break;
+      }
+      
+      fdBody.appendChild(fragment);
+      
+      if(matchCount === 0){
+          fdMsg.style.display = 'block';
+          fdMsg.textContent = 'Nenhum dado encontrado.';
+      } else {
+          fdMsg.style.display = 'none';
+          // fdMsg.textContent = 'Digite o nome de um personagem ou movimento acima para ver os dados.'; 
+      }
+    }
+
+    function appendRow(fragment, charName, m){
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="padding:8px">${charName}</td>
+          <td style="padding:8px">${m.name}</td>
+          <td style="padding:8px">${m.input}</td>
+          <td style="padding:8px">${m.startup}</td>
+          <td style="padding:8px">${m.active}</td>
+          <td style="padding:8px">${m.recovery}</td>
+          <td style="padding:8px;color:${getFrameColor(m.onBlock)}">${m.onBlock}</td>
+          <td style="padding:8px;color:${getFrameColor(m.onHit)}">${m.onHit}</td>
+          <td style="padding:8px;font-size:12px;color:var(--muted)">${m.notes}</td>
+        `;
+        fragment.appendChild(tr);
+    }
+
+    function getFrameColor(val){
+      if(val === '' || val === undefined) return 'inherit';
+      const n = parseInt(val);
+      if(isNaN(n)) return 'inherit';
+      if(n > 0) return '#4fd1c5'; // Plus (Cyan)
+      if(n < 0 && n >= -2) return '#e6eef6'; // Safe-ish (White/Light)
+      if(n < -2) return '#fca5a5'; // Unsafe (Reddish)
+      return 'inherit';
+    }
+
+    if(fdFilter){
+      fdFilter.addEventListener('input', (e) => {
+          renderFrameData(e.target.value.trim());
+      });
+    }
+
+    // Init with empty (or trigger with current value if any)
+    renderFrameData('');
+    
+    // Initial Glossar Filter
+    applyGlossaryFilter();
+
+
+  </script>
+</body>
+</html>

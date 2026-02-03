@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Lista de leituras e artigos salvos por Paulo Guilherme Pilotti Duarte. Coleção de links sobre Technical Writing, LLMs, Linguística, Política e mais." />
+<meta name="author" content="Paulo Guilherme Pilotti Duarte" />
+<meta property="og:title" content="Minhas Leituras — Paulo Guilherme Pilotti Duarte" />
+<meta property="og:description" content="Lista de leituras e artigos salvos por Paulo Guilherme Pilotti Duarte. Coleção de links sobre Technical Writing, LLMs, Linguística, Política e mais." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="pt_BR" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Minhas Leituras — Paulo Guilherme Pilotti Duarte" />
+<meta name="twitter:description" content="Lista de leituras e artigos salvos por Paulo Guilherme Pilotti Duarte. Coleção de links sobre Technical Writing, LLMs, Linguística, Política e mais." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>" />
+<title>Minhas Leituras — Paulo Guilherme Pilotti Duarte</title>
+<style>
+  :root{
+    /* Colors */
+    --color-primary: #1d4ed8;
+    --color-primary-dark: #1e40af;
+    --color-text: #222;
+    --color-text-muted: #555;
+    --color-text-light: #666;
+    --color-bg: #fafafa;
+    --color-bg-card: #ffffff;
+    --color-border: #e5e7eb;
+    --color-focus: #3b82f6;
+    
+    /* Tag colors */
+    --tag-tw: #9333ea;
+    --tag-llm: #3b82f6;
+    --tag-linguistica: #92400e;
+    --tag-politics: #dc2626;
+    --tag-tech: #7c3aed;
+    --tag-historia: #ec4899;
+    --tag-religiao: #6b7280;
+    --tag-traducao: #ea580c;
+    --tag-probabilidade: #6b7280;
+    --tag-work: #374151;
+    --tag-ciencia: #eab308;
+    --tag-ia: #ec4899;
+    --tag-jobs: #92400e;
+    --tag-textos: #ea580c;
+    --tag-linux: #92400e;
+    
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    
+    /* Typography */
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+    --font-size-sm: 0.95rem;
+    --font-size-base: 1.05rem;
+    --font-size-lg: 1.3rem;
+    --font-size-xl: 1.9rem;
+    --line-height-tight: 1.4;
+    --line-height-normal: 1.6;
+    --line-height-relaxed: 1.7;
+    
+    /* Transitions */
+    --transition-fast: 150ms ease-in-out;
+    --transition-normal: 250ms ease-in-out;
+    
+    /* Borders */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root{
+      --color-primary: #60a5fa;
+      --color-primary-dark: #3b82f6;
+      --color-text: #e5e7eb;
+      --color-text-muted: #9ca3af;
+      --color-text-light: #6b7280;
+      --color-bg: #111827;
+      --color-bg-card: #1f2937;
+      --color-border: #374151;
+      --color-focus: #60a5fa;
+    }
+  }
+
+  *,
+  *::before,
+  *::after{
+    box-sizing: border-box;
+  }
+
+  body{
+    margin: 0;
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: var(--line-height-normal);
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+  }
+
+  .container{
+    max-width: 1000px;
+    margin: clamp(1.25rem, 5vw, 2.5rem) auto;
+    padding: 0 clamp(1rem, 4vw, 1.25rem);
+  }
+
+  .skip-link{
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-sm) var(--space-md);
+    text-decoration: none;
+    z-index: 100;
+    font-weight: 600;
+    border-radius: 0 0 var(--radius-sm) 0;
+    transition: top var(--transition-fast);
+  }
+
+  .skip-link:focus-visible{
+    top: 0;
+    outline: 2px solid white;
+    outline-offset: -4px;
+  }
+
+  .back-link{
+    display: inline-block;
+    margin-bottom: var(--space-lg);
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+  }
+
+  .back-link:hover{
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+  }
+
+  .back-link:focus-visible{
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  h1{
+    font-size: clamp(1.5rem, 4vw, var(--font-size-xl));
+    margin: 0 0 var(--space-xs) 0;
+    line-height: var(--line-height-tight);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .sub{
+    color: var(--color-text-muted);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-xl);
+  }
+
+  table{
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-bg-card);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: background-color var(--transition-normal);
+  }
+
+  thead{
+    background: var(--color-bg);
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  th{
+    padding: var(--space-md);
+    text-align: left;
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  td{
+    padding: var(--space-md);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  tbody tr:last-child td{
+    border-bottom: none;
+  }
+
+  tbody tr{
+    transition: background-color var(--transition-fast);
+  }
+
+  tbody tr:hover{
+    background: var(--color-bg);
+  }
+
+  .cell-title{
+    font-weight: 500;
+  }
+
+  .cell-title a{
+    color: var(--color-text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    transition: color var(--transition-fast);
+  }
+
+  .cell-title a:hover{
+    color: var(--color-primary);
+  }
+
+  .cell-title a:focus-visible{
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  time{
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  .selected-value{
+    display: inline-block;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-right: var(--space-xs);
+    margin-bottom: var(--space-xs);
+    transition: transform var(--transition-fast);
+  }
+
+  .selected-value:hover{
+    transform: translateY(-1px);
+  }
+
+  /* Tag colors */
+  .select-value-color-purple{ background: var(--tag-tw); color: white; }
+  .select-value-color-blue{ background: var(--tag-llm); color: white; }
+  .select-value-color-brown{ background: var(--tag-linguistica); color: white; }
+  .select-value-color-red{ background: var(--tag-politics); color: white; }
+  .select-value-color-default{ background: var(--tag-work); color: white; }
+  .select-value-color-pink{ background: var(--tag-ia); color: white; }
+  .select-value-color-orange{ background: var(--tag-traducao); color: white; }
+  .select-value-color-gray{ background: var(--tag-religiao); color: white; }
+  .select-value-color-yellow{ background: var(--tag-ciencia); color: #000; }
+
+  .url-value{
+    color: var(--color-primary);
+    text-decoration: none;
+    word-break: break-all;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+  }
+
+  .url-value:hover{
+    text-decoration: underline;
+    color: var(--color-primary-dark);
+  }
+
+  .url-value:focus-visible{
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  footer{
+    margin-top: var(--space-3xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+  }
+
+  footer p{
+    margin: 0;
+  }
+
+  footer a{
+    color: var(--color-primary);
+    margin: 0 var(--space-md);
+    display: inline-block;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  footer a:hover{
+    text-decoration: underline;
+  }
+
+  footer a:focus-visible{
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px){
+    table{
+      font-size: var(--font-size-sm);
+    }
+    
+    th, td{
+      padding: var(--space-sm);
+    }
+    
+    th:nth-child(2),
+    td:nth-child(2),
+    th:nth-child(4),
+    td:nth-child(4){
+      display: none;
+    }
+    
+    footer a{
+      display: block;
+      margin: var(--space-sm) 0;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    *,
+    *::before,
+    *::after{
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Print styles */
+  @media print{
+    body{
+      background: white;
+      color: black;
+    }
+    
+    .skip-link,
+    .back-link,
+    footer{
+      display: none;
+    }
+    
+    table{
+      box-shadow: none;
+      border: 1px solid #000;
+    }
+    
+    .selected-value{
+      border: 1px solid #000;
+      color: #000;
+      background: white;
+    }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+
+<div class="container">
+
+<main id="main">
+
+  <a href="index.html" class="back-link">← Voltar ao início</a>
+
+  <h1><span>📚</span> Minhas Leituras</h1>
+  <p class="sub">Coleção de artigos e links salvos</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Criado em</th>
+        <th>Tags</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="cell-title">
+          <a href="https://www.linkedin.com/pulse/stop-documenting-interfaces-start-scenarios-aleksei-stepanov-pkchf/?trackingId=IJHgErxofJXJueN6GDyYEQ%3D%3D" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Stop documenting interfaces. Start documenting scenarios.
+          </a>
+        </td>
+        <td><time datetime="2025-10-29">29 de outubro de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-purple">TW</span>
+          <span class="selected-value select-value-color-default">Work</span>
+        </td>
+        <td><a href="https://www.linkedin.com/pulse/stop-documenting-interfaces-start-scenarios-aleksei-stepanov-pkchf/?trackingId=IJHgErxofJXJueN6GDyYEQ%3D%3D" class="url-value" target="_blank" rel="noopener noreferrer">linkedin.com</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://msukhareva.substack.com/p/on-illusion-of-thinking-do-llms-reason?utm_medium=email" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>On Illusion of Thinking - Do LLMs Reason?
+          </a>
+        </td>
+        <td><time datetime="2025-06-25">25 de junho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-blue">LLM</span>
+        </td>
+        <td><a href="https://msukhareva.substack.com/p/on-illusion-of-thinking-do-llms-reason?utm_medium=email" class="url-value" target="_blank" rel="noopener noreferrer">msukhareva.substack.com</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://www.nytimes.com/2025/06/19/climate/ai-emissions-chatbot-accuracy.html" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Your A.I. Queries Come With a Climate Cost - The New York Times
+          </a>
+        </td>
+        <td><time datetime="2025-06-24">24 de junho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-blue">LLM</span>
+          <span class="selected-value select-value-color-red">Politics</span>
+        </td>
+        <td><a href="https://www.nytimes.com/2025/06/19/climate/ai-emissions-chatbot-accuracy.html" class="url-value" target="_blank" rel="noopener noreferrer">nytimes.com</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://medium.com/@msmurilo/tradu%C3%A7%C3%A3o-artigo-attention-is-all-you-need-2f7a4113b3be" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>[Tradução] Artigo: "Attention Is All You Need" | by Murilo Mazzotti Silvestrini | Medium
+          </a>
+        </td>
+        <td><time datetime="2025-06-23">23 de junho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-blue">LLM</span>
+          <span class="selected-value select-value-color-brown">Linguistica</span>
+          <span class="selected-value select-value-color-purple">TW</span>
+          <span class="selected-value select-value-color-orange">Tradução</span>
+        </td>
+        <td><a href="https://medium.com/@msmurilo/tradu%C3%A7%C3%A3o-artigo-attention-is-all-you-need-2f7a4113b3be" class="url-value" target="_blank" rel="noopener noreferrer">medium.com</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://arxiv.org/html/2506.10943v1" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Self-Adapting Language Models
+          </a>
+        </td>
+        <td><time datetime="2025-06-22">22 de junho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-blue">LLM</span>
+          <span class="selected-value select-value-color-brown">Linguistica</span>
+          <span class="selected-value select-value-color-default">Probabilidade</span>
+        </td>
+        <td><a href="https://arxiv.org/html/2506.10943v1" class="url-value" target="_blank" rel="noopener noreferrer">arxiv.org</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://arxiv.org/html/2505.23735v1" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Atlas: Learning to Optimally Memorize the Context at Test Time
+          </a>
+        </td>
+        <td><time datetime="2025-06-22">22 de junho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-blue">LLM</span>
+          <span class="selected-value select-value-color-brown">Linguistica</span>
+          <span class="selected-value select-value-color-default">Probabilidade</span>
+        </td>
+        <td><a href="https://arxiv.org/html/2505.23735v1" class="url-value" target="_blank" rel="noopener noreferrer">arxiv.org</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://www.theatlantic.com/technology/archive/2025/05/karen-hao-empire-of-ai-excerpt/682798/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>'We're Definitely Going to Build a Bunker Before We Release AGI'
+          </a>
+        </td>
+        <td><time datetime="2025-06-22">22 de junho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-blue">LLM</span>
+          <span class="selected-value select-value-color-red">Politics</span>
+        </td>
+        <td><a href="https://www.theatlantic.com/technology/archive/2025/05/karen-hao-empire-of-ai-excerpt/682798/" class="url-value" target="_blank" rel="noopener noreferrer">theatlantic.com</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://phaneendrakn.medium.com/a-primer-on-understanding-attention-mechanisms-in-llms-fda4051b00a1" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>A Primer on Understanding Attention Mechanisms in LLMs | by Phaneendra Kumar Namala | Medium
+          </a>
+        </td>
+        <td><time datetime="2025-06-22">22 de junho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-blue">LLM</span>
+          <span class="selected-value select-value-color-brown">Linguistica</span>
+        </td>
+        <td><a href="https://phaneendrakn.medium.com/a-primer-on-understanding-attention-mechanisms-in-llms-fda4051b00a1" class="url-value" target="_blank" rel="noopener noreferrer">medium.com</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://www.datacamp.com/blog/attention-mechanism-in-llms-intuition" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>What is Attention and Why Do LLMs and Transformers Need It? | DataCamp
+          </a>
+        </td>
+        <td><time datetime="2025-06-22">22 de junho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-blue">LLM</span>
+          <span class="selected-value select-value-color-brown">Linguistica</span>
+          <span class="selected-value select-value-color-default">Probabilidade</span>
+        </td>
+        <td><a href="https://www.datacamp.com/blog/attention-mechanism-in-llms-intuition" class="url-value" target="_blank" rel="noopener noreferrer">datacamp.com</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://herebedragons.com.br/what-is-dominion-theology-and-how-it-appears-in-brazil-new/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>What is dominion theology? And how it appears in Brazil. | Here be dragons
+          </a>
+        </td>
+        <td><time datetime="2025-06-22">22 de junho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-pink">História</span>
+          <span class="selected-value select-value-color-gray">Religião</span>
+        </td>
+        <td><a href="https://herebedragons.com.br/what-is-dominion-theology-and-how-it-appears-in-brazil-new/" class="url-value" target="_blank" rel="noopener noreferrer">herebedragons.com.br</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://herebedragons.com.br/why-did-the-british-empire-abolish-slavery-and-persecute-it-new/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Why did the british empire abolish slavery and persecute it? | Here be dragons
+          </a>
+        </td>
+        <td><time datetime="2025-06-22">22 de junho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-pink">História</span>
+          <span class="selected-value select-value-color-red">Politics</span>
+        </td>
+        <td><a href="https://herebedragons.com.br/why-did-the-british-empire-abolish-slavery-and-persecute-it-new/" class="url-value" target="_blank" rel="noopener noreferrer">herebedragons.com.br</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://passo.uno/thinking-better-through-ai/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Conjuring digital companions: How I'm thinking better through AI - passo.uno
+          </a>
+        </td>
+        <td><time datetime="2025-06-22">22 de junho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-brown">Linguistica</span>
+          <span class="selected-value select-value-color-purple">TW</span>
+          <span class="selected-value select-value-color-orange">Tradução</span>
+        </td>
+        <td><a href="https://passo.uno/thinking-better-through-ai/" class="url-value" target="_blank" rel="noopener noreferrer">passo.uno</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://fernandafperes.com.br/blog/probabilidade-chance/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Probabilidade x chance | Fernanda Peres | Estatística aplicada
+          </a>
+        </td>
+        <td><time datetime="2025-06-22">22 de junho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-default">Probabilidade</span>
+        </td>
+        <td><a href="https://fernandafperes.com.br/blog/probabilidade-chance/" class="url-value" target="_blank" rel="noopener noreferrer">fernandafperes.com.br</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://psyche.co/ideas/does-national-humiliation-explain-why-wars-break-out" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Does national humiliation explain why wars break out? | Psyche Ideas
+          </a>
+        </td>
+        <td><time datetime="2025-03-30">30 de março de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-red">Politics</span>
+        </td>
+        <td><a href="https://psyche.co/ideas/does-national-humiliation-explain-why-wars-break-out" class="url-value" target="_blank" rel="noopener noreferrer">psyche.co</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://chatgpt.com/share/68631834-bc30-8013-b462-4a2dbbe0bceb" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Plataformas de documentação técnica
+          </a>
+        </td>
+        <td><time datetime="2025-06-30">30 de junho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-purple">TW</span>
+        </td>
+        <td><a href="https://chatgpt.com/share/68631834-bc30-8013-b462-4a2dbbe0bceb" class="url-value" target="_blank" rel="noopener noreferrer">chatgpt.com</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://elisaterumi.substack.com/p/tudo-o-que-voce-precisa-saber-sobre" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Tudo o Que Você Precisa Saber Sobre LangChain (Antes de Começar um Projeto com IA) - Parte 1
+          </a>
+        </td>
+        <td><time datetime="2025-07-05">5 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-blue">LLM</span>
+          <span class="selected-value select-value-color-brown">Linguistica</span>
+        </td>
+        <td><a href="https://elisaterumi.substack.com/p/tudo-o-que-voce-precisa-saber-sobre" class="url-value" target="_blank" rel="noopener noreferrer">elisaterumi.substack.com</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://bigthink.com/starts-with-a-bang/american-science-brain-drain/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>American science to soon face its largest brain drain in history - Big Think
+          </a>
+        </td>
+        <td><time datetime="2025-07-05">5 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-red">Politics</span>
+        </td>
+        <td><a href="https://bigthink.com/starts-with-a-bang/american-science-brain-drain/" class="url-value" target="_blank" rel="noopener noreferrer">bigthink.com</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://www.mcsweeneys.net/articles/i-will-do-anything-to-end-homelessness-except-build-more-homes" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>I Will Do Anything to End Homelessness Except Build More Homes - McSweeney's Internet Tendency
+          </a>
+        </td>
+        <td><time datetime="2025-07-05">5 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-red">Politics</span>
+        </td>
+        <td><a href="https://www.mcsweeneys.net/articles/i-will-do-anything-to-end-homelessness-except-build-more-homes" class="url-value" target="_blank" rel="noopener noreferrer">mcsweeneys.net</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://revistapesquisa.fapesp.br/copie-cole-e-passe-vergonha/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Copie, cole e passe vergonha : Revista Pesquisa Fapesp
+          </a>
+        </td>
+        <td><time datetime="2025-07-01">1 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-yellow">Ciência</span>
+          <span class="selected-value select-value-color-blue">LLM</span>
+        </td>
+        <td><a href="https://revistapesquisa.fapesp.br/copie-cole-e-passe-vergonha/" class="url-value" target="_blank" rel="noopener noreferrer">revistapesquisa.fapesp.br</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://crescentro.se/posts/writing-drivers/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Writing a basic Linux device driver when you know nothing about Linux drivers or USB // crescentro.se
+          </a>
+        </td>
+        <td><time datetime="2025-07-13">13 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-brown">Linux</span>
+          <span class="selected-value select-value-color-purple">Tech</span>
+        </td>
+        <td><a href="https://crescentro.se/posts/writing-drivers/" class="url-value" target="_blank" rel="noopener noreferrer">crescentro.se</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="#" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>40 questões
+          </a>
+        </td>
+        <td><time datetime="2025-07-13">13 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-orange">Textos</span>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://medium.com/the-coach-life/fell-in-a-hole-got-out-381356ec8d7f" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Fell in a hole, got out.. Medium's recap, financial turnaround… | by Tony Stubblebine | The Coach Life | Jul, 2025 | Medium
+          </a>
+        </td>
+        <td><time datetime="2025-07-14">14 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-purple">Tech</span>
+          <span class="selected-value select-value-color-orange">Textos</span>
+        </td>
+        <td><a href="https://medium.com/the-coach-life/fell-in-a-hole-got-out-381356ec8d7f" class="url-value" target="_blank" rel="noopener noreferrer">medium.com</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://gauchazh.clicrbs.com.br/economia/noticia/2025/07/motoristas-de-aplicativo-migram-para-outra-atividade-com-o-carro-rodam-menos-ganham-um-valor-maior-cmcz6wion0020014ro1x8sodr.html" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Motoristas de aplicativo migram para outra atividade com o carro: "Rodam menos, ganham um valor maior" | GZH
+          </a>
+        </td>
+        <td><time datetime="2025-07-13">13 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-red">Politics</span>
+          <span class="selected-value select-value-color-default">Work</span>
+        </td>
+        <td><a href="https://gauchazh.clicrbs.com.br/economia/noticia/2025/07/motoristas-de-aplicativo-migram-para-outra-atividade-com-o-carro-rodam-menos-ganham-um-valor-maior-cmcz6wion0020014ro1x8sodr.html" class="url-value" target="_blank" rel="noopener noreferrer">gauchazh.clicrbs.com.br</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://www.conjur.com.br/2025-jul-13/o-imperio-contra-o-direito-a-carta-de-trump-como-manifesto-do-neocolonialismo-judicial/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>A carta de Donald Trump como manifesto do neocolonialismo
+          </a>
+        </td>
+        <td><time datetime="2025-07-13">13 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-red">Politics</span>
+        </td>
+        <td><a href="https://www.conjur.com.br/2025-jul-13/o-imperio-contra-o-direito-a-carta-de-trump-como-manifesto-do-neocolonialismo-judicial/" class="url-value" target="_blank" rel="noopener noreferrer">conjur.com.br</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="#" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Prompt Engineering Is Dead, and Context Engineering Is Already Obsolete
+          </a>
+        </td>
+        <td><time datetime="2025-07-15">15 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-blue">LLM</span>
+          <span class="selected-value select-value-color-purple">Tech</span>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://www.thecontentwrangler.com/p/why-technical-writers-should-care?r=8sej&utm_campaign=post&utm_medium=web" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Why Technical Writers Should Care About the Model Context Protocol (MCP)
+          </a>
+        </td>
+        <td><time datetime="2025-07-19">19 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-pink">IA</span>
+          <span class="selected-value select-value-color-blue">LLM</span>
+          <span class="selected-value select-value-color-purple">TW</span>
+        </td>
+        <td><a href="https://www.thecontentwrangler.com/p/why-technical-writers-should-care?r=8sej&utm_campaign=post&utm_medium=web" class="url-value" target="_blank" rel="noopener noreferrer">thecontentwrangler.com</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://vurt.org/articles/twelve-rules/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Twelve rules for job applications and interviews - Daniele Procida
+          </a>
+        </td>
+        <td><time datetime="2025-07-19">19 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-brown">Jobs</span>
+          <span class="selected-value select-value-color-purple">TW</span>
+        </td>
+        <td><a href="https://vurt.org/articles/twelve-rules/" class="url-value" target="_blank" rel="noopener noreferrer">vurt.org</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://vurt.org/articles/three-truths/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Three badly-understood truths about applying for jobs - Daniele Procida
+          </a>
+        </td>
+        <td><time datetime="2025-07-19">19 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-brown">Jobs</span>
+          <span class="selected-value select-value-color-purple">TW</span>
+        </td>
+        <td><a href="https://vurt.org/articles/three-truths/" class="url-value" target="_blank" rel="noopener noreferrer">vurt.org</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://vurt.org/articles/using-stories/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>How to use stories in interviews - Daniele Procida
+          </a>
+        </td>
+        <td><time datetime="2025-07-19">19 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-pink">IA</span>
+          <span class="selected-value select-value-color-brown">Jobs</span>
+          <span class="selected-value select-value-color-purple">TW</span>
+        </td>
+        <td><a href="https://vurt.org/articles/using-stories/" class="url-value" target="_blank" rel="noopener noreferrer">vurt.org</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://vurt.org/articles/my-favourite-german-word/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>My favourite German word - Daniele Procida
+          </a>
+        </td>
+        <td><time datetime="2025-07-19">19 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-brown">Linguistica</span>
+          <span class="selected-value select-value-color-purple">TW</span>
+        </td>
+        <td><a href="https://vurt.org/articles/my-favourite-german-word/" class="url-value" target="_blank" rel="noopener noreferrer">vurt.org</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://cieslak.dev/pt-br/blog/2025-07-17-cs2-ai-benchmark/" target="_blank" rel="noopener noreferrer">
+            <span>��</span>Previsão de Resultados de CS2 - Análise Comparativa entre Modelos de IA | Cieslak.dev
+          </a>
+        </td>
+        <td><time datetime="2025-07-19">19 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-blue">LLM</span>
+          <span class="selected-value select-value-color-default">Probabilidade</span>
+        </td>
+        <td><a href="https://cieslak.dev/pt-br/blog/2025-07-17-cs2-ai-benchmark/" class="url-value" target="_blank" rel="noopener noreferrer">cieslak.dev</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="#" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Marc Andreessen Is a Traitor
+          </a>
+        </td>
+        <td><time datetime="2025-07-20">20 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-purple">Tech</span>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://blog.knowledgeowl.com/blog/posts/minimum-viable-documentation/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Minimum Viable Documentation – the art of documentation triage
+          </a>
+        </td>
+        <td><time datetime="2025-07-21">21 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-purple">TW</span>
+        </td>
+        <td><a href="https://blog.knowledgeowl.com/blog/posts/minimum-viable-documentation/" class="url-value" target="_blank" rel="noopener noreferrer">knowledgeowl.com</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://evanhahn.com/how-i-build-software-quickly/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>How I build software quickly
+          </a>
+        </td>
+        <td><time datetime="2025-07-21">21 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-purple">TW</span>
+          <span class="selected-value select-value-color-default">Work</span>
+        </td>
+        <td><a href="https://evanhahn.com/how-i-build-software-quickly/" class="url-value" target="_blank" rel="noopener noreferrer">evanhahn.com</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://passo.uno/how-write-tech-docs-quickly/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Como escrevo documentação rapidamente - passo.uno
+          </a>
+        </td>
+        <td><time datetime="2025-07-21">21 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-purple">TW</span>
+          <span class="selected-value select-value-color-orange">Tradução</span>
+        </td>
+        <td><a href="https://passo.uno/how-write-tech-docs-quickly/" class="url-value" target="_blank" rel="noopener noreferrer">passo.uno</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://passo.uno/how-write-tech-docs-quickly/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>How I write docs quickly - passo.uno
+          </a>
+        </td>
+        <td><time datetime="2025-07-21">21 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-blue">LLM</span>
+          <span class="selected-value select-value-color-purple">TW</span>
+          <span class="selected-value select-value-color-orange">Tradução</span>
+        </td>
+        <td><a href="https://passo.uno/how-write-tech-docs-quickly/" class="url-value" target="_blank" rel="noopener noreferrer">passo.uno</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="#" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Torcida contra Donald Trump é grande, mas não garante nada
+          </a>
+        </td>
+        <td><time datetime="2025-07-24">24 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-red">Politics</span>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://lizargall.github.io/blog/emotional-intelligence/" target="_blank" rel="noopener noreferrer">
+            <span>��</span>The value of emotional intelligence in technical writing | Liz Argall
+          </a>
+        </td>
+        <td><time datetime="2025-08-12">12 de agosto de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-pink">IA</span>
+          <span class="selected-value select-value-color-default">Probabilidade</span>
+          <span class="selected-value select-value-color-purple">TW</span>
+        </td>
+        <td><a href="https://lizargall.github.io/blog/emotional-intelligence/" class="url-value" target="_blank" rel="noopener noreferrer">lizargall.github.io</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://rollingstoneindia.com/chatgpt-lured-him-down-a-philosophical-rabbit-hole-then-he-had-to-find-a-way-out/amp/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>ChatGPT Lured Him Down a Philosophical Rabbit Hole. Then He Had to Find a Way Out
+          </a>
+        </td>
+        <td><time datetime="2025-08-12">12 de agosto de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-pink">IA</span>
+          <span class="selected-value select-value-color-blue">LLM</span>
+        </td>
+        <td><a href="https://rollingstoneindia.com/chatgpt-lured-him-down-a-philosophical-rabbit-hole-then-he-had-to-find-a-way-out/amp/" class="url-value" target="_blank" rel="noopener noreferrer">rollingstoneindia.com</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://resistir.info/m_roberts/wape_10ago25.html" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>WAPE 2025: geopolítica, modelos económicos e multipolaridade
+          </a>
+        </td>
+        <td><time datetime="2025-08-11">11 de agosto de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-red">Politics</span>
+          <span class="selected-value select-value-color-orange">Textos</span>
+        </td>
+        <td><a href="https://resistir.info/m_roberts/wape_10ago25.html" class="url-value" target="_blank" rel="noopener noreferrer">resistir.info</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://www.anthropic.com/news/thoughts-on-america-s-ai-action-plan" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Thoughts on America's AI Action Plan \ Anthropic
+          </a>
+        </td>
+        <td><time datetime="2025-07-25">25 de julho de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-pink">IA</span>
+          <span class="selected-value select-value-color-blue">LLM</span>
+          <span class="selected-value select-value-color-red">Politics</span>
+        </td>
+        <td><a href="https://www.anthropic.com/news/thoughts-on-america-s-ai-action-plan" class="url-value" target="_blank" rel="noopener noreferrer">anthropic.com</a></td>
+      </tr>
+      <tr>
+        <td class="cell-title">
+          <a href="https://www.kevinrkuhl.com/blog/2025/10/thinking-strategically-about-documentation/" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Thinking Strategically About Documentation
+          </a>
+        </td>
+        <td><time datetime="2025-10-22">22 de outubro de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-brown">Linguistica</span>
+          <span class="selected-value select-value-color-purple">TW</span>
+        </td>
+        <td><a href="https://www.kevinrkuhl.com/blog/2025/10/thinking-strategically-about-documentation/" class="url-value" target="_blank" rel="noopener noreferrer">kevinrkuhl.com</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer>
+    <p>
+      © 2025 Paulo Guilherme Pilotti Duarte · 
+      <a href="https://www.linkedin.com/in/paulo-guilherme-pilotti-duarte" target="_blank" rel="noopener noreferrer">LinkedIn</a> · 
+      <a href="https://github.com/paulogpd" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </p>
+  </footer>
+
+</main>
+</div>
+
+</body>
+</html>

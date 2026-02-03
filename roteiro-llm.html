@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Roteiro estruturado de 5 semanas para estudar fundamentos de IA e Large Language Models (LLMs). Aprenda Machine Learning, Deep Learning, NLP e Prompt Engineering." />
+<meta name="author" content="Paulo Guilherme Pilotti Duarte" />
+<meta property="og:title" content="Roteiro de Estudos sobre LLMs — Paulo Guilherme Pilotti Duarte" />
+<meta property="og:description" content="Roteiro estruturado de 5 semanas para estudar fundamentos de IA e Large Language Models (LLMs). Aprenda Machine Learning, Deep Learning, NLP e Prompt Engineering." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="pt_BR" />
+<meta name="twitter:card" content="summary" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+<title>LLM e IA — Paulo Guilherme Pilotti Duarte</title>
+<style>
+  :root{
+    --color-primary: #1d4ed8;
+    --color-primary-dark: #1e40af;
+    --color-text: #222;
+    --color-text-muted: #555;
+    --color-text-light: #666;
+    --color-bg: #fafafa;
+    --color-bg-card: #ffffff;
+    --color-border: #e5e7eb;
+    --color-focus: #3b82f6;
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+    --font-size-sm: 0.95rem;
+    --font-size-base: 1.05rem;
+    --font-size-lg: 1.3rem;
+    --font-size-xl: 1.9rem;
+    --line-height-tight: 1.4;
+    --line-height-normal: 1.6;
+    --line-height-relaxed: 1.7;
+    --transition-fast: 150ms ease-in-out;
+    --transition-normal: 250ms ease-in-out;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root{
+      --color-primary: #60a5fa;
+      --color-primary-dark: #3b82f6;
+      --color-text: #e5e7eb;
+      --color-text-muted: #9ca3af;
+      --color-text-light: #6b7280;
+      --color-bg: #111827;
+      --color-bg-card: #1f2937;
+      --color-border: #374151;
+      --color-focus: #60a5fa;
+    }
+  }
+
+  *,*::before,*::after{box-sizing: border-box;}
+
+  body{
+    margin:0;
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: var(--line-height-normal);
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+  }
+
+  .container{
+    max-width: 800px;
+    margin: clamp(1.25rem, 5vw, 2.5rem) auto;
+    padding: 0 clamp(1rem, 4vw, 1.25rem);
+  }
+
+  .skip-link{
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-sm) var(--space-md);
+    text-decoration: none;
+    z-index: 100;
+    font-weight: 600;
+    border-radius: 0 0 var(--radius-sm) 0;
+    transition: top var(--transition-fast);
+  }
+
+  .skip-link:focus-visible{
+    top: 0;
+    outline: 2px solid white;
+    outline-offset: -4px;
+  }
+
+  .back-link{
+    display: inline-block;
+    margin-bottom: var(--space-lg);
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+  }
+
+  .back-link:hover{
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+  }
+
+  h1{
+    font-size: clamp(1.5rem, 4vw, var(--font-size-xl));
+    margin: 0 0 var(--space-xs) 0;
+    line-height: var(--line-height-tight);
+    font-weight: 700;
+  }
+
+  h2{
+    font-size: var(--font-size-lg);
+    margin: var(--space-2xl) 0 var(--space-md) 0;
+    line-height: var(--line-height-tight);
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  h3{
+    font-size: var(--font-size-base);
+    margin: var(--space-xl) 0 var(--space-sm) 0;
+    font-weight: 600;
+  }
+
+  .sub{
+    color: var(--color-text-muted);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-xl);
+  }
+
+  p{
+    line-height: var(--line-height-relaxed);
+    margin: var(--space-sm) 0;
+  }
+
+  strong{
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  ul,ol{
+    margin: var(--space-sm) 0;
+    padding-left: var(--space-xl);
+    line-height: var(--line-height-relaxed);
+  }
+
+  ul li,ol li{
+    margin-bottom: var(--space-xs);
+  }
+
+  a{
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    border-radius: var(--radius-sm);
+  }
+
+  a:hover{
+    text-decoration: underline;
+    color: var(--color-primary-dark);
+  }
+
+  a:focus-visible{
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  hr{
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: var(--space-xl) 0;
+  }
+
+  .section{
+    background: var(--color-bg-card);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-normal);
+  }
+
+  .section:hover{
+    box-shadow: var(--shadow-md);
+  }
+
+  footer{
+    margin-top: var(--space-3xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+  }
+
+  footer p{margin: 0;}
+
+  footer a{
+    color: var(--color-primary);
+    margin: 0 var(--space-md);
+    display: inline-block;
+  }
+
+  @media (max-width: 480px){
+    h1{font-size: 1.5rem;}
+    .container{margin: var(--space-lg) auto;}
+    footer a{display: block;margin: var(--space-sm) 0;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  @media print{
+    body{background: white;color: black;}
+    .skip-link,.back-link,footer{display: none;}
+    .section{border: 1px solid #ccc;box-shadow: none;}
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+
+<div class="container">
+
+<main id="main">
+
+  <a href="index.html" class="back-link">← Voltar ao início</a>
+
+  <h1>🤖 LLM e IA</h1>
+  <p class="sub">Roteiro estruturado para estudar Fundamentos de IA & LLMs</p>
+
+  <h2>📚 Roteiro de Estudos</h2>
+
+  <div class="section">
+    <h3>🔸 Semana 1: Fundamentos gerais de IA e Machine Learning</h3>
+    
+    <p><strong>Objetivos:</strong></p>
+    <ul>
+      <li>Compreender conceitos básicos de inteligência artificial</li>
+      <li>Entender o que é aprendizado supervisionado, não supervisionado e reforço</li>
+    </ul>
+
+    <p><strong>Passos:</strong></p>
+    <ol>
+      <li>Assista vídeos introdutórios:
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=WWdUnbgXy4Q" target="_blank" rel="noopener noreferrer">Inteligência Artificial Explicada em 8 minutos - Canal Ciência Todo Dia</a></li>
+          <li><a href="https://www.youtube.com/watch?v=qes_86N8Oeo" target="_blank" rel="noopener noreferrer">Introdução a Machine Learning (Pedro Domingos) – TEDx</a></li>
+        </ul>
+      </li>
+      <li>Leia artigos introdutórios:
+        <ul>
+          <li><a href="https://medium.com/data-hackers/ia-machine-learning-deep-learning-qual-a-diferen%C3%A7a-862f68fd6708" target="_blank" rel="noopener noreferrer">Inteligência Artificial, Aprendizado de Máquina e Deep Learning: Qual é a diferença?</a></li>
+        </ul>
+      </li>
+      <li>Faça o curso gratuito introdutório recomendado:
+        <ul>
+          <li><a href="https://www.coursera.org/learn/ai-for-everyone" target="_blank" rel="noopener noreferrer">"AI for Everyone" - Andrew Ng (Coursera)</a></li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h3>🔸 Semana 2: Fundamentos de Deep Learning e Redes Neurais</h3>
+    
+    <p><strong>Objetivos:</strong></p>
+    <ul>
+      <li>Entender conceitos gerais de Redes Neurais</li>
+      <li>Saber o que é Deep Learning e sua importância prática</li>
+    </ul>
+
+    <p><strong>Passos:</strong></p>
+    <ol>
+      <li>Assista vídeos introdutórios sobre Deep Learning:
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=aircAruvnKk" target="_blank" rel="noopener noreferrer">"O que é uma Rede Neural?" (Canal USP São Carlos)</a></li>
+          <li><a href="https://www.youtube.com/watch?v=tch5gYaevto" target="_blank" rel="noopener noreferrer">"Aprendizado Profundo explicado em 5 minutos" (Canal Estats)</a></li>
+        </ul>
+      </li>
+      <li>Leia artigos introdutórios:
+        <ul>
+          <li><a href="https://medium.com/data-hackers/redes-neurais-para-quem-nunca-ouviu-falar-2912478dbb1c" target="_blank" rel="noopener noreferrer">Redes Neurais para quem nunca ouviu falar - Medium</a></li>
+        </ul>
+      </li>
+      <li>Realize o curso introdutório prático:
+        <ul>
+          <li><a href="https://www.kaggle.com/learn/intro-to-deep-learning" target="_blank" rel="noopener noreferrer">"Introduction to Deep Learning" - Kaggle Learn</a></li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h3>🔸 Semana 3: Introdução à NLP (Processamento de Linguagem Natural)</h3>
+    
+    <p><strong>Objetivos:</strong></p>
+    <ul>
+      <li>Entender o que é NLP e suas aplicações no contexto de IA</li>
+      <li>Conhecer conceitos básicos: Tokenização, Word Embeddings, Modelagem de linguagem</li>
+    </ul>
+
+    <p><strong>Passos:</strong></p>
+    <ol>
+      <li>Assista vídeos introdutórios:
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=CN4uOX5Fhfw" target="_blank" rel="noopener noreferrer">"Processamento de Linguagem Natural (NLP) explicado" – Canal Data Viking</a></li>
+          <li><a href="https://www.youtube.com/watch?v=k4n6CWFeWeU" target="_blank" rel="noopener noreferrer">"Introdução ao NLP – Canal USPCodeLab"</a></li>
+        </ul>
+      </li>
+      <li>Leia artigos introdutórios sobre NLP:
+        <ul>
+          <li><a href="https://medium.com/data-hackers/introdu%C3%A7%C3%A3o-ao-processamento-de-linguagem-natural-em-python-1a0541a5babd" target="_blank" rel="noopener noreferrer">Introdução ao NLP com Python simplificado - Medium</a></li>
+        </ul>
+      </li>
+      <li>Faça um miniprojeto prático com NLP usando NLTK ou spaCy (Python)</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h3>🔸 Semana 4: Fundamentos de Modelos de Linguagem e LLMs</h3>
+    
+    <p><strong>Objetivos:</strong></p>
+    <ul>
+      <li>Entender conceito básico de Language Models e o que são LLMs</li>
+      <li>Conhecer evolução histórica de GPT até ChatGPT, Bard e outros modelos recentes</li>
+    </ul>
+
+    <p><strong>Passos:</strong></p>
+    <ol>
+      <li>Vídeos introdutórios sobre LLMs:
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=ZXsQAXx_ao0" target="_blank" rel="noopener noreferrer">"O que são Large Language Models e Transformers?" - Stanford HAI</a></li>
+          <li><a href="https://www.youtube.com/watch?v=H_LLeLbCpoo" target="_blank" rel="noopener noreferrer">"Como funcionam modelos como ChatGPT?" – Ciência Todo Dia</a></li>
+        </ul>
+      </li>
+      <li>Leitura:
+        <ul>
+          <li><a href="https://medium.com/@thiagolcmelo/o-que-s%C3%A3o-large-language-models-llm-e-o-que-eles-podem-fazer-f0fc574293c" target="_blank" rel="noopener noreferrer">Uma introdução rápida ao GPT e LLMs (Medium)</a></li>
+          <li><a href="https://towardsdatascience.com/openai-gpt-model-explained-9a32e290360c" target="_blank" rel="noopener noreferrer">OpenAI GPT Explained (Towards Data Science)</a></li>
+        </ul>
+      </li>
+      <li>Explore na prática APIs abertas do GPT e modelos no HuggingFace:
+        <ul>
+          <li><a href="https://chat.openai.com/" target="_blank" rel="noopener noreferrer">OpenAI Playground ou ChatGPT</a></li>
+          <li><a href="https://huggingface.co/" target="_blank" rel="noopener noreferrer">Transformers no HuggingFace</a></li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h3>🔸 Semana 5: Prompt Engineering e Aplicações Práticas de LLMs</h3>
+    
+    <p><strong>Objetivos:</strong></p>
+    <ul>
+      <li>Aprender a criar bons prompts (Prompt Engineering)</li>
+      <li>Testar aplicações práticas usando LLMs (Chatbots, geração de texto, sumarização)</li>
+    </ul>
+
+    <p><strong>Passos:</strong></p>
+    <ol>
+      <li>Assista vídeos sobre "Prompt Engineering":
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=yyNz1aONX_g" target="_blank" rel="noopener noreferrer">"Prompt Engineering básico em 10 minutos" - Valdir Cechinel</a></li>
+          <li><a href="https://www.youtube.com/watch?v=lF9qaxzqZpE" target="_blank" rel="noopener noreferrer">"Prompt Engineering para ChatGPT - FreeCodeCamp"</a></li>
+        </ul>
+      </li>
+      <li>Artigos de apoio:
+        <ul>
+          <li><a href="https://medium.com/neuralbrasil/tudo-que-voc%C3%AA-precisa-saber-sobre-prompt-engineering-ca7c34496161" target="_blank" rel="noopener noreferrer">Guia introdutório para Prompt Engineering - Medium</a></li>
+        </ul>
+      </li>
+      <li>Experimente você mesmo criar interações úteis com modelos no HuggingFace, ChatGPT ou Gemini</li>
+    </ol>
+  </div>
+
+  <hr/>
+
+  <h2>🎯 Bibliografia Recomendada</h2>
+
+  <h3>Livros introdutórios:</h3>
+  <ul>
+    <li>"AI for People and Business" - Alex Castrounis</li>
+    <li>"Redes Neurais e Deep Learning" - Charu C. Aggarwal</li>
+    <li>"Natural Language Processing with Python" – Steven Bird, Ewan Klein and Edward Loper</li>
+  </ul>
+
+  <h3>Livros intermediários:</h3>
+  <ul>
+    <li>"Deep Learning com Python" - François Chollet</li>
+    <li>"Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow" - Aurélien Géron</li>
+    <li>"Natural Language Processing in Action" - Hobson Lane, Cole Howard, e Hannes Hapke</li>
+  </ul>
+
+  <h3>Sobre LLM / GPT / Transformer Models:</h3>
+  <ul>
+    <li>Artigos originais do Google sobre "Attention is All You Need" e "BERT: Pre-training of Deep Bidirectional Transformers"</li>
+    <li>"Mastering Transformers" - Lewis Tunstall, Leandro von Werra e Thomas Wolf</li>
+  </ul>
+
+  <hr/>
+
+  <h2>🔖 Dicas Extras</h2>
+  <ul>
+    <li>Use o Google Colab para executar notebooks e tutoriais práticos sem configurar sua máquina</li>
+    <li>Utilize o HuggingFace para explorar e interagir com modelos abertos gratuitamente</li>
+  </ul>
+
+  <footer>
+    <p>
+      © 2025 Paulo Guilherme Pilotti Duarte · 
+      <a href="https://www.linkedin.com/in/paulo-guilherme-pilotti-duarte" target="_blank" rel="noopener noreferrer">LinkedIn</a> · 
+      <a href="https://github.com/paulogpd" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </p>
+  </footer>
+
+</main>
+</div>
+
+</body>
+</html>

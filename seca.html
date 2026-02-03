@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Seca que Veio do Céu</title>
+    <style>
+        /* --- CONFIGURAÇÕES DE LEITURA (DARK MODE) --- */
+        :root {
+            --bg-color: #121212;
+            --text-color: #c9d1d9; /* Cinzento claro, melhor que branco puro para leitura */
+            --accent-color: #546e7a;
+            --chapter-title: #ffffff;
+            --font-body: 'Georgia', 'Cambria', 'Times New Roman', serif; /* Fonte serifada para o texto */
+            --font-ui: 'Segoe UI', Tahoma, sans-serif; /* Fonte para menus/botões */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.8; /* Espaçamento entre linhas confortável */
+            font-size: 1.1rem;
+        }
+
+        /* --- CONTAINER DE LEITURA --- */
+        .reader-container {
+            max-width: 700px; /* Largura ideal para não cansar o olho */
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* --- BOTÃO DE VOLTAR --- */
+        .back-nav {
+            font-family: var(--font-ui);
+            margin-bottom: 40px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover { color: #fff; }
+
+        /* --- TÍTULO PRINCIPAL --- */
+        h1.main-title {
+            font-family: var(--font-ui);
+            color: var(--chapter-title);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* --- CAPÍTULOS --- */
+        h2 {
+            font-family: var(--font-ui);
+            color: var(--chapter-title);
+            margin-top: 60px;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        p { margin-bottom: 20px; text-align: justify; }
+
+        /* Pequeno detalhe para a primeira letra do capítulo (Drop cap) */
+        h2 + p::first-letter {
+            font-size: 3rem;
+            float: left;
+            margin-right: 8px;
+            line-height: 1;
+            color: var(--accent-color);
+        }
+
+        /* --- RODAPÉ --- */
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            color: #555;
+            border-top: 1px solid #222;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="reader-container">
+        
+        <div class="back-nav">
+            <a href="index.html" class="back-link">← Voltar ao Índice</a>
+        </div>
+
+        <h1 class="main-title">A Seca que Veio do Céu</h1>
+
+        <article>
+            <h2>Capítulo 1 - O silêncio seco</h2>
+            <p>O calor me arrancou do sono como uma mão áspera. Acordei com a boca tão seca que a língua parecia lixa colada no céu da boca. O ventilador de teto rangia devagar, as pás cortando o ar quente sem mudar nada — só empurrando o mesmo bafo morno de um canto pro outro. A luz do sol entrava pelas frestas da persiana, listras douradas e cruéis no chão do apartamento. Meu apartamento 501 no bairro Cidade Baixa parecia um forno fechado havia dias.</p>
+            <p>Pisquei forte, tentando afastar os restos do sonho. Nele, figuras altas caminhavam pelas ruas vazias de Porto Alegre, sem fazer barulho, sem deixar pegadas. Só um zumbido baixo, constante, como um enxame distante. Elas apontavam para as pessoas, e as pessoas murchavam. Não morriam de imediato — secavam. Viravam casca, galhos retorcidos, mas ainda se mexiam um pouco, como se tentassem lembrar como era ter água dentro de si.</p>
+            <p>Levantei devagar. O chão queimava os pés descalços. Fui até a janela e abri a persiana um centímetro. A rua estava quieta demais. Nenhum carro passando, nenhum cachorro latindo, nenhum guri gritando gol. Só o asfalto tremendo de calor, O Guaíba ao longe parecendo uma poça rasa e marrom, os diques da zona norte e central expostos como cicatrizes na paisagem seca, e o céu sem uma nuvem para dar esperança.</p>
+            <p>A cozinha cheirava a mofo seco, o tipo que vem quando não tem umidade nem pra criar bolor. Abri a geladeira: duas garrafas de água pela metade, um resto de pão endurecido, umas frutas que já tinham virado pedra. Peguei uma garrafa e bebi devagar, sentindo cada gota descer como se fosse ouro.</p>
+            <p>Foi quando ouvi o barulho lá fora. Não era grito. Era pior: um som abafado, como alguém tentando respirar através de um canudo entupido.</p>
+            <p>Corri para a janela da sala. O guri do apartamento 502 — Felipe, uns doze anos, magrelo, sempre com uma bola de futebol surrada — estava parado na calçada. Segurava a mangueira enrolada no braço esquerdo, como se tivesse tentado ligar a torneira da rua e desistido. Olhava pro céu, imóvel. O sol batia forte nele, sem piedade.</p>
+            <p>De repente, ele largou a mangueira. O plástico bateu no chão com um som seco. Felipe levou as mãos ao pescoço, devagar. Os dedos tremiam. Vi a pele das mãos enrugar primeiro — como papel amassado, depois esticado. As veias saltaram azuis por um segundo, depois sumiram. Os braços murcharam, os ombros caíram. Ele abriu a boca, mas não saiu nada. Só um chiado fraco, como ar escapando de um pneu furado.</p>
+            <p>Os joelhos cederam. Ele caiu de lado, o corpo se contorcendo devagar. Os dedos se curvaram para dentro, como galhos secos tentando se fechar. A camiseta, antes folgada, agora pendia frouxa sobre um peito que mal subia. Ainda se mexia — um tremor leve, como se lutasse por dentro.</p>
+            <p>Meu coração batia tão forte que doía. Corri para a porta, mas parei com a mão na maçaneta. Algo me segurou. Um instinto. Um medo que não explicava. Em vez de abrir, encostei o olho no visor.</p>
+            <p>A rua continuava vazia. Nenhum vizinho na janela, nenhum carro. Só Felipe ali, retorcido no asfalto quente. E mais ao longe, na esquina, uma sombra alta. Magra demais. Tremendo levemente, como reflexo em água parada. Não se mexia. Só observava.</p>
+            <p>Um zumbido baixo começou. Não sei de onde vinha — do ar, da cabeça, do peito. Fechei os olhos um segundo. Quando abri, a sombra tinha sumido.</p>
+            <p>Tranquei a porta duas vezes. O trinco estalou seco. Recuei até a parede da sala e deslizei até o chão. O suor que eu tinha ao acordar já tinha evaporado. A pele repuxava. A boca voltou a secar.</p>
+            <p>Passaram-se horas. Ou minutos. O tempo parecia grosso, lento. Fiquei ali, ouvindo o silêncio do prédio. Até que bateram na porta — três toques firmes, mas calmos.</p>
+            <p>Levantei devagar, o coração disparado de novo. Espiei pelo olho mágico. Era o Carlos, do apartamento ao lado. Mecânico na oficina da Felipe de Oliveira. Alto, barba rala, sempre com uma garrafa d'água na mão desde que a seca começou. Estava com a camiseta grudada nas costas de suor — o único suor que eu via em alguém havia semanas.</p>
+            <p>Paulo? — chamou, voz baixa. — Abre aí, cara.</p>
+            <p>Hesitei um segundo. Depois girei a chave.</p>
+            <p>Ele entrou rápido, sem esperar convite. Fechou a porta atrás de si e encostou nela, como se quisesse ter certeza de que estava trancada.</p>
+            <p>Você viu o Felipe? — perguntei, quase sem fôlego.</p>
+            <p>Assenti.</p>
+            <p>Vi pior — disse ele. — Na oficina, o Seu Zé foi atingido. Secou na frente dos meus olhos. Mas... eu não. Senti o frio, o raio, mas nada aconteceu.</p>
+            <p>Ele levantou a manga da camiseta. O braço estava intacto, só suado. Como se o corpo dele tivesse recusado.</p>
+            <p>Olhei para ele. Ele olhou para mim.</p>
+            <p>Lá fora, o zumbido recomeçou. Mais perto.</p>
+
+            <h2>Capítulo 2 - O apartamento seco</h2>
+            <p>Carlos encostou as costas na porta fechada por um longo tempo, como se precisasse sentir a madeira sólida atrás de si. O suor escorria pela testa dele e pingava no chão, deixando manchas escuras que evaporaram quase na hora. Ele respirava fundo, o peito subindo e descendo rápido demais. Eu fiquei parado no meio da sala, a poucos metros, sem saber o que dizer. O zumbido lá fora parecia pulsar junto com o coração da gente.</p>
+            <p>Você tem água? — perguntou ele, finalmente, limpando o rosto com a barra da camiseta.</p>
+            <p>Apontei para a cozinha. Ele passou por mim e foi direto para a geladeira. Abriu, pegou a garrafa que sobrou e bebeu metade de uma vez. A garganta dele fazia barulho ao engolir, como se cada gota doesse de tão necessária. Quando terminou, ofereceu o resto pra mim. Recusei com a cabeça. Ainda tinha um pouco na minha.</p>
+            <p>Ele se encostou na pia, olhando pela janela pequena. O ar estava abafado, mas ainda tinha um resto de umidade — o cheiro de mofo que teimava em não morrer.</p>
+            <p>O Seu Zé... — começou ele, voz rouca. — Estava no estacionamento do prédio da oficina, debaixo do carro. Eu estava do lado. De repente ele parou. Largou a ferramenta. Levou as mãos pro peito. A pele dele mudou. Ficou cinza, enrugada. Caiu no chão, se contorcendo devagar. Eu... eu senti também. Um frio seco. Olhei pro lado e vi uma delas. Alta. Tremendo. Apontou pra mim. O raio veio. Azul, fino. Bateu no meu ombro. — Ele tocou o lugar na camiseta, onde o tecido estava intacto, só úmido de suor. — Nada. Como se eu fosse errado pra elas.</p>
+            <p>Eu me sentei na cadeira da mesa da cozinha. As pernas tremiam um pouco. O zumbido lá fora subia e descia, como onda.</p>
+            <p>O Felipe... o guri... — disse eu. — Aconteceu na rua. Mesma coisa. Secou na frente dos meus olhos.</p>
+            <p>Carlos assentiu devagar. Virou a torneira da pia. Pingou duas gotas marrons, depois nada. Fechou com força.</p>
+            <p>Elas não entram — disse ele, baixinho. — O Seu Zé estava no estacionamento. Eu entrei correndo pro prédio, tranquei a porta de vidro. A coisa ficou do lado de fora. Olhou pra mim através do vidro. Apontou o raio. O vidro rachou um pouco, mas não quebrou. Ela não atravessou. Só ficou ali, esperando.</p>
+            <p>Olhei pras janelas do apartamento. Todas com cortinas corridas, mas as frestas deixavam entrar listras de luz quente. Aqui também — falei. — A que eu vi na esquina... observou o Felipe secar, depois sumiu. Não veio pra porta.</p>
+            <p>Carlos se aproximou da janela da sala. Espiou pela fresta da cortina, cuidadoso. Eu me juntei a ele. A rua continuava vazia. O corpo do Felipe ainda estava lá, retorcido na calçada, mas agora imóvel. Nenhum vizinho tinha aparecido. Nenhum carro de polícia, bombeiro. Nada.</p>
+            <p>A cidade inteira tá assim — murmurou ele. — No caminho pra cá, vi mais dois. Um na praça, outro no ponto de ônibus. Todos secos. Mas ninguém está correndo, ninguém gritando. Como se todo mundo tivesse se escondido.</p>
+            <p>O zumbido ficou mais alto de repente. Um carro passou devagar na rua — um fusca velho, vidros abertos. O motorista, um homem de meia-idade, olhava pros lados, assustado. Parou em frente ao prédio. Olhou pro corpo do Felipe. Abriu a boca, mas não saiu som. De repente, ele levou as mãos ao volante. O corpo encolheu no banco. A pele do rosto murchou visivelmente. O carro deu um solavanco pra frente, bateu no meio-fio e parou.</p>
+            <p>Do lado de fora, na sombra do prédio ao lado, surgiu uma figura. Alta. Magra. A silhueta tremendo levemente no calor. Ergueu o braço devagar. O raio fino saiu, azul-pálido, e atingiu o para-brisa do fusca. O vidro embaçou, depois rachou. O homem dentro não se mexeu mais.</p>
+            <p>A figura virou a cabeça na nossa direção. Devagar. Como se soubesse que estávamos olhando.</p>
+            <p>Ela viu a gente — sussurrou ele.</p>
+            <p>Corremos pra cozinha, pro canto mais longe da rua. Ficamos ali, encostados na parede, ouvindo. O zumbido pulsava agora, mais perto. Passos? Não. Só o ar tremendo.</p>
+            <p>Minutos se passaram. Ou horas. O sol começou a baixar, a luz no apartamento ficou laranja, depois cinza. Carlos pegou o celular. Sem sinal. O meu também não. A energia piscou uma vez, duas, depois apagou de vez. O apartamento ficou no escuro, só o resto de luz do crepúsculo entrando pelas frestas.</p>
+            <p>Vamos testar — disse ele, voz baixa. — Ver se elas entram mesmo.</p>
+            <p>Acendi uma vela que achei no armário. A chama tremia, fraca. Fomos até a porta da frente. Carlos espiou pelo olho mágico. A rua estava vazia de novo. O fusca parado, a porta do motorista aberta. O corpo do homem pendido pra fora, seco.</p>
+            <p>A figura estava agora a poucos metros da entrada do prédio. Parada. Olhando direto pra porta. A pele dela brilhava um pouco no resto de luz — úmida, como se suasse ao contrário.</p>
+            <p>Carlos respirou fundo. Abriu a porta só uma fresta. Uns dez centímetros. O ar quente entrou, seco como lixa.</p>
+            <p>A figura ergueu o braço imediatamente. O raio saiu. Bateu na porta aberta, na madeira. A tinta borbulhou, descascou. Um cheiro de queimado seco. Mas a porta aguentou.</p>
+            <p>A figura deu um passo à frente. Outro. Parou exatamente na soleira. A mão esticada tocou o ar acima do degrau, mas não desceu. Como se houvesse uma barreira. A silhueta tremeu mais forte. O zumbido virou um gemido baixo, quase irritado.</p>
+            <p>Carlos fechou a porta devagar. Tranquei. Os dois recuamos até a parede.</p>
+            <p>Do lado de fora, silêncio. Depois o zumbido se afastando, devagar.</p>
+            <p>Mas não sumiu completamente. Ficou ali, ao longe, esperando.</p>
+            <p>A vela tremia na mesa. O apartamento estava escuro agora. E nós dois ali, sem falar, só ouvindo o próprio coração e o zumbido que não ia embora.</p>
+
+            <h2>Capítulo 3 - O sinal</h2>
+            <p>A vela tinha queimado até o fim, deixando só um toco de cera derretida na mesa da sala. A casa estava mergulhada num escuro denso, quebrado apenas pelo brilho fraco da lua que entrava pelas frestas das cortinas. Carlos e eu ficamos sentados no chão da cozinha, costas encostadas na parede oposta à janela, sem falar muito. O zumbido lá fora tinha diminuído, mas não sumido — agora era um fundo constante, como um rádio mal sintonizado.</p>
+            <p>O sono não vinha. Cada barulho no prédio nos mantinha acordados e alerta — um estalo no telhado, o ranger de uma madeira se acomodando — fazia a gente erguer a cabeça. Carlos mexia na garrafa vazia, girando-a entre as mãos suadas. Eu contava os segundos entre um zumbido e outro, tentando encontrar um padrão que não existia.</p>
+            <p>Foi perto do amanhecer, quando o ar começou a ficar ainda mais pesado, que ouvimos as batidas. Três toques firmes na porta, seguidos de uma pausa e mais dois. Não era o padrão de alguém pedindo ajuda desesperado. Era metódico.</p>
+            <p>Carlos se levantou primeiro, o corpo tenso. Pegou uma faca de cozinha da gaveta — a maior que tinha. Eu fui atrás, o coração acelerando de novo. Espiamos pelo olho mágico. Lá fora, no corredor escuro do prédio, uma figura baixa e encorpada. Barba branca rala, boné velho do Exército desbotado. Era o Seu Ramos, do apartamento 601. Sempre com um rádio ligado.</p>
+            <p>Paulo? — chamou ele, voz rouca mas baixa. — Sei que vocês estão aí. Abre. Preciso falar antes que elas voltem.</p>
+            <p>Hesitamos. Carlos olhou pra mim. Assenti. Girei a chave devagar e abri só uma fresta, a faca pronta na mão dele.</p>
+            <p>O Seu Ramos entrou rápido, carregando uma mochila velha e um rádio portátil que chiava estática. Fechou a porta atrás de si e encostou nela, ofegante. O rosto dele estava vermelho, suado, mas os olhos fundos brilhavam com algo que não era só medo.</p>
+            <p>Vocês viram elas — disse ele, sem pergunta. — As figuras altas. O raio seco.</p>
+            <p>Carlos baixou a faca um pouco.</p>
+            <p>Vimos — respondi. — E você?</p>
+            <p>Ele assentiu, sentando na cadeira da cozinha sem ser convidado. Abriu a mochila e tirou uma garrafa térmica. Desenroscou e bebeu um gole longo de café — o cheiro forte encheu o ar abafado.</p>
+            <p>Eu era operador de rádio. Anos 80, Amazônia. Sintonizei uma frequência. Um zumbido. Igual ao que tá aí fora.</p>
+            <p>Ele ligou o rádio portátil. Girou o dial devagar até parar num chiado baixo, com um zumbido subindo e descendo por baixo. Meu estômago revirou. Era o mesmo som.</p>
+            <p>Transmissão estranha. Como água correndo. Falava de umidade. De vir buscar.</p>
+            <p>Carlos se sentou na outra cadeira, a faca ainda na mão.</p>
+            <p>E aí? — perguntei, voz baixa.</p>
+            <p>O Seu Ramos olhou pra janela, como se checasse se algo observava.</p>
+            <p>No dia seguinte, uma apareceu. Matamos com bala. Mas antes secou dois soldados. O comando apagou tudo. — Ele bateu na mochila. — Era teste. Uma sonda. Se a seca voltasse... viriam mais.</p>
+            <p>O zumbido no rádio dele subiu de volume de repente. Ele girou o dial rápido, cortando. O silêncio voltou pesado.</p>
+            <p>Agora são muitas — murmurou ele. — A seca chamou elas. A umidade que sobrou na gente... atrai.</p>
+            <p>Carlos olhou pra mim. A nuca gelou.</p>
+            <p>E você? — perguntei pro Seu Ramos. — Por que não secou? Ele deu um sorriso amargo.</p>
+            <p>Eu tava dentro do barracão de rádio, no posto. Portas fechadas. Elas não entraram lá. Mesma coisa que aqui no prédio.</p>
+            <p>Lá fora, o zumbido real — o das ruas — começou a crescer de novo. Mais perto. Como se respondesse ao rádio.</p>
+            <p>O Seu Ramos guardou o aparelho na mochila.</p>
+            <p>Elas aprenderam desde aquela vez. Estão mais fortes. Ou mais.</p>
+            <p>Ele se levantou devagar.</p>
+            <p>Fiquem dentro. Portas trancadas. Mas se a chuva vier...</p>
+            <p>Não terminou. Só olhou pra gente uma última vez e foi até a porta. Abriu uma fresta, espiou o corredor, saiu rápido pro 601.</p>
+            <p>Trancamos de novo. O zumbido pulsava mais forte agora, como se tivesse ouvido tudo.</p>
+            <p>Carlos encostou a cabeça na parede.</p>
+            <p>Uma sonda — repetiu, baixinho.</p>
+            <p>Eu não respondi. Só fiquei ouvindo o som crescer, vindo de todos os lados.</p>
+
+            <h2>Capítulo 4 - A transmissão</h2>
+            <p>O trovão baixo rolou ao longe. Não era chuva. Era água se mexendo em massa. Os diques abrindo. O chão tremeu.</p>
+            <p>Seu Ramos olhou pela fresta da cortina, depois pra gente.</p>
+            <p>Vou transmitir do último andar — disse ele. — Potência máxima. Alguém fora da cidade vai pegar.</p>
+            <p>Carlos e eu nos entreolhamos. Subir pro último andar significava sair do apartamento, cruzar o corredor, usar as escadas. As figuras podiam estar no prédio.</p>
+            <p>Eu vou com você — disse Carlos.</p>
+            <p>Seu Ramos balançou a cabeça.</p>
+            <p>Preciso de alguém aqui embaixo. Se eu não voltar, transmitam de novo. Frequência 143.350.</p>
+            <p>Ele pegou a mochila, o rádio maior, a antena desmontada. Abriu a porta devagar. O corredor estava escuro, vazio. O zumbido vinha de fora, mas mais fraco agora. Como se elas estivessem esperando algo.</p>
+            <p>Seu Ramos saiu. A porta se fechou atrás dele. Ficamos ali, Carlos e eu, ouvindo os passos dele subindo as escadas rangentes.</p>
+            <p>Minutos depois, ouvimos o chiado do rádio vindo de cima. A voz dele, metálica, transmitindo.</p>
+            <p>Aqui ex-operador Ramos, Porto Alegre. Invasão não humana. Exército ciente. Plano de inundação deliberada. Gravações anexas. Não deixem apagar.</p>
+            <p>O zumbido lá fora explodiu. Alto, irritado. Raios estalaram. Um, dois, três. O prédio inteiro tremeu.</p>
+            <p>Carlos correu pra janela. Lá embaixo, as figuras na rua olhavam pra cima. Todas. Os braços erguidos. Os raios saindo em sequência, batendo no topo do prédio.</p>
+            <p>Ele tá lá em cima! — gritou Carlos.</p>
+            <p>Corri pra porta. Abri. O corredor estava cheio de fumaça agora. Cheiro de queimado. Subi as escadas correndo, Carlos atrás.</p>
+            <p>No último andar, a porta pro terraço estava aberta. Seu Ramos estava no meio, a antena esticada, o rádio chiando. O ombro dele sangrava — não, não sangrava. Secava. A pele rachada, cinza.</p>
+            <p>Sinal saiu! — gritou ele quando nos viu. — Alguém pegou!</p>
+            <p>Uma figura estava na beirada do terraço. Subindo devagar. A pele rachando no ar seco, mas avançando.</p>
+            <p>Carlos e eu corremos. Agarramos Seu Ramos pelos braços e puxamos ele de volta pra escada. A figura estendeu o braço. O raio saiu. Bateu na antena. Metal derreteu. Faíscas voaram.</p>
+            <p>Descemos as escadas tropeçando. Seu Ramos mal conseguia andar. O ombro dele pendia, seco como galho.</p>
+            <p>Quando chegamos no 5º andar, o trovão da água era ensurdecedor. O chão tremia forte. Sirenes ao longe. A enchente vindo.</p>
+            <p>Entramos no apartamento de Seu Ramos, 601. Ele caiu no chão, ofegante. Derramamos água nele. A pele estalou, se abriu, mas começou a voltar — devagar, doloroso.</p>
+            <p>Sinal... saiu? — murmurou ele.</p>
+            <p>Saiu forte — disse Carlos. — Alguém pegou.</p>
+            <p>Lá fora, o zumbido parou de repente.</p>
+            <p>Como se elas tivessem sentido a água vindo.</p>
+            <p>E a água veio.</p>
+
+            <h2>Capítulo 5 - A água</h2>
+            <p>O primeiro raio veio grosso, azul-elétrico, e explodiu o poste da esquina. Faíscas choveram na rua molhada. Sim, molhada — a água já lambia o asfalto, subindo rápido. Os diques da zona norte e central tinham se aberto de vez. O Guaíba transbordava. A enchente chegava.</p>
+            <p>Lá embaixo, na rua, as figuras altas formavam um círculo apertado. Quinze, talvez mais. A pele delas brilhava intensamente, como se sugassem a última umidade do ar. O zumbido tinha virado um rugido baixo, vibrando nas paredes do prédio, fazendo as janelas tremerem.</p>
+            <p>Mas a água subia. E quando tocou os pés da primeira figura, ela tremeu violento. A pele rachou. O corpo desabou em pó cinza, levado pela correnteza.</p>
+            <p>Outra tentou recuar, mas a água era rápida. Cercou ela. O zumbido virou grito agudo. Rachou e caiu.</p>
+            <p>Uma por uma, as figuras desabaram. O pó cinza boiava na água suja, se dissolvendo.</p>
+            <p>Do apartamento 601, no 5º andar, eu, Carlos e Seu Ramos assistíamos pela janela. A água já cobria carros. Subia pelos prédios. O nível crescia mais rápido do que imaginávamos.</p>
+            <p>Precisamos subir — disse Carlos.</p>
+            <p>Ajudamos Seu Ramos a se levantar. O ombro dele ainda estava cinza, rachado, mas ele andava. Subimos pro último andar do prédio. Lá tinha mais gente — vizinhos que tinham sobrevivido trancados, assustados. Dona Lúcia com a neta pequena. O adolescente Lucas. O casal jovem, Rafael e Ana.</p>
+            <p>A água chegou no 3º andar. No 4º. Parou no 5º.</p>
+            <p>Ficamos ali, no último andar, esperando. O zumbido tinha sumido completamente. Só o barulho da água, sirenes distantes, helicópteros.</p>
+            <p>Horas depois, um barco do Exército passou. Nos resgataram. Levaram a gente pra um abrigo em Viamão, fora da zona da enchente.</p>
+            <p>No abrigo, ninguém falava sobre as figuras. Os soldados diziam que tinha sido evacuação de emergência. Só isso. Mas Seu Ramos tinha guardado as gravações. Escondeu num pen drive que carregava no bolso.</p>
+            <p>A água baixou devagar, dias depois. Deixou lama, destroços, silêncio.</p>
+            <p>Voltei pro prédio uma semana depois. O apartamento estava destruído. Móveis tombados, paredes com marca d'água. Mas vazio. Seguro.</p>
+            <p>Na rua, nenhum rastro de pó cinza. A chuva tinha levado tudo.</p>
+            <p>Seu Ramos ficou internado. O ombro cicatrizou torto, mas ele sobreviveu. Antes de sair do hospital, me chamou. Entregou o pen drive.</p>
+            <p>Guarda isso — disse ele. — Se precisar um dia.</p>
+            <p>Carlos voltou pra oficina. Reconstruiu o que a água destruiu. A gente se vê de vez em quando, mas nunca fala sobre aquela semana.</p>
+            <p>Felipe, o guri do 502, foi enterrado num caixão fechado. A família disse que foi desidratação aguda.</p>
+            <p>Eu voltei a trabalhar. A vida voltou. Mas não igual.</p>
+            <p>De vez em quando, acordo de madrugada. A boca seca. O coração acelerado. E então ouço.</p>
+            <p>Baixo. Constante. Subindo e descendo.</p>
+            <p>O zumbido voltou.</p>
+
+            <h2>Capítulo 6 - O que sobrou</h2>
+            <p>Os diques tinham sido abertos deliberadamente — foi o que ouviram depois. Uma decisão do alto comando. A água começou a baixar devagar, dias depois. Deixou lama, destroços, silêncio.</p>
+            <p>Do último andar do prédio, a gente via a cidade transformada. Ruas viradas em rios marrons, carros empilhados, árvores arrancadas. Porto Alegre tinha virado ruína molhada.</p>
+            <p>Os helicópteros do Exército passavam em padrão, resgatando quem tinha sobrado. Um deles pousou no terraço do prédio ao lado. Soldados desceram, armados, rostos fechados. Nos levaram em grupos pequenos. Não respondiam perguntas. Só mandavam embarcar.</p>
+            <p>No abrigo em Viamão, montado num ginásio de escola, centenas de pessoas se apertavam em colchonetes. Famílias inteiras, crianças chorando, velhos olhando pro nada. Distribuíam água, comida enlatada, cobertores. Mas ninguém falava sobre o que tinha acontecido antes da enchente.</p>
+            <p>Eu, Carlos e Seu Ramos ficamos juntos. O ombro dele ainda estava enfaixado, a pele cinza escondida embaixo. Os médicos do abrigo não perguntaram como tinha sido o ferimento. Só trataram e liberaram.</p>
+            <p>À noite, sentados no canto do ginásio, Seu Ramos tirou um pen drive do bolso da calça molhada.</p>
+            <p>Gravei tudo — murmurou. — As transmissões, os áudios das ruas, o zumbido. Tá aqui. Olhou pra mim. Guarda isso. Se precisar um dia.</p>
+            <p>Peguei o pen drive. Pequeno, preto, pesado como chumbo.</p>
+            <p>Carlos se aproximou da janela do ginásio. Lá fora, caminhões do Exército passavam em comboio. Sirenes cortavam a noite.</p>
+            <p>Acha que alguém conseguiu sair? — perguntou ele, voz baixa.</p>
+            <p>Não sei — respondi.</p>
+            <p>Seu Ramos fechou os olhos.</p>
+            <p>O sinal... saiu?</p>
+            <p>Saiu — disse Carlos. — Alguém ouviu.</p>
+            <p>Mas ninguém veio perguntar. Nenhum jornalista, nenhum investigador. Só o Exército controlando tudo, evacuando, reconstruindo.</p>
+            <p>Uma semana depois, a água tinha baixado o suficiente pra gente voltar. O prédio estava de pé, mas destruído por dentro. Móveis tombados, paredes com marca d'água até o 4º andar. O apartamento 501 cheirava a mofo e lama.</p>
+            <p>Na rua, nenhum rastro de pó cinza. A chuva tinha levado tudo.</p>
+            <p>Seu Ramos ficou internado mais tempo. O ombro cicatrizou torto, mas ele sobreviveu. Carlos voltou pra oficina. Reconstruiu o que a água destruiu.</p>
+            <p>Felipe, o guri do 502, foi enterrado num caixão fechado. A família disse que foi desidratação aguda. Mais de duzentos corpos foram achados assim — secos, retorcidos. Oficialmente: vítimas da seca extrema antes da enchente emergencial.</p>
+            <p>A vida voltou devagar. Lojas reabriram. Carros voltaram pras ruas. O Guaíba baixou pro nível normal. Mas não igual.</p>
+            <p>De vez em quando, acordo de madrugada. A boca seca. O coração acelerado.</p>
+            <p>E então ouço.</p>
+            <p>Baixo. Constante. Subindo e descendo.</p>
+            <p>O zumbido voltou.</p>
+        </article>
+
+        <footer>
+            <a href="index.html" class="back-link">Voltar ao Índice</a>
+        </footer>
+    </div>
+
+</body>
+</html>

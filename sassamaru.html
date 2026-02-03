@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Documentação técnica do Projeto Sassamaru - modelo estatístico híbrido para previsão de resultados do Campeonato Brasileiro. Combina Elo e Poisson." />
+<meta name="author" content="Paulo Guilherme Pilotti Duarte" />
+<meta property="og:title" content="Projeto Sassamaru — Paulo Guilherme Pilotti Duarte" />
+<meta property="og:description" content="Documentação técnica do Projeto Sassamaru - modelo estatístico híbrido para previsão de resultados do Campeonato Brasileiro." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="pt_BR" />
+<meta name="twitter:card" content="summary" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👽</text></svg>" />
+<title>Projeto Sassamaru — Paulo Guilherme Pilotti Duarte</title>
+<style>
+  :root{
+    --color-primary: #1d4ed8;
+    --color-primary-dark: #1e40af;
+    --color-text: #222;
+    --color-text-muted: #555;
+    --color-text-light: #666;
+    --color-bg: #fafafa;
+    --color-bg-card: #ffffff;
+    --color-border: #e5e7eb;
+    --color-focus: #3b82f6;
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+    --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    --font-size-sm: 0.95rem;
+    --font-size-base: 1.05rem;
+    --font-size-lg: 1.3rem;
+    --font-size-xl: 1.9rem;
+    --line-height-tight: 1.4;
+    --line-height-normal: 1.6;
+    --line-height-relaxed: 1.7;
+    --transition-fast: 150ms ease-in-out;
+    --transition-normal: 250ms ease-in-out;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root{
+      --color-primary: #60a5fa;
+      --color-primary-dark: #3b82f6;
+      --color-text: #e5e7eb;
+      --color-text-muted: #9ca3af;
+      --color-text-light: #6b7280;
+      --color-bg: #111827;
+      --color-bg-card: #1f2937;
+      --color-border: #374151;
+      --color-focus: #60a5fa;
+    }
+  }
+
+  *,*::before,*::after{box-sizing: border-box;}
+
+  body{
+    margin:0;
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: var(--line-height-normal);
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+  }
+
+  .container{
+    max-width: 900px;
+    margin: clamp(1.25rem, 5vw, 2.5rem) auto;
+    padding: 0 clamp(1rem, 4vw, 1.25rem);
+  }
+
+  .skip-link{
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-sm) var(--space-md);
+    text-decoration: none;
+    z-index: 100;
+    font-weight: 600;
+    border-radius: 0 0 var(--radius-sm) 0;
+    transition: top var(--transition-fast);
+  }
+
+  .skip-link:focus-visible{
+    top: 0;
+    outline: 2px solid white;
+    outline-offset: -4px;
+  }
+
+  .back-link{
+    display: inline-block;
+    margin-bottom: var(--space-lg);
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+  }
+
+  .back-link:hover{
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+  }
+
+  h1{
+    font-size: clamp(1.5rem, 4vw, var(--font-size-xl));
+    margin: 0 0 var(--space-xs) 0;
+    line-height: var(--line-height-tight);
+    font-weight: 700;
+  }
+
+  h2{
+    font-size: var(--font-size-lg);
+    margin: var(--space-2xl) 0 var(--space-md) 0;
+    line-height: var(--line-height-tight);
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  h3{
+    font-size: var(--font-size-base);
+    margin: var(--space-xl) 0 var(--space-sm) 0;
+    font-weight: 600;
+  }
+
+  .sub{
+    color: var(--color-text-muted);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-xl);
+  }
+
+  p{
+    line-height: var(--line-height-relaxed);
+    margin: var(--space-sm) 0;
+  }
+
+  strong{
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  ul,ol{
+    margin: var(--space-sm) 0;
+    padding-left: var(--space-xl);
+    line-height: var(--line-height-relaxed);
+  }
+
+  ul li,ol li{
+    margin-bottom: var(--space-xs);
+  }
+
+  code{
+    font-family: var(--font-mono);
+    background: var(--color-bg-card);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9em;
+    border: 1px solid var(--color-border);
+  }
+
+  a{
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    border-radius: var(--radius-sm);
+  }
+
+  a:hover{
+    text-decoration: underline;
+    color: var(--color-primary-dark);
+  }
+
+  a:focus-visible{
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  hr{
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: var(--space-xl) 0;
+  }
+
+  .references{
+    background: var(--color-bg-card);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    margin: var(--space-2xl) 0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .references h2{
+    margin-top: 0;
+  }
+
+  .references ul{
+    margin-bottom: 0;
+  }
+
+  footer{
+    margin-top: var(--space-3xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+  }
+
+  footer p{margin: 0;}
+
+  footer a{
+    color: var(--color-primary);
+    margin: 0 var(--space-md);
+    display: inline-block;
+  }
+
+  @media (max-width: 480px){
+    h1{font-size: 1.5rem;}
+    .container{margin: var(--space-lg) auto;}
+    footer a{display: block;margin: var(--space-sm) 0;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  @media print{
+    body{background: white;color: black;}
+    .skip-link,.back-link,footer{display: none;}
+    code{border: 1px solid #ccc;}
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+
+<div class="container">
+
+<main id="main">
+
+  <a href="index.html" class="back-link">← Voltar ao início</a>
+
+  <h1>👽 Projeto Sassamaru</h1>
+  <p class="sub">Documentação Técnica do Modelo Estatístico</p>
+
+  <h2>Documento Técnico do Modelo Estatístico do Simulador de Campeonato Brasileiro</h2>
+
+  <h2>Introdução</h2>
+  <p>Este documento descreve a arquitetura, a fundamentação estatística e a implementação do modelo híbrido desenvolvido para previsão de resultados de partidas do Campeonato Brasileiro de Futebol. O modelo combina a metodologia Elo para avaliação dinâmica de forças dos times com a modelagem de distribuição de gols baseada na distribuição de Poisson, criando um sistema que integra informações históricas e probabilísticas para estimar resultados futuros.</p>
+
+  <hr/>
+
+  <h2>1. Fundamentação Estatística do Modelo</h2>
+
+  <h3>1.1 Modelo Elo Dinâmico para Força dos Times</h3>
+  <p>O sistema Elo é uma metodologia consagrada para avaliação de força relativa entre competidores, originalmente usada em xadrez, mas amplamente aplicada em esportes. No contexto do futebol:</p>
+  <ul>
+    <li>Cada time inicia com uma pontuação inicial padrão (exemplo: 1500 pontos)</li>
+    <li>Após cada partida, os ratings dos dois times são atualizados com base no resultado e na expectativa prévia</li>
+    <li>A fórmula principal utiliza um fator de ajuste <code>K</code> e a diferença entre resultado esperado e real para corrigir os ratings</li>
+    <li>É aplicada uma vantagem para o time mandante, para refletir o benefício estatístico de jogar em casa</li>
+    <li>Margem de gols influencia o fator <code>K</code>, ponderando resultados mais expressivos</li>
+  </ul>
+  <p>Este cálculo gera um histórico dinâmico que representa a força competitiva atualizada de cada time.</p>
+
+  <h3>1.2 Modelo Poisson para Distribuição de Gols</h3>
+  <p>A previsão dos gols segue a distribuição de Poisson, que é adequada para modelar eventos discretos raros em intervalos fixos, como gols em uma partida:</p>
+  <ul>
+    <li>Calcula-se a força ofensiva e defensiva relativa de cada time com base em dados históricos</li>
+    <li>Estima-se a média esperada de gols para mandante e visitante considerando essas forças e a média geral da liga</li>
+    <li>Utiliza-se a distribuição de Poisson para calcular a probabilidade de ocorrer um determinado número de gols para cada time</li>
+    <li>Combinando as probabilidades independentes de gols de mandante e visitante, obtém-se a matriz de probabilidades dos possíveis placares</li>
+    <li>A partir da matriz, computa-se a probabilidade de vitória do mandante, empate e vitória do visitante</li>
+  </ul>
+
+  <h3>1.3 Modelo Híbrido (Ensemble)</h3>
+  <p>O modelo final combina o Elo e o Poisson:</p>
+  <ul>
+    <li>Ajusta a expectativa de gols esperados pelo modelo Poisson com base na diferença de ratings Elo, ponderada por um fator de influência</li>
+    <li>Dessa forma, a força relativa dinâmica do Elo modifica diretamente as médias esperadas de gols</li>
+    <li>Mantém a vantagem de jogar em casa dentro da avaliação</li>
+    <li>Calcula as probabilidades finais de resultado (vitória, empate, derrota) a partir das distribuições ajustadas</li>
+  </ul>
+
+  <hr/>
+
+  <h2>2. Arquitetura do Sistema</h2>
+
+  <h3>2.1 Componentes Principais</h3>
+  <ul>
+    <li><strong>Carregamento e Preprocessamento dos Dados:</strong> Lê o arquivo CSV contendo dados históricos do campeonato. Realiza limpeza básica e transformação de tipos.</li>
+    <li><strong>Cálculo das Forças e Ratings:</strong> Calcula forças ofensivas e defensivas para o modelo Poisson, vantagens de casa, e executa o cálculo dinâmico do rating Elo histórico.</li>
+    <li><strong>Simulador Paralelo:</strong> Utiliza multiprocessamento para executar simulações de partidas com diferentes jogos e múltiplas repetições, aumentando desempenho.</li>
+    <li><strong>Interface Gráfica:</strong> Aplicação em Tkinter que permite inserir jogos, iniciar simulações, visualizar progresso e exibir resultados e rankings de Elo e xG.</li>
+    <li><strong>Geração de Relatórios:</strong> Após simulações, gera arquivo Markdown (.md) sumarizando probabilidades, gols esperados e palpites para cada jogo.</li>
+  </ul>
+
+  <h3>2.2 Fluxo da Aplicação</h3>
+  <ol>
+    <li>Usuário inicia o app, que carrega o CSV e calcula o Elo dinâmico, forças e médias da liga</li>
+    <li>Usuário insere até 10 jogos (mandante e visitante) e escolhe número de simulações (ex: 10 mil)</li>
+    <li>O app paraleliza a execução das simulações utilizando o modelo híbrido para cada partida</li>
+    <li>Progresso da simulação é mostrado na interface</li>
+    <li>Ao final, arquivo Markdown com resumo estatístico é salvo e exibido para o usuário</li>
+    <li>O usuário pode também visualizar os rankings de Elo e xG gerados a partir dos dados carregados</li>
+  </ol>
+
+  <hr/>
+
+  <h2>3. Implementação Técnica</h2>
+
+  <h3>3.1 Linguagem e Bibliotecas</h3>
+  <ul>
+    <li><strong>Python 3.13+</strong> — linguagem principal</li>
+    <li><strong>Pandas</strong> — manipulação e análise de dados tabulares</li>
+    <li><strong>NumPy</strong> — cálculo eficiente de matrizes e probabilidades</li>
+    <li><strong>Tkinter</strong> — interface gráfica desktop</li>
+    <li><strong>Multiprocessing</strong> — paralelização para acelerar simulações</li>
+    <li><strong>CSV</strong> — leitura e escrita do banco de dados histórico</li>
+  </ul>
+
+  <h3>3.2 Estrutura do Código</h3>
+  <p>Funções específicas para:</p>
+  <ul>
+    <li>Cálculo do Elo dinâmico (<code>atualizar_ratings_elo</code>)</li>
+    <li>Cálculo das forças ofensivas e defensivas (<code>calcular_forcas_poisson</code>)</li>
+    <li>Cálculo da distribuição de Poisson e previsão híbrida (<code>prever_partida_hibrido</code>)</li>
+    <li>Execução paralela das simulações (<code>rodar_simulacao_paralela</code>)</li>
+    <li>Interface gráfica (classe <code>SimuladorApp</code>) com widgets para entrada, botões, barra de progresso e visualização</li>
+    <li>Adição de novos resultados no CSV para atualização dos dados</li>
+  </ul>
+
+  <h3>3.3 Otimizações</h3>
+  <ul>
+    <li>Cache das previsões para evitar recomputações</li>
+    <li>Paralelização das simulações para uso efetivo dos núcleos da CPU</li>
+    <li>Limitação máxima de gols para cálculo rápido da distribuição Poisson</li>
+    <li>Atualização dinâmica dos ratings Elo a partir dos dados reais para manter modelo alinhado com desempenho histórico</li>
+  </ul>
+
+  <hr/>
+
+  <h2>4. Conclusão</h2>
+  <p>Este modelo estatístico híbrido implementa um método robusto para previsão de resultados do Campeonato Brasileiro, combinando análise histórica e probabilística avançada. A arquitetura modular e a interface gráfica amigável permitem fácil uso, enquanto as técnicas de paralelização garantem performance adequada para grandes volumes de simulações.</p>
+  <p>Este sistema pode ser expandido para incorporar outros fatores (lesões, transferências, clima) e melhorar a precisão das previsões, além de servir como base para sistemas de análise esportiva e apostas inteligentes.</p>
+
+  <hr/>
+
+  <h2>APX A: Definição Formal do Modelo Estatístico</h2>
+
+  <h3>O que é um Modelo?</h3>
+  <p>Um <strong>modelo</strong> é uma representação matemática, estatística ou computacional que busca descrever, explicar ou prever o comportamento de um sistema ou fenômeno real. No contexto da ciência de dados e estatística, modelos usam dados históricos para estimar relações entre variáveis e gerar previsões probabilísticas fundamentadas.</p>
+
+  <h3>O Modelo Estatístico Implementado</h3>
+  <p>O código desenvolvido constitui um <strong>modelo estatístico preditivo para partidas de futebol</strong>, cuja finalidade é estimar os resultados futuros com base em dados históricos de partidas já disputadas.</p>
+  <p>Ele combina dois métodos consagrados:</p>
+  <ol>
+    <li><strong>Sistema Elo Dinâmico:</strong> Avalia a força relativa dos times ao longo do tempo, ajustando a pontuação (rating) de cada clube conforme o histórico de resultados. Considera a vantagem de jogar em casa e a margem de gols para refinar a avaliação.</li>
+    <li><strong>Modelo Poisson para Gols:</strong> Estima a probabilidade de cada time marcar um certo número de gols usando a distribuição de Poisson, adequada para eventos discretos e independentes. Leva em conta forças ofensivas e defensivas relativas, bem como médias gerais de gols no campeonato.</li>
+  </ol>
+
+  <h3>Natureza do Modelo</h3>
+  <ul>
+    <li>É um <strong>modelo probabilístico</strong>, pois fornece distribuições de probabilidade para placares e resultados, não apenas previsões determinísticas</li>
+    <li>É <strong>dinâmico</strong>, pois os ratings Elo são recalculados conforme novos dados são adicionados, refletindo a evolução da performance dos times</li>
+    <li>É um <strong>modelo híbrido (ensemble)</strong>, integrando informações de força relativa (Elo) e padrões de gols (Poisson) para melhorar a acurácia preditiva</li>
+  </ul>
+
+  <h3>Aplicação do Modelo</h3>
+  <ul>
+    <li><strong>Entrada:</strong> Dados históricos de partidas (placares, times, local da partida)</li>
+    <li><strong>Processamento:</strong> Cálculo dos ratings Elo, forças ofensivas/defensivas, vantagem de casa e simulação das partidas usando distribuição de Poisson ajustada pelo Elo</li>
+    <li><strong>Saída:</strong> Probabilidades de vitória, empate e derrota para cada jogo, gols esperados, e palpites de resultado mais provável</li>
+  </ul>
+
+  <h3>Importância e Uso</h3>
+  <p>Este modelo permite análises quantitativas robustas, suporte a decisões (como apostas ou análises esportivas) e acompanhamento evolutivo do desempenho das equipes ao longo do tempo, oferecendo uma ferramenta computacional rigorosa baseada em fundamentos estatísticos sólidos.</p>
+
+  <div class="references">
+    <h2>Referências</h2>
+    <ul>
+      <li><a href="https://www.kaggle.com/code/paulopilotti/modelo-sassamaru-br-25" target="_blank" rel="noopener noreferrer">Kaggle - Modelo Sassamaru BR 25</a></li>
+      <li><a href="https://github.com/mtgr18977/sassamaru-br-25" target="_blank" rel="noopener noreferrer">GitHub - Repositório do Projeto</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Elo_rating_system" target="_blank" rel="noopener noreferrer">Elo Rating System - Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Poisson_distribution" target="_blank" rel="noopener noreferrer">Poisson Distribution - Wikipedia</a></li>
+      <li><a href="https://docs.python.org/3/library/tkinter.html" target="_blank" rel="noopener noreferrer">Tkinter Documentation</a></li>
+      <li><a href="https://pandas.pydata.org/docs/" target="_blank" rel="noopener noreferrer">Pandas Documentation</a></li>
+      <li><a href="https://numpy.org/doc/" target="_blank" rel="noopener noreferrer">NumPy Documentation</a></li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>
+      © 2025 Paulo Guilherme Pilotti Duarte · 
+      <a href="https://www.linkedin.com/in/paulo-guilherme-pilotti-duarte" target="_blank" rel="noopener noreferrer">LinkedIn</a> · 
+      <a href="https://github.com/paulogpd" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </p>
+  </footer>
+
+</main>
+</div>
+
+</body>
+</html>

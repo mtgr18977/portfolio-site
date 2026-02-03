@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Primeira Vista - Edgar Allan Poe</title>
+    <style>
+        /* --- TEMA: CLÁSSICO / MISTÉRIO (Dark Mode) --- */
+        :root {
+            --bg-color: #121212;
+            --text-color: #d0d0d0;
+            --accent-color: #ffd54f; /* Dourado/Âmbar para evocar joias e época clássica */
+            --paper-texture: #1e1e1e;
+            --font-body: 'Georgia', 'Times New Roman', serif; /* Fonte clássica obrigatória para Poe */
+            --font-ui: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.8;
+            font-size: 1.15rem;
+        }
+
+        .reader-container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* --- NAVEGAÇÃO --- */
+        .back-nav {
+            font-family: var(--font-ui);
+            margin-bottom: 40px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover { opacity: 0.8; }
+
+        /* --- CABEÇALHO --- */
+        header { text-align: center; margin-bottom: 50px; }
+
+        h1.main-title {
+            font-family: var(--font-body);
+            color: #ffffff;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        .author-info {
+            font-family: var(--font-ui);
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero-image {
+            width: 150px;
+            height: auto;
+            border-radius: 50%; /* Retrato oval clássico */
+            margin: 20px auto;
+            display: block;
+            border: 2px solid #333;
+            filter: sepia(40%) contrast(110%);
+        }
+
+        /* --- TEXTO --- */
+        p { margin-bottom: 24px; text-align: justify; }
+
+        /* Drop Cap (Primeira letra ornamentada) */
+        .first-paragraph::first-letter {
+            font-size: 3.5rem;
+            float: left;
+            margin-right: 8px;
+            line-height: 0.8;
+            color: var(--accent-color);
+            font-family: 'Times New Roman', serif;
+        }
+
+        /* Citações e Cartas */
+        .letter-box {
+            background-color: var(--paper-texture);
+            padding: 30px;
+            margin: 40px 0;
+            border-left: 3px solid var(--accent-color);
+            font-style: italic;
+            font-size: 1.05rem;
+            color: #e0e0e0;
+        }
+
+        .letter-signature {
+            text-align: right;
+            margin-top: 20px;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        /* Diálogos em francês/estrangeiro */
+        em { color: var(--accent-color); }
+
+        /* --- RODAPÉ E NOTAS --- */
+        .footnotes {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            color: #555;
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="reader-container">
+        
+        <div class="back-nav">
+            <a href="index.html" class="back-link">← Voltar ao Índice</a>
+        </div>
+
+        <header>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Edgar_Allan_Poe%2C_circa_1849%2C_restored%2C_colorized.jpg/800px-Edgar_Allan_Poe%2C_circa_1849%2C_restored%2C_colorized.jpg" alt="Edgar Allan Poe" class="hero-image">
+            <h1 class="main-title">À primeira vista</h1>
+            <p class="author-info">Edgar Allan Poe | Tradução por Paulo Pilotti Duarte</p>
+        </header>
+
+        <article>
+            <p class="first-paragraph">Muitos anos atrás era moda ridicularizar a ideia de “amor à primeira vista”. Mas, aqueles que pensam, não mais do que aqueles que profundamente sentem, sempre advogaram em prol da sua existência. Descobertas modernas, de fato, no que pode ser chamado de magnetismo ético ou magneto estética, tornam provável que a mais natural, e, consequentemente, a mais verdadeira e mais intensa das afeições humanas é aquela que surge no coração, como se por uma simpatia elétrica — para resumir em uma palavra — que o mais brilhante e mais duradouro dos grilhões psíquicos é aquele que é arrebatado apenas com um olhar. A confissão que estou prestes a fazer irá adicionar outra as já quase inumeráveis instâncias verdadeiras sobre esta posição.</p>
+
+            <p>Minha história requer que eu volte um pouco. Eu sou muito jovem — nem completei vinte e dois anos ainda. Meu nome, atualmente, é um nome bem comum e popular — Simpson. Eu disse “atualmente” pois é somente ultimamente que tenho sido chamado assim — adotei legalmente este sobrenome no último ano a fim de receber uma grande herança deixada por um parente distante do sexo masculino, o advogado Adolphus Simpson. O legado estava condicionado a adoção do nome do testamentado — o de família, não o nome cristão; meu nome cristão é Napoleão Bonaparte — ou, mais precisamente, estes são o meu prenome e nome do meio, respectivamente.</p>
+
+            <p>Assumi o nome Simpson com alguma relutância, como o meu verdadeiro patronímico, Froissart, senti um orgulho muito perdoável — acreditando que eu poderia traçar uma descendência do autor imortal das “Crônicas”. Ainda sobre o tema dos nomes, a propósito, eu posso mencionar uma singular coincidência sonora que frequenta os nomes de alguns de meus predecessores imediatos. Meu pai era Monsieur Froissart, de Paris. Sua esposa — minha mãe, que se casou com ele bastante jovem, com quinze anos — era a Mademoiselle Croissart, filha mais velha do banqueiro Croissart, cuja esposa, novamente, casou-se com apenas dezesseis anos, era a filha mais velha de um certo Victor Voissart. Monsieur Voissart, muito singularmente, casara-se com uma senhora de nome similar — a Mademoiselle Moissart. Ela, por sua vez, era quase uma criança ao se casar, e sua mãe também. Madame Moissart tinha apenas quatorze anos quando foi levada ao altar. Estes casamentos precoces eram comuns na França. Aqui, de qualquer maneira, temos Moissart, Voissart, Croissart, e Froissart, todos na linha direta de descendência. Meu próprio nome, no entanto, como eu dizia, se tornou Simpson, por um ato legal, e com tanta repugnância da minha parte, que, em durante um certo tempo, relutei com essa condição inútil e irritante, em aceitar o legado.</p>
+
+            <p>Quanto aos meus dotes pessoais, eles de maneira alguma são deficientes. Pelo contrário, eu acredito que estou bem servido, e possuo o que nove décimos do mundo chamaria de um rosto bonito. Tenho aproximadamente 1,80 m de altura. Meu cabelo é preto e encaracolado. Meu nariz tem um bom aspecto. Meus olhos são grandes e cinzentos; e, embora, na verdade, eles sejam fracos em um grau muito inconveniente, nenhuma suspeita relativa a esse defeito pode ser levantada a partir de sua aparência. A fraqueza em si, entretanto, tem me causado um grande incômodo e tenho recorrido a todo o tipo de remédio, exceto usar óculos. Sendo jovem e bem-apessoado, eu naturalmente não gostava deles e refutava em usá-los. Eu não conheço nada que, de fato, desfigure mais o rosto de uma pessoa jovem, ou que assim o marque o rosto o dando um ar acanhado, senão de absoluta hipocrisia e de idade. Um monóculo, por outro lado, dá um ar de janotismo e afetação. Tenho me mantido até então, tão bem quanto poderia, sem qualquer um. Mas me alongo deveras nesses detalhes meramente pessoais, que, afinal, são de pouca importância. Eu vou me contentar em dizer, além disso, que o meu temperamento é otimista, exasperado, ardente, entusiasta — e que em toda a minha vida tenho sido um admirador devotado das mulheres.</p>
+
+            <p>Uma noite no inverno eu entrei no teatro P—, na companhia de um amigo, Sr. Talbot. Era noite de ópera, e os libretos traziam uma rara atração, ou seja, a casa estava excessivamente lotada. Chegamos a tempo. Nossos lugares estavam reservados na primeira fila, os quais tivemos que abrir caminho a cotoveladas, mas conseguimos, com alguma dificuldade, nos acomodar.</p>
+
+            <p>Por duas horas minha companhia, que era um fanático por música, teve toda a sua atenção voltada para o palco; e eu, nesse meio tempo, me distraia observando a platéia, que consistia, de forma principal, da elite da cidade. Tendo-me já satisfeito quanto a esse ponto, eu estava pestes a direcionar meus olhos para a <em>prima donna</em>, quando estes foram atraídos e se fixaram em uma figura em um dos camarotes privados que havia escapado a minha observação.</p>
+
+            <p>Mesmo que eu viva mil anos, eu nunca mais irei esquecer a intensa emoção a qual eu senti ao ver essa figura. Era uma mulher, a mais sublime que eu já tinha visto. O rosto estava tão longe e virado para o palco que, por alguns minutos, eu não pude obter uma visão dela — mas a forma era divina; nenhuma outra palavra pode expressar suficientemente a sua proporção magnífica — até mesmo o termo “divina” me parece ridiculamente fraco enquanto eu a escrevo.</p>
+
+            <p>A magia em forma encantadora de mulher — a necromancia da graciosidade feminina — sempre foi um poder que eu julgo impossível de resistir, mas aqui foi a graça personificada, encarnada, o ideal de beleza das minhas mais selvagens e entusiastas visões. A Figura, no que a construção do camarote me permitia ver, era um pouco acima da altura média, e quase se aproximava, sem de fato atingir, o majestoso. Suas formas femininas perfeitas eram deliciosas. A cabeça, da qual apenas parte de trás era visível, comparava-se ao esboço da Psique grega, e a capa elegante de renda <em>aerienne</em> mais a exibia do que a escondia, o que me fez lembrar o Ventum Textilem de Apuleio. O seu braço direito pendia sobre a balaustrada do camarote, e eletrificou cada nervo do meu esqueleto com sua simetria requintada. A sua porção superior era drapejada por uma dessas mangas abertas soltas que agora estão na moda. Isto se estendia até um pouco abaixo do cotovelo. Embaixo dessa manga havia outra manga, de um material frágil, justo, e terminado por um punho de renda elaborada que lhe caía graciosamente sobre a parte superior da mão, revelando apenas os seus dedos delicados, em um dos quais brilhava um anel de diamante que eu imediatamente percebi ser de um valor extraordinário. O arredondamento admirável do pulso era adornado por um bracelete que o circulava, que também estava ornamentado e envolvido por uma magnífica aigrette cravejada de jóias — falando, em palavras que não poderiam ser confundidas, de uma só vez, da riqueza e do gosto exigente de quem o vestia.</p>
+
+            <p>Olhei para esta aparição majestosa por pelo menos meia hora, como se eu tivesse sido subitamente convertido em pedra; e, durante este período, eu senti toda a força e a verdade de tudo o que foi dito ou cantado a respeito do “amor à primeira vista”. Meus sentimentos eram totalmente diferentes de quaisquer outros que eu tenha até então experimentado, até mesmo na presença dos espécimes mais célebres da beleza feminina. Uma inexplicável — e eu sou obrigado a dizer, magnética — simpatia de alma para alma parecia arrebatar não apenas a minha visão, mas todo o meu poder de pensamento e sentimento mediante o objeto admirável a minha frente. Eu vi — eu senti — eu sabia que eu estava profundamente, loucamente, irrevogavelmente apaixonado — e isso mesmo antes de ver o rosto da pessoa amada.</p>
+
+            <p>Tão intensa, na verdade, era a paixão que me consumia que eu realmente acredito que poderia ter abatido pouca ou nenhuma de suas, ainda invisíveis, características, provadas serem de caráter tão comum, de tão anômala que é a natureza do único amor verdadeiro — do amor à primeira vista — e que realmente é tão pouco dependente das condições externas que só parecem criá-lo e controlá-lo.</p>
+
+            <p>Enquanto eu estava assim envolvido na admiração desta visão encantadora, uma perturbação súbita entre o público a levou a virar a cabeça parcialmente em minha direção, com isso eu pude observar todo o perfil do seu rosto. Sua beleza até mesmo excedeu as minhas expectativas — e assim ainda havia algo sobre ela que me decepcionou sem que eu fosse capaz de dizer exatamente o que era. Eu disse “decepcionou”, mas isso não é de todo a palavra. Meus sentimentos foram ao mesmo tempo acalmados e exaltados. Eles se valeram menos do transporte e mais do calmo entusiasmo, do repouso entusiástico. Este estado de sentimento surgiu, talvez, a partir do ar de seu rosto harmonioso, que me dava os ares de Madonna; e ainda assim eu imediatamente compreendi que não poderia ter surgido inteiramente disso. Havia algo mais — algum mistério que eu não poderia entender — alguma expressão sobre o rosto que me perturbou um pouco enquanto aumentava enormemente meu interesse. Na verdade, eu estava naquela condição mental que prepara um homem jovem e suscetível para qualquer ato extravagante. Se a dama estivesse sozinha, eu, sem dúvida, teria entrado em seu camarote e a abordado, apesar de todos os perigos; mas, felizmente, ela estava junto de dois companheiros — um cavalheiro e uma mulher belíssima, ao que tudo indica alguns anos mais jovem do que ela.</p>
+
+            <p>Eu criava em minha mente mil esquemas pelos quais eu poderia obter, futuramente, uma introdução com a senhora mais velha, ou, para o presente, fosse como fosse, uma visão mais clara de sua beleza. Eu teria mudado a minha posição para uma mais perto dela, mas o estado lotado do teatro tornava isso impossível; e os desígnios da moda tinham tornado imperativamente proibida a utilização dos óculos de opera em um caso como este, mesmo se eu tivesse a sorte de ter um comigo — eu não tinha — e fiquei assim, em desespero.</p>
+            
+            <p>Finalmente me lembrei de perguntar ao meu companheiro.</p>
+            <p>“Talbot”, eu disse, “você tem um desses pares de óculos de opera? Deixe-me usá-lo.”</p>
+            <p>“Óculos de ópera! — Não! — O Que você acha que eu estaria fazendo com uma coisa dessas?”, e se virou impaciente em direção ao palco.</p>
+            <p>“Mas, Talbot,” eu continuei, puxando-o pelo ombro, “você precisa me escutar? Você vê o camarote? Aquele! — Não, o próximo. Você já viu uma mulher como aquela?”</p>
+            <p>“Ela é muito bonita, sem dúvida”, disse ele.</p>
+            <p>“Eu quero saber quem ela pode ser?”</p>
+            <p>“Por que, em nome de tudo o que é angelical, você não sabe quem ela é? ‘Por não conhecê-la, a diz desconhecida.’ Ela é a célebre Madame Lalande — a beleza do dia por excelência, e a conversa de toda a cidade. Imensamente rica também — viúva e um grande partido — acaba de chegar de Paris”.</p>
+            <p>“Você a conhece?”</p>
+            <p>“Sim, eu tive a honra.”</p>
+            <p>“Você me apresentaria?”</p>
+            <p>“Certamente, com o maior prazer, quando queres?”</p>
+            <p>“Amanhã, a uma, vejo você no B — ”.</p>
+            <p>“Muito bem, agora mantenha-se calado, se puder.”</p>
+            <p>Esse último pedido de Talbot, fui forçado a seguir; ele permaneceu obstinadamente surdo a todas as perguntas ou sugestões, e ocupou-se exclusivamente pelo resto da noite com o que ocorria em cima do palco.</p>
+
+            <p>Nesse meio tempo eu mantive meus olhos fixos na Madame Lalande, e finalmente tive a sorte de obter uma vista frontal completa de seu rosto. Era requintadamente bela — isso, é claro, o meu coração tinha me dito antes, mesmo que Talbot ainda não estivesse totalmente me confirmado essa questão — mas ainda o algo ininteligível me perturbava. Eu finalmente concluí que os meus sentidos foram impressionados com um certo ar de gravidade, tristeza, ou, ainda mais propriamente, de cansaço, que lhe tirou algo da juventude e frescor do rosto, apenas para dotá-lo com uma ternura seráfica e majestosa, e assim, é claro, endossar o meu temperamento entusiasta e romântico, com um interesse aumentado em dez vezes.</p>
+
+            <p>Enquanto eu assim me deleitava, percebi, finalmente, com muita apreensão, por conta de um movimento quase imperceptível por parte da dama, que ela havia se dado conta subitamente da intensidade do meu olhar. Ainda assim, fiquei absolutamente fascinado, e não pude recuar, mesmo que por um instante. Ela virou o rosto e novamente eu vi apenas o contorno cinzelado da parte de trás da sua cabeça. Depois de alguns minutos, como se impelida pela curiosidade de ver se eu ainda a olhava, ela gradualmente virou seu rosto, mais uma vez olhando ao redor, e novamente se deparou com meu olhar ardente. Ela baixou seus grandes olhos escuros instantaneamente e um rubor envolveu profundamente seu rosto. Mas qual não foi minha surpresa ao perceber que ela, não só uma segunda vez virou a cabeça, mas que ela tirou da cintura um par de óculos duplos, elevou-o, ajustou-o, e em seguida olhou-me através dele, atenta e deliberadamente, pelo espaço de alguns minutos.</p>
+
+            <p>Se um raio tivesse caído aos meus pés eu não teria ficado tão completamente surpreendido — somente surpreendido — não ofendido ou enojado, de forma alguma; embora uma ação tão ousada em qualquer outra mulher teria sido susceptível de ofensa ou desgosto. Mas a coisa toda foi feita com tanta naturalidade — tanta indiferença — tanto repouso, com tão evidente ar da mais alta criação, em resumo, que nenhuma desfaçatez foi notada e meus únicos sentimentos eram os de admiração e surpresa.</p>
+            
+            <p>Observei que, ao levantar os óculos pela primeira vez, ela parecia satisfeita com uma inspeção rápida da minha pessoa e estava guardando o instrumento, quando, como se tivesse sido tomada por um novo pensamento, retomou os óculos e assim continuou a considerar-me, com a atenção fixa pelo espaço de vários minutos, durante cinco minutos, pelo menos, tenho certeza.</p>
+            <p>Esta ação, tão notável em um teatro americano, atraiu a atenção de muitos, e deu origem a um movimento indefinido, ou zumbido, entre o público, que por um momento encheu-me de confusão, mas não produziu nenhum efeito visível no semblante de Madame Lalande.</p>
+            <p>Tendo satisfeito sua curiosidade — se tal fosse — ela recolheu os óculos, e silenciosamente voltou sua atenção novamente para o palco; seu perfil estava agora voltado para mim, como anteriormente. Eu continuei a observá-la incessantemente, embora eu estivesse plenamente consciente da minha grosseria ao fazê-lo. Dentro em pouco, eu vi sua cabeça lenta e ligeiramente mudar de posição, e logo fiquei convencido de que a senhora, enquanto fingia olhar para o palco estava, de fato, prestando atenção em mim. É desnecessário dizer que efeito essa conduta, por parte de uma mulher tão fascinante, tinha em minha mente excitável.</p>
+
+            <p>Tendo assim me examinado por talvez um quarto de hora, o belo objeto da minha paixão dirigiu-se ao cavalheiro que a acompanhava e, enquanto ela falava, eu vi claramente, pelos olhares de ambos, que a conversa referia-se a minha pessoa.</p>
+            <p>Após a sua conclusão, Madame Lalande novamente se voltou para o palco, e, por alguns minutos, parecia absorvida pelo espetáculo. Ao término deste período, no entanto, eu fui tomado por uma extrema agitação ao vê-la desdobrar, pela segunda vez, os óculos que pendiam ao seu lado, se virando novamente para mim como antes, e, ignorando o zumbido renovado do público, analisar-me da cabeça aos pés com a mesma compostura milagrosa que tinha anteriormente encantado e confundido minha alma.</p>
+            <p>Este comportamento extraordinário lançou-me em uma febre de emoção perfeita — em um delírio absoluto de amor — servindo para encorajar-me mais do que para desconcertar-me. Na intensidade louca da minha devoção, eu esqueci tudo, exceto a presença e a majestosa beleza da visão que confrontava meu olhar. Agarrando a minha oportunidade, quando eu pensei que o público estava totalmente concentrado com a ópera, eu finalmente chamei a atenção de Madame Lalande e, por um instante, fiz uma leve, mas inconfundível reverência.</p>
+            <p>Ela corou muito profundamente — em seguida desviou os olhos — então, lenta e cautelosamente olhou ao redor, aparentemente para ver se minha arrojada ação tinha sido notada, e então se inclinou em direção ao senhor que estava sentado ao seu lado.</p>
+
+            <p>Agora eu senti de maneira intensa a impropriedade do ato cometido e esperava nada menos que a exposição imediata; enquanto uma visão de pistolas sobre o dia de amanhã flutuou rápida e desconfortavelmente no meu cérebro. Fiquei muito e imediatamente aliviado, no entanto, quando eu vi a senhora simplesmente entregar ao cavalheiro um livreto, sem nada lhe falar; mas o leitor pode ter uma vaga ideia da minha surpresa, de meu profundo espanto, da minha perplexidade delirante de coração e alma, quando, imediatamente após, tendo novamente olhado furtivamente ao redor, ela permitiu que seus olhos brilhantes recaíssem totalmente nos meus e, em seguida, com um leve sorriso, revelando uma linha brilhante de seus dentes perolados, inclinou duas vezes a cabeça afirmativamente, de forma distinta, clara e inequívoca.</p>
+
+            <p>É inútil, é claro, me debruçar sobre a minha alegria — sobre meu arrebatamento — sobre meu êxtase ilimitado de coração. Se algum homem já esteve louco com o excesso de felicidade, este era eu naquele momento. Eu amava. Este foi o meu primeiro amor — assim eu senti. Foi amor supremo — indescritível. Foi “amor à primeira vista”; e à primeira vista, também, que tinha sido apreciado e correspondido.</p>
+            <p>Sim, correspondido. Como e por que eu deveria duvidar por um instante. Que outra construção eu poderia colocar em cima de tal conduta por parte de uma senhora tão bela — tão rica — evidentemente tão realizada — de berço — de tão elevada posição na sociedade, em todos os aspectos tão inteiramente respeitável, como eu sabia que era Madame Lalande? Sim, ela me amava — devolveu o entusiasmo do meu amor, com um entusiasmo tão cego — como descompromissado, tão espontâneo, com tanta entrega — e totalmente sem limites como o meu próprio! Estas deliciosas fantasias e reflexões, no entanto, foram agora interrompidas pela queda da cortina. A platéia levantou-se e o tumulto habitual imediatamente seguiu-se. Abandonei Talbot abruptamente, fiz todos os esforços para forçar meu caminho em busca de uma maior proximidade com Madame Lalande. Tendo falhado nisso, por causa da multidão, eu finalmente desisti da procura e peguei o rumo casa; consolando-me pela minha decepção em não ter sido capaz de tocar nem mesmo a barra de sua capa, com a reflexão de que eu deveria ser apresentado por Talbot, de forma devida, no dia de amanhã.</p>
+
+            <p>Este dia seguinte, finalmente veio, isto é, o dia finalmente amanheceu depois de uma noite longa e cansativa de impaciência; e, em seguida, as horas até a uma passaram em um ritmo lento e aborrecido. E inumerável. Mas mesmo Istambul, diz-se, terá um fim, e finalmente veio um fim a este longo atraso. O relógio bateu. Como o último eco cessou, eu pisei no B — e perguntei por Talbot.</p>
+
+            <p>“Saiu”, disse o criado de Talbot.</p>
+            <p>“Saiu?!”, eu respondi, cambaleando para trás meia dúzia de passos, “deixe-me dizer-lhe, meu fino companheiro, que isso é completamente impossível e impraticável; Mr. Talbot não saiu. O que você quer dizer?”</p>
+            <p>“Nada, senhor, apenas que o Sr. Talbot não está, isso é tudo. Ele foi a S — , imediatamente após o café da manhã, e deixou dito que ele não estaria na cidade novamente por uma semana.”</p>
+            <p>Fiquei petrificado de horror e raiva. Esforcei-me para responder, mas minha língua recusou a falar qualquer coisa. Finalmente eu virei no meu calcanhar, lívido de ira, e interiormente consignei toda a tribo dos Talbot para as regiões mais internas de Erebus. Era evidente que o meu amigo atencioso, <em>il fanatico</em>, tinha esquecido completamente seu compromisso comigo — havia esquecido-o logo após que fora marcado. Ele nunca fora um homem muito atento a sua palavra. Não havia nada a fazer; e assim, sufocando minha aflição tão bem quanto pude, eu caminhava melancolicamente pela rua, fazendo questionamentos fúteis sobre Madame Lalande para cada conhecido masculino que eu encontrava. Descobri que ela era conhecida — por muitos apenas de vista — mas ela estava na cidade havia apenas algumas semanas, e sendo assim, haviam muito poucos, portanto, que afirmavam serem seus amigos pessoais. Esses poucos, sendo ainda relativamente desconhecidos meus, não podiam, ou não deveriam, tomar a liberdade de me apresentar formalmente com uma visita matutina. Enquanto eu assim me desesperava, conversando com um trio de amigos sobre o assunto que absorvia o meu coração, aconteceu que ela própria passou:</p>
+            <p>“Não acredito! Lá está ela!”, exclamou um.</p>
+            <p>“Surpreendentemente linda!”, exclamou um segundo.</p>
+            <p>“Um anjo na terra!”, proferiu um terceiro.</p>
+            <p>Eu olhei; e numa carruagem aberta que se aproximou, passando lentamente pela rua, estava sentada a visão encantadora da ópera, acompanhada da senhora mais jovem que tinha ocupado uma porção de seu camarote.</p>
+            <p>“Sua companhia também se veste muito bem”, disse o amigo que falara primeiro.</p>
+            <p>“Surpreendentemente”, disse o segundo; “ainda com um ar bastante brilhante, mas a arte faz maravilhas. Palavra de honra, ela parece melhor do que era em Paris cinco anos atrás. Uma mulher bonita ainda; — Não acha Froissart, digo, Simpson?”</p>
+            <p>“Ainda!”, eu disse, “e por que não estaria? Mas em comparação com a amiga ela é como um raio de luz da estrela matutina, um pirilampo para Antares.</p>
+            <p>“Ha! ha! ha! — ora Simpson, você tem um dom surpreendente em fazer descobertas, descobertas originais, quero dizer.” E aqui nos separamos, enquanto um do trio começou a cantarolar uma alegre canção de <em>vaudeville</em>, da qual eu peguei apenas algumas palavras:</p>
+            <p><em>“Ninon, Ninon, Ninon a bas”</em><br>
+            <em>“A bas Ninon De L’Enclos!”</em></p>
+
+            <p>Durante esta pequena cena, no entanto, uma coisa serviu muito bem para me consolar, apesar de alimentar a paixão pela qual eu estava sendo consumido. Na medida em que a carruagem de Madame Lalande passava pelo grupo, eu observei que ela me reconheceu; e mais do que isso, ela tinha me concedido com o mais seráfico de todos os sorrisos que se possa imaginar, sem marca equívoca de reconhecimento.</p>
+            <p>Quanto a uma apresentação, fui obrigado a abandonar toda a esperança até o momento em que Talbot pense ser adequado retornar do interior. Nesse meio tempo eu perseverantemente frequentei cada lugar respeitável de diversão pública; e, por fim, no teatro, onde a vi pela primeira vez, tive a suprema felicidade de encontrá-la, e de trocar olhares com ela mais uma vez. Isso não ocorreu, no entanto, antes de passarem quinze dias. Cada dia desse ínterim, eu havia perguntado por Talbot em seu hotel, e cada dia tinha me jogado em um espasmo de ira pelo eterno “Não voltou para casa ainda” de seu empregado.</p>
+
+            <p>Após a noite em questão, portanto, eu estava em uma condição pouco aquém da loucura. Haviam me dito que a Madame Lalande era uma parisiense recém vinda de Paris. Ela não poderia de repente voltar? Voltar antes do retorno de Talbot e assim eu perdê-la para sempre? O pensamento era terrível demais para suportar. Levando em conta que a minha felicidade futura estava em jogo, resolvi agir e tomar uma decisão viril. Em uma palavra, após o término da peça, eu segui a dama até a sua residência, anotei o endereço e na manhã seguinte enviei-lhe uma carta completa e elaborada onde eu expus tudo o que havia no meu coração.</p>
+
+            <p>Eu lhe falava ousadamente, livremente, em uma palavra, eu falava com paixão. Eu não escondi nada, nada, nem mesmo minhas fraquezas. Referi-me às circunstâncias românticas de nosso primeiro encontro, mesmo para os olhares que se passaram entre nós. Cheguei a dizer que eu tinha certeza de seu amor; eu ofereci essa garantia e minha própria intensidade de devoção como desculpas para minha conduta imperdoável. Como terceiro ponto, falei do meu medo de que ela pudesse sair da cidade antes que eu pudesse ter a oportunidade de uma apresentação formal. Concluí a epístola mais entusiástica que já escrevi, com uma declaração franca de minhas circunstâncias mundanas, de minha riqueza, e com uma oferta do meu coração e da minha mão.</p>
+            <p>Em uma expectativa agoniante, eu aguardava a resposta. E, depois do que parecia um século, ela finalmente veio.</p>
+
+            <p>Sim, realmente veio. Romântico como tudo isso possa parecer, eu realmente recebi uma carta de Madame Lalande — a bela, a rica, a idolatrada Madame Lalande. Seus olhos — seus magníficos olhos — não tinham desmentido seu nobre coração. Como uma verdadeira francesa que era, ela obedecera aos ditames honestos de sua razão — os generosos impulsos de sua natureza — desprezando os puritanismos convencionais do mundo. Ela não desprezara as minhas propostas. Ela não se abrigara em silêncio. Ela não tinha retornado a minha carta sem abrir. Ela até me enviou, em resposta, uma escrita por seus próprios dedos requintados. Escrita assim:</p>
+
+            <div class="letter-box">
+                <p>“Senhor Simpson, perdón-me mas eu ainda não ser capaz de escrever o língua desse país muito bem. Fazer apenas dias que eu chegar e eu ainda não ter tido a chance de estudos”</p>
+                <p>“Por esso desculpar-me pelos meus maneiras, eu agora ir falar esso, helas! Senhor Simpson eu acreditar que ser tudo verdade. Nón precisar eu falar mais nada? Helas! eu ainda não estar pronta pra falar” <a href="#fn1">[1]</a></p>
+            </div>
+
+            <p>Eu beijei um milhão de vezes esta nota nobre de espírito, e cometi, sem dúvida, por conta disso, um milhão de outras extravagâncias que já escapam da minha memória. Talbot ainda não tinha voltado. Por Deus! Se ele tivesse a menor idéia do sofrimento que sua ausência ocasionava ao seu amigo, poderia sua natureza simpatizante não vir imediatamente para meu alívio? Ainda assim, no entanto, ele não veio. Escrevi. Ele respondeu. Ele foi detido por negócios urgentes, mas em breve voltaria. Ele me implorou para não ser impaciente — a moderar meus arrebatamentos — ler livros suaves, beber nada mais forte do que um Hock — e me consolar com ajuda da filosofia. Que tolo! Se não podia vir ele mesmo, porque, em nome de cada coisa racional, ele não poderia ter me deixado uma carta de apresentação? Escrevi-lhe de novo, pedindo-lhe para enviar uma imediatamente. Minha carta foi devolvida por esse empregado, com a seguinte menção em lápis. O canalha tinha se juntado ao seu patrão no interior:</p>
+
+            <div class="letter-box">
+                <p>“Deixou S– ontem, para lugares desconhecidas — não disse onde, ou quando volta — achei melhor retornar a carta, conhecendo a sua caligrafia, e como você está sempre, mais ou menos, com pressa.</p>
+                <div class="letter-signature">
+                    Com os melhores cumprimentos,<br>
+                    STUBBS.
+                </div>
+            </div>
+
+            <p>Após isso, é desnecessário dizer que excomunguei ambos, mestre e valet, às divindades infernais. Mas havia pouca utilidade na raiva e nenhum consolo em toda a reclamação.</p>
+            <p>Porém eu ainda tinha mais um recurso em minha inclinação audaz. E que até agora, tinha me servido bem e que agora resolvi me aproveitar disso até o fim. Além disso, depois da correspondência que se passara entre nós, que ato de mera informalidade que eu poderia cometer que dentro dos limites que pudessem ser considerados como indecorosos por Madame Lalande? Desde o caso da carta eu tinha o hábito de observar a sua casa, e assim descobri que, perto do crepúsculo, era seu costume passear, acompanhada apenas por um negro de uniforme, em uma praça pública de fronte a sua casa. Aqui, no meio do arvoredo exuberante e sombreado, na penumbra cinzenta de uma doce noite de verão, esperei pela minha oportunidade e abordei-a. Para melhor enganar o servo que lhe acompanhava, eu fiz isso com um ar seguro de um velho conhecido familiar. Com uma presença de espírito verdadeiramente parisiense, ela aceitou a sugestão de pronto, e, para me cumprimentar, estendeu a mais encantadora das mãos. O servo prontamente se afastou, e agora, com o coração a ponto de transbordar, nós conversamos longamente e sem reservas sobre nosso amor.</p>
+
+            <p>Como Madame Lalande falava um Inglês ainda menos fluente do que aquele que havia escrito, nossa conversa era necessariamente em francês. E nesta língua tão doce, tão adaptada a paixão, eu soltei o entusiasmo impetuoso da minha natureza, e, com toda a eloquência que eu poderia ter, roguei-lhe em concordar com um casamento imediato.</p>
+            <p>Ela sorriu com a minha impaciência. Ela trouxe à tona a velha história do decoro — aquele monstrinho que dissuade muitos da felicidade até que a oportunidade para a felicidade passa e se vai para sempre. Eu, de maneira imprudente, tinha tornado conhecido entre os meus amigos, ela observou, que eu desejava conhecê-la — e que, portanto, eu ainda não a conhecia — mais uma vez, não havia possibilidade de ocultar a data da primeira vez que tomamos conhecimento um do outro. E então ela advertiu, com o rosto corado, para o quão recente era essa data. Casar-se imediatamente seria impróprio — seria indecoroso — seria exagerado. Tudo isso ela disse com um ar charmoso de ingenuidade que me extasiou ao mesmo tempo em que me entristeceu e me convenceu. Ela chegou ao ponto de acusar-me, rindo, de temeridade — de imprudência. Ela me lembrou de que eu realmente não sabia mesmo quem ela era, quais eram as suas perspectivas, suas conexões, sua posição na sociedade. Ela me implorou, mas com um suspiro, a reconsiderar a minha proposta, e denominou meu amor uma paixão — uma ilusão da juventude — a fantasia de um momento de criações infundadas e instáveis, fruto da imaginação mais do que do coração. Ela pronunciou essas palavras a medida que as sombras escuras do doce crepúsculo nos cercavam mais e mais; e, em seguida, com uma leve pressão da sua mão de fada, derrubou, em um único e doce instante, todo o tecido argumentativo que havia criado.</p>
+            <p>Eu respondi o melhor que pude, como só um verdadeiro amante poderia. Falei longa e demoradamente da minha devoção, da minha paixão, de sua beleza superior e da minha própria admiração entusiasmada. Em conclusão, eu permanecia com uma energia convincente, ciente sobre os perigos que envolvem o curso do amor — o curso do verdadeiro amor que nunca flui facilmente — e, portanto, me dei conta do perigo manifesto de tornar esse curso desnecessariamente longo.</p>
+
+            <p>Este último argumento parecia, finalmente, amenizar o rigor de sua determinação. Ela cedeu; mas havia ainda um obstáculo; o qual ela disse que se sentia segura de que eu não havia devidamente considerado. Este fora um ponto delicado para uma mulher exortar, especialmente assim, e para mencioná-lo viu que deveria fazer um sacrifício de seus sentimentos; ainda assim, para mim, todos os sacrifícios devem ser feitos. Ela fez alusão ao tema da idade. Se eu tinha consciência — se eu estava plenamente consciente da discrepância entre nós? De que a idade do marido deve superar por alguns anos, até mesmo por quinze ou vinte, a idade da esposa, é considerado pelo mundo como admissível, e, de fato, como até mesmo bom, mas ela sempre tinha mantido a crença de que os anos da mulher nunca devem exceder em número os do marido. A discrepância deste tipo não natural dava origem, com demasiada frequência, infelizmente, a uma vida de infelicidade. Agora ela estava consciente de que minha idade era não superior a vinte e dois; e eu, ao contrário, não estava ciente de que os anos da minha Eugenie se estendiam muito consideravelmente além desse montante.</p>
+
+            <p>Sobre tudo isto houve uma nobreza de alma — a dignidade da franqueza, que agradou-me, que encantou-me — que eternamente me prenderia. Eu mal podia conter o arrebatamento excessivo que me possuiu.</p>
+            <p>“Minha mais doce Eugenie”, eu exclamei, “o que é tudo isso sobre o qual você está discursando? Seus anos superam em alguma medida os meus próprios. Mas o que então? Os costumes do mundo são loucuras convencionais. Para aqueles que amam como nós, o que difere um ano de uma hora? Eu tenho vinte e dois, você diz, seguramente, na verdade, você pode considerar-me como tendo vinte e três. Agora você mesma, minha querida Eugenie, pode ter numerado não mais do que … do que … do que …”</p>
+            <p>Nesse ponto eu parei por um instante, na expectativa de que Madame Lalande me interrompesse fornecendo a sua verdadeira idade. Mas uma francesa raramente é direta e têm sempre, a título de resposta a uma consulta embaraçosa, algumas poucas e práticas respostas sobre ela própria. No presente caso, Eugenie, que em um momento passado parecia estar procurando alguma coisa em seu coração, por fim deixou cair sobre a grama uma miniatura, que eu imediatamente peguei e lhe entreguei.</p>
+            <p>“Fique com isso!”, ela disse, com um de seus sorrisos mais arrebatadores. “Mantenha-a por minha causa — por causa daquela a quem ela, de maneira muito lisonjeira, representa. Além disso, sobre a parte de trás da bugiganga, você pode descobrir, talvez, a própria informação que parece desejar. E agora, com certeza, está ficando um pouco escuro, mas você pode examiná-lo em seu lazer na parte da manhã. Nesse meio tempo, você será meu acompanhante para casa esta noite. Meus amigos estão organizando uma pequena reunião musical. Eu posso prometer-lhe, também, uma boa cantoria. Nós franceses não somos, nem de perto, tão meticulosos como vocês americanos, e não terei nenhuma dificuldade em levá-lo sob a guiza de um velho conhecido.”</p>
+            
+            <p>Com isso, ela pegou meu braço e eu a acompanhei para casa. A mansão era bastante fina, e, creio eu, decorada com bom gosto. Deste último ponto, no entanto, estou mal qualificado para julgar, pois estava escuro quando chegamos, e nas melhores mansões americanas, durante o calor do verão, sob as melhores iluminações raramente mostram-se dessa maneira, nesse que é o período mais agradável do dia. Cerca de uma hora depois da minha chegada, para ser preciso, um único lampião estava aceso na sala de visitas; e este cômodo, como eu pude perceber, foi organizado com bom gosto incomum e até mesmo um certo esplendor; mas os dois outros quartos do apartamento, um em que a companhia estava montada, mantiveram durante toda a noite uma penumbra muito agradável. Este é um costume bem pensado, dando à festa ao menos uma escolha de luz ou sombra. E esse foi um costume que nossos amigos do outro lado do oceano adotaram imediatamente.</p>
+            <p>A noite que se passou foi, sem dúvida, a mais deliciosa da minha vida. Madame Lalande não tinha superestimado as habilidades musicais de seus amigos; e o canto que eu ouvi aqui que eu nunca tinha ouvido falar em qualquer círculo privado fora de Viena. Os artistas instrumentais foram muitos e de talentos superiores. As vocalistas eram senhoras, principalmente, e nenhum indivíduo cantou menos do que bem. Finalmente, após uma chamada peremptória para “Madame Lalande,” ela se levantou de uma vez, sem afetação ou demora, a partir do <em>chaise longue</em> em que ela estava sentada ao meu lado, e, acompanhada por um ou dois cavalheiros e sua amiga da ópera, dirigiu-se ao piano na sala de visitas principal. Eu mesmo a teria escoltado, mas senti que, dadas as circunstâncias de minha apresentação à casa, era melhor eu permanecer despercebido onde eu estava. Eu estava, assim, privado do prazer de vê-la, embora não de ouvi-la cantar.</p>
+
+            <p>A impressão que ela produziu sobre a companhia parecia elétrica, mas o efeito sobre mim foi algo ainda maior. Eu não sei como descrevê-lo adequadamente. Ele surgiu em parte, sem dúvida, a partir do sentimento de amor com o qual eu estava imbuído; mas principalmente da minha convicção da extrema sensibilidade da cantora. Está além do alcance da arte agraciar o ar ou o recital com uma expressão mais apaixonada do que a dela. Seu canto do romance de Otelo — o tom o qual ela deu as palavras “<em>Sul mio sasso</em>“, nos Capulettos — está na minha memória ainda. Seus tons mais baixos foram absolutamente milagrosos. Sua voz alcançou três oitavas completas que se estenderam desde o contralto em ré até o soprano em ré maior, e, embora suficientemente poderosa para ter enchido o San Carlos, executadas com precisão minuciosa; cada dificuldade na composição das escalas ascendentes e descendentes do vocal, das cadências, do <em>fiorituri</em>. No final da <em>Somnambula</em>, ela provocou o efeito mais notável com as palavras:</p>
+            <p><em>Ah! non guinge uman pensiero</em><br>
+            <em>Al contento ond ‘io son piena.</em></p>
+            <p>Aqui, à imitação de Malibran, ela modificou a frase original de Bellini, de modo a deixar sua voz descer ao tenor em sol, quando, por uma transição rápida, ela atingiu o sol maior da escala de agudos, saltando sobre um intervalo de duas oitavas.</p>
+
+            <p>Ao levantar-se do piano depois destes milagres de execução vocal, ela retomou seu assento ao meu lado, foi quando eu expressei a ela, em termos do mais profundo entusiasmo, a minha alegria sobre a sua performance. Para minha surpresa eu não disse nada, e ainda assim fiquei mais sinceramente surpreso; por conta de uma certa fraqueza, ou melhor, uma certa indecisão tremula na voz diante de uma conversa normal que não havia me preparado para antecipar que, ao cantar, ela não iria isentar-se de qualquer habilidade notável.</p>
+
+            <p>Nossa conversa era agora longa, séria, ininterrupta e totalmente sem reservas. Ela me fez relatar muitas das passagens anteriores da minha vida e as escutou com atenção sem fôlego a cada palavra da narrativa. Eu não escondi nada — senti que eu tinha o direito de contar tudo — a partir de sua confidência afetiva. Incentivado por sua sinceridade sobre o ponto delicado de sua idade, eu entrei, com perfeita franqueza, não apenas em um detalhe de meus muitos vícios menores, mas fiz uma confissão integral das minhas enfermidades morais e até mesmo das físicas, cuja divulgação, em exigindo muito maior um grau de coragem, é uma prova de amor muito mais segura. Eu falei sobre minhas indiscrições na faculdade — nas minhas extravagâncias — minhas orgias — as minhas dívidas — meus flertes. Eu fui tão longe a ponto de falar de uma tosse um pouco agitada com a qual, durante um tempo, eu tinha sido acometido — também de um reumatismo crônico — de uma pontada de gota hereditária — e, em conclusão, da desagradável e inconveniente, mas até agora cuidadosamente escondida, fraqueza dos meus olhos.</p>
+
+            <p>“Sobre este último ponto”, disse Madame Lalande, rindo, “você tem sido certamente imprudente em confessar, pois, sem a confissão, eu tenho certeza que ninguém o teria acusado do crime. A propósito”, ela continuou, “você tem alguma lembrança”, e neste ponto eu percebi um certo rubor que, mesmo na penumbra do apartamento, tornou-se distintamente visível em sua face, “você tem alguma lembrança, <em>mon cher ami</em> deste pequeno assistente ocular, que agora pende em meu pescoço?”</p>
+            <p>Enquanto falava, ela girou em seus dedos óculos idênticos aos que tanto haviam me confundido durante a ópera.</p>
+            <p>“Muito bem! Lembro-me disso”, exclamei, pressionando apaixonadamente a mão delicada que oferecia os óculos para minha inspeção. Eles formavam um brinquedo complexo e magnífico, ricamente gravado e ornamentado, brilhando com joias, que, mesmo à luz deficiente, não pude deixar de perceber que eram de alto valor.</p>
+            <p>“<em>Eh bien! mon ami</em>” ela retomou com um certo ar impressionado que surpreendeu-me “<em>Eh bien! mon ami</em>, você implorou sinceramente por um favor a mim o qual você agradavelmente denominou como sendo inestimável. Você exigiu a minha mão para o dia de amanhã. Devo ceder a seus rogos e, posso acrescentar, aos argumentos do meu próprio coração, mas será que eu não tenho o direito de exigir de você um favor muito muito pequeno em troca?”</p>
+            <p>“Diga!” Exclamei com uma energia que quase tinha colocado sobre nós a observação da companhia, e fui contido apenas pela sua presença de atirar-me impetuosamente a seus pés. “Diga, minha amada, minha Eugenie, minha musa! Diga! Mas, por Deus! não precisa nem pedir, só fale!”</p>
+            <p>“Você deve dominar, então, <em>mon ami</em>“, disse ela, “para o bem de Eugenie, que você ama, esta pequena fraqueza que você finalmente confessou — essa fraqueza mais moral do que física — e que, deixe-me assegurá-lo, é tão imprópria a nobreza de sua verdadeira natureza — tão inconsistente com a candura usual de seu caráter — e que, se me permite um controle maior, seguramente envolverá você, mais cedo ou mais tarde, em alguma situação muito desagradável. Você deve dominá-la, por minha causa, esta afetação que leva você, como você mesmo reconhece, à negação tácita ou implícita de sua enfermidade na visão. Essa enfermidade que você praticamente nega ao se recusar a empregar os meios habituais para seu alívio. Você vai me entender quando eu disser, então, que eu quero que você passe a usar óculos; — só um momento — você já consentiu em usá-los por minha causa. Você deve aceitar o pequeno brinquedo que agora eu tenho em minhas mãos, e que, embora admirável como um auxílio à visão, não é, realmente, de muito imenso valor como uma jóia. Está percebendo que, com uma modificação insignificante, pode ser, portanto, adaptado para os olhos, sob a forma de óculos, ou usada no bolso do colete como um monóculo. Esse é o modo antigo, no entanto, e habitualmente, você já consentiu em usá-lo por minha causa”.</p>
+
+            <p>Este pedido — devo confessar? — me confundiu-me deveras. Mas a condição com a qual foi acompanhado resultou em uma certa hesitação, que, naturalmente, estava completamente fora de questão.</p>
+            <p>“Está feito!” Eu falei, com todo o entusiasmo que eu poderia reunir no momento. “Está feito — todos hão de concordar. Eu sacrifico cada sentimento meu por sua causa. Esta noite eu visto este monóculo, como um monóculo, e em cima do meu coração; mas chegando o amanhecer, em que me dará o prazer em lhe chamar de esposa, eu vou colocá-lo em cima do meu … do meu nariz, e então irei usá-lo, na forma menos romântica, e menos elegante, mas certamente na forma mais útil, a forma que você deseja”.</p>
+            <p>Nossa conversa agora se voltou para os detalhes de nossos preparativos para o dia seguinte. Talbot, eu soube com minha noiva, tinha acabado de chegar à cidade. Eu estava indo vê-lo de uma vez e também procurava por uma carruagem. A recepção dificilmente termina antes das duas; e por esta hora o veículo era para estar à porta, quando, na confusão ocasionada pela saída da companhia, Madame L. poderia facilmente entrar sem ser observada. Iríamos então a uma paróquia, onde um padre estaria nos esperando; casar, deixar Talbot, e proceder em uma pequena viagem para o leste, deixando o mundo moderno em casa para fazer quaisquer observações sobre o assunto que acharem melhores.</p>
+            <p>Tendo planejado tudo isso, eu imediatamente me despedi e fui em busca de Talbot, mas, no caminho, eu não poderia abster-me de parar em um hotel com a finalidade de inspecionar a miniatura; e isso eu fiz com a poderosa ajuda dos óculos. O semblante era insuperavelmente lindo! Aqueles grandes olhos luminosos! Aquele nariz grego orgulhoso! Aqueles cachos escuros exuberantes! “Ah!”, disse eu, exultando a mim mesmo, “esta é realmente a imagem da minha amada!”. Virei o inverso e descobriu as palavras: “Eugenie Lalande — idade: vinte e sete anos e sete meses”.</p>
+
+            <p>Eu encontrei Talbot em casa e contei de uma só vez para familiarizá-lo com a minha boa sorte. Ele professou admiração excessiva, é claro, mas me felicitou muito cordialmente, e ofereceu toda a assistência que pudesse dar. Em uma palavra, realizamos o nosso arranjo inicial em todos os detalhes, e, às duas da manhã, apenas dez minutos após a cerimônia, eu me encontrava em uma carruagem estreita com Madame Lalande — com a Sra. Simpson, devo dizer — conduzida a uma grande velocidade para fora da cidade, em direção nordeste pelo Norte, pelo meio-norte.</p>
+            <p>Havia sido determinado a nós por Talbot, que, como estávamos acordados a noite toda, deveríamos fazer a nossa primeira parada em C–, uma vila a cerca de trinta quilômetros da cidade e lá tomar um café da manhã e ter algum repouso antes de prosseguir em nossa rota. As quatro precisamente, portanto, a carruagem parou na porta da entrada principal. Eu auxiliei minha esposa adorada a sair e pedi imediatamente o café da manhã. Nesse meio tempo, fomos levados a uma pequena sala de estar, onde nos sentamos.</p>
+            <p>Já era quase, senão completamente, dia claro, e, enquanto eu olhava extasiado, para o anjo ao meu lado, uma ideia singular surgiu repentinamente na minha cabeça: que este era de fato o primeiro momento desde a minha familiaridade com a beleza célebre de Madame Lalande que eu finalmente desfrutava de uma inspeção de perto de sua beleza à luz do dia.</p>
+            <p>“E agora, <em>mon ami</em>“, disse ela, pegando a minha mão, e assim interrompendo esta corrente de reflexões “e agora, <em>mon cher ami</em>, uma vez que estamos, que somos indissoluvelmente um — uma vez que eu tenha me rendido aos seus rogos apaixonados e realizado a minha parte no nosso acordo — presumo que não me esqueci que você também tem um pequeno favor a me fazer — uma pequena promessa que é a sua intenção de manter. Ah! Deixe-me ver! Deixe-me lembrar! Sim me lembro facilmente das palavras exatas da sua querida promessa feita para Eugenie na noite passada. Ouço! Você falou assim: ‘Está feito — concordo alegremente! Sacrifico cada sentimento meu por sua causa. Esta noite eu visto este monóculo, como um monóculo, e em cima do meu coração; mas chegando ao amanhecer, que me dará o prazer em lhe chamar de esposa, eu vou colocá-lo em cima do meu … do meu nariz, e então irei usá-lo, na forma menos romântica, e menos elegante, mas certamente na forma mais útil, a forma que você deseja’, estas foram as palavras exatas, meu amado marido, não foram? ”</p>
+            <p>“Foram”, eu disse, “Você tem uma excelente memória, e com certeza, minha linda Eugenie, não há nenhuma disposição da minha parte em evitar o cumprimento da promessa trivial que elas implicam. Veja! Contemple! Eles são belos não são?” E assim, após ter ajeitado as lentes na forma comum de um par de óculos, eu coloquei-os cuidadosamente em sua posição correta; enquanto Madame Simpson, ajustando seu chapéu e cruzando os braços, sentou-se em sua cadeira, de forma um tanto rígida e empertigada, e de fato, em uma posição um pouco indigna.</p>
+
+            <p>“Santa Mãe de Deus!”, exclamei quase no mesmo instante em que o aro dos óculos havia se estabelecido em cima de meu nariz “Santa Mãe de Deus! Porque, o que pode ter de errado com estes óculos?” E rapidamente tirei-os, limpei-os cuidadosamente com um lenço de seda, e ajustei-os novamente.</p>
+            <p>Mas se em primeira instância havia ocorrido algo que me ocasionou surpresa, num segundo momento, essa surpresa tornou-se espanto; e esse espanto foi profundo — extremo -de fato eu posso dizer que foi horrível. O que, em nome de tudo o que é hediondo, que isso significa? Eu poderia acreditar nos meus olhos? Poderia? Essa era a questão. O que era — o que era — o que era isso vermelho? E o que eram aquelas — aquelas — aquelas rugas, sobre o rosto de Eugenie Lalande? E oh! Júpiter, e cada um dos deuses e deusas, pequenas e grandes! Que-que-que-que havia acontecido com seus dentes? Joguei os óculos violentamente no chão, e, de sobressalto, permaneci em pé no meio do cômodo, confrontando a senhora Simpson com os braços fixos e arqueados, sorrindo e espumando, mas, ao mesmo tempo, sem palavras, aterrorizado e com raiva.</p>
+
+            <p>Como eu já disse Madame Eugenie Lalande — isto é, Simpson — falava inglês, muito pouco melhor do que escrevia, e por esta razão ela muito apropriadamente nunca tentava falá-lo em ocasiões normais. Mas a raiva leva uma senhora ao extremo; e no presente levou a senhora Simpson ao extremo muito extraordinário de tentar manter uma conversa numa língua que ela não entende totalmente.</p>
+
+            <p>“Bien, Monsieur”, disse ela, depois de me inspecionar, em grande espanto evidente, por alguns momentos — “Bón, Senhor? e agorra? qual ser o problema agorra? Ser a dança dos santos que você ter? Si não ser eu, ser você que comprar gato por lebre?”</p>
+            <p>“Sua desgraçada!” Eu disse, prendendo a minha respiração “sua, sua, sua bruxa velha!”</p>
+            <p>“Velia? Nón. Eu não ser velha nón. Eu nón ter mais do que oitenta e dos”</p>
+            <p>“Oitenta e dois!” Eu gritei, cambaleando contra a parede “oitenta e dois mil babuínos! A miniatura dizia vinte e sete anos e sete meses!”.</p>
+            <p>“Clarrro! Isso ser verdadeirro! Mas aquele retrato ter mais de cinquenta e cinco anos. Ser a época em que eu casar com meu segundo marrido, Senhor Lalande, naquela tempo eu ter feito o retrato para meu filha pelo meu primeiro marrido, Senhor Moissart”.</p>
+            <p>“Moissart!” Eu disse.</p>
+            <p>“Sim, Moissart”, disse ela, imitando a minha pronúncia, o que, para falar a verdade, não era uma das melhores, — “o que foi? o que ter o senhor Moissart?”</p>
+            <p>“Nada, sua velha assustadora — Eu não sei absolutamente nada sobre ele! Eu apenas tive um ancestral com esse mesmo nome, muito tempo atrás”</p>
+            <p>“Essa nome! O que voce ter a dizer sobre essa nome? Eu ter esse nome, e Voissart também ter esse nome. Meu filha, Mademoiselle Moissart, ela casar com o senhor Voissart …. e ser dois nomes respetáveis”</p>
+            <p>“Moissart?”, exclamei, “e Voissart! Isso que você quer dizer?”.</p>
+            <p>“Isso eu dizer! Moissart e Voissart, e se o senhor entender algo, eu dizer Croissart e Froissart também, e devo dizer, acho apropriado dizer. A filha do meu filha, Mademoiselle Voissart casar com o senhor Croissart e entón, de novo, meu bisneta, Mademoiselle Croissart casar com o senhor Croissart e entoa o filha de meu bisneta, Mademoiselle Croissart, casar com o senhor Froissart … e eu acreditar que você falar que estas nón són nomes respeitável.”</p>
+            <p>“Froissart!”, eu disse, começando a desmaiar, “ora, você não que dizer Moissart, e Voissart, e Croissart, e Froissart?”.</p>
+            <p>“Sim”, respondeu ela, inclinando-se totalmente para trás em sua cadeira, e estendendo seus membros inferiores por um bom tempo; “Sí, Moissart, e Voissart, e Croissart, e Froissart. Mas o senhor Froissart ele ser aquilo que vocês chamar de grande bobo — ele erra muito idiota como você — ele deixar a bela França por essa estupida Amérrica — e quando chegar aqui ficar mais estúpido e ter um estupido filho, que eu ouvir um pouco sobre mas não ter tido o prazer de conhecer — nón apenas mim mas tambíem meu companhia, Madame Stephanie Lalande. O nome dele ser Napoleão Bonaparte Froissart, e eu acreditar que você dizer que esse ser um nome não muito bom”.</p>
+
+            <p>Ou a duração ou a natureza desta conversa tiveram o efeito de carregar a senhora Simpson à uma paixão muito extraordinária que quando ela terminou, com grande trabalho, se levantou de sua cadeira, como se alguém a tivesse enfeitiçado, deixando cair no chão um universo inteiro de renda enquanto ela se recompunha. Uma vez sobre seus pés, ela rangeu suas gengivas, brandiu os braços no ar, arregaçou as mangas, sacudiu o punho na minha cara e concluiu sua performance arrancando o chapéu da cabeça, e com ele uma imensa peruca do mais valioso e bonito cabelo preto, que ela jogou no chão com um grito e então pisoteou-a e dançou um fandango sobre ela, num êxtase absoluto misturado a uma agonia raivosa.</p>
+            <p>Enquanto isso eu afundei horrorizado na cadeira que ela tinha desocupado. “Moissart e Voissart!” Eu repeti, pensativo, enquanto ela cortava uma de suas asas de pombo, e continuei “Croissart e Froissart!”, enquanto ela completou outra — “Moissart e Voissart e Croissart e Napoleão Bonaparte Froissart! Porque, sua inefável e velha cobra, sou eu, sou eu, você ouviu isso? Sou eu”, nesse ponto gritei o mais alto que pude: “Sou eu! Eu sou Napoleão Bonaparte Froissart! E se eu não tivesse me casado com a minha tataravó, eu desejaria ser eternamente confundido!”</p>
+
+            <p>Madame Eugenie Lalande, quase-Simpson e anteriormente Moissart, era, de fato, minha tataravó. Em sua juventude, ela tinha sido bonita, e mesmo aos oitenta e dois, manteve a altura majestosa, o contorno escultural da cabeça, os belos olhos e o nariz grego de sua infância. Com a ajuda disso, de pó de arroz, de <em>rouge</em>, de cabelo falso, dentes falsos, curvas falsas, bem como das modistas mais hábeis de Paris, ela conseguiu manter uma base respeitável entre as belezas <em>en passees peu</em> da metrópole francesa. A este respeito, na verdade, ela poderia ter sido considerada como pouco menos do que igual a célebre Ninon De L’Enclos.</p>
+            <p>Ela era imensamente rica, e sendo deixada pela segunda vez viúva e sem filhos, ela ficou sabendo da minha existência na América e, com o propósito de me fazer seu herdeiro, fez uma visita aos Estados Unidos em companhia de uma parente distante e extremamente adorável de seu segundo marido — Madame Stephanie Lalande.</p>
+            <p>Na ópera, a atenção da minha tataravó foi pega pela minha atenção; e, me observado através de seus óculos, ela foi atingida por uma certa semelhança familiar. Assim interessada, e sabendo que o herdeiro que ela buscava estava na cidade, ela fez perguntas ao seu parceiro a meu respeito. O cavalheiro que a acompanhava sabia sobre a minha pessoa e lhe disse quem eu era. As informações assim obtidas a induziram a renovar o seu escrutínio; e este escrutínio foi que me encorajou a me comportar da forma absurda já detalhada. Ela devolveu minha reverência, no entanto, com a impressão de que, por algum acontecimento estranho, eu tinha descoberto sua identidade. Quando, enganado por minha fraqueza de visão, e as artes da moda no que diz respeito à idade e encantos da mulher estranha, eu exigi com tanto entusiasmo de Talbot quem ela era, ele concluiu que eu queria saber sobre a bela jovem, de forma rotineira, tendo assim me informado, com verdade perfeita, que ela era “a viúva célebre, Madame Lalande.”</p>
+            <p>Na rua, na manhã seguinte, minha tataravó encontrou Talbot, um velho conhecido de Paris e a conversa, muito naturalmente, recaiu sobre mim. Minhas deficiências de visão foram então explicadas, pois estas eram notórias, embora eu fosse totalmente ignorante de sua notoriedade, e a minha boa parente idosa descobriu, para seu desgosto, que tinha sido enganada ao me supor consciente de sua identidade e que eu estava apenas fazendo papel de bobo em tornar público o meu amor, em um teatro, para uma velha mulher desconhecida. Como um modo de me punir por esta imprudência, ela inventou com Talbot uma história. Ele foi propositadamente mantido fora do meu alcance de maneira a evitar me apresentar. Meus questionamentos na rua sobre “a encantadora viúva, Madame Lalande” deveriam se referir à senhora mais jovem, é claro, e, assim, a conversa com os três cavalheiros que eu encontrei logo após sair do hotel de Talbot foi facilmente explicada como também a sua alusão a Ninon De L’Enclos. Eu não tive nenhuma oportunidade de ver Madame Lalande de perto durante a luz do dia; e, em seu sarau musical, minha fraqueza boba ao recusar o auxílio de óculos efetivamente impediu-me de descobrir sua idade. Quando “Madame Lalande” foi chamada para cantar, foi destinada a senhora mais jovem, e foi ela quem se levantou para obedecer ao chamado, minha tataravó, para promover o engano, surgiu no mesmo momento e a acompanhou ao piano na sala de visitas principal. Tivesse eu decidido acompanhá-la até lá, o plano seria me sugerir ficar onde eu estava, mas meu próprio ponto de vista prudente tornou desnecessário. As músicas que eu tanto admirava, e que assim confirmaram minha impressão da juventude da minha amante, foram executadas por Madame Stephanie Lalande. Os óculos foram postos para adicionar uma prova extra ao boato — um cutucão na epigrama do engano. Sua apresentação proporcionou uma oportunidade para a palestra sobre afetação com o qual eu estava tão especialmente edificado. É quase supérfluo acrescentar que os óculos do instrumento, como a usados pela velha senhora, tinham sido trocados por ela por um par melhor adaptado para os meus anos. Eles me convinham, de fato, a um T.</p>
+
+            <p>O clérigo, que apenas fingia amarrar o nó fatal, era um alegre companheiro de Talbot, e não um padre. Ele era um excelente condutor, no entanto; e tendo tirado o batina para colocar um sobretudo, ele conduziu a carruagem que levava o “casal feliz” para fora da cidade. Talbot tomou um assento ao seu lado. Os dois canalhas foram, assim, “com toda a pressa do mundo”, e através de uma janela semiaberta da sala de trás da pousada, se divertiam, rindo com o desenlace do drama. Eu acredito que já deva ser hora de chama-los para fora.</p>
+            <p>No entanto, eu não sou o marido da minha tataravó, e esta é uma ponderação que me proporciona alívio infinito, porém eu sou o marido de Madame Lalande — de Madame Stephanie Lalande — com quem a minha boa e velha tataravó, além de tornar-me o seu único herdeiro quando ela morrer — se ela algum dia assim fizer — se deu ao trabalho de me arrumar um par. Concluindo: estou farto para sempre das cartas de amor e jamais serei visto sem óculos.</p>
+            <p style="text-align: center; margin-top: 40px; font-weight: bold;">FIM</p>
+        </article>
+
+        <div class="footnotes">
+            <p id="fn1"><a href="#fn1">[1]</a> NT: no original temos um sotaque indecifrável que o torna singular, desse modo resolvi aqui usar um estilo “ingênuo” no modo de falar errado da personagem, indicando apenas leve e jocosamente que ela não domina o idioma do texto.</p>
+        </div>
+
+        <footer>
+            <a href="index.html" class="back-link">Voltar ao Índice</a>
+        </footer>
+    </div>
+
+</body>
+</html>

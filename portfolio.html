@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional portfolio of Paulo Guilherme Pilotti Duarte. Senior Tech Writer." />
+    <title>Portfolio — Paulo Guilherme Pilotti Duarte</title>
+    <style>
+        /* --- CONFIGURAÇÕES GERAIS E VARIÁVEIS (DARK MODE DEFAULT) --- */
+        :root {
+            /* Dark Theme Colors */
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --heading-color: #ffffff; /* Cor específica para títulos */
+            --accent-color: #82aaff;
+            --live-color: #c3e88d;
+            --live-bg: rgba(195, 232, 141, 0.1);
+            --live-border: rgba(195, 232, 141, 0.3);
+            --border-color: #333;
+            --hover-bg: #2c2c2c;
+            
+            --font-main: 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: 'SFMono-Regular', Consolas, monospace;
+        }
+
+        /* --- LIGHT MODE VARIABLES (SOFT THEME) --- */
+        body.light-mode {
+            /* Soft Light Theme Colors */
+            --bg-color: #f0f2f5;       /* Cinza suave, não branco */
+            --card-bg: #ffffff;       /* Branco para os cards */
+            --text-main: #374151;     /* Cinza escuro para texto */
+            --text-muted: #6b7280;    /* Cinza médio */
+            --heading-color: #111827; /* Quase preto para títulos */
+            --accent-color: #0369a1;  /* Azul mais forte para contraste no claro */
+            --live-color: #15803d;    /* Verde escuro para contraste */
+            --live-bg: #dcfce7;
+            --live-border: #86efac;
+            --border-color: #e5e7eb;  /* Bordas sutis */
+            --hover-bg: #f9fafb;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 850px;
+            width: 100%;
+        }
+
+        /* --- NAVEGAÇÃO E BOTÃO DE TEMA --- */
+        .nav-bar { 
+            margin-bottom: 40px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: opacity 0.2s;
+            font-weight: 600;
+        }
+        .back-link:hover { opacity: 0.8; }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-family: var(--font-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            background-color: var(--card-bg);
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* --- CABEÇALHO --- */
+        header { margin-bottom: 50px; border-bottom: 1px solid var(--border-color); padding-bottom: 30px; }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--heading-color); /* Usando variável agora */
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            background-color: var(--card-bg);
+            font-weight: 500;
+        }
+
+        .contact-links a:hover {
+            background-color: var(--accent-color);
+            color: #fff; /* Texto branco no hover */
+            border-color: var(--accent-color);
+        }
+
+        /* --- SECÇÕES --- */
+        section { margin-bottom: 60px; }
+
+        h2 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 15px;
+        }
+
+        /* --- EXPERIÊNCIA --- */
+        .experience-item {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Sombra suave */
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--heading-color); /* Usando variável */
+        }
+
+        .company { color: var(--accent-color); font-weight: 400; }
+        
+        .date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        .experience-item ul {
+            list-style-type: none;
+            margin-top: 15px;
+        }
+
+        .experience-item li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .experience-item li::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* --- SKILLS GRID --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .skill-tag {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 10px 15px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* --- PROJETOS --- */
+        .project-item {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-item:last-child {
+            border-bottom: none;
+        }
+        
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 5px;
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .project-title a {
+            color: var(--heading-color);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent-color);
+            transition: color 0.2s;
+        }
+
+        .project-title a:hover {
+            color: var(--accent-color);
+            border-bottom-style: solid;
+        }
+
+        .live-link {
+            font-size: 0.8rem;
+            background-color: var(--live-bg);
+            color: var(--live-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+            border: 1px solid var(--live-border);
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+
+        .live-link:hover {
+            opacity: 0.8;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 5px;
+        }
+
+        /* --- RODAPÉ --- */
+        footer {
+            margin-top: 80px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        footer a { color: var(--text-muted); text-decoration: none; }
+        footer a:hover { color: var(--accent-color); }
+
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .job-header { flex-direction: column; gap: 5px; }
+            .contact-links { flex-direction: column; }
+            .contact-links a { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-bar">
+            <a href="index.html" class="back-link">← Back to Dashboard</a>
+            
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+                <span>☀️</span> Light Mode
+            </button>
+        </div>
+
+        <header>
+            <h1>Paulo Guilherme Pilotti Duarte</h1>
+            <p class="subtitle">Senior Technical Writer</p>
+            
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/paulogpd/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/mtgr18977" target="_blank">GitHub</a>
+                <a href="mailto:seu-email@exemplo.com">Email</a>
+            </div>
+        </header>
+
+        <section>
+            <h2>Professional Summary</h2>
+            <p>Senior Tech Writer with solid experience in technical documentation aimed at backend (Java) and frontend (React) development teams. Practical experience in production, review, and architecture of materials for web applications, APIs, DevOps platforms, and complex products, working in agile technology teams. Specialist in docs-as-code (Git, Markdown, Docusaurus), with expertise in Scrum and Kanban methodologies.</p>
+        </section>
+
+        <section>
+            <h2>Experience</h2>
+
+            <div class="experience-item">
+                <div class="job-header">
+                    <span class="job-title">Technical Writer <span class="company">@ ABC Fitness</span></span>
+                    <span class="date">Jan 2026 – Present</span>
+                </div>
+                <ul>
+                    <li>Creating high-quality technical documentation for developer audiences.</li>
+                    <li>Collaborating with product and engineering teams to ensure accuracy and clarity.</li>
+                    <li>Managing documentation lifecycles in an agile environment.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-header">
+                    <span class="job-title">Technical Writer <span class="company">@ WriteChoice</span></span>
+                    <span class="date">Sep 2025 – Dec 2025</span>
+                </div>
+                <ul>
+                    <li>Authored technical documentation and developer guides, consistently meeting project deadlines while maintaining quality standards.</li>
+                    <li>Established quality assurance processes for technical content validation and accuracy verification.</li>
+                    <li>Facilitated cross-team collaboration through clear documentation and knowledge transfer initiatives.</li>
+                    <li>Optimized documentation workflows through implementation of industry-standard tools and collaborative practices.</li>
+                    <li>Supported team development through mentorship on documentation best practices and professional standards.</li>
+                    <li>Contributed to professional development initiatives through technical workshops on documentation methodology.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-header">
+                    <span class="job-title">Technical Writing Specialist <span class="company">@ senhasegura</span></span>
+                    <span class="date">Jun 2023 – Aug 2025</span>
+                </div>
+                <ul>
+                    <li>Structured technical documentation for Edge Computing and Serverless platforms, integrated into global and agile processes.</li>
+                    <li>Created content for APIs, SDKs, user guides, and bilingual technical materials.</li>
+                    <li>Developed UX Writing frameworks and standardized documentary language.</li>
+                    <li>Created AI tools to automate the processes of technical documentation.</li>
+                    <li>Improved the time-to-value for the DevOps Secret Manager documentation by approximately 50%.</li>
+                    <li>Improved the time to write reference documentation by approximately 75%.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-header">
+                    <span class="job-title">Technical Writer <span class="company">@ Azion</span></span>
+                    <span class="date">Jul 2022 – May 2023</span>
+                </div>
+                <ul>
+                    <li>Produced and reviewed technical documentation in collaborative environments.</li>
+                    <li>Supported backend and frontend engineering projects, including Java and React-related content.</li>
+                </ul>
+            </div>
+
+        </section>
+
+        <section>
+            <h2>Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-tag">Docs-as-Code</div>
+                <div class="skill-tag">API Documentation</div>
+                <div class="skill-tag">Git & GitHub</div>
+                <div class="skill-tag">Markdown</div>
+                <div class="skill-tag">Docusaurus</div>
+                <div class="skill-tag">Java (Backend)</div>
+                <div class="skill-tag">React (Frontend)</div>
+                <div class="skill-tag">Scrum & Kanban</div>
+                <div class="skill-tag">UX Writing</div>
+                <div class="skill-tag">CI/CD Pipelines</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Selected Projects</h2>
+            
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">
+                        <a href="api-rate-limiting.html">API Rate Limiting Guide ↗</a>
+                    </div>
+                </div>
+                <div class="project-desc">
+                    A comprehensive technical guide covering rate limiting strategies (Token Bucket, Leaky Bucket), implementation patterns in Node.js, and best practices for developer platforms.
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">
+                        <a href="https://github.com/mtgr18977" target="_blank">Parecer Total</a>
+                    </div>
+                    <a href="https://parecer-total.vercel.app/" target="_blank" class="live-link">Live Demo ●</a>
+                </div>
+                <div class="project-desc">
+                    Descriptive assessment generator compliant with LDB standards, designed to help teachers automate the evaluation process.
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">
+                        <a href="https://github.com/mtgr18977/embaralha-palavras-web" target="_blank">Scrumble Words</a>
+                    </div>
+                    <a href="https://scramble-words.vercel.app/" target="_blank" class="live-link">Live Demo ●</a>
+                </div>
+                <div class="project-desc">
+                    Classic word-scramble game ported to the web, originally developed in Java.
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">
+                        <a href="https://github.com/mtgr18977/jogos_simples" target="_blank">Simple Games</a>
+                    </div>
+                    <a href="https://paulogpd.com.br/jogos/" target="_blank" class="live-link">Live Demo ●</a>
+                </div>
+                <div class="project-desc">
+                    Collection of classic games built with JavaScript.
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">
+                        <a href="https://github.com/mtgr18977/sassamaru-br-25" target="_blank">Sassamaru-25-BR</a>
+                    </div>
+                </div>
+                <div class="project-desc">
+                    Hybrid football match prediction model combining the statistical power of Poisson distribution with dynamic Elo rating adjustments.
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">
+                        <a href="https://github.com/mtgr18977/sassamaru-25-standalone" target="_blank">Sassamaru-25 Standalone</a>
+                    </div>
+                </div>
+                <div class="project-desc">
+                    Standalone version of the Brazilian Championship results predictor using a hybrid Poisson + Elo model, with recent form adjustments.
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">
+                        <a href="https://github.com/mtgr18977/SF6-Companion-App" target="_blank">Street Fighter 6 | Companion App</a>
+                    </div>
+                </div>
+                <div class="project-desc">
+                    Android app (.apk) to help new players on Street Fighter 6 understand community terminology, access frame data, and combo lists.
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">
+                        <a href="https://github.com/mtgr18977/FerramentasSimplesWeb" target="_blank">Simple Web Tools</a>
+                    </div>
+                </div>
+                <div class="project-desc">
+                    Suite of productivity tools for daily use like a markdown editor/viewer and note-taking mini-app.
+                </div>
+            </div>
+
+        </section>
+
+        <section>
+            <h2>Education</h2>
+            <div class="experience-item" style="padding: 15px;">
+                <div style="font-weight: 600; color: var(--heading-color);">Bachelor's in English Language and Literature</div>
+                <div style="color: var(--text-muted); font-size: 0.9rem;">UFRGS, 2016</div>
+            </div>
+            <div class="experience-item" style="padding: 15px;">
+                <div style="font-weight: 600; color: var(--heading-color);">Postgraduate in Computer Science</div>
+                <div style="color: var(--text-muted); font-size: 0.9rem;">UNOPAR, 2023</div>
+            </div>
+            <div class="experience-item" style="padding: 15px;">
+                <div style="font-weight: 600; color: var(--heading-color);">Fundamentals of Statistics, R and Machine Learning</div>
+                <div style="color: var(--text-muted); font-size: 0.9rem;">USP, 2024</div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 Paulo Guilherme Pilotti Duarte</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        // Verifica se há preferência salva
+        const savedTheme = localStorage.getItem('theme');
+        
+        if (savedTheme === 'light') {
+            body.classList.add('light-mode');
+            updateBtnText(true);
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            
+            // Salva a preferência
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            updateBtnText(isLight);
+        });
+
+        function updateBtnText(isLight) {
+            toggleBtn.innerHTML = isLight ? '<span>🌙</span> Dark Mode' : '<span>☀️</span> Light Mode';
+        }
+    </script>
+
+</body>
+</html>

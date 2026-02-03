@@ -1,0 +1,930 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Complete guide for Technical Writers - references, studies and resources on how to become a Technical Writer." />
+<meta name="author" content="Paulo Guilherme Pilotti Duarte" />
+<meta property="og:title" content="TW - References and studies — Paulo Guilherme Pilotti Duarte" />
+<meta property="og:description" content="Complete guide for Technical Writers - references, studies and resources to become a Technical Writer." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:card" content="summary" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌨️</text></svg>" />
+<title>TW - References and studies — Paulo Guilherme Pilotti Duarte</title>
+<style>
+	:root{
+		--color-primary: #2563eb;
+		--color-primary-dark: #1d4ed8;
+		--color-primary-light: #3b82f6;
+		--color-accent: #10b981;
+		--color-accent-dark: #059669;
+		--color-warning: #f59e0b;
+		--color-text: #1f2937;
+		--color-text-muted: #6b7280;
+		--color-text-light: #9ca3af;
+		--color-bg: #ffffff;
+		--color-bg-alt: #f9fafb;
+		--color-bg-card: #ffffff;
+		--color-border: #e5e7eb;
+		--color-border-light: #f3f4f6;
+		--color-focus: #3b82f6;
+		--color-code-bg: #f3f4f6;
+		--space-xs: 0.25rem;
+		--space-sm: 0.5rem;
+		--space-md: 1rem;
+		--space-lg: 1.5rem;
+		--space-xl: 2rem;
+		--space-2xl: 3rem;
+		--space-3xl: 4rem;
+		--font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+		--font-mono: ui-monospace, 'SFMono-Regular', 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+		--font-size-xs: 0.875rem;
+		--font-size-sm: 0.95rem;
+		--font-size-base: 1.0625rem;
+		--font-size-lg: 1.375rem;
+		--font-size-xl: 1.875rem;
+		--font-size-2xl: 2.25rem;
+		--line-height-tight: 1.3;
+		--line-height-normal: 1.6;
+		--line-height-relaxed: 1.75;
+		--transition-fast: 120ms cubic-bezier(0.4, 0, 0.2, 1);
+		--transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+		--transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+		--radius-sm: 6px;
+		--radius-md: 10px;
+		--radius-lg: 12px;
+		--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+		--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+		--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+		--shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+	}
+
+	@media (prefers-color-scheme: dark){
+		:root{
+			--color-primary: #60a5fa;
+			--color-primary-dark: #3b82f6;
+			--color-primary-light: #93c5fd;
+			--color-accent: #34d399;
+			--color-accent-dark: #10b981;
+			--color-warning: #fbbf24;
+			--color-text: #f9fafb;
+			--color-text-muted: #d1d5db;
+			--color-text-light: #9ca3af;
+			--color-bg: #0f172a;
+			--color-bg-alt: #1e293b;
+			--color-bg-card: #1e293b;
+			--color-border: #334155;
+			--color-border-light: #475569;
+			--color-focus: #60a5fa;
+			--color-code-bg: #334155;
+		}
+	}
+
+	*,*::before,*::after{box-sizing: border-box;}
+
+	body{
+		margin:0;
+		font-family: var(--font-sans);
+		background: var(--color-bg);
+		color: var(--color-text);
+		line-height: var(--line-height-normal);
+		transition: background-color var(--transition-normal), color var(--transition-normal);
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
+	}
+
+	.container{
+		max-width: 900px;
+		margin: clamp(1.25rem, 5vw, 2.5rem) auto;
+		padding: 0 clamp(1rem, 4vw, 1.25rem);
+	}
+
+	.skip-link{
+		position: absolute;
+		top: -40px;
+		left: 0;
+		background: var(--color-primary);
+		color: white;
+		padding: var(--space-sm) var(--space-md);
+		text-decoration: none;
+		z-index: 100;
+		font-weight: 600;
+		border-radius: 0 0 var(--radius-sm) 0;
+		transition: top var(--transition-fast);
+	}
+
+	.skip-link:focus-visible{
+		top: 0;
+		outline: 2px solid white;
+		outline-offset: -4px;
+	}
+
+	.back-link{
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-xs);
+		margin-bottom: var(--space-2xl);
+		color: var(--color-text-muted);
+		text-decoration: none;
+		font-size: var(--font-size-sm);
+		font-weight: 500;
+		transition: all var(--transition-fast);
+		padding: var(--space-xs) var(--space-sm);
+		border-radius: var(--radius-sm);
+	}
+
+	.back-link:hover{
+		color: var(--color-primary);
+		background: var(--color-bg-alt);
+		transform: translateX(-4px);
+	}
+
+	h1{
+		font-size: clamp(1.75rem, 5vw, var(--font-size-2xl));
+		margin: 0 0 var(--space-sm) 0;
+		line-height: var(--line-height-tight);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	h2{
+		font-size: var(--font-size-lg);
+		margin: var(--space-3xl) 0 var(--space-lg) 0;
+		line-height: var(--line-height-tight);
+		font-weight: 700;
+		color: var(--color-text);
+		padding-bottom: var(--space-sm);
+		border-bottom: 3px solid var(--color-primary);
+		position: relative;
+	}
+
+	h2::before{
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: -3px;
+		width: 60px;
+		height: 3px;
+		background: var(--color-accent);
+	}
+
+	h3{
+		font-size: var(--font-size-base);
+		margin: var(--space-xl) 0 var(--space-md) 0;
+		font-weight: 700;
+		color: var(--color-primary);
+		display: flex;
+		align-items: center;
+		gap: var(--space-sm);
+	}
+
+	h3::before{
+		content: '';
+		width: 4px;
+		height: 1.2em;
+		background: var(--color-accent);
+		border-radius: 2px;
+	}
+
+	.sub{
+		color: var(--color-text-muted);
+		font-size: var(--font-size-lg);
+		margin-bottom: var(--space-2xl);
+		font-weight: 400;
+		line-height: var(--line-height-relaxed);
+	}
+
+	p{
+		line-height: var(--line-height-relaxed);
+		margin: var(--space-sm) 0;
+	}
+
+	strong{
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	em{
+		font-style: italic;
+	}
+
+	ul,ol{
+		margin: var(--space-lg) 0;
+		padding-left: var(--space-2xl);
+		line-height: var(--line-height-relaxed);
+	}
+
+	ul li,ol li{
+		margin-bottom: var(--space-sm);
+		padding-left: var(--space-xs);
+	}
+
+	ul li::marker{
+		color: var(--color-primary);
+		font-weight: bold;
+	}
+
+	code{
+		font-family: var(--font-mono);
+		background: var(--color-code-bg);
+		padding: 0.2em 0.4em;
+		border-radius: var(--radius-sm);
+		font-size: 0.875em;
+		border: 1px solid var(--color-border);
+		color: var(--color-primary);
+		font-weight: 500;
+	}
+
+	a{
+		color: var(--color-primary);
+		text-decoration: none;
+		transition: color var(--transition-fast);
+		border-radius: var(--radius-sm);
+	}
+
+	a:hover{
+		text-decoration: underline;
+		color: var(--color-primary-dark);
+	}
+
+	a:focus-visible{
+		outline: 2px solid var(--color-focus);
+		outline-offset: 2px;
+	}
+
+	hr{
+		border: none;
+		height: 1px;
+		background: linear-gradient(to right, transparent, var(--color-border), transparent);
+		margin: var(--space-3xl) 0;
+	}
+
+	blockquote{
+		border-left: 4px solid var(--color-primary);
+		background: var(--color-bg-alt);
+		padding: var(--space-lg) var(--space-xl);
+		border-radius: var(--radius-md);
+		margin: var(--space-xl) 0;
+		font-style: italic;
+		color: var(--color-text-muted);
+		position: relative;
+		box-shadow: var(--shadow-sm);
+	}
+
+	blockquote::before{
+		content: '\201C';
+		position: absolute;
+		top: var(--space-md);
+		left: var(--space-md);
+		font-size: 3rem;
+		color: var(--color-primary);
+		opacity: 0.2;
+		font-style: normal;
+		line-height: 1;
+	}
+
+	.bookmarks-grid{
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--space-lg);
+		margin: var(--space-xl) 0;
+	}
+
+	@media (max-width: 1024px){
+		.bookmarks-grid{
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 640px){
+		.bookmarks-grid{
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.bookmark{
+		text-decoration: none;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-sm);
+		overflow: hidden;
+		transition: all var(--transition-normal);
+		background: var(--color-bg-card);
+		position: relative;
+	}
+
+	.bookmark::before{
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 4px;
+		height: 100%;
+		background: var(--color-primary);
+		transform: scaleY(0);
+		transition: transform var(--transition-normal);
+		transform-origin: bottom;
+	}
+
+	.bookmark:hover{
+		box-shadow: var(--shadow-hover);
+		transform: translateY(-2px);
+		border-color: var(--color-primary);
+	}
+
+	.bookmark:hover::before{
+		transform: scaleY(1);
+	}
+
+	.bookmark-info{
+		flex: 1;
+		padding: var(--space-lg);
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.bookmark-title{
+		font-size: 1em;
+		font-weight: 700;
+		color: var(--color-text);
+		margin-bottom: var(--space-sm);
+		line-height: var(--line-height-tight);
+		transition: color var(--transition-fast);
+	}
+
+	.bookmark:hover .bookmark-title{
+		color: var(--color-primary);
+	}
+
+	.bookmark-description{
+		color: var(--color-text-muted);
+		font-size: 0.85em;
+		line-height: 1.5;
+		margin-bottom: 0.5rem;
+	}
+
+	.bookmark-href{
+		font-size: 0.75em;
+		color: var(--color-text-light);
+	}
+
+	.bookmark-image{
+		width: 100%;
+		height: 160px;
+		display: block;
+		object-fit: cover;
+	}
+
+	figure{
+		margin: var(--space-md) 0;
+	}
+
+	figure img{
+		max-width: 100%;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-border);
+		box-shadow: var(--shadow-sm);
+	}
+
+	footer{
+		margin-top: var(--space-3xl);
+		padding-top: var(--space-xl);
+		border-top: 1px solid var(--color-border);
+		text-align: center;
+		color: var(--color-text-light);
+		font-size: var(--font-size-sm);
+	}
+
+	footer p{margin: 0;}
+
+	footer a{
+		color: var(--color-primary);
+		margin: 0 var(--space-md);
+		display: inline-block;
+	}
+
+	@media (max-width: 480px){
+		h1{font-size: 1.5rem;}
+		.container{margin: var(--space-lg) auto;}
+		footer a{display: block;margin: var(--space-sm) 0;}
+	}
+
+	@media (prefers-reduced-motion: reduce){
+		*,*::before,*::after{
+			animation-duration: 0.01ms !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+
+	@media print{
+		body{background: white;color: black;}
+		.skip-link,.back-link,footer{display: none;}
+		code{border: 1px solid #ccc;}
+	}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<div class="container">
+
+<main id="main">
+
+	<a href="index.html" class="back-link">← Back to home</a>
+
+	<h1>⌨️ TW - References and studies</h1>
+	<p class="sub">Complete guide for Technical Writers</p>
+
+	<h2>Bibliographic References</h2>
+	
+	<ul>
+		<li>Podmajersky, T. (2019). <strong>Strategic Writing for UX</strong>. São Paulo: Novatec.</li>
+		<li>Bazerman, C. (2009). <strong>Genres, Typification and Interaction</strong>. São Paulo: Cortez.</li>
+		<li>Cascaes, F. (2012). <strong>The Fantastic in Santa Catarina Island</strong>. Florianópolis: UFSC.</li>
+		<li>Toffler, A. (1970). <strong>Future Shock</strong>. New York: Panbooks.</li>
+	</ul>
+
+	<hr/>
+
+	<h2>Blogs and Profiles</h2>
+
+	<div class="bookmarks-grid">
+
+	<a href="https://medium.com/@jananabehling" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Janaína Behling - Medium</div>
+			<div class="bookmark-description">Read writing from Janaína Behling on Medium. She's in the field of Applied Linguistics in the eternal transition of tech literacy.</div>
+			<div class="bookmark-href">medium.com/@jananabehling</div>
+		</div>
+		<img src="https://miro.medium.com/max/2400/0*mkG921sw1wvf-mCU." class="bookmark-image" alt="" />
+	</a>
+
+	<a href="https://medium.com/@jananabehling/o-mercado-de-ti-confunde-technical-e-ux-writers-em-santa-catarina-c48cb8e5237d" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Does the IT market confuse Technical and UX Writers in Santa Catarina?</div>
+			<div class="bookmark-description">The answer is No. But because no one yet knows these professions well enough. In the Santa Officeless project, under my curation as Senior Technical Writer, the goal in this article is precisely to avoid this confusion as much as possible.</div>
+			<div class="bookmark-href">medium.com/@jananabehling</div>
+		</div>
+		<img src="https://miro.medium.com/max/1200/1*shiBvEJTr6NM0E3tXAAd2w.jpeg" class="bookmark-image" alt="" />
+	</a>
+
+	<a href="https://www.linkedin.com/learning/technical-writing-quick-start-guides/welcome?autoplay=true" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Technical Writing: Quick Start Guides - LinkedIn Learning</div>
+			<div class="bookmark-description">When people just need a little help or a short answer, they won't take on a 75-page document. That's where a quick start guide comes in handy.</div>
+			<div class="bookmark-href">linkedin.com/learning</div>
+		</div>
+	</a>
+
+	<a href="https://www.linkedin.com/learning/planning-a-career-in-user-experience/careers-in-user-experience?autoplay=true" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Planning a Career in User Experience - LinkedIn Learning</div>
+			<div class="bookmark-description">An introduction to the field and review of specific career pathways and skillsets that make up the UX umbrella.</div>
+			<div class="bookmark-href">linkedin.com/learning</div>
+		</div>
+	</a>
+
+	<a href="https://writingcooperative.com/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">The Writing Cooperative</div>
+			<div class="bookmark-description">Medium's largest collection of advice, support, and encouragement for writers.</div>
+			<div class="bookmark-href">writingcooperative.com</div>
+		</div>
+		<img src="https://miro.medium.com/max/1200/1*ncPYk-GpFrsSvCc7qWiUmQ.png" class="bookmark-image" alt="" />
+	</a>
+
+	<a href="https://developers.google.com/tech-writing/overview" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Technical Writing Courses - Google Developers</div>
+			<div class="bookmark-description">Learn the critical basics of technical writing. Technical Writing One and Two courses cover fundamental and intermediate topics.</div>
+			<div class="bookmark-href">developers.google.com</div>
+		</div>
+	</a>
+
+	<a href="https://www.freecodecamp.org/news/writing-tips-software-developers/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Writing Tips for Software Developers</div>
+			<div class="bookmark-description">A huge part of software development is communicating with others. Written communication is becoming increasingly important.</div>
+			<div class="bookmark-href">freecodecamp.org</div>
+		</div>
+		<img src="https://www.freecodecamp.org/news/content/images/2021/08/writing-tips.png" class="bookmark-image" alt="" />
+	</a>
+
+	<a href="https://www.freecodecamp.org/news/what-is-a-contraction-grammar-and-definition/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">What is a Contraction? Grammar and Definition</div>
+			<div class="bookmark-description">Learn all about contractions - what they are, when to use them, and why they matter in technical writing.</div>
+			<div class="bookmark-href">freecodecamp.org</div>
+		</div>
+	</a>
+
+	<a href="https://www.freecodecamp.org/news/technical-blogging-basics/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Technical Blogging Basics</div>
+			<div class="bookmark-description">How to write articles as a developer. Publishing articles and creating video content are great ways to share knowledge.</div>
+			<div class="bookmark-href">freecodecamp.org</div>
+		</div>
+	</a>
+
+	<a href="https://www.freecodecamp.org/news/technical-writing-for-beginners/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Technical Writing for Beginners</div>
+			<div class="bookmark-description">An A-Z guide to tech blogging basics. If you love writing and technology, technical writing could be a suitable career for you.</div>
+			<div class="bookmark-href">freecodecamp.org</div>
+		</div>
+	</a>
+
+	<a href="https://www.freecodecamp.org/news/how-writing-can-lead-to-better-product-design/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">How Writing Can Lead to Better Product Design</div>
+			<div class="bookmark-description">Two types of people in product development: those that prefer qualitative narratives and those that prefer data and analytics.</div>
+			<div class="bookmark-href">freecodecamp.org</div>
+		</div>
+	</a>
+
+	<a href="https://www.freecodecamp.org/news/tag/technical-writing/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Technical Writing - freeCodeCamp.org</div>
+			<div class="bookmark-description">Browse thousands of programming tutorials written by experts. Learn Web Development, Data Science, DevOps, Security, and get developer career advice.</div>
+			<div class="bookmark-href">freecodecamp.org</div>
+		</div>
+	</a>
+
+	<a href="https://www.reddit.com/r/technicalwriting/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">r/technicalwriting</div>
+			<div class="bookmark-description">Community for technical writers to share experiences, ask questions, and discuss the field.</div>
+			<div class="bookmark-href">reddit.com/r/technicalwriting</div>
+		</div>
+	</a>
+
+	<a href="https://www.linkedin.com/pulse/curso-introdut%C3%B3rio-e-gratuito-em-ux-writing-livia-mandarino/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Free Introductory Course in UX Writing</div>
+			<div class="bookmark-description">First steps in UX Writing - three new insights on this journey into the UX Design world.</div>
+			<div class="bookmark-href">linkedin.com</div>
+		</div>
+	</a>
+
+	<a href="https://www.nngroup.com/articles/ux-writing-study-guide/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">UX Writing: Study Guide</div>
+			<div class="bookmark-description">UX writing is the practice of writing carefully considered information that addresses people's contexts, needs, and behaviors.</div>
+			<div class="bookmark-href">nngroup.com</div>
+		</div>
+	</a>
+
+	<a href="https://www.oreilly.com/library/view/strategic-writing-for/9781492049388/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Strategic Writing for UX</div>
+			<div class="bookmark-description">When you depend on users to perform specific actions, well-placed words are most effective. But how do you choose the right words?</div>
+			<div class="bookmark-href">oreilly.com</div>
+		</div>
+	</a>
+
+	<a href="https://www.nngroup.com/articles/ten-usability-heuristics/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">10 Usability Heuristics for User Interface Design</div>
+			<div class="bookmark-description">The design should always keep users informed about what is going on, through appropriate feedback within a reasonable amount of time.</div>
+			<div class="bookmark-href">nngroup.com</div>
+		</div>
+	</a>
+
+	<a href="https://direct.mit.edu/books/book/4137/MismatchHow-Inclusion-Shapes-Design" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Mismatch: How Inclusion Shapes Design</div>
+			<div class="bookmark-description">How inclusive methods can build elegant design solutions that work for all.</div>
+			<div class="bookmark-href">direct.mit.edu</div>
+		</div>
+	</a>
+
+	<a href="https://passo.uno/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Passo uno</div>
+			<div class="bookmark-description">Articles about UX, technical writing, and design from a psychologist's perspective.</div>
+			<div class="bookmark-href">passo.uno</div>
+		</div>
+		<img src="https://passo.uno/thumb.png" class="bookmark-image" alt="" />
+	</a>
+
+	</div>
+
+	<hr/>
+
+	<h2>Communities and Resources</h2>
+
+	<div class="bookmarks-grid">
+
+	<a href="https://www.writethedocs.org/index.html" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Write the Docs</div>
+			<div class="bookmark-description">A global community of people who care about documentation. We consider everyone who cares about communication, documentation, and their users to be a member of our community.</div>
+			<div class="bookmark-href">writethedocs.org</div>
+		</div>
+		<img src="https://www.writethedocs.org/_static/sticker-wtd-colors.png" class="bookmark-image" alt="" />
+	</a>
+
+	<a href="https://idratherbewriting.com/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">I'd Rather Be Writing blog</div>
+			<div class="bookmark-description">Blog about technical writing, API documentation, and technical communication by Tom Johnson.</div>
+			<div class="bookmark-href">idratherbewriting.com</div>
+		</div>
+	</a>
+
+	<a href="https://fenestra.com.br/cursos/technical-writing-i/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Technical Writing - Fenestra</div>
+			<div class="bookmark-description">Technical Writing course in Portuguese, aimed at content professionals and writers.</div>
+			<div class="bookmark-href">fenestra.com.br</div>
+		</div>
+	</a>
+
+	<a href="https://www.docslikecode.com/learn/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Let's Treat Docs Like Code</div>
+			<div class="bookmark-description">Technical documentation with tools and techniques like version control (GitHub) and automation (CI/CD) with static site generators.</div>
+			<div class="bookmark-href">docslikecode.com</div>
+		</div>
+	</a>
+
+	<a href="https://www.docslikecode.com/articles/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Docs Like Code - Articles</div>
+			<div class="bookmark-description">Read articles to learn more about the docs like code vision and how to try it for yourself.</div>
+			<div class="bookmark-href">docslikecode.com</div>
+		</div>
+	</a>
+
+	</div>
+
+	<hr/>
+
+	<h2>Videos</h2>
+
+	<p>
+	<iframe width="800" height="600" src="https://www.youtube.com/embed/Cxuo3udElcE?si=bJWLI3sUjOnVNl6A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+	<p>Marcia Riefer Johnston & Dave May - One AWS team's move to docs as code</p>
+	</p>
+
+	<hr/>
+
+	<h2>Concepts and Definitions</h2>
+
+	<p>Technical writing is about making people understand what a program does, what a system does, and enabling people to use it, whether or not they are programmers (<em>HCI → Human computer interaction</em>).</p>
+
+	<hr/>
+
+	<h3>Work Areas</h3>
+
+	<ul>
+		<li>Explain the areas of work</li>
+		<li>Explain how to apply knowledge</li>
+		<li>Have an elaborate portfolio and resume</li>
+		<li>Be aware of areas without knowledge/with difficulty</li>
+	</ul>
+
+	<h3>Interaction Designer</h3>
+
+	<blockquote>
+		An interaction designer is focused largely on how best to create efficient and effective interactions between users and interface. These interactions could happen within screens, between screens, or even beyond the screen. You may sketch out screen-based interactions or interactions beyond the screen with a pencil or on a whiteboard. You may create interactive wire frames or clickable prototypes that let stakeholders or clients click through and experience a basic level of interactivity.
+	</blockquote>
+
+	<h3>Information Architecture</h3>
+
+	<blockquote>
+		As you review information architecture jobs, you'll find that most are focused on the creation of web and perhaps mobile resources, often websites specifically. You would attempt to learn through research how users naturally group terms or topics together. The usability test would involve having users do actual tasks on the website, where they're asked to get from point A to point B.
+	</blockquote>
+
+	<h3>Technical Writer</h3>
+
+	<blockquote>
+		The technical writer is charged with the task of making sure that important technical information is understood by the intended audience groups. Someone who can understand enough from developers or engineers about the technical ins and outs of the website, application or product, and then translate that understanding into user-friendly explanations. The technical information may come in the form of screen-based help, or it could be hard copy or electronic documentation that is used to help consumers understand more about software or physical products.
+	</blockquote>
+
+	<h3>Quick Start Guides</h3>
+
+	<blockquote>
+		A quick start guide briefly describes what tasks users can complete in each section. They don't have to complete the tasks to use the portal, but they might want to use those functions eventually. The guide provides information on how to do it but it doesn't compel the user to complete that task. You may be wondering whether it's okay to blend procedural information (steps that must be followed in a sequence) with conceptual information (descriptions of tasks or features). The answer is yes but you have to do it carefully.
+	</blockquote>
+
+	<blockquote>
+		It's better to be useful than pretty is a great saying when you're incorporating visuals into your quick start guide. Sure, you want the guide to be attractive, but any visual you add, whether it's a drawing, flow chart, or screenshot, must be useful to your user. A well written quick start guide combines written explanations and useful visuals to help people understand how to get started with your product, process, or tool.
+	</blockquote>
+
+	<h3>Flowchart Example</h3>
+
+	<figure>
+		<img src="flow.webp" alt="Flowchart Example" />
+	</figure>
+
+	<hr/>
+
+	<h2>Writing Tips</h2>
+
+	<ul>
+		<li><strong>Use a verb</strong></li>
+		<li><strong>Start with a question</strong></li>
+		<li><strong>Use plain language as much as possible</strong></li>
+		<li><strong>Move complementary information to where it belongs (at another level)</strong></li>
+	</ul>
+
+	<h3>Consistency in Documentation</h3>
+
+	<p>Be consistent. Use the same markup each time you want the user to see a similar thing. For example, if you're using a red arrow on the first screenshot to point to the item the user should click to complete the step, don't switch to a red circle on the second screenshot. That would just be confusing.</p>
+
+	<p>Use numbers to indicate a series of steps on one screenshot or a series of options. No need to go screenshot crazy. Sometimes one screenshot will serve to illustrate several steps. If this is the case, just number the items in the screenshot you want the user to notice. If your screenshot has a lot of information and text in it already, you may want to pull the annotations off of it and put them to the top, side or bottom.</p>
+
+	<h3>Referring to Users</h3>
+
+	<p>Here are two reliable ways to refer to your users in your guide:</p>
+
+	<ul>
+		<li><strong>Use second person pronouns:</strong> you, your or yours. For example, instead of writing "The user should click Protected Account to view all the status information on each registrant," write "You should click Protected Account to view all the status information on each registrant."</li>
+		<li><strong>Use the imperative mood:</strong> which is a command form of the verb. When you use the imperative mood, you imply but don't write the word you. Here's the same instruction written in the imperative: "Click Protected Account to view all the status information on each registrant."</li>
+	</ul>
+
+	<h3>Review Checklists</h3>
+
+	<p><strong>Ask a subject matter expert to review your quickstart guide with these in mind:</strong></p>
+
+	<ul>
+		<li><em>Accuracy</em></li>
+		<li><em>Functionality</em></li>
+		<li><em>Consistency</em></li>
+		<li><em>Appropriateness</em></li>
+	</ul>
+
+	<p><strong>Ask users to review your quickstart guide with these in mind:</strong></p>
+
+	<ul>
+		<li><em>Nice to know questions</em></li>
+		<li><em>Can they use the guide?</em></li>
+		<li><em>Need to be actual/real users:</em>
+			<ul>
+				<li>Prospect customers</li>
+				<li>Social media</li>
+				<li>Online user community</li>
+			</ul>
+		</li>
+	</ul>
+
+	<h3>Writing Best Practices</h3>
+
+	<p>It's always better to start a quick start guide (or a guide) with a verb for the action that'll be performed.</p>
+
+<p>The present tense is always preferable for the start of actions/instructions. This makes the text clearer and the steps more precise for the reader. Important information should always start the sentence, so it draws more attention from the reader than the end.</p>
+
+<p>Always place common terms near technical terms; this facilitates reading. Always indicate that this is an explanation of the technical term used in the document. It's also good to create a concise glossary.</p>
+
+	<h2>Extra Material</h2>
+
+	<div class="bookmarks-grid">
+
+	<a href="https://hotmart.com/pt-br/marketplace/produtos/cursotctw/R68083966J" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Building Your Career in TW - Mari Moreira</div>
+			<div class="bookmark-description">Course on career in Technical Writing. Mari has worked as a Technical Writer for more than 2 years, 1 of which as a leader of a team of 5 TWs.</div>
+			<div class="bookmark-href">hotmart.com</div>
+		</div>
+	</a>
+
+	</div>
+
+	<hr/>
+
+	<h2>Discussions</h2>
+
+	<div class="bookmarks-grid">
+
+	<a href="https://news.ycombinator.com/item?id=33721314" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Diátaxis: A systematic framework for technical documentation authoring</div>
+			<div class="bookmark-description">Hacker News discussion about the Diátaxis framework for documentation.</div>
+			<div class="bookmark-href">news.ycombinator.com</div>
+		</div>
+	</a>
+
+	<a href="https://news.ycombinator.com/item?id=21289832" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Four kinds of documentation</div>
+			<div class="bookmark-description">Discussion about different types of documentation and how a good README should include all four types.</div>
+			<div class="bookmark-href">news.ycombinator.com</div>
+		</div>
+	</a>
+
+	<a href="https://news.ycombinator.com/item?id=26002656" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">A Framework for Writing Better Documentation</div>
+			<div class="bookmark-description">Discussion about code samples, organization, and how to make documentation discoverable.</div>
+			<div class="bookmark-href">news.ycombinator.com</div>
+		</div>
+	</a>
+
+	<a href="https://news.ycombinator.com/item?id=26824743" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">The Grand Unified Theory of Documentation</div>
+			<div class="bookmark-description">Consider docs a seamless extension of the product. Use the exact wording and same visual language.</div>
+			<div class="bookmark-href">news.ycombinator.com</div>
+		</div>
+	</a>
+
+	<a href="https://news.ycombinator.com/item?id=31874436" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Unified theory of documentation systems</div>
+			<div class="bookmark-description">Discussion about documentation organization and version management.</div>
+			<div class="bookmark-href">news.ycombinator.com</div>
+		</div>
+	</a>
+
+	<a href="https://news.ycombinator.com/item?id=33020045" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Diátaxis: systematic framework for technical documentation authoring</div>
+			<div class="bookmark-description">Another discussion about the Diátaxis framework.</div>
+			<div class="bookmark-href">news.ycombinator.com</div>
+		</div>
+	</a>
+
+	<a href="https://news.ycombinator.com/item?id=33707022" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">High-documentation, low-meeting work culture</div>
+			<div class="bookmark-description">Discussion about documentation-first work culture and its benefits.</div>
+			<div class="bookmark-href">news.ycombinator.com</div>
+		</div>
+	</a>
+
+	<a href="https://medium.com/this-is-content-design/data-driven-content-design-utilizing-analytics-to-optimize-user-engagement-d3c27b431b2" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Data-Driven Content Design: How Analytics Can Optimize User Engagement</div>
+			<div class="bookmark-description">The use of user experience (UX) principles is essential to creating successful digital products and platforms.</div>
+			<div class="bookmark-href">medium.com</div>
+		</div>
+	</a>
+
+	<a href="https://stephango.com/style" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Style is consistent constraint</div>
+			<div class="bookmark-description">Insights on maintaining consistent style in writing and design.</div>
+			<div class="bookmark-href">stephango.com</div>
+		</div>
+		<img src="https://stephango.com/assets/card.png" class="bookmark-image" alt="" />
+	</a>
+
+	<a href="https://www.linkedin.com/pulse/aplica%25C3%25A7%25C3%25A3o-de-kcs-e-ssot-em-pr%25C3%25A1ticas-technical-writing-felipe-mozart-pkddf" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Application of KCS and SSoT in Technical Writing Practices</div>
+			<div class="bookmark-description">KCS methodology is adopted in activities that promote knowledge management. Understanding the distinctions and practical application of these concepts is necessary for Technical Writers.</div>
+			<div class="bookmark-href">linkedin.com</div>
+		</div>
+	</a>
+
+	<a href="https://docs.ubuntu.com/styleguide/en/index" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Ubuntu Style Guide</div>
+			<div class="bookmark-description">Guide to the language and style conventions used for Canonical documentation projects.</div>
+			<div class="bookmark-href">docs.ubuntu.com</div>
+		</div>
+	</a>
+
+	<a href="https://youtu.be/YyAtNrJQu-0?si=QOQM3_zNefKpzIDQ" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Chatting about AI news with Fabrizio Ferri Benedetti</div>
+			<div class="bookmark-description">Discussion about AI impact on technical writing, content design roles, and how processes can't be automated.</div>
+			<div class="bookmark-href">youtube.com</div>
+		</div>
+	</a>
+
+	<a href="https://docsgeek.io/blog/" class="bookmark" target="_blank" rel="noopener noreferrer">
+		<div class="bookmark-info">
+			<div class="bookmark-title">Docs Geek Blog</div>
+			<div class="bookmark-description">Blog about modern technical writing topics, such as docs-as-code, documentation automation, API documentation, and technical writing standards and best practices.</div>
+			<div class="bookmark-href">docsgeek.io</div>
+		</div>
+	</a>
+
+	</div>
+
+	<footer>
+		<p>
+			© 2025 Paulo Guilherme Pilotti Duarte · 
+			<a href="https://www.linkedin.com/in/paulo-guilherme-pilotti-duarte" target="_blank" rel="noopener noreferrer">LinkedIn</a> · 
+			<a href="https://github.com/paulogpd" target="_blank" rel="noopener noreferrer">GitHub</a>
+		</p>
+	</footer>
+
+</main>
+</div>
+
+</body>
+</html>

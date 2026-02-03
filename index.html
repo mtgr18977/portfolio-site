@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Projetos</title>
+    <style>
+        /* --- CONFIGURAÇÕES GERAIS E VARIÁVEIS DE COR (DARK MODE DEFAULT) --- */
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent-color: #37474f; /* Cor de fundo ao passar o mouse (Dark) */
+            --hover-border: #546e7a;
+            --border-color: #333;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --btn-text: #e0e0e0;
+            --btn-border: #333;
+            --btn-hover: #37474f;
+            
+            /* Sombra suave para dar profundidade */
+            --card-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* --- LIGHT MODE VARIABLES (SOFT THEME) --- */
+        body.light-mode {
+            --bg-color: #f0f2f5;       
+            --card-bg: #ffffff;       
+            --text-main: #1f2937;     
+            --text-secondary: #6b7280;
+            --accent-color: #e5e7eb;  
+            --hover-border: #9ca3af;
+            --border-color: #e5e7eb;  
+            --btn-text: #374151;
+            --btn-border: #d1d5db;
+            --btn-hover: #e5e7eb;
+            --card-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            display: flex;
+            justify-content: center;
+            padding: 30px 20px; /* Reduzi um pouco o padding vertical */
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Aumentei a largura máxima para caber mais cards lateralmente */
+        .container { max-width: 1200px; width: 100%; }
+
+        /* --- BARRA DE TOPO (BOTÃO TEMA) --- */
+        .top-bar {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--btn-border);
+            color: var(--btn-text);
+            padding: 6px 14px; /* Botão ligeiramente menor */
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-family: var(--font-family);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--btn-hover);
+            border-color: var(--hover-border);
+        }
+
+        /* --- CABEÇALHO --- */
+        header { margin-bottom: 30px; text-align: center; } /* Margem reduzida */
+
+        h1 {
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 1.8rem; /* Fonte ligeiramente menor para economizar espaço */
+            margin-bottom: 5px;
+            color: var(--text-main);
+        }
+
+        p.subtitle { color: var(--text-secondary); font-size: 0.9rem; }
+
+        /* --- TÍTULOS DAS SECÇÕES --- */
+        h2.section-title {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-top: 35px; /* Margem reduzida (antes era 50px) */
+            margin-bottom: 15px; /* Margem reduzida (antes era 20px) */
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h2.section-title:first-of-type { margin-top: 10px; }
+
+        /* --- GRELHA (GRID) OTIMIZADA --- */
+        .link-grid {
+            display: grid;
+            /* minmax(180px, 1fr) -> Permite cards menores (antes era 220px)
+               Isso faz caber mais colunas na tela, reduzindo a altura total.
+            */
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px; /* Gap um pouco menor */
+        }
+
+        /* --- CARTÕES --- */
+        .link-card {
+            background-color: var(--card-bg);
+            padding: 15px 18px; /* Padding interno menor */
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--card-shadow);
+        }
+
+        .link-card:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            border-color: var(--hover-border);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .link-name { 
+            font-size: 0.95rem; 
+            font-weight: 500; 
+            /* Garante que texto longo não quebre o layout */
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .arrow {
+            opacity: 0;
+            transform: translateX(-5px);
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+
+        .link-card:hover .arrow { opacity: 1; transform: translateX(0); }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="top-bar">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+                <span>☀️</span> Light Mode
+            </button>
+        </div>
+
+        <header>
+            <h1>Paulo Duarte</h1>
+            <p class="subtitle">Redator Técnico | Desenvolvedor Web</p>
+        </header>
+
+        <h2 class="section-title">Projetos & Recursos</h2>
+        <div class="link-grid">
+            <a href="portfolio.html" class="link-card" style="border-left: 3px solid #82aaff;">
+                <span class="link-name">Portfólio</span> <span class="arrow">→</span>
+            </a>
+            <a href="calculadora.html" class="link-card">
+                <span class="link-name">Calculadora</span> <span class="arrow">→</span>
+            </a>
+            <a href="career.html" class="link-card">
+                <span class="link-name">Career</span> <span class="arrow">→</span>
+            </a>
+            <a href="chatbot.html" class="link-card">
+                <span class="link-name">Chatbot</span> <span class="arrow">→</span>
+            </a>
+            <a href="clean-code.html" class="link-card">
+                <span class="link-name">Clean Code</span> <span class="arrow">→</span>
+            </a>
+            <a href="como-ser-tw.html" class="link-card">
+                <span class="link-name">Como ser TW</span> <span class="arrow">→</span>
+            </a>
+            <a href="ddlc.html" class="link-card">
+                <span class="link-name">DDLC</span> <span class="arrow">→</span>
+            </a>
+            <a href="json-to-yaml-converter.html" class="link-card">
+                <span class="link-name">JSON to YAML</span> <span class="arrow">→</span>
+            </a>
+            <a href="leituras.html" class="link-card">
+                <span class="link-name">Leituras</span> <span class="arrow">→</span>
+            </a>
+            <a href="roteiro-llm.html" class="link-card">
+                <span class="link-name">Roteiro LLM</span> <span class="arrow">→</span>
+            </a>
+            <a href="salario-liquido.html" class="link-card">
+                <span class="link-name">Salário Líquido</span> <span class="arrow">→</span>
+            </a>
+            <a href="sassamaru.html" class="link-card">
+                <span class="link-name">Sassamaru</span> <span class="arrow">→</span>
+            </a>
+            <a href="sf6-bil.html" class="link-card">
+                <span class="link-name">SF6 Bil</span> <span class="arrow">→</span>
+            </a>
+            <a href="tech-writer-resources.html" class="link-card">
+                <span class="link-name">TW Resources</span> <span class="arrow">→</span>
+            </a>
+            <a href="transformers.html" class="link-card">
+                <span class="link-name">Transformers</span> <span class="arrow">→</span>
+            </a>
+        </div>
+
+        <h2 class="section-title">Jogos e Demos</h2>
+        <div class="link-grid">
+            <a href="https://paulogpd.com.br/jogos/" target="_blank" class="link-card">
+                <span class="link-name">Simple Games</span> <span class="arrow">→</span>
+            </a>
+            <a href="https://parecer-total.vercel.app/" target="_blank" class="link-card">
+                <span class="link-name">Parecer Total</span> <span class="arrow">→</span>
+            </a>
+            <a href="https://scramble-words.vercel.app/" target="_blank" class="link-card">
+                <span class="link-name">Scrumble Words</span> <span class="arrow">→</span>
+            </a>
+            <a href="jogo.html" target="_blank" class="link-card">
+                <span class="link-name">A Seca (text-game|protótipo)</span> <span class="arrow">→</span>
+            </a>
+        </div>
+
+        <h2 class="section-title">Contos & Traduções</h2>
+        <div class="link-grid">
+            <a href="seca.html" class="link-card">
+                <span class="link-name">A seca (PT)</span>
+                <span class="arrow">→</span>
+            </a>
+
+            <a href="seca-en.html" class="link-card">
+                <span class="link-name">A seca (EN)</span>
+                <span class="arrow">→</span>
+            </a>
+
+            <a href="besta.html" class="link-card">
+                <span class="link-name">A besta (PT)</span>
+                <span class="arrow">→</span>
+            </a>
+
+            <a href="beast.html" class="link-card">
+                <span class="link-name">The Beast</span>
+                <span class="arrow">→</span>
+            </a>
+
+            <a href="primeira.html" class="link-card">
+                <span class="link-name">À primeira vista</span>
+                <span class="arrow">→</span>
+            </a>
+
+            <a href="trilobitas.html" class="link-card">
+                <span class="link-name">Trilobitas</span>
+                <span class="arrow">→</span>
+            </a>
+
+            <a href="true.html" class="link-card">
+                <span class="link-name">True Detective: Porto Alegre</span>
+                <span class="arrow">→</span>
+            </a>
+
+            <a href="fantasma.html" class="link-card">
+                <span class="link-name">Fantasma (Xu Lizhi)</span>
+                <span class="arrow">→</span>
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        // 1. Verifica se já existe uma preferência salva
+        const savedTheme = localStorage.getItem('theme');
+        
+        // 2. Aplica o tema salvo
+        if (savedTheme === 'light') {
+            body.classList.add('light-mode');
+            updateBtnText(true);
+        }
+
+        // 3. Evento de clique
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            updateBtnText(isLight);
+        });
+
+        function updateBtnText(isLight) {
+            toggleBtn.innerHTML = isLight ? '<span>🌙</span> Dark Mode' : '<span>☀️</span> Light Mode';
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1094 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Lista de leituras e artigos salvos por Paulo Guilherme Pilotti Duarte. Coleção de links sobre Technical Writing, LLMs, Linguística, Política e mais." />
+<meta name="author" content="Paulo Guilherme Pilotti Duarte" />
+<meta property="og:title" content="Minhas Leituras — Paulo Guilherme Pilotti Duarte" />
+<meta property="og:description" content="Lista de leituras e artigos salvos por Paulo Guilherme Pilotti Duarte. Coleção de links sobre Technical Writing, LLMs, Linguística, Política e mais." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="pt_BR" />
+<meta name="twitter:card" content="summary" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>" />
+<title>Minhas Leituras — Paulo Guilherme Pilotti Duarte</title>
+<style>
+<title>Minhas Leituras — Paulo Guilherme Pilotti Duarte</title>
+<style>
+  :root{
+    /* Colors */
+    --color-primary: #1d4ed8;
+    --color-primary-dark: #1e40af;
+    --color-text: #222;
+    --color-text-muted: #555;
+    --color-text-light: #666;
+    --color-bg: #fafafa;
+    --color-bg-card: #ffffff;
+    --color-border: #e5e7eb;
+    --color-focus: #3b82f6;
+    
+    /* Tag colors */
+    --tag-tw: #9333ea;
+    --tag-llm: #3b82f6;
+    --tag-linguistica: #92400e;
+    --tag-politics: #dc2626;
+    --tag-tech: #7c3aed;
+    --tag-historia: #ec4899;
+    --tag-religiao: #6b7280;
+    --tag-traducao: #ea580c;
+    --tag-probabilidade: #6b7280;
+    --tag-work: #374151;
+    --tag-ciencia: #eab308;
+    --tag-ia: #ec4899;
+    --tag-jobs: #92400e;
+    --tag-textos: #ea580c;
+    --tag-linux: #92400e;
+    
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    
+    /* Typography */
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 1.9rem;
+    --line-height-tight: 1.4;
+    --line-height-normal: 1.6;
+    
+    /* Transitions */
+    --transition-fast: 150ms ease-in-out;
+    --transition-normal: 250ms ease-in-out;
+    
+    /* Borders */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root{
+      --color-primary: #60a5fa;
+      --color-primary-dark: #3b82f6;
+      --color-text: #e5e7eb;
+      --color-text-muted: #9ca3af;
+      --color-text-light: #6b7280;
+      --color-bg: #111827;
+      --color-bg-card: #1f2937;
+      --color-border: #374151;
+      --color-focus: #60a5fa;
+    }
+  }
+
+  *,
+  *::before,
+  *::after{
+    box-sizing: border-box;
+  }
+
+  body{
+    margin: 0;
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: var(--line-height-normal);
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+  }
+
+  .container{
+    max-width: 1000px;
+    margin: clamp(1.25rem, 5vw, 2.5rem) auto;
+    padding: 0 clamp(1rem, 4vw, 1.25rem);
+  }
+
+  .skip-link{
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-sm) var(--space-md);
+    text-decoration: none;
+    z-index: 100;
+    font-weight: 600;
+    border-radius: 0 0 var(--radius-sm) 0;
+    transition: top var(--transition-fast);
+  }
+
+  .skip-link:focus-visible{
+    top: 0;
+    outline: 2px solid white;
+    outline-offset: -4px;
+  }
+
+  .back-link{
+    display: inline-block;
+    margin-bottom: var(--space-lg);
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+  }
+
+  .back-link:hover{
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+  }
+
+  .back-link:focus-visible{
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  h1{
+    font-size: clamp(1.5rem, 4vw, var(--font-size-2xl));
+    margin: 0 0 var(--space-xs) 0;
+    line-height: var(--line-height-tight);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .sub{
+    color: var(--color-text-muted);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-xl);
+  }
+
+  table{
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-bg-card);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: background-color var(--transition-normal);
+  }
+
+  thead{
+    background: var(--color-bg);
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  th{
+    padding: var(--space-md);
+    text-align: left;
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  td{
+    padding: var(--space-md);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  tbody tr:last-child td{
+    border-bottom: none;
+  }
+
+  tbody tr{
+    transition: background-color var(--transition-fast);
+  }
+
+  tbody tr:hover{
+    background: var(--color-bg);
+  }
+
+  .cell-title{
+    font-weight: 500;
+  }
+
+  .cell-title a{
+    color: var(--color-text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    transition: color var(--transition-fast);
+  }
+
+  .cell-title a:hover{
+    color: var(--color-primary);
+  }
+
+  .cell-title a:focus-visible{
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  time{
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  .selected-value{
+    display: inline-block;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-right: var(--space-xs);
+    margin-bottom: var(--space-xs);
+    transition: transform var(--transition-fast);
+  }
+
+  .selected-value:hover{
+    transform: translateY(-1px);
+  }
+
+  /* Tag colors */
+  .select-value-color-purple{ background: var(--tag-tw); color: white; }
+  .select-value-color-blue{ background: var(--tag-llm); color: white; }
+  .select-value-color-brown{ background: var(--tag-linguistica); color: white; }
+  .select-value-color-red{ background: var(--tag-politics); color: white; }
+  .select-value-color-default{ background: var(--tag-work); color: white; }
+  .select-value-color-pink{ background: var(--tag-ia); color: white; }
+  .select-value-color-orange{ background: var(--tag-traducao); color: white; }
+  .select-value-color-gray{ background: var(--tag-religiao); color: white; }
+  .select-value-color-yellow{ background: var(--tag-ciencia); color: #000; }
+
+  .url-value{
+    color: var(--color-primary);
+    text-decoration: none;
+    word-break: break-all;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+  }
+
+  .url-value:hover{
+    text-decoration: underline;
+    color: var(--color-primary-dark);
+  }
+
+  .url-value:focus-visible{
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  footer{
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+  }
+
+  footer a{
+    color: var(--color-primary);
+    margin: 0 var(--space-md);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  footer a:hover{
+    text-decoration: underline;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px){
+    table{
+      font-size: var(--font-size-sm);
+    }
+    
+    th, td{
+      padding: var(--space-sm);
+    }
+    
+    th:nth-child(2),
+    td:nth-child(2),
+    th:nth-child(4),
+    td:nth-child(4){
+      display: none;
+    }
+    
+    footer a{
+      display: block;
+      margin: var(--space-sm) 0;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    *,
+    *::before,
+    *::after{
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Print styles */
+  @media print{
+    body{
+      background: white;
+      color: black;
+    }
+    
+    .skip-link,
+    .back-link,
+    footer{
+      display: none;
+    }
+    
+    table{
+      box-shadow: none;
+      border: 1px solid #000;
+    }
+    
+    .selected-value{
+      border: 1px solid #000;
+      color: #000;
+      background: white;
+    }
+  }
+</style>
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+
+<div class="container">
+
+<main id="main">
+
+  <a href="index.html" class="back-link">← Voltar ao início</a>
+
+  <h1><span>📚</span> Minhas Leituras</h1>
+  <p class="sub">Coleção de artigos e links salvos</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Criado em</th>
+        <th>Tags</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody><tr id="29bc6f7d-f2fd-8018-a4d8-c37eb2b0d16c">
+        <td class="cell-title">
+          <a href="https://www.notion.so/Stop-documenting-interfaces-Start-documenting-scenarios-29bc6f7df2fd8018a4d8c37eb2b0d16c?pvs=21" target="_blank" rel="noopener noreferrer">
+            <span>📔</span>Stop documenting interfaces. Start documenting scenarios.
+          </a>
+        </td>
+        <td><time datetime="2025-10-29">29 de outubro de 2025</time></td>
+        <td>
+          <span class="selected-value select-value-color-purple">TW</span>
+          <span class="selected-value select-value-color-default">Work</span>
+        </td>
+        <td><a href="https://www.linkedin.com/pulse/stop-documenting-interfaces-start-scenarios-aleksei-stepanov-pkchf/?trackingId=IJHgErxofJXJueN6GDyYEQ%3D%3D" class="url-value" target="_blank" rel="noopener noreferrer">linkedin.com</a></td>
+      </tr><tr id="21dc6f7d-f2fd-8184-85a6-c87951e1e0b0"><td class="cell-title"><a href="https://www.notion.so/On-Illusion-of-Thinking-Do-LLMs-Reason-21dc6f7df2fd818485a6c87951e1e0b0?pvs=21"><span class="icon">📔</span>On Illusion of Thinking - Do LLMs Reason?</a></td><td class="cell-]t&gt;U"><time>@25 de junho de 2025 14:20</time></td><td class="cell-copY"><span class="selected-value select-value-color-blue">LLM</span></td><td class="cell-yE;G"><a href="https://msukhareva.substack.com/p/on-illusion-of-thinking-do-llms-reason?utm_medium=email" class="url-value">https://msukhareva.substack.com/p/on-illusion-of-thinking-do-llms-reason?utm_medium=email</a></td></tr><tr id="21cc6f7d-f2fd-813e-8bed-c419d6b5aef4"><td class="cell-title"><a href="https://www.notion.so/Your-A-I-Queries-Come-With-a-Climate-Cost-The-New-York-Times-21cc6f7df2fd813e8bedc419d6b5aef4?pvs=21"><span class="icon">📔</span>Your A.I. Queries Come With a Climate Cost - The New York Times</a></td><td class="cell-]t&gt;U"><time>@24 de junho de 2025 19:15</time></td><td class="cell-copY"><span class="selected-value select-value-color-blue">LLM</span><span class="selected-value select-value-color-red">Politics</span></td><td class="cell-yE;G"><a href="https://www.nytimes.com/2025/06/19/climate/ai-emissions-chatbot-accuracy.html?unlocked_article_code=1.QE8.fGE7.b-SOYjL_XPFS&amp;smid=url-share&amp;utm_source=manualdousuario&amp;utm_medium=email&amp;utm_campaign=links-de-2462025-de6b" class="url-value">https://www.nytimes.com/2025/06/19/climate/ai-emissions-chatbot-accuracy.html?unlocked_article_code=1.QE8.fGE7.b-SOYjL_XPFS&amp;smid=url-share&amp;utm_source=manualdousuario&amp;utm_medium=email&amp;utm_campaign=links-de-2462025-de6b</a></td></tr><tr id="21cc6f7d-f2fd-8190-8316-f5fbde41b316"><td class="cell-title"><a href="https://www.notion.so/Tradu-o-Artigo-Attention-Is-All-You-Need-by-Murilo-Mazzotti-Silvestrini-Medium-21cc6f7df2fd81908316f5fbde41b316?pvs=21"><span class="icon">📔</span>[Tradução] Artigo: “Attention Is All You Need” | by Murilo Mazzotti Silvestrini | Medium</a></td><td class="cell-]t&gt;U"><time>@23 de junho de 2025 23:19</time></td><td class="cell-copY"><span class="selected-value select-value-color-blue">LLM</span><span class="selected-value select-value-color-brown">Linguistica</span><span class="selected-value select-value-color-purple">TW</span><span class="selected-value select-value-color-orange">Tradução</span></td><td class="cell-yE;G"><a href="https://medium.com/@msmurilo/tradu%C3%A7%C3%A3o-artigo-attention-is-all-you-need-2f7a4113b3be" class="url-value">https://medium.com/@msmurilo/tradu%C3%A7%C3%A3o-artigo-attention-is-all-you-need-2f7a4113b3be</a></td></tr><tr id="21ac6f7d-f2fd-8127-859a-f6af2ff640f0"><td class="cell-title"><a href="https://www.notion.so/Self-Adapting-Language-Models-21ac6f7df2fd8127859af6af2ff640f0?pvs=21"><span class="icon">📔</span>Self-Adapting Language Models</a></td><td class="cell-]t&gt;U"><time>@22 de junho de 2025 16:08</time></td><td class="cell-copY"><span class="selected-value select-value-color-blue">LLM</span><span class="selected-value select-value-color-brown">Linguistica</span><span class="selected-value select-value-color-default">Probabilidade</span></td><td class="cell-yE;G"><a href="https://arxiv.org/html/2506.10943v1" class="url-value">https://arxiv.org/html/2506.10943v1</a></td></tr><tr id="21ac6f7d-f2fd-8187-9ec5-e062485b6696"><td class="cell-title"><a href="https://www.notion.so/Atlas-Learning-to-Optimally-Memorize-the-Context-at-Test-Time-21ac6f7df2fd81879ec5e062485b6696?pvs=21"><span class="icon">📔</span>Atlas: Learning to Optimally Memorize the Context at Test Time</a></td><td class="cell-]t&gt;U"><time>@22 de junho de 2025 16:07</time></td><td class="cell-copY"><span class="selected-value select-value-color-blue">LLM</span><span class="selected-value select-value-color-brown">Linguistica</span><span class="selected-value select-value-color-default">Probabilidade</span></td><td class="cell-yE;G"><a href="https://arxiv.org/html/2505.23735v1" class="url-value">https://arxiv.org/html/2505.23735v1</a></td></tr><tr id="21ac6f7d-f2fd-8076-b2ae-fd794e2fb89a"><td class="cell-title"><a href="https://www.notion.so/We-re-Definitely-Going-to-Build-a-Bunker-Before-We-Release-AGI-21ac6f7df2fd8076b2aefd794e2fb89a?pvs=21"><span class="icon">📔</span>‘We’re Definitely Going to Build a Bunker Before We Release AGI’</a></td><td class="cell-]t&gt;U"><time>@22 de junho de 2025 13:56</time></td><td class="cell-copY"><span class="selected-value select-value-color-blue">LLM</span><span class="selected-value select-value-color-red">Politics</span></td><td class="cell-yE;G"><a href="https://www.theatlantic.com/technology/archive/2025/05/karen-hao-empire-of-ai-excerpt/682798/" class="url-value">https://www.theatlantic.com/technology/archive/2025/05/karen-hao-empire-of-ai-excerpt/682798/</a></td></tr><tr id="21ac6f7d-f2fd-813f-8124-e135a692142a"><td class="cell-title"><a href="https://www.notion.so/A-Primer-on-Understanding-Attention-Mechanisms-in-LLMs-by-Phaneendra-Kumar-Namala-Medium-21ac6f7df2fd813f8124e135a692142a?pvs=21"><span class="icon">📔</span>A Primer on Understanding Attention Mechanisms in LLMs | by Phaneendra Kumar Namala | Medium</a></td><td class="cell-]t&gt;U"><time>@22 de junho de 2025 13:06</time></td><td class="cell-copY"><span class="selected-value select-value-color-blue">LLM</span><span class="selected-value select-value-color-brown">Linguistica</span></td><td class="cell-yE;G"><a href="https://phaneendrakn.medium.com/a-primer-on-understanding-attention-mechanisms-in-llms-fda4051b00a1" class="url-value">https://phaneendrakn.medium.com/a-primer-on-understanding-attention-mechanisms-in-llms-fda4051b00a1</a></td></tr><tr id="21ac6f7d-f2fd-8134-a8d5-eaecd5148a6a"><td class="cell-title"><a href="https://www.notion.so/What-is-Attention-and-Why-Do-LLMs-and-Transformers-Need-It-DataCamp-21ac6f7df2fd8134a8d5eaecd5148a6a?pvs=21"><span class="icon">📔</span>What is Attention and Why Do LLMs and Transformers Need It? | DataCamp</a></td><td class="cell-]t&gt;U"><time>@22 de junho de 2025 13:06</time></td><td class="cell-copY"><span class="selected-value select-value-color-blue">LLM</span><span class="selected-value select-value-color-brown">Linguistica</span><span class="selected-value select-value-color-default">Probabilidade</span></td><td class="cell-yE;G"><a href="https://www.datacamp.com/blog/attention-mechanism-in-llms-intuition" class="url-value">https://www.datacamp.com/blog/attention-mechanism-in-llms-intuition</a></td></tr><tr id="21ac6f7d-f2fd-810f-b8d8-d8674ff9f865"><td class="cell-title"><a href="https://www.notion.so/What-is-dominion-theology-And-how-it-appears-in-Brazil-Here-be-dragons-21ac6f7df2fd810fb8d8d8674ff9f865?pvs=21"><span class="icon">📔</span>What is dominion theology? And how it appears in Brazil. | Here be dragons</a></td><td class="cell-]t&gt;U"><time>@22 de junho de 2025 12:35</time></td><td class="cell-copY"><span class="selected-value select-value-color-pink">História</span><span class="selected-value select-value-color-gray">Religião</span></td><td class="cell-yE;G"><a href="https://herebedragons.com.br/what-is-dominion-theology-and-how-it-appears-in-brazil-new/" class="url-value">https://herebedragons.com.br/what-is-dominion-theology-and-how-it-appears-in-brazil-new/</a></td></tr><tr id="21ac6f7d-f2fd-8178-875c-c5e84f30dda6"><td class="cell-title"><a href="https://www.notion.so/Why-did-the-british-empire-abolish-slavery-and-persecute-it-Here-be-dragons-21ac6f7df2fd8178875cc5e84f30dda6?pvs=21"><span class="icon">📔</span>Why did the british empire abolish slavery and persecute it? | Here be dragons</a></td><td class="cell-]t&gt;U"><time>@22 de junho de 2025 12:34</time></td><td class="cell-copY"><span class="selected-value select-value-color-pink">História</span><span class="selected-value select-value-color-red">Politics</span></td><td class="cell-yE;G"><a href="https://herebedragons.com.br/why-did-the-british-empire-abolish-slavery-and-persecute-it-new/" class="url-value">https://herebedragons.com.br/why-did-the-british-empire-abolish-slavery-and-persecute-it-new/</a></td></tr><tr id="21ac6f7d-f2fd-811a-bdaf-e79bf553ca04"><td class="cell-title"><a href="https://www.notion.so/Conjuring-digital-companions-How-I-m-thinking-better-through-AI-passo-uno-21ac6f7df2fd811abdafe79bf553ca04?pvs=21"><span class="icon">📔</span>Conjuring digital companions: How I&#x27;m thinking better through AI - passo.uno</a></td><td class="cell-]t&gt;U"><time>@22 de junho de 2025 12:32</time></td><td class="cell-copY"><span class="selected-value select-value-color-brown">Linguistica</span><span class="selected-value select-value-color-purple">TW</span><span class="selected-value select-value-color-orange">Tradução</span></td><td class="cell-yE;G"><a href="https://passo.uno/thinking-better-through-ai/" class="url-value">https://passo.uno/thinking-better-through-ai/</a></td></tr><tr id="21ac6f7d-f2fd-8186-aae8-c7b223e2f325"><td class="cell-title"><a href="https://www.notion.so/Probabilidade-x-chance-Fernanda-Peres-Estat-stica-aplicada-21ac6f7df2fd8186aae8c7b223e2f325?pvs=21"><span class="icon">📔</span>Probabilidade x chance | Fernanda Peres | Estatística aplicada</a></td><td class="cell-]t&gt;U"><time>@22 de junho de 2025 12:32</time></td><td class="cell-copY"><span class="selected-value select-value-color-default">Probabilidade</span></td><td class="cell-yE;G"><a href="https://fernandafperes.com.br/blog/probabilidade-chance/" class="url-value">https://fernandafperes.com.br/blog/probabilidade-chance/</a></td></tr><tr id="1c7c6f7d-f2fd-81de-a9ea-f83dfba49a25"><td class="cell-title"><a href="https://www.notion.so/Does-national-humiliation-explain-why-wars-break-out-Psyche-Ideas-1c7c6f7df2fd81dea9eaf83dfba49a25?pvs=21"><span class="icon">📔</span>Does national humiliation explain why wars break out? | Psyche Ideas</a></td><td class="cell-]t&gt;U"><time>@30 de março de 2025 21:32</time></td><td class="cell-copY"><span class="selected-value select-value-color-red">Politics</span></td><td class="cell-yE;G"><a href="https://psyche.co/ideas/does-national-humiliation-explain-why-wars-break-out" class="url-value">https://psyche.co/ideas/does-national-humiliation-explain-why-wars-break-out</a></td></tr><tr id="222c6f7d-f2fd-8000-adf1-cf429f14133a"><td class="cell-title"><a href="https://www.notion.so/Plataformas-de-documenta-o-t-cnica-222c6f7df2fd8000adf1cf429f14133a?pvs=21"><span class="icon">📔</span>Plataformas de documentação técnica</a></td><td class="cell-]t&gt;U"><time>@30 de junho de 2025 20:03</time></td><td class="cell-copY"><span class="selected-value select-value-color-purple">TW</span></td><td class="cell-yE;G"><a href="https://chatgpt.com/share/68631834-bc30-8013-b462-4a2dbbe0bceb" class="url-value">https://chatgpt.com/share/68631834-bc30-8013-b462-4a2dbbe0bceb</a></td></tr><tr id="227c6f7d-f2fd-811a-99fa-ca131dee818e"><td class="cell-title"><a href="https://www.notion.so/Tudo-o-Que-Voc-Precisa-Saber-Sobre-LangChain-Antes-de-Come-ar-um-Projeto-com-IA-Parte-1-227c6f7df2fd811a99faca131dee818e?pvs=21"><span class="icon">📔</span>Tudo o Que Você Precisa Saber Sobre LangChain (Antes de Começar um Projeto com IA) - Parte 1</a></td><td class="cell-]t&gt;U"><time>@5 de julho de 2025 14:33</time></td><td class="cell-copY"><span class="selected-value select-value-color-blue">LLM</span><span class="selected-value select-value-color-brown">Linguistica</span></td><td class="cell-yE;G"><a href="https://elisaterumi.substack.com/p/tudo-o-que-voce-precisa-saber-sobre" class="url-value">https://elisaterumi.substack.com/p/tudo-o-que-voce-precisa-saber-sobre</a></td></tr><tr id="227c6f7d-f2fd-8197-83f6-ce70a464c071"><td class="cell-title"><a href="https://www.notion.so/American-science-to-soon-face-its-largest-brain-drain-in-history-Big-Think-227c6f7df2fd819783f6ce70a464c071?pvs=21"><span class="icon">📔</span>American science to soon face its largest brain drain in history - Big Think</a></td><td class="cell-]t&gt;U"><time>@5 de julho de 2025 12:00</time></td><td class="cell-copY"><span class="selected-value select-value-color-red">Politics</span></td><td class="cell-yE;G"><a href="https://bigthink.com/starts-with-a-bang/american-science-brain-drain/" class="url-value">https://bigthink.com/starts-with-a-bang/american-science-brain-drain/</a></td></tr><tr id="227c6f7d-f2fd-8181-b1df-c3595f801054"><td class="cell-title"><a href="https://www.notion.so/I-Will-Do-Anything-to-End-Homelessness-Except-Build-More-Homes-McSweeney-s-Internet-Tendency-227c6f7df2fd8181b1dfc3595f801054?pvs=21"><span class="icon">📔</span>I Will Do Anything to End Homelessness Except Build More Homes - McSweeney’s Internet Tendency</a></td><td class="cell-]t&gt;U"><time>@5 de julho de 2025 11:28</time></td><td class="cell-copY"><span class="selected-value select-value-color-red">Politics</span></td><td class="cell-yE;G"><a href="https://www.mcsweeneys.net/articles/i-will-do-anything-to-end-homelessness-except-build-more-homes" class="url-value">https://www.mcsweeneys.net/articles/i-will-do-anything-to-end-homelessness-except-build-more-homes</a></td></tr><tr id="223c6f7d-f2fd-8126-9915-ea19289bc93e"><td class="cell-title"><a href="https://www.notion.so/Copie-cole-e-passe-vergonha-Revista-Pesquisa-Fapesp-223c6f7df2fd81269915ea19289bc93e?pvs=21"><span class="icon">📔</span>Copie, cole e passe vergonha : Revista Pesquisa Fapesp</a></td><td class="cell-]t&gt;U"><time>@1 de julho de 2025 13:40</time></td><td class="cell-copY"><span class="selected-value select-value-color-yellow">Ciência</span><span class="selected-value select-value-color-blue">LLM</span></td><td class="cell-yE;G"><a href="https://revistapesquisa.fapesp.br/copie-cole-e-passe-vergonha/" class="url-value">https://revistapesquisa.fapesp.br/copie-cole-e-passe-vergonha/</a></td></tr><tr id="22fc6f7d-f2fd-810a-9049-c92122300acd"><td class="cell-title"><a href="https://www.notion.so/Writing-a-basic-Linux-device-driver-when-you-know-nothing-about-Linux-drivers-or-USB-crescentro-s-22fc6f7df2fd810a9049c92122300acd?pvs=21"><span class="icon">📔</span>Writing a basic Linux device driver when you know nothing about Linux drivers or USB // crescentro.se</a></td><td class="cell-]t&gt;U"><time>@13 de julho de 2025 12:41</time></td><td class="cell-copY"><span class="selected-value select-value-color-brown">Linux</span><span class="selected-value select-value-color-purple">Tech</span></td><td class="cell-yE;G"><a href="https://crescentro.se/posts/writing-drivers/" class="url-value">https://crescentro.se/posts/writing-drivers/</a></td></tr><tr id="22fc6f7d-f2fd-8042-b94a-ecec330b2ac6"><td class="cell-title"><a href="https://www.notion.so/40-quest-es-22fc6f7df2fd8042b94aecec330b2ac6?pvs=21"><span class="icon">📔</span>40 questões</a></td><td class="cell-]t&gt;U"><time>@13 de julho de 2025 12:41</time></td><td class="cell-copY"><span class="selected-value select-value-color-orange">Textos</span></td><td class="cell-yE;G"></td></tr><tr id="231c6f7d-f2fd-81a8-9ac6-c90e129bb6eb"><td class="cell-title"><a href="https://www.notion.so/Fell-in-a-hole-got-out-Medium-s-recap-financial-turnaround-by-Tony-Stubblebine-The-Coach-Li-231c6f7df2fd81a89ac6c90e129bb6eb?pvs=21"><span class="icon">📔</span>Fell in a hole, got out.. Medium’s recap, financial turnaround… | by Tony Stubblebine | The Coach Life | Jul, 2025 | Medium</a></td><td class="cell-]t&gt;U"><time>@14 de julho de 2025 21:20</time></td><td class="cell-copY"><span class="selected-value select-value-color-purple">Tech</span><span class="selected-value select-value-color-orange">Textos</span></td><td class="cell-yE;G"><a href="https://medium.com/the-coach-life/fell-in-a-hole-got-out-381356ec8d7f" class="url-value">https://medium.com/the-coach-life/fell-in-a-hole-got-out-381356ec8d7f</a></td></tr><tr id="22fc6f7d-f2fd-81bf-a7f7-d279c6a197c7"><td class="cell-title"><a href="https://www.notion.so/Motoristas-de-aplicativo-migram-para-outra-atividade-com-o-carro-Rodam-menos-ganham-um-valor-maio-22fc6f7df2fd81bfa7f7d279c6a197c7?pvs=21"><span class="icon">📔</span>Motoristas de aplicativo migram para outra atividade com o carro: &quot;Rodam menos, ganham um valor maior&quot; | GZH</a></td><td class="cell-]t&gt;U"><time>@13 de julho de 2025 16:47</time></td><td class="cell-copY"><span class="selected-value select-value-color-red">Politics</span><span class="selected-value select-value-color-default">Work</span></td><td class="cell-yE;G"><a href="https://gauchazh.clicrbs.com.br/economia/noticia/2025/07/motoristas-de-aplicativo-migram-para-outra-atividade-com-o-carro-rodam-menos-ganham-um-valor-maior-cmcz6wion0020014ro1x8sodr.html" class="url-value">https://gauchazh.clicrbs.com.br/economia/noticia/2025/07/motoristas-de-aplicativo-migram-para-outra-atividade-com-o-carro-rodam-menos-ganham-um-valor-maior-cmcz6wion0020014ro1x8sodr.html</a></td></tr><tr id="22fc6f7d-f2fd-81d9-95dd-c459607854b3"><td class="cell-title"><a href="https://www.notion.so/A-carta-de-Donald-Trump-como-manifesto-do-neocolonialismo-22fc6f7df2fd81d995ddc459607854b3?pvs=21"><span class="icon">📔</span>A carta de Donald Trump como manifesto do neocolonialismo</a></td><td class="cell-]t&gt;U"><time>@13 de julho de 2025 15:13</time></td><td class="cell-copY"><span class="selected-value select-value-color-red">Politics</span></td><td class="cell-yE;G"><a href="https://www.conjur.com.br/2025-jul-13/o-imperio-contra-o-direito-a-carta-de-trump-como-manifesto-do-neocolonialismo-judicial/" class="url-value">https://www.conjur.com.br/2025-jul-13/o-imperio-contra-o-direito-a-carta-de-trump-como-manifesto-do-neocolonialismo-judicial/</a></td></tr><tr id="231c6f7d-f2fd-80eb-9d3e-ec6bd70e14ee"><td class="cell-title"><a href="https://www.notion.so/Prompt-Engineering-Is-Dead-and-Context-Engineering-Is-Already-Obsolete-231c6f7df2fd80eb9d3eec6bd70e14ee?pvs=21"><span class="icon">📔</span>Prompt Engineering Is Dead, and Context Engineering Is Already Obsolete</a></td><td class="cell-]t&gt;U"><time>@15 de julho de 2025 18:15</time></td><td class="cell-copY"><span class="selected-value select-value-color-blue">LLM</span><span class="selected-value select-value-color-purple">Tech</span></td><td class="cell-yE;G"></td></tr><tr id="235c6f7d-f2fd-81be-b30b-cbbb1fbd7747"><td class="cell-title"><a href="https://www.notion.so/Why-Technical-Writers-Should-Care-About-the-Model-Context-Protocol-MCP-235c6f7df2fd81beb30bcbbb1fbd7747?pvs=21"><span class="icon">📔</span>Why Technical Writers Should Care About the Model Context Protocol (MCP)</a></td><td class="cell-]t&gt;U"><time>@19 de julho de 2025 10:31</time></td><td class="cell-copY"><span class="selected-value select-value-color-pink">IA</span><span class="selected-value select-value-color-blue">LLM</span><span class="selected-value select-value-color-purple">TW</span></td><td class="cell-yE;G"><a href="https://www.thecontentwrangler.com/p/why-technical-writers-should-care?r=8sej&amp;utm_campaign=post&amp;utm_medium=web" class="url-value">https://www.thecontentwrangler.com/p/why-technical-writers-should-care?r=8sej&amp;utm_campaign=post&amp;utm_medium=web</a></td></tr><tr id="235c6f7d-f2fd-81ed-961a-d9e13682fe4f"><td class="cell-title"><a href="https://www.notion.so/Twelve-rules-for-job-applications-and-interviews-Daniele-Procida-235c6f7df2fd81ed961ad9e13682fe4f?pvs=21"><span class="icon">📔</span>Twelve rules for job applications and interviews - Daniele Procida</a></td><td class="cell-]t&gt;U"><time>@19 de julho de 2025 10:30</time></td><td class="cell-copY"><span class="selected-value select-value-color-brown">Jobs</span><span class="selected-value select-value-color-purple">TW</span></td><td class="cell-yE;G"><a href="https://vurt.org/articles/twelve-rules/" class="url-value">https://vurt.org/articles/twelve-rules/</a></td></tr><tr id="235c6f7d-f2fd-81cb-a443-da6024aff2c3"><td class="cell-title"><a href="https://www.notion.so/Three-badly-understood-truths-about-applying-for-jobs-Daniele-Procida-235c6f7df2fd81cba443da6024aff2c3?pvs=21"><span class="icon">📔</span>Three badly-understood truths about applying for jobs - Daniele Procida</a></td><td class="cell-]t&gt;U"><time>@19 de julho de 2025 10:30</time></td><td class="cell-copY"><span class="selected-value select-value-color-brown">Jobs</span><span class="selected-value select-value-color-purple">TW</span></td><td class="cell-yE;G"><a href="https://vurt.org/articles/three-truths/" class="url-value">https://vurt.org/articles/three-truths/</a></td></tr><tr id="235c6f7d-f2fd-81e9-bdc4-cb1de0c00c6c"><td class="cell-title"><a href="https://www.notion.so/How-to-use-stories-in-interviews-Daniele-Procida-235c6f7df2fd81e9bdc4cb1de0c00c6c?pvs=21"><span class="icon">📔</span>How to use stories in interviews - Daniele Procida</a></td><td class="cell-]t&gt;U"><time>@19 de julho de 2025 10:30</time></td><td class="cell-copY"><span class="selected-value select-value-color-pink">IA</span><span class="selected-value select-value-color-brown">Jobs</span><span class="selected-value select-value-color-purple">TW</span></td><td class="cell-yE;G"><a href="https://vurt.org/articles/using-stories/" class="url-value">https://vurt.org/articles/using-stories/</a></td></tr><tr id="235c6f7d-f2fd-81eb-b5d5-dbe87df4c5da"><td class="cell-title"><a href="https://www.notion.so/My-favourite-German-word-Daniele-Procida-235c6f7df2fd81ebb5d5dbe87df4c5da?pvs=21"><span class="icon">📔</span>My favourite German word - Daniele Procida</a></td><td class="cell-]t&gt;U"><time>@19 de julho de 2025 10:30</time></td><td class="cell-copY"><span class="selected-value select-value-color-brown">Linguistica</span><span class="selected-value select-value-color-purple">TW</span></td><td class="cell-yE;G"><a href="https://vurt.org/articles/my-favourite-german-word/" class="url-value">https://vurt.org/articles/my-favourite-german-word/</a></td></tr><tr id="235c6f7d-f2fd-81a4-bdac-e6ab88d00843"><td class="cell-title"><a href="https://www.notion.so/Previs-o-de-Resultados-de-CS2-An-lise-Comparativa-entre-Modelos-de-IA-Cieslak-dev-235c6f7df2fd81a4bdace6ab88d00843?pvs=21"><span class="icon">📔</span>Previsão de Resultados de CS2 - Análise Comparativa entre Modelos de IA | Cieslak.dev</a></td><td class="cell-]t&gt;U"><time>@19 de julho de 2025 10:30</time></td><td class="cell-copY"><span class="selected-value select-value-color-blue">LLM</span><span class="selected-value select-value-color-default">Probabilidade</span></td><td class="cell-yE;G"><a href="https://cieslak.dev/pt-br/blog/2025-07-17-cs2-ai-benchmark/" class="url-value">https://cieslak.dev/pt-br/blog/2025-07-17-cs2-ai-benchmark/</a></td></tr><tr id="236c6f7d-f2fd-80ab-9351-fbb73af1e0c6"><td class="cell-title"><a href="https://www.notion.so/Marc-Andreessen-Is-a-Traitor-236c6f7df2fd80ab9351fbb73af1e0c6?pvs=21"><span class="icon">📔</span>Marc Andreessen Is a Traitor</a></td><td class="cell-]t&gt;U"><time>@20 de julho de 2025 17:52</time></td><td class="cell-copY"><span class="selected-value select-value-color-purple">Tech</span></td><td class="cell-yE;G"></td></tr><tr id="237c6f7d-f2fd-8156-b3d7-cb0f52460dc2"><td class="cell-title"><a href="https://www.notion.so/Minimum-Viable-Documentation-the-art-of-documentation-triage-237c6f7df2fd8156b3d7cb0f52460dc2?pvs=21"><span class="icon">📔</span>Minimum Viable Documentation – the art of documentation triage</a></td><td class="cell-]t&gt;U"><time>@21 de julho de 2025 17:14</time></td><td class="cell-copY"><span class="selected-value select-value-color-purple">TW</span></td><td class="cell-yE;G"><a href="https://blog.knowledgeowl.com/blog/posts/minimum-viable-documentation/" class="url-value">https://blog.knowledgeowl.com/blog/posts/minimum-viable-documentation/</a></td></tr><tr id="237c6f7d-f2fd-81ad-9837-d036e725296b"><td class="cell-title"><a href="https://www.notion.so/How-I-build-software-quickly-237c6f7df2fd81ad9837d036e725296b?pvs=21"><span class="icon">📔</span>How I build software quickly</a></td><td class="cell-]t&gt;U"><time>@21 de julho de 2025 17:14</time></td><td class="cell-copY"><span class="selected-value select-value-color-purple">TW</span><span class="selected-value select-value-color-default">Work</span></td><td class="cell-yE;G"><a href="https://evanhahn.com/how-i-build-software-quickly/" class="url-value">https://evanhahn.com/how-i-build-software-quickly/</a></td></tr><tr id="237c6f7d-f2fd-804e-8fb0-cbf26586d1c3"><td class="cell-title"><a href="https://www.notion.so/Como-escrevo-documenta-o-rapidamente-passo-uno-237c6f7df2fd804e8fb0cbf26586d1c3?pvs=21"><span class="icon">📔</span>Como escrevo documentação rapidamente - passo.uno</a></td><td class="cell-]t&gt;U"><time>@21 de julho de 2025 17:02</time></td><td class="cell-copY"><span class="selected-value select-value-color-purple">TW</span><span class="selected-value select-value-color-orange">Tradução</span></td><td class="cell-yE;G"><a href="https://passo.uno/how-write-tech-docs-quickly/" class="url-value">https://passo.uno/how-write-tech-docs-quickly/</a></td></tr><tr id="237c6f7d-f2fd-8155-953b-cfd51f9811e3"><td class="cell-title"><a href="https://www.notion.so/How-I-write-docs-quickly-passo-uno-237c6f7df2fd8155953bcfd51f9811e3?pvs=21"><span class="icon">📔</span>How I write docs quickly - passo.uno</a></td><td class="cell-]t&gt;U"><time>@21 de julho de 2025 16:57</time></td><td class="cell-copY"><span class="selected-value select-value-color-blue">LLM</span><span class="selected-value select-value-color-purple">TW</span><span class="selected-value select-value-color-orange">Tradução</span></td><td class="cell-yE;G"><a href="https://passo.uno/how-write-tech-docs-quickly/" class="url-value">https://passo.uno/how-write-tech-docs-quickly/</a></td></tr><tr id="23ac6f7d-f2fd-80ae-9328-cee98796d886"><td class="cell-title"><a href="https://www.notion.so/Torcida-contra-Donald-Trump-grande-mas-n-o-garante-nada-23ac6f7df2fd80ae9328cee98796d886?pvs=21"><span class="icon">📔</span>Torcida contra Donald Trump é grande, mas não garante nada</a></td><td class="cell-]t&gt;U"><time>@24 de julho de 2025 11:46</time></td><td class="cell-copY"><span class="selected-value select-value-color-red">Politics</span></td><td class="cell-yE;G"></td></tr><tr id="24dc6f7d-f2fd-8184-bf3c-dce91a849e47"><td class="cell-title"><a href="https://www.notion.so/The-value-of-emotional-intelligence-in-technical-writing-Liz-Argall-24dc6f7df2fd8184bf3cdce91a849e47?pvs=21"><span class="icon">📔</span>The value of emotional intelligence in technical writing | Liz Argall</a></td><td class="cell-]t&gt;U"><time>@12 de agosto de 2025 15:56</time></td><td class="cell-copY"><span class="selected-value select-value-color-pink">IA</span><span class="selected-value select-value-color-default">Probabilidade</span><span class="selected-value select-value-color-purple">TW</span></td><td class="cell-yE;G"><a href="https://lizargall.github.io/blog/emotional-intelligence/" class="url-value">https://lizargall.github.io/blog/emotional-intelligence/</a></td></tr><tr id="24dc6f7d-f2fd-8146-a8ff-e486168cba8c"><td class="cell-title"><a href="https://www.notion.so/ChatGPT-Lured-Him-Down-a-Philosophical-Rabbit-Hole-Then-He-Had-to-Find-a-Way-Out-24dc6f7df2fd8146a8ffe486168cba8c?pvs=21"><span class="icon">📔</span>ChatGPT Lured Him Down a Philosophical Rabbit Hole. Then He Had to Find a Way Out</a></td><td class="cell-]t&gt;U"><time>@12 de agosto de 2025 15:26</time></td><td class="cell-copY"><span class="selected-value select-value-color-pink">IA</span><span class="selected-value select-value-color-blue">LLM</span></td><td class="cell-yE;G"><a href="https://rollingstoneindia.com/chatgpt-lured-him-down-a-philosophical-rabbit-hole-then-he-had-to-find-a-way-out/amp/" class="url-value">https://rollingstoneindia.com/chatgpt-lured-him-down-a-philosophical-rabbit-hole-then-he-had-to-find-a-way-out/amp/</a></td></tr><tr id="24cc6f7d-f2fd-8122-8a65-ede86e1427b2"><td class="cell-title"><a href="https://www.notion.so/WAPE-2025-geopol-tica-modelos-econ-micos-e-multipolaridade-24cc6f7df2fd81228a65ede86e1427b2?pvs=21"><span class="icon">📔</span>WAPE 2025: geopolítica, modelos económicos e multipolaridade</a></td><td class="cell-]t&gt;U"><time>@11 de agosto de 2025 10:08</time></td><td class="cell-copY"><span class="selected-value select-value-color-red">Politics</span><span class="selected-value select-value-color-orange">Textos</span></td><td class="cell-yE;G"><a href="https://resistir.info/m_roberts/wape_10ago25.html" class="url-value">https://resistir.info/m_roberts/wape_10ago25.html</a></td></tr><tr id="23bc6f7d-f2fd-8158-82ea-e9e0edc561f9"><td class="cell-title"><a href="https://www.notion.so/Thoughts-on-America-s-AI-Action-Plan-Anthropic-23bc6f7df2fd815882eae9e0edc561f9?pvs=21"><span class="icon">📔</span>Thoughts on America’s AI Action Plan \ Anthropic</a></td><td class="cell-]t&gt;U"><time>@25 de julho de 2025 16:39</time></td><td class="cell-copY"><span class="selected-value select-value-color-pink">IA</span><span class="selected-value select-value-color-blue">LLM</span><span class="selected-value select-value-color-red">Politics</span></td><td class="cell-yE;G"><a href="https://www.anthropic.com/news/thoughts-on-america-s-ai-action-plan" class="url-value">https://www.anthropic.com/news/thoughts-on-america-s-ai-action-plan</a></td></tr><tr id="294c6f7d-f2fd-80d3-a971-cce4ceaa7c69"><td class="cell-title"><a href="https://www.notion.so/Thinking-Strategically-About-Documentation-294c6f7df2fd80d3a971cce4ceaa7c69?pvs=21"><span class="icon">📔</span>Thinking Strategically About Documentation</a></td><td class="cell-]t&gt;U"><time>@22 de outubro de 2025 15:43</time></td><td class="cell-copY"><span class="selected-value select-value-color-brown">Linguistica</span><span class="selected-value select-value-color-purple">TW</span></td><td class="cell-yE;G"><a href="https://www.kevinrkuhl.com/blog/2025/10/thinking-strategically-about-documentation/" class="url-value">https://www.kevinrkuhl.com/blog/2025/10/thinking-strategically-about-documentation/</a></td></tr></tbody></table><br/><br/></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

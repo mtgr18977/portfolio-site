@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trilobitas</title>
+    <style>
+        /* --- PALETA DE CORES (TEMA: FOSSIL / COLD LAB) --- */
+        :root {
+            --bg-color: #101414;        /* Preto com um toque muito leve de ciano/verde */
+            --text-color: #cfd8dc;      /* Cinzento azulado claro */
+            --accent-color: #80cbc4;    /* Ciano pálido (cor clínica/marinha) */
+            --link-color: #4db6ac;      /* Link ligeiramente mais escuro */
+            --chapter-title: #eceff1;
+            --intro-bg: #1c2323;        /* Fundo para a nota do tradutor */
+            
+            --font-body: 'Georgia', 'Cambria', serif;
+            --font-ui: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.8;
+            font-size: 1.15rem;
+        }
+
+        .reader-container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* --- NAVEGAÇÃO --- */
+        .back-nav {
+            font-family: var(--font-ui);
+            margin-bottom: 40px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover { opacity: 0.8; }
+
+        /* --- CABEÇALHO --- */
+        h1.main-title {
+            font-family: var(--font-ui);
+            color: var(--chapter-title);
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        /* Imagem de Destaque */
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 30px 0;
+            border: 1px solid #333;
+            filter: grayscale(40%) contrast(110%); /* Efeito visual "antigo/fóssil" */
+        }
+
+        /* --- NOTA DO TRADUTOR --- */
+        .editor-note {
+            background-color: var(--intro-bg);
+            padding: 25px;
+            border-left: 4px solid var(--accent-color);
+            font-size: 0.95rem;
+            color: #b0bec5;
+            font-style: italic;
+            margin-bottom: 50px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .editor-note a {
+            color: var(--link-color);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--link-color);
+        }
+
+        /* --- CORPO DO TEXTO --- */
+        p { margin-bottom: 24px; text-align: justify; }
+
+        /* Drop Cap (Primeira letra grande) */
+        .first-paragraph::first-letter {
+            font-size: 3.5rem;
+            float: left;
+            margin-right: 10px;
+            line-height: 0.8;
+            color: var(--accent-color);
+            font-family: var(--font-ui);
+            font-weight: bold;
+        }
+
+        /* Divisores de cena */
+        hr.separator {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--accent-color), rgba(0, 0, 0, 0));
+            margin: 60px 0;
+            opacity: 0.5;
+        }
+
+        /* Enfatizar palavras em itálico com a cor de destaque */
+        em {
+            color: #e0f2f1;
+        }
+
+        /* --- RODAPÉ --- */
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            color: #546e7a;
+            border-top: 1px solid #263238;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="reader-container">
+        
+        <div class="back-nav">
+            <a href="index.html" class="back-link">← Voltar ao Índice</a>
+        </div>
+
+        <h1 class="main-title">Trilobitas</h1>
+     
+        <div class="editor-note">
+            <p style="margin-bottom: 0;">
+                Sempre fui fascinado pelo "terror espacial", desde a época de "O Enigma do Horizonte" e depois pelo terror lovecraftiano. Recentemente, deparei-me com este conto no <a href="https://www.reddit.com/r/nosleep/comments/j8xty9/trilobite/" target="_blank">r/NoSleep</a> e, após lê-lo de madrugada, decidi que era hora de traduzi-lo (e até alterar algumas coisas, criando uma versão do conto em português). A história é interessante e a minúcia do autor original (<a href="https://www.reddit.com/user/creepypossum/" target="_blank">creepypossum</a>) em relação aos detalhes biológicos e fisiológicos dos animais é deveras interessante.
+            </p>
+        </div>
+
+        <article>
+            <p class="first-paragraph">Alguns anos atrás fui chamado para investigar o chamado de um corpo encontrado às 7h de uma manhã de domingo, no dia 28 de setembro, há cerca de cinco quilômetros ao sul de Ithaca, NY. O chamado veio de uma pessoa comum que passava se exercitando. Ela havia encontrado um corpo aninhado ao longo da borda sul de um desfiladeiro lamacento, raso e suavemente inclinado na floresta do Parque Estadual Robert Treman, em um canto normalmente fora da vista de uma trilha curta.</p>
+            
+            <p>Chegamos ao pequeno estacionamento próximo ao início da trilha e, depois de caminhar um pouco mais de meio quilometro pela trilha, chegamos ao canto onde o corpo estava e podemos ver quem era e qual era a situação: um homem de 28 anos, agachado de bruços sobre um pequeno patamar coberto de areia enterrado na encosta, não mais do que alguns metros abaixo do nível da trilha e talvez há dez metros do riacho abaixo. A condição do corpo sugeria que ele estava morto há pouco mais de um dia. Seu carro estava parado no estacionamento, então ele deve ter entrado no parque na noite antes deste fechar. Nenhum dos policiais do parque o tinha visto — ele deve ter passado a maior parte de sua última noite no local onde morreu.</p>
+
+            <p>Não encontramos evidências de homicídio ou crime; nenhum sinal de ferimento de faca ou arma de fogo, nenhuma evidência de trauma. Minha equipe inspecionou completamente os arredores. As camadas de rocha logo acima de seu corpo eram feitas de placas de xisto quase da espessura de papel, empilhadas umas sobre as outras como páginas de um livro. Elas eram tão frágeis quanto biscoitos, facilmente seriam quebradas sob o peso de uma bota de alpinista. Não havia nenhuma evidência no xisto fragmentado da presença de qualquer humano além do próprio jovem, cujas botas haviam rachado as camadas de rocha apenas em duas linhas finas e regulares em seu caminho, para cima e para baixo na encosta. O próprio lodo estava coberto por uma fina camada de areia orvalhada, que não registrava nenhum sinal de luta ou, da mesma forma, de que qualquer ser humano além do próprio jovem havia estado ali. Não havia nenhuma evidência de que outra pessoa esteve envolvida no que quer que tenha acontecido com ele. Ele estava sozinho.</p>
+
+            <p>Nossa testemunha só sabia quem ele era porque no último mês ela o tinha visto quase todos os dias no início da manhã em sua rota de corrida, enquanto ele fazia sua jornada de oitocentos metros de volta ao início da trilha, onde seu carro estava sempre estacionado (e estava ainda estacionado lá). Ele parecia perfeitamente normal, ela pensou, fora sua aparência, que se tornara cada vez mais esquelética e doente. Ela nunca se intrometeu nisso. Ela pensou que talvez fosse um câncer terminal ou algo assim. Uma vez ela perguntou a ele sobre algumas grandes manchas de sangue que ela notou que estavam começando a se formar ao redor de seus joelhos. Ele disse a ela que eles eram o resultado de uma queda e que ele estava tendo problemas para curá-las. Talvez leucemia, ela pensou. De qualquer modo ela percebeu que não era da sua conta.</p>
+
+            <p>Uma coisa sobre a cena me pareceu estranha imediatamente. A floresta ainda estava verde e apenas começando a mudar de tom, mesmo assim, em meados de setembro o frio do outono na parte da noite já havia começado a dar as caras. Não tinha sido terrivelmente frio nas noites anteriores — talvez 8 graus — mas o jovem estava vestido com roupas largas: shorts cáqui e uma única camisa de botão grossa o suficiente para esconder sua pele. Quando nossa testemunha o viu na semana anterior, ele estava usando as mesmas roupas. Estava frio o suficiente para que, com aquelas roupas, as noites fossem insuportavelmente frias para se ficar sentado por horas a fio. Mas ele esteve lá a noite toda. E ele não estava perdido — ele estava a uma curta distância de uma pista de corrida que ele usava todos os dias, a oitocentos metros de seu carro e em um pequeno parque estadual feito para famílias caminharem. Imediatamente, as explicações fáceis me inundaram: ele estava extremamente bêbado e talvez fosse um alcoólatra severo. Estava completamente fora do ar, acometido por uma doença mental.</p>
+
+            <p>Depois de avaliar os arredores, olhei mais de perto para o próprio homem. Seus braços e pernas estavam dobrados sob seu torso, e foi apenas quando concentrei minha atenção na posição de seu corpo que comecei a perceber o quão estranha ela era. Ele estava agachado e rente ao chão, o que teria sido normal para alguém tentando se manter aquecido no frio, ou protegendo um ferimento; exceto que seus membros estavam contorcidos em uma posição estendida e não natural, de modo que não lhe daria qualquer trégua de frio ou dor. Suas coxas e antebraços estavam dobrados sob seu torso em um ângulo curvado, de modo que seus cotovelos e joelhos ficassem voltados, mas não se tocassem. Abaixo dos joelhos e cotovelos, seus braços e dedos estavam abertos como leques ou pinças. Não era rigor mortis. O rigor mortis não poderia fazer isso, não contra o peso de seu corpo.</p>
+
+            <p>Ele havia se colocado nessa posição. Era quase uma pose <em>cartunesca</em>. Como uma criança fingindo ser um inseto.</p>
+
+            <p>Quando levantei seus joelhos e cotovelos para inspecioná-los, vi que estavam cobertos de feridas profundas e penetrantes, como feridas. A ferida em seu cotovelo esquerdo ia até o osso. Ele não tinha apenas se colocado nessa posição — ele estava mantendo essa posição. Por horas.</p>
+
+            <p>A mulher que encontrou seu corpo disse que o tinha visto retornar ao início da trilha de perto deste local todas as manhãs por quase um mês. Ele deve ter feito isso todas as noites.</p>
+
+            <p>Foi nesse contexto que li o relatório inicial do legista. Ele não tinha câncer, a investigação rapidamente confirmou isso. A causa de sua morte foi uma compactação de seus intestinos e a insuficiência aguda de seu fígado e rins como resultado do influxo de uma grande quantidade de areia em seu corpo. Não houve evidência de trauma oral. Nenhuma evidência de penetração forçada em nenhum orifício, nenhuma evidência de que algo fisicamente foi feito a ele contra sua vontade. Tanto quanto o legista, ou qualquer outra pessoa poderia presumir, ele estava comendo areia. E havia tanto impacto em seu cólon que era provável que ele estivesse comendo areia há semanas.</p>
+
+            <p>Por fim, conseguimos coletar o depoimento de duas outras testemunhas oculares, visitantes frequentes da trilha que, de vez em quando, o viram entrar ou sair do local no decorrer do mês anterior à sua morte. Ele sempre chegava em seu próprio carro e estava sempre sozinho. Ninguém nunca o tinha visto sequer pegar o telefone. Não havia evidências de que ele estava sendo coagido por alguém, por qualquer motivo, a colocar areia na própria boca. Ele tinha acabado de comer mais areia — e de acordo com o legista, ele não tinha comido mais nada.</p>
+
+            <p>As semanas se passaram e todos os testemunhos e históricos médicos possíveis foram coletados. Quando o relatório final do legista foi divulgado, abandonei qualquer esperança de uma explicação sensata. A investigação toxicológica não encontrou evidências de qualquer droga ilícita em seu sistema e eu não encontrei relatos de familiares, amigos ou empregadores de que ele as tenha consumido. Não havia nenhuma evidência de veneno de qualquer tipo em seu corpo. Nenhuma evidência ou histórico familiar de demência ou acidente vascular cerebral. Ele nem mesmo fumava; ele bebia apenas ocasionalmente e não tinha bebido naquela noite. Na ausência de qualquer evidência de abuso de substâncias, a explicação mais óbvia pode ter sido algum tipo de episódio maníaco ou esquizofrênico, mas não havia histórico de esquizofrenia, depressão maior ou transtorno bipolar em sua família, e seu histórico estava bem documentado. Nenhum relato de qualquer coisa como um episódio psicótico em seu próprio histórico médico. Nenhum testemunho de família, amigos ou empregadores de qualquer comportamento fora do comum até cerca de um mês antes de sua morte.</p>
+
+            <p>E essa, finalmente, foi a situação que eu enfrentei: um homem de 28 anos de idade perfeitamente saudável, no último mês de sua vida, dirigiu-se ao mesmo parque estadual todas as noites pouco antes de fechar, caminhou oitocentos metros a partir do estacionamento, indo ao mesmo cume de lodo que ficava fora da vista da pista de corrida e distante um quilometro e meio de uma trilha de natação pública lotada, ele então escalou com cuidado o lodo até encontrar o mesmo local plano, agachou-se até o solo, enrolou seu corpo na mesma pose de inseto <em>pantomimada</em> e se manteve nessa posição, dolorosamente, mas sem protestar, por horas até o amanhecer. Quando a manhã finalmente chegava, ele se levantava, voltava para a pista de corrida, voltava para o carro e ia embora. Provavelmente não ia muito longe, mas para fora do parque, pelo menos. Todas as noites, por quase um mês, a mesma rotina silenciosa e tortuosa, até a noite final o exaurir. Todas as noites, por quase um mês, comendo areia até morrer de fome.</p>
+
+            <hr class="separator">
+
+            <p>No final das contas, eu não tinha como saber por que as semanas finais da vida desse jovem foram tão bizarras. Minha investigação terminou rapidamente. Eu não tinha respostas, nenhuma motivação fácil ou diagnóstico médico para me agarrar, nenhuma evidência ou suspeita de jogo sujo, nenhuma maneira de seguir em frente. Depois de algumas semanas, estava convencido de que sabia tudo o que iria saber, e foi isso. Eu segui em frente. Seis anos se passaram.</p>
+
+            <p>Então, cerca de um ano atrás, fui chamado ao local onde outra pessoa fora relatada como falecida, perto de uma trilha em <em>Adirondacks</em> a cerca de quatro horas de distância. Era uma jovem (“Evie”), de vinte e seis anos, saudável apesar das circunstâncias de sua morte. No início, nenhuma conexão pessoal perceptível com o jovem. Ela foi encontrada agachada em uma pequena ravina esculpida por um riacho próximo. Seus braços e pernas estavam cheios de feridas de estresse, mas ela estava sozinha. Ela contorceu o corpo desajeitadamente, mas deliberadamente, em uma pose como uma criança fazendo uma imitação de um inseto, e manteve essa pose por horas. A causa de sua morte foi uma perfuração intestinal aguda que ela, talvez sem querer, infligiu a si mesma — após comer areia durante semanas.</p>
+
+            <p>Fui afortunado, em certo sentido, que ela teve uma conexão muito mais clara com o local de sua morte. Evie era estudante de pós-graduação no departamento de paleobiologia a Universidade Cornell. Ela estudava o registro fóssil de trilobitas — animais extintos, disseram-me, que pareciam grandes rolos, mas tinham seus parentes vivos mais próximos em caranguejos-ferradura e outros “quelicerados” (aranhas, escorpiões, opiliões, ácaros e assim por diante). Encontramos o corpo de Evie a menos de quatrocentos metros de um local onde seu laboratório havia começado a coletar fósseis de trilobitas cerca de dez anos antes. Um ano antes dessa data, onze anos antes da morte de Evie, o local — ou, pelo menos, sua abundância de fósseis de trilobitas bem preservados — foi descoberto em uma expedição casual de coleta por outra estudante de pós-graduação, “Amy”.</p>
+
+            <p>Disseram-me que Amy passara o verão subsequente escavando várias camadas de argila contendo trilobitas tão bem preservados que dava para ver os corpos sob as conchas e até mesmo vestígios de anatomia interna. Quando ela voltou ao seu escritório em Cornell, inspecionou as placas mais de perto e começou a prepará-las com brocas dentais. Ela se alegrou ao saber que ela poderia ter encontrado algo verdadeiramente especial — a primeira evidência fóssil direta de trilobitas que pareciam alterar seu comportamento como resultado de uma infecção parasitária. No mês seguinte, Amy trabalhou nas amostras com um entusiasmo ilimitado.</p>
+
+            <p>Então ela desapareceu. E, talvez um mês depois, sua irmã mais nova também.</p>
+
+            <p>Dez anos depois, elas ainda estavam desaparecidas.</p>
+
+            <p>Quando Amy e sua irmã desapareceram, seu professor levou a sério e fechou o projeto, guardando os fósseis em algumas gavetas grandes em um canto raramente visitado da sala de coleta. O projeto ficou adormecido por quase dez anos, até que Evie, tendo sido recentemente aceita no laboratório após um ano de intensa correspondência com o professor, encontrou a gaveta e reconheceu imediatamente o potencial dos fósseis. Ela não conseguia conter seu entusiasmo, e ela era brilhante. Ela convenceu seu professor a deixá-la retomar o projeto de onde Amy havia parado. Como o professor de Evie deve ter se sentido quando ela apareceu morta dois meses depois, nunca posso imaginar totalmente, mas que isso o afetou era palpável — ele entrou em profunda depressão.</p>
+
+            <p>Outro estudante de pós-graduação (“Bem”), não envolvido com o projeto, me mostrou algumas das placas fósseis que Amy havia coletado e que Evie havia revisitado. A razão pela qual eram tão interessantes era porque uma pequena porcentagem dos trilobitas — talvez um em cada trinta — tinha o que parecia ser um aglomerado de nódulos logo atrás da cabeça. Esses fósseis preservaram vestígios da anatomia interna e, sempre que você encontra um aglomerado de nódulos em um trilobita, encontra um estômago distendido com grandes quantidades de areia.</p>
+
+            <p>Meu próprio estômago embrulhou.</p>
+
+            <p>O que era estranho, ele pensou, era que a melhor placa, aquela em que Amy estava mais animada para trabalhar, também estava faltando. Aparentemente, tinha desaparecido ao mesmo tempo que ela. Ele perguntou a seu professor sobre ela uma vez; todos os que entraram no laboratório acabaram sabendo por boatos sobre o desaparecimento da placa. Em algum ponto, a conversa mudou para os detalhes da pesquisa de Amy e Ben se perguntou o que a deixava tão animada com aquela amostra em relação às outras. O professor disse que Amy tinha visto naquela placa, e somente naquela placa, um tipo diferente de resposta ao parasita. Das cerca de três dúzias de trilobitas preservadas nele, dois deles tinham nódulos. Qualquer que seja o deslizamento de terra que os matou, pegou um deles no ato de desmembrar um trilobita normal. O outro doente tinha a boca fixada na parte de trás do olho de um segundo trilobita normal, evidentemente tentando cegá-lo. Essa espécie de trilobita não era predatória e apenas os indivíduos com nódulos apresentavam esses comportamentos aberrantes.</p>
+
+            <p>Ouvir sobre isso gelou meu corpo instantaneamente e pensei em Evie e no jovem novamente. Nós sabíamos como eles haviam passado suas últimas noites; sabíamos que eles estavam comendo areia. O que mais eles podem estar fazendo?</p>
+
+            <p>O que será que eles podem ter começado e que talvez nunca possamos encontrar?</p>
+
+            <p>Eu descobri por meio de entrevistas subsequentes com seu professor e outros funcionários do departamento que o jovem tinha sido um voluntário naquele departamento, como um assistente de preparação de fósseis, por um breve período de tempo (talvez dois dias) cerca de seis anos antes, um pouco antes de seus exames finais na universidade. Ficou óbvio por que não havíamos descoberto a conexão antes: ele não era oficialmente um estudante da universidade e não tinha nenhum registro acadêmico; ele era apenas um entusiasta da paleontologia (a cada ano dezenas de voluntários saíam do departamento após as primeiras visitas). Ninguém realmente o conheceu ou notou muito a sua ausência. Talvez ele tenha tropeçado acidentalmente na gaveta de fósseis enquanto procurava por outra coisa.</p>
+
+            <p>Agradeci a Ben por seu tempo. O que quer que tenha acontecido aos outros três, esses fósseis eram o único denominador comum discernível. Convenci meu departamento a pagar para que uma das placas restantes fosse testada pelo laboratório de geoquímica de Cornell. Testaram a placa para <em>qualquer coisa</em>, literalmente. Nas semanas subsequentes, ninguém conseguiu entender o que havia acontecido.</p>
+
+            <p>A bioquímica interna dos nódulos parecia ser completamente estranha ao planeta Terra. Tanto é verdade que, qualquer que fosse o efeito que eles pudessem ter sobre os alunos, nenhum laboratório legista saberia como detectá-lo. As implicações deste caso repentinamente tornaram-se muito, muito maiores.</p>
+
+            <p>Pouco depois, solicitei uma busca profunda nas regiões adjacentes à <em>Adirondacks</em> para tentar descartar a presença de mais corpos.</p>
+
+            <hr class="separator">
+
+            <p>Cerca de um mês depois, encontramos Amy. Viva.</p>
+
+            <p>Durante os dez anos que ela esteve desaparecida, ela esteve se escondendo — talvez ‘esconder’ não fosse a palavra certa para isso — em um porão que ela aparentemente cavou para si mesma, sob uma cabana de andarilhos há muito abandonada no fundo da região de <em>Adirondacks</em>, talvez a cinquenta quilômetros do local onde Evie morrera.</p>
+
+            <p>O que encontramos naquele porão com ela foi mais horrível do que qualquer coisa que eu poderia ter imaginado: identificamos dois corpos, um deles como sendo de um alpinista, do sexo masculino, vinte e seis anos, que desaparecera em algum lugar da trilha da montanha Ampersand cerca de oito anos antes; o outro corpo era da irmã mais nova de Amy. Eles também estavam vivos, por assim dizer. Escondido em um canto dentro de um cubículo de madeira compensada estava a placa de trilobita que faltava.</p>
+
+            <p>Algumas semanas depois de encontrarmos Amy eu fui fazer uma visita ao hospital psiquiátrico onde ela estava internada. Eu perguntei a ela o que havia acontecido dez anos atrás, por que ela havia desaparecido e por que ela fez o que fez naquele porão escavado.</p>
+
+            <p>Ela me contou sobre seu projeto de pesquisa e como começou o trabalho. Para obter melhor acesso visual à anatomia interna dos trilobitas e aos nódulos embutidos atrás da cabeça de cada trilobita, ela teve que tratar cuidadosamente os fósseis e algumas das rochas circundantes (os paleontólogos chamam de “matriz”) com uma solução de ácido fórmico. Às vezes, você pode conseguir apenas jogando uma placa fóssil em um banho de ácido, mas neste caso foi um processo cirúrgico delicado e ela passou semanas em um quarto trancada com a placa e os nódulos. Mais perto do que qualquer outra pessoa antes ou depois.</p>
+
+            <p>Com o passar dos dias, ela começou a ver coisas em sua cabeça, começou a ter pensamentos dispersos que, a princípio, a perturbavam. Ela pensava muito sobre os ciclos de vida das lagartas. Uma lagarta engorda até mais de mil vezes seu volume ao nascer. Assim que este trabalho seja concluído, ele molda uma crisálida ao seu redor (ou forma um casulo). Quase todo mundo sabe que as lagartas se transformam em mariposas ou borboletas, mas poucos sabem como a lagarta se reconstrói de maneira abrangente. Uma vez que a crisálida está segura, a lagarta secreta enzimas destrutivas que digerem todo o seu corpo, transformando-o em uma geleia homogênea, exceto por duas partes: alguns discos minúsculos feitos de células-tronco chamados de discos imaginários e algum material remanescente do cérebro da lagarta e do sistema nervoso. Experimentos com mariposas mostraram que uma quantidade suficiente do sistema nervoso da lagarta é preservada na geléia para que a mariposa adulta possa se lembrar das lições e associações que aprendeu quando era uma lagarta.</p>
+
+            <p>Em algum momento, Amy começou a se perguntar como seria ficar presa naquele estágio de gelatina e ainda ser capaz de pensar. <em>Sério</em>, como seria? Se ela fosse imaginar o pior tipo de existência possível, como seria? Como seria para uma lagarta <em>saber</em> que seu destino era transformar-se em borboleta, radiantemente bela e livre, ter todo o seu ser repleto de vontade de iniciar essa transformação, e então bem no momento da verdade, logo acima da ponto máximo em algum ponto crucial de virada <em>saber</em> que suas esperanças lhe foram tiradas — que nunca se transformaria, nunca escaparia de sua prisão e que nunca mais teria qualquer vida — nunca? Será que elas saberiam que os genes que realizaram a transformação foram removidos de alguma forma? Que sua mente estava agora aprisionada em uma geleia imóvel sobre a qual não tinha mais possibilidade de exercer qualquer poder? Que até a decisão de viver ou morrer não era mais sua? Que estava agora <em>absolutamente</em> à mercê de qualquer pessoa ou coisa ao seu redor para sempre? Que por capricho de seus captores ou simplesmente por negligência de um universo impessoal que o havia esquecido, poderia ser transformado em um recipiente de agonia, que sua impotência pudesse ser tão completa que seus captores, por um capricho, pudessem até levar embora qualquer capacidade que, de outra forma, teria de se adaptar ao próprio desespero? Poderia, sem esforço e com alegria, desfazer qualquer mecanismo de enfrentamento que a lagarta poderia ter empregado? Poderia estuprar, invadir e despojar qualquer aspecto de seu ser, sem esforço e absolutamente, sem qualquer possibilidade de resistência, por qualquer razão ou sem razão alguma, para todo o sempre?</p>
+
+            <p>Então ela começou a pensar, neste mundo, qual seria o segundo pior tipo de existência possível? E se você, uma mente presa em uma gelatina, após uma época incompreensível de total impotência e dor insuportável e miserável, de repente recebesse uma e apenas uma saída, junto com o conhecimento absoluto de que esta <em>era a sua única saída</em>: alguém tinha que tomar o seu lugar e você tinha que se tornar o captor? E como o captor, você seria obrigado a infligir a esse outro ser a pior existência possível, com conhecimento total, absoluto e eterno da decisão que você tomou? Seria mesmo possível recusar? Como seria <em>essa</em> existência? A única coisa que separaria isso da pior existência possível, ela imaginou, seria a liberdade de enfrentar. Que tipo de mecanismo de enfrentamento o captor construiria em torno de si mesmo?</p>
+
+            <p>Com esses pensamentos, ela teve outros. E se uma espécie parasita, em algum ecossistema de algum mundo, tivesse evoluído de alguma forma para tirar vantagem de uma lagarta pensante e consciente presa como uma gelatina? Nada parecido existia aqui. Existem organismos parasitas na Terra, certas espécies de fungos por exemplo, que manipulam o cérebro de outros animais, alterando seu comportamento para que se entreguem voluntariamente aos seus predadores e o parasita possa iniciar a próxima etapa de seu ciclo de vida dentro do corpo do predador. Certamente existem organismos na Terra que cooptam os corpos vivos de outros animais para seus próprios fins — as vespas <em>ichneumon</em> põem seus ovos em lagartas e, quando as larvas eclodem, elas comem a lagarta viva por dentro. Os vírus sequestram a maquinaria dos organismos celulares para fazê-los produzir proteínas virais. Mas a exploração da lagarta pelas vespas é mais estritamente predatória e, bem, <em>termina</em> depois de alguns dias. Carne de vitela, Amy pensou, pode ser a comparação mais próxima, mas pelo menos a vida dos cordeiros de vitela pode acabar. O mesmo acontecia com qualquer outro exemplo na Terra em que Amy pudesse pensar.</p>
+
+            <p>Ela começou a ter visões — nem mesmo visões, mais como noções vagas — de organismos parasitas em um ecossistema distante em algum mundo distante que usava o potencial de uma geleia de lagarta consciente e pensante para fazer coisas por si mesma. Esses organismos colhiam os hormônios produzidos em sua miséria, choque e desespero para se manterem vivos, de modo que a agonia do próprio sujeito era o produto de sua colheita. Esses organismos encontraram maneiras de tornar essa colheita infinita. Ela se perguntou se esses organismos parasitas sabiam o que estavam fazendo — se estavam vivendo voluntariamente o segundo pior tipo de existência, porque era a única maneira possível de escapar do pior tipo de existência. Ou se os organismos parasitas, como os vírus, eram simplesmente autômatos, fazendo mais de si mesmos para fazer mais de si mesmos para fazer mais de si mesmos e, como autômatos, não importava para eles como o faziam. Ou se fossem algum meio termo entre os dois, seres conscientes entorpecidos pelo anestésico da lógica do sonho. Ela se perguntou se havia alguma diferença ou se isso importava. Nas semanas que Amy passou tratando os nódulos atrás da cabeça dos trilobitas, esses pensamentos e visões se tornaram totalmente absorventes e, por fim, opressores.</p>
+
+            <p>Quando encontramos as duas vítimas de Amy no porão, o alpinista aleatório e sua própria irmã, eles quase não foram reconhecidas como humanos. Amy aplicou algum tipo de tratamento para degradar a integridade de seus ossos e transformá-los em algo como gelatina. Ela havia infligido várias cirurgias rudimentares a eles para aleijar permanentemente certos nervos e articulações. Ela havia removido certas partes de seus corpos para tentar torná-los mais lisos. Ela empregou outras cirurgias grosseiras para alterar a fisiologia de seus pulmões e coração, de modo que eles só pudessem respirar e bombear sangue com a ajuda de máquinas, que de alguma forma ela havia adquirido ou inventado. Ela havia removido suas cordas vocais e línguas. O único aspecto deles que ela tinha tomado muito cuidado para preservar era toda e qualquer parte que pudesse sentir dor. Sem nenhuma possibilidade de movimento, fuga ou ação de qualquer tipo, seus corpos eram simplesmente recipientes para uma miséria abjeta. Como ela fez tudo isso eu não conseguia entender. Ela teve “ajuda”, ao menos foi o que ela me disse. Suas visões a ajudaram a saber o que fazer.</p>
+
+            <p>Em vários pontos de cada corpo, Amy fixou dispositivos rudimentares de extração para coletar qualquer coisa que pudesse deles, qualquer coisa que eles pudessem ter produzido por causa da dor ou do medo. Perguntei o que ela fez com o material que coletou. Nada, ela disse. Estava em um canto em potes abertos para se decompor.</p>
+
+            <p>Quando ela terminou seu trabalho, ela foi consumida por uma compulsão singular: mantê-los vivos naquele estado para sempre.</p>
+
+            <p>Ela podia refletir agora, disse ela, com alguma distância, que seu cérebro estava operando sob a lógica do sonho. Raramente se lembrava de seus sonhos, mas se lembrava de uma vez, quando criança, que teve um sonho em que, por alguma razão que agora estava perdida para sempre, fora desesperadamente importante para ela alcançar e embarcar em um ônibus espacial. Ela estava correndo para encontrar alguém ou algum grupo de pessoas. Eventualmente, ela acordou como fazia todas as manhãs, tornou-se ciente de quem ela era em seu mundo desperto, ciente de seu quarto e ao seu redor, ciente de sua rotina matinal. Ela estava 90% lúcida, mas nos primeiros dois ou três minutos depois que seus olhos se abriram, ela ainda estava tramando planos furiosos para chegar àquela nave. Qualquer parte de seu cérebro, que ela normalmente empregava para questionar tais planos, ainda não havia despertado totalmente. Nos dez anos que passou sob o piso da cabana, ela foi lúcida o suficiente para se sentir compelida e formular planos elaborados para satisfazer sua compulsão, mas não lúcida o suficiente para questionar <em>por</em> <em>que</em> se sentia compelida a fazê-lo.</p>
+
+            <p>Depois de alguns momentos, perguntei se ela tinha alguma ideia sobre por que Evie e o jovem não foram afetados da mesma forma que ela. Ela disse que não sabia, mas eles haviam passado muito menos tempo ao redor

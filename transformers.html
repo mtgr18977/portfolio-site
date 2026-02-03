@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Guia completo sobre Transformers: arquitetura de redes neurais, atenção, positional encoding e modelos autoregressivos. Explicação detalhada com exemplos em PyTorch." />
+<meta name="author" content="Paulo Guilherme Pilotti Duarte" />
+<meta property="og:title" content="Explicando Transformers — Paulo Guilherme Pilotti Duarte" />
+<meta property="og:description" content="Guia técnico completo sobre a arquitetura Transformers: mecanismos de atenção, positional encoding e implementação em PyTorch." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="pt_BR" />
+<meta name="twitter:card" content="summary" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+<title>Explicando Transformers — Paulo Guilherme Pilotti Duarte</title>
+<style>
+  :root{
+    --color-primary: #1d4ed8;
+    --color-primary-dark: #1e40af;
+    --color-text: #222;
+    --color-text-muted: #555;
+    --color-text-light: #666;
+    --color-bg: #fafafa;
+    --color-bg-card: #ffffff;
+    --color-border: #e5e7eb;
+    --color-focus: #3b82f6;
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+    --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    --font-size-sm: 0.95rem;
+    --font-size-base: 1.05rem;
+    --font-size-lg: 1.3rem;
+    --font-size-xl: 1.9rem;
+    --line-height-tight: 1.4;
+    --line-height-normal: 1.6;
+    --line-height-relaxed: 1.7;
+    --transition-fast: 150ms ease-in-out;
+    --transition-normal: 250ms ease-in-out;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root{
+      --color-primary: #60a5fa;
+      --color-primary-dark: #3b82f6;
+      --color-text: #e5e7eb;
+      --color-text-muted: #9ca3af;
+      --color-text-light: #6b7280;
+      --color-bg: #111827;
+      --color-bg-card: #1f2937;
+      --color-border: #374151;
+      --color-focus: #60a5fa;
+    }
+  }
+
+  *,*::before,*::after{box-sizing: border-box;}
+
+  body{
+    margin:0;
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: var(--line-height-normal);
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+  }
+
+  .container{
+    max-width: 900px;
+    margin: clamp(1.25rem, 5vw, 2.5rem) auto;
+    padding: 0 clamp(1rem, 4vw, 1.25rem);
+  }
+
+  .skip-link{
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-sm) var(--space-md);
+    text-decoration: none;
+    z-index: 100;
+    font-weight: 600;
+    border-radius: 0 0 var(--radius-sm) 0;
+    transition: top var(--transition-fast);
+  }
+
+  .skip-link:focus-visible{
+    top: 0;
+    outline: 2px solid white;
+    outline-offset: -4px;
+  }
+
+  .back-link{
+    display: inline-block;
+    margin-bottom: var(--space-lg);
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+  }
+
+  .back-link:hover{
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+  }
+
+  h1{
+    font-size: clamp(1.5rem, 4vw, var(--font-size-xl));
+    margin: 0 0 var(--space-xs) 0;
+    line-height: var(--line-height-tight);
+    font-weight: 700;
+  }
+
+  h2{
+    font-size: var(--font-size-lg);
+    margin: var(--space-2xl) 0 var(--space-md) 0;
+    line-height: var(--line-height-tight);
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  h3{
+    font-size: var(--font-size-base);
+    margin: var(--space-xl) 0 var(--space-sm) 0;
+    font-weight: 600;
+  }
+
+  .sub{
+    color: var(--color-text-muted);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-xl);
+  }
+
+  p{
+    line-height: var(--line-height-relaxed);
+    margin: var(--space-sm) 0;
+  }
+
+  strong{
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  em{
+    font-style: italic;
+    color: var(--color-text-muted);
+  }
+
+  ul,ol{
+    margin: var(--space-sm) 0;
+    padding-left: var(--space-xl);
+    line-height: var(--line-height-relaxed);
+  }
+
+  ul li,ol li{
+    margin-bottom: var(--space-xs);
+  }
+
+  code{
+    font-family: var(--font-mono);
+    background: var(--color-bg-card);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9em;
+    border: 1px solid var(--color-border);
+  }
+
+  pre{
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    overflow-x: auto;
+    margin: var(--space-md) 0;
+  }
+
+  pre code{
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.85em;
+    line-height: 1.5;
+  }
+
+  a{
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    border-radius: var(--radius-sm);
+  }
+
+  a:hover{
+    text-decoration: underline;
+    color: var(--color-primary-dark);
+  }
+
+  a:focus-visible{
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  hr{
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: var(--space-xl) 0;
+  }
+
+  img{
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    margin: var(--space-md) 0;
+  }
+
+  .toc{
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    margin: var(--space-xl) 0;
+  }
+
+  .toc h2{
+    margin-top: 0;
+  }
+
+  .toc ol{
+    margin-bottom: 0;
+  }
+
+  .section{
+    margin: var(--space-3xl) 0;
+  }
+
+  footer{
+    margin-top: var(--space-3xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+  }
+
+  footer p{margin: 0;}
+
+  footer a{
+    color: var(--color-primary);
+    margin: 0 var(--space-md);
+    display: inline-block;
+  }
+
+  @media (max-width: 480px){
+    h1{font-size: 1.5rem;}
+    .container{margin: var(--space-lg) auto;}
+    footer a{display: block;margin: var(--space-sm) 0;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  @media print{
+    body{background: white;color: black;}
+    .skip-link,.back-link,footer{display: none;}
+    code{border: 1px solid #ccc;}
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+
+<div class="container">
+
+<main id="main">
+
+  <a href="index.html" class="back-link">← Voltar ao início</a>
+
+  <h1>🤖 Explicando Transformers</h1>
+  <p class="sub">Guia completo de ponta a ponta sobre a arquitetura Transformers</p>
+
+  <section class="section">
+    <h2>Introdução</h2>
+    <p>Em 2017, a Google Brain lançou o artigo <em>"Attention is All you Need"</em>, que introduziu para o mundo o Transformer, uma arquitetura para redes neurais para transdução de sequências baseada em atenção que permitiu a criação de modelos que superaram todos os outros modelos anteriores em tradução entre idiomas.</p>
+
+    <p>Anos depois, essa arquitetura gerou diversas variações que alcançaram o estado da arte em várias aplicações, em especial na criação de modelos de linguagem, que popularizaram fortemente o uso de IA Generativa para muitas aplicações de processamento de linguagem natural. No momento de escrita, são variações dos Transformers (como os <em>Generative Pretrained Transformers</em> ou GPTs) que estão sendo usadas por trás de inteligências artificiais avançadas como ChatGPT, Claude e Gemini, mostrando o potencial dessa arquitetura e o seu legado na história da inteligência artificial.</p>
+
+    <p>Quando eu estava aprendendo como esses modelos funcionavam, encontrei diversos bons recursos explicando a arquitetura. No entanto, senti falta de uma explicação conceitual e prática de ponta a ponta, que permitisse compreender o funcionamento desses modelos a partir de uma única fonte. Quando precisei aprender sobre o tema, tive que recorrer a várias referências simultaneamente para obter uma visão abrangente, o que é especialmente desafiador para quem busca um aprendizado mais prático e deseja criar uma versão funcional do modelo. Além disso, embora existam excelentes materiais em inglês e outros idiomas, praticamente não há recursos em português que abordem Transformers no nível de profundidade que considero ideal. Acredito que isso seja um fator limitante para explicar o assunto no Brasil e em outros países lusófonos.</p>
+
+    <p>Por isso, meu objetivo é apresentar uma explicação de ponta a ponta sobre o funcionamento dos Transformers, abordando o contexto em que surgiram, o funcionamento conceitual de seus principais componentes e a arquitetura desses modelos. Vou ilustrar todos esses conceitos com exemplos práticos e implementações funcionais em PyTorch, de forma que você possa criar um modelo funcional usando apenas a teoria e o código apresentados aqui.</p>
+  </section>
+
+  <div class="toc">
+    <h2>O guia é dividido em 7 partes:</h2>
+    <ol>
+      <li><strong>Introdução</strong></li>
+      <li><strong>Tokens e </strong><em><strong>embeddings</strong></em></li>
+      <li><strong>Atenção</strong></li>
+      <li><strong>Positional Encoding</strong></li>
+      <li><strong>Modelos autoregressivos</strong></li>
+      <li><strong>Juntando tudo</strong></li>
+      <li><strong>Treinamento</strong></li>
+    </ol>
+  </div>
+
+  <section class="section">
+    <h2>Pré-requisitos</h2>
+    <p>Infelizmente, se eu não assumir absolutamente nenhum pré-requisito, o conteúdo ficará extenso demais para ser feito de uma vez. Pretendo escrever outros guias explicando esses pré-requisitos no futuro, e vou listar alguns recursos que você pode usar para estudar esses assuntos antes. Porém, para entender tudo que vou explicar aqui, é importante que você compreenda esses tópicos dos conteúdos a seguir:</p>
+
+    <h3>Álgebra linear</h3>
+    <p>Vamos trabalhar com conceitos como vetores, matrizes, tensores, produto escalar, produto vetorial e transposição de matrizes. Eu aprendi álgebra linear pelo livro "Álgebra Linear" de J.L. Boldrini na faculdade, mas hoje recomendo buscar conteúdos em português, como as aulas da UNIVESP ou da Khan Academy, que são ótimas para revisar ou aprender do zero.</p>
+
+    <h3>Python e PyTorch</h3>
+    <p>Você vai precisar conhecer o básico de Python: laços, estruturas de dados, condicionais, funções e um pouco de orientação a objetos (como criar classes, objetos e usar módulos). Todo o código do guia será feito em PyTorch, então é importante entender os conceitos principais do framework, como manipulação de tensores, uso de dispositivos, autograd e o submódulo torch.nn.</p>
+    <p>Se você nunca usou PyTorch antes, recomendo começar pelo tutorial oficial, que explica bem os conceitos básicos do framework. Se já tem alguma experiência e quer revisar, o curso aberto de Deep Learning da University of Amsterdam (UvA) tem um tutorial que resume de forma prática como programar redes neurais em PyTorch.</p>
+
+    <h3>Deep Learning</h3>
+    <p>Como transformers são redes neurais, vamos usar todos os conceitos envolvendo redes feedforward ou perceptrons multicamada (MLPs), como o uso do gradiente descendente, funções de ativação e backpropagation.</p>
+    <p>O curso Neural Networks and Deep Learning na Coursera é completo e muito acessível. Em português, além do livro "Dive into Deep Learning", sugiro os capítulos 7 e 8 do livro Aprendizado de Máquina - Uma Abordagem Estatística, que cobrem redes neurais.</p>
+  </section>
+
+  <section class="section">
+    <h2>Conclusão</h2>
+    <p>Como o guia traz bastante código, você pode acessar tudo de forma separada na biblioteca language-models. Todo o código das funções e classes apresentadas aqui está organizado lá. O projeto é open source e pode ser instalado como uma biblioteca, embora ainda não esteja disponível no PyPI.</p>
+    <p>E, com isso, concluímos a apresentação. No próximo post, vamos iniciar o guia trazendo uma introdução sobre os Transformers e falando do seu contexto histórico.</p>
+  </section>
+
+  <hr/>
+
+  <section class="section">
+    <h1>Introdução</h1>
+    <p>Nesse post, será feita uma introdução aos Transformers, explicando os problemas que estamos tentando resolver com essa arquitetura, introduzindo o contexto histórico que levou à sua criação e os desafios presentes na criação desse tipo de modelo.</p>
+
+    <h2>Objetivo</h2>
+    <p>De forma geral, Transformers são utilizados para resolver problemas de transdução de sequências, ou seja, tarefas em que é necessário gerar uma nova sequência de elementos a partir de uma sequência recebida. Essa abordagem permite que diversas aplicações sejam modeladas como transdução de sequências, incluindo tradução automática, geração de texto, sumarização e até mesmo síntese de moléculas.</p>
+
+    <p>Formalmente, um modelo de transdução de sequências estabelece uma relação entre uma sequência ordenada <code>s=⟨s₁,s₂,⋯,sₙ⟩</code>, composta por elementos de um conjunto enumerável S, e outra sequência <code>t=⟨t₁,t₂,⋯,tₘ⟩</code>, composta por elementos de um conjunto enumerável T.</p>
+
+    <p>Para facilitar a compreensão do funcionamento dos Transformers, muitos exemplos ao longo deste guia serão apresentados no contexto de uma aplicação específica. Considerando a relevância dos Transformers para o avanço de modelos de linguagem, como os Large Language Models, os exemplos deste guia focarão na construção de um modelo de linguagem.</p>
+
+    <h3>Um pouco de história</h3>
+    <p>Durante muitos anos, criar modelos eficientes para transdução de sequências foi um desafio em aberto para a comunidade científica. O principal obstáculo era superar limitações presentes nas arquiteturas anteriores aos Transformers.</p>
+
+    <p>Antes dos Transformers, as técnicas baseadas em redes neurais recorrentes (RNNs) apresentavam o melhor desempenho em tarefas como tradução automática, sendo a base da arquitetura utilizada pelo Google Tradutor em 2014. O processo de treinamento das RNNs enfrentava alguns problemas:</p>
+
+    <ol>
+      <li>A natureza recursiva das RNNs pode causar o problema de <em>gradient vanishing</em>, em que os gradientes calculados durante o backpropagation se tornam tão pequenos que o modelo não consegue aprender de forma eficiente.</li>
+      <li>Como algumas operações precisam ser realizadas de forma sequencial, a inferência nesses modelos pode ser muito lenta, tornando o treinamento e o uso prático inviáveis em muitos casos.</li>
+      <li>Sem o uso de atenção, as RNNs têm dificuldade para capturar o significado de um trecho considerando o contexto completo da frase, o que pode prejudicar a qualidade do texto gerado.</li>
+    </ol>
+
+    <p>O grande diferencial dos Transformers é serem baseados exclusivamente em redes neurais feedforward e mecanismos de atenção. Isso permite resolver os problemas mencionados e alcançar desempenho superior em tarefas de transdução de sequências.</p>
+
+    <p>Essa abordagem justifica o nome do artigo: do ponto de vista arquitetural, não são necessárias redes neurais recorrentes para criar modelos eficientes. Basta o uso de mecanismos de atenção, ou seja, "<em>Attention is All you Need</em>".</p>
+  </section>
+
+  <hr/>
+
+  <section class="section">
+    <h1>Atenção</h1>
+    <p>Neste post, vou explicar o que é atenção e como funcionam os mecanismos apresentados no artigo "Attention is All You Need". No caminho, vamos ver como funcionam os mecanismos Scaled Dot-Product Attention e Multihead Attention, e ao final, também vamos implementar esses mecanismos do zero em PyTorch com foco em eficiência computacional.</p>
+
+    <h2>O que é atenção?</h2>
+    <p>No contexto de redes neurais para transdução de sequências, atenção refere-se à capacidade do modelo de considerar o contexto de cada elemento da sequência ao gerar um novo valor para cada elemento de entrada. Ou seja, o modelo pode "prestar atenção" em diferentes partes da sequência para produzir saídas mais precisas e contextualizadas.</p>
+
+    <p>Nesse processo, os pesos de atenção formam uma sequência intermediária que indica o quanto cada elemento da entrada deve ser considerado na geração de cada novo elemento. Ao aplicar esses pesos sobre os elementos originais, é gerada uma nova sequência de elementos para representar o conteúdo da sequência recebida, dessa vez representando melhor o contexto de cada elemento.</p>
+
+    <p>Por exemplo, considere o texto: <em>João pensou: O trem estava cheio, mas ele conseguiu uma cadeira livre.</em></p>
+
+    <p>Um mecanismo de atenção recebe essa sequência e gera outra de mesmo comprimento, onde o embedding que representa a palavra "ele" será composto de embeddings mais próximos do trecho que compõe a palavra "João" do que da palavra "trem".</p>
+
+    <h3>Self-Attention</h3>
+    <p>Todos os mecanismos utilizados na arquitetura dos Transformers funcionam combinando os próprios elementos da sequência recebida entre si para calcular a atenção de cada elemento. Ou seja, a atenção atribuída a cada elemento da sequência é baseada apenas nos elementos da sequência recebida, sem depender de informações externas.</p>
+
+    <h3>Queries, Keys e Values</h3>
+    <p>De forma simplificada, um mecanismo de atenção pode ser comparado a um dicionário em Python: chaves (keys ou K) são associadas a valores (values ou V), e é possível recuperar um valor a partir de uma consulta (query ou Q). No contexto do mecanismo de atenção, os papéis de query, key e value são desempenhados pelos próprios elementos da sequência recebida:</p>
+
+    <ul>
+      <li><strong>Query:</strong> O elemento da sequência para o qual queremos representar de outra forma.</li>
+      <li><strong>Keys:</strong> Todos os elementos da sequência recebida, que funcionam como possíveis referências para determinar o contexto da query.</li>
+      <li><strong>Value:</strong> Um novo elemento que representa o significado da query, calculado a partir do elemento original e das keys.</li>
+    </ul>
+
+    <h3>Mecanismos de atenção</h3>
+
+    <h3>Dot-Product Attention (DPA)</h3>
+    <p>Nesse mecanismo, os pesos de atenção de cada elemento são calculados usando o produto interno (dot product) entre as queries e as keys correspondentes.</p>
+
+    <h3>Scaled Dot-Product Attention (SDPA)</h3>
+    <p>Essa variação do DPA inclui um termo de normalização nos pesos para estabilizar os gradientes durante o backpropagation. A normalização pelo fator √d tem base empírica.</p>
+
+    <pre><code>def apply_scaled_dot_product_attention(
+    queries: torch.Tensor,
+    keys: torch.Tensor,
+    values: torch.Tensor,
+) -> torch.Tensor:
+    keys = keys.transpose(2, 3)
+    scores = queries @ keys / (split_embed_dim**0.5)
+
+    if mask is not None:
+        scores = scores.masked_fill(mask, float("-inf"))
+
+    weights = F.softmax(scores, dim=3)
+    outputs = weights @ values
+
+    return outputs</code></pre>
+
+    <h3>Projeções lineares</h3>
+    <p>Uma das maneiras para melhorar a performance dos Transformers é aplicar projeções lineares separadas às queries, keys e values antes do seu uso nos mecanismos de atenção, multiplicando cada uma por uma matriz de parâmetros treinável específica (Wq, WK e WV).</p>
+
+    <h3>Multihead Attention (MHA)</h3>
+    <p>Essa variação do SDPA aplica o mecanismo de atenção h vezes em paralelo, cada uma com diferentes projeções lineares dos elementos da sequência. O número de cabeças h é um hiperparâmetro do modelo.</p>
+
+    <p>Como os pesos no SDPA são normalizados, cada cabeça de atenção não pode "prestar atenção" igualmente em todos os elementos ao mesmo tempo. O objetivo do uso de MHA é permitir que cada cabeça foque em diferentes padrões ou relações no contexto, enriquecendo a representação aprendida pelo modelo durante o treinamento.</p>
+
+    <pre><code>class MultiheadAttention(nn.Module):
+    def __init__(self, embed_dim: int, n_heads: int) -> None:
+        super().__init__()
+        self.embed_dim = embed_dim
+        self.n_heads = n_heads
+        self.split_embed_dim = self.embed_dim // self.n_heads
+
+        self.queries_projection = nn.Linear(self.embed_dim, self.embed_dim, bias=False)
+        self.keys_projection = nn.Linear(self.embed_dim, self.embed_dim, bias=False)
+        self.values_projection = nn.Linear(self.embed_dim, self.embed_dim, bias=False)
+        self.outputs_projection = nn.Linear(self.embed_dim, self.embed_dim, bias=False)</code></pre>
+  </section>
+
+  <hr/>
+
+  <section class="section">
+    <h1>Positional Encoding</h1>
+    <p>No post anterior, vimos como funcionam mecanismos de atenção e concluímos que existem algumas limitações no seu uso direto. Nesse post, explicarei como funciona o Positional Encoding, uma técnica complementar à atenção para representar a posição dos elementos na sequência recebida.</p>
+
+    <h2>Positional Encoding (PE)</h2>
+    <p>Os mecanismos de atenção apresentados até aqui não levam em conta a posição dos elementos na sequência recebida ao gerar a sequência de saída. Isso significa que, se a ordem dos elementos for alterada, o resultado permanecerá o mesmo. Esse efeito é indesejado e pode introduzir vieses no modelo durante o treinamento.</p>
+
+    <p>Antes de aplicar qualquer mecanismo de atenção, é necessário representar na sequência recebida a posição de cada elemento de alguma forma. Na arquitetura, essa representação é feita usando Positional Encoding (PE), técnica que gera uma sequência de embeddings especiais: cada um representa a posição de um elemento na sequência, permitindo que o modelo entenda a ordem dos elementos a partir apenas dos elementos da sequência recebida.</p>
+
+    <p>Onde:</p>
+    <ul>
+      <li>p é a posição de um elemento na sequência recebida.</li>
+      <li>j é a posição de um item escalar em um elemento da sequência recebida.</li>
+      <li>i é um índice auxiliar tal que 0 ≤ i &lt; d/2, e i é incrementado a cada dois itens consecutivos de j.</li>
+      <li>θ é um hiperparâmetro que representa a escala das posições.</li>
+    </ul>
+
+    <pre><code>class PositionalEncoder(nn.Module):
+    def __init__(self, config: PositionalEncoderConfig) -> None:
+        super().__init__()
+        self.config = config
+
+    @torch.no_grad()
+    def forward(self, embeddings: torch.Tensor) -> torch.Tensor:
+        batch_size, n_tokens, _ = embeddings.size()
+        
+        indexes = torch.arange(self.config.embed_dim, dtype=torch.float)
+        positions = torch.arange(n_tokens, dtype=torch.float)
+        positions = positions.view(n_tokens, 1)
+
+        i = torch.arange(self.config.embed_dim // 2)
+        i = i.float()
+        i = i.repeat_interleave(2)
+
+        encodings = positions / (self.config.theta ** (2 * i / self.config.embed_dim))
+        
+        return embeddings + encodings</code></pre>
+  </section>
+
+  <hr/>
+
+  <section class="section">
+    <h1>Modelos Autoregressivos</h1>
+    <p>Nesse post, antes de entendermos a estrutura de um Transformer, vamos entender primeiro como funcionam os modelos autoregressivos. Eles são uma classe de modelos que recebem sequências de dados e geram novas sequências, um elemento por vez.</p>
+
+    <h2>Modelos autoregressivos</h2>
+    <p>Transformers são modelos que realizam transdução de sequências utilizando um processo autoregressivo. Essa característica define como os diferentes componentes do modelo são organizados e combinados ao longo da arquitetura.</p>
+
+    <p>Quando um modelo de transdução de sequências é autoregressivo, ele é treinado para modificar a sequência recebida por meio de um processo chamado shift, no qual:</p>
+
+    <ul>
+      <li>O primeiro elemento é removido.</li>
+      <li>Todos os elementos são deslocados uma posição para trás.</li>
+      <li>A última posição é preenchida com um novo elemento gerado pelo modelo.</li>
+    </ul>
+
+    <p>O modelo gera um novo elemento, que é adicionado ao início da sequência gerada. Em seguida, a sequência pós-shift se torna a nova sequência recebida, e o processo se repete: a cada iteração, um novo elemento é gerado e acrescentado à sequência, até que algum critério de parada seja atingido.</p>
+
+    <p>Os critérios de parada podem ser:</p>
+    <ol>
+      <li>Definir um número máximo de iterações.</li>
+      <li>Encerrar o algoritmo quando o último elemento gerado for igual a um valor especial, como o token &lt;eos&gt;.</li>
+    </ol>
+
+    <p>Essa limitação é feita nos Transformers com o uso de uma attention mask, que zera parte dos pesos para garantir que um novo elemento não seja baseado nos valores dos elementos seguintes.</p>
+
+    <pre><code>def attn_mask_like(size: tuple[int]) -> torch.Tensor:
+    mask = torch.ones(size)
+    mask = mask.triu(diagonal=1)
+    mask = mask.bool()
+    return mask</code></pre>
+  </section>
+
+  <section class="section">
+    <h2>Conclusão</h2>
+    <p>Usando um processo autogressivo, é possível criar modelos capazes de gerar sequências inteiras de elementos de forma iterativa. Esse é o segredo para criar inteligências artificiais capazes de traduzir textos, responder perguntas, e outras aplicações.</p>
+    <p>Agora temos todas as peças para montar nosso próprio modelo desse tipo. No próximo post, vamos ver como foi feita a arquitetura do primeiro Transformer, como descrito no artigo original.</p>
+  </section>
+
+  <footer>
+    <p>
+      © 2025 Paulo Guilherme Pilotti Duarte · 
+      <a href="https://www.linkedin.com/in/paulo-guilherme-pilotti-duarte" target="_blank" rel="noopener noreferrer">LinkedIn</a> · 
+      <a href="https://github.com/paulogpd" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </p>
+  </footer>
+
+</main>
+</div>
+
+</body>
+</html>

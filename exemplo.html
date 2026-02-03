@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>JP — Interdiction — Frame Data</title>
+  <style>
+    :root{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;--bg:#0f1720;--card:#0b1220;--muted:#94a3b8;--accent:#7dd3fc}
+    body{margin:0;background:linear-gradient(180deg,#071027 0%, #031021 100%);color:#e6eef8}
+    .container{max-width:880px;margin:32px auto;padding:28px;background:linear-gradient(180deg,rgba(255,255,255,0.02), rgba(0,0,0,0.02));border-radius:12px;box-shadow:0 6px 30px rgba(2,6,23,0.6)}
+    h1{margin:0 0 6px;font-size:20px}
+    p.lead{margin:0 0 18px;color:var(--muted)}
+    table{width:100%;border-collapse:collapse;margin-top:14px}
+    th,td{padding:10px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.04)}
+    th{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em}
+    td.code{font-family:SFMono-Regular,Menlo,monospace;background:rgba(255,255,255,0.02);border-radius:6px}
+    .hl-startup{color:#a7f3d0}
+    .hl-active{color:#fef08a}
+    .hl-recovery{color:#fca5a5}
+    details{margin-top:12px;background:rgba(255,255,255,0.01);padding:10px;border-radius:8px}
+    .footer{margin-top:18px;color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>JP — Interdiction</h1>
+    <p class="lead">Frame data extraída do data frame. Golpe super de JP que utiliza Psycho Power para causar dano massivo à distância.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Campo</th>
+          <th>Valor</th>
+          <th>Interpretação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Personagem</td>
+          <td class="code">Jp</td>
+          <td>Identifica o personagem JP.</td>
+        </tr>
+        <tr>
+          <td>Golpe</td>
+          <td class="code">Interdiction</td>
+          <td>Super Art em que JP teleporta até o oponente e canaliza Psycho Power explosivo.</td>
+        </tr>
+        <tr>
+          <td>Comando</td>
+          <td class="code">236236*K</td>
+          <td>Dois quartos de círculo para frente + qualquer chute (K).</td>
+        </tr>
+        <tr>
+          <td>Startup</td>
+          <td class="code hl-startup">18</td>
+          <td>Tempo até o golpe começar a acertar — 18 frames de startup.</td>
+        </tr>
+        <tr>
+          <td>Active</td>
+          <td class="code hl-active">18–23</td>
+          <td>Hitbox ativa por 6 frames (do frame 18 ao 23).</td>
+        </tr>
+        <tr>
+          <td>Recovery</td>
+          <td class="code hl-recovery">62</td>
+          <td>Tempo até JP retornar ao neutro após a execução — 62 frames, longo devido à animação cinematográfica.</td>
+        </tr>
+        <tr>
+          <td>Frame Advantage (on block)</td>
+          <td class="code">-50</td>
+          <td>Totalmente punível caso bloqueado; desvantagem de 50 frames.</td>
+        </tr>
+        <tr>
+          <td>Frame Advantage (on hit)</td>
+          <td class="code">—</td>
+          <td>Não aplicável; Super Art garante knockdown e dano fixo.</td>
+        </tr>
+        <tr>
+          <td>Propriedades especiais</td>
+          <td colspan="2">Completamente invencível dos frames 1–23; mínimo de dano garantido de 50%; não altera valores em Counter ou Punish Counter; pode ser cancelado apenas a partir de golpes especiais.</td>
+        </tr>
+        <tr>
+          <td>Descrição</td>
+          <td colspan="2">Grab your opponent and send Psycho Power flowing through their body, causing them to explode from within. Instantly warps to the opponent on activation.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <details>
+      <summary>Notas rápidas</summary>
+      <ul>
+        <li><strong>236236K</strong>: comando padrão de Super Art nível 3.</li>
+        <li><strong>Invencível frames 1–23</strong>: pode ser usado como antiaéreo ou reversão segura.</li>
+        <li><strong>-50 on block</strong>: extremamente arriscado se o oponente bloquear.</li>
+        <li><strong>Dano mínimo 50%</strong>: mesmo com scaling, metade do dano é garantido.</li>
+      </ul>
+    </details>
+
+    <div class="footer">Arquivo gerado automaticamente para referência. Para exportar, selecione tudo e copie para seu editor.</div>
+  </div>
+</body>
+</html>

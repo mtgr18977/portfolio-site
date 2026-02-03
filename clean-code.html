@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Roteiro de estudos para Clean Code, Clean Architecture, SOLID, DDD e Design Patterns. Material completo para aprender arquitetura limpa e separação em camadas." />
+<meta name="author" content="Paulo Guilherme Pilotti Duarte" />
+<meta property="og:title" content="Clean Architecture e Separação em Camadas — Paulo Guilherme Pilotti Duarte" />
+<meta property="og:description" content="Roteiro de estudos para Clean Code, Clean Architecture, SOLID, DDD e Design Patterns. Material completo para aprender arquitetura limpa e separação em camadas." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="pt_BR" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Clean Architecture e Separação em Camadas — Paulo Guilherme Pilotti Duarte" />
+<meta name="twitter:description" content="Roteiro de estudos para Clean Code, Clean Architecture, SOLID, DDD e Design Patterns. Material completo para aprender arquitetura limpa e separação em camadas." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+<title>Clean Architecture e Separação em Camadas — Paulo Guilherme Pilotti Duarte</title>
+<style>
+  :root{
+    /* Colors */
+    --color-primary: #1d4ed8;
+    --color-primary-dark: #1e40af;
+    --color-text: #222;
+    --color-text-muted: #555;
+    --color-text-light: #666;
+    --color-bg: #fafafa;
+    --color-bg-card: #ffffff;
+    --color-border: #e5e7eb;
+    --color-focus: #3b82f6;
+    
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    
+    /* Typography */
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+    --font-size-sm: 0.95rem;
+    --font-size-base: 1.05rem;
+    --font-size-lg: 1.3rem;
+    --font-size-xl: 1.9rem;
+    --line-height-tight: 1.4;
+    --line-height-normal: 1.6;
+    --line-height-relaxed: 1.7;
+    
+    /* Transitions */
+    --transition-fast: 150ms ease-in-out;
+    --transition-normal: 250ms ease-in-out;
+    
+    /* Borders */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root{
+      --color-primary: #60a5fa;
+      --color-primary-dark: #3b82f6;
+      --color-text: #e5e7eb;
+      --color-text-muted: #9ca3af;
+      --color-text-light: #6b7280;
+      --color-bg: #111827;
+      --color-bg-card: #1f2937;
+      --color-border: #374151;
+      --color-focus: #60a5fa;
+    }
+  }
+
+  *,
+  *::before,
+  *::after{
+    box-sizing: border-box;
+  }
+
+  body{
+    margin:0;
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: var(--line-height-normal);
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+  }
+
+  .container{
+    max-width: 760px;
+    margin: clamp(1.25rem, 5vw, 2.5rem) auto;
+    padding: 0 clamp(1rem, 4vw, 1.25rem);
+  }
+
+  h1{
+    font-size: clamp(1.5rem, 4vw, var(--font-size-xl));
+    margin-bottom: var(--space-xs);
+    line-height: var(--line-height-tight);
+    font-weight: 700;
+  }
+
+  h2{
+    font-size: var(--font-size-lg);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-lg);
+    line-height: var(--line-height-tight);
+    font-weight: 600;
+  }
+
+  h3{
+    font-size: var(--font-size-base);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+    line-height: var(--line-height-tight);
+    font-weight: 600;
+  }
+
+  .sub{
+    color: var(--color-text-muted);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-xl);
+  }
+
+  .back-link{
+    display: inline-block;
+    margin-bottom: var(--space-xl);
+    font-size: var(--font-size-base);
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .back-link:hover{
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+    transform: translateX(-4px);
+  }
+
+  .back-link:focus-visible{
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  section{
+    background: var(--color-bg-card);
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    margin-bottom: var(--space-xl);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-normal), 
+                background-color var(--transition-normal),
+                border-color var(--transition-normal);
+  }
+
+  section:hover{
+    box-shadow: var(--shadow-md);
+  }
+
+  p{
+    margin: var(--space-sm) 0;
+    line-height: var(--line-height-relaxed);
+  }
+
+  ul{
+    list-style: none;
+    padding: 0;
+    margin: var(--space-md) 0;
+  }
+
+  ul li{
+    position: relative;
+    padding-left: var(--space-lg);
+    margin-bottom: var(--space-sm);
+    line-height: var(--line-height-relaxed);
+  }
+
+  ul li::before{
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  ul ul{
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-sm);
+  }
+
+  ul ul li::before{
+    content: "•";
+  }
+
+  ol{
+    padding-left: var(--space-xl);
+    margin: var(--space-md) 0;
+  }
+
+  ol li{
+    margin-bottom: var(--space-sm);
+    line-height: var(--line-height-relaxed);
+    padding-left: var(--space-sm);
+  }
+
+  a{
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color var(--transition-fast);
+    outline: none;
+    border-radius: var(--radius-sm);
+  }
+
+  a:hover{
+    text-decoration: underline;
+    color: var(--color-primary-dark);
+  }
+
+  a:focus-visible{
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    text-decoration: none;
+  }
+
+  strong{
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  hr{
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: var(--space-2xl) 0;
+  }
+
+  .skip-link{
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-sm) var(--space-md);
+    text-decoration: none;
+    z-index: 100;
+    font-weight: 600;
+    border-radius: 0 0 var(--radius-sm) 0;
+    transition: top var(--transition-fast);
+  }
+
+  .skip-link:focus-visible{
+    top: 0;
+    outline: 2px solid white;
+    outline-offset: -4px;
+  }
+
+  footer{
+    margin-top: var(--space-3xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+  }
+
+  footer p{
+    margin: 0;
+  }
+
+  footer a{
+    color: var(--color-primary);
+    margin: 0 var(--space-md);
+    display: inline-block;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce){
+    *,
+    *::before,
+    *::after{
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    
+    .back-link:hover{
+      transform: none;
+    }
+  }
+
+  /* Tablet breakpoint */
+  @media (min-width: 768px) and (max-width: 1024px){
+    .container{
+      max-width: 680px;
+    }
+  }
+
+  /* Mobile breakpoint */
+  @media (max-width: 480px){
+    h1{
+      font-size: 1.5rem;
+    }
+    
+    h2{
+      font-size: 1.2rem;
+    }
+    
+    .container{
+      margin: var(--space-lg) auto;
+    }
+    
+    footer a{
+      display: block;
+      margin: var(--space-sm) 0;
+    }
+  }
+
+  /* Print styles */
+  @media print{
+    body{
+      background: white;
+      color: black;
+    }
+    
+    .skip-link,
+    .back-link{
+      display: none;
+    }
+    
+    a{
+      color: #000;
+      text-decoration: underline;
+    }
+    
+    section{
+      border: 1px solid #ccc;
+      box-shadow: none;
+      page-break-inside: avoid;
+    }
+    
+    footer{
+      page-break-before: always;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high){
+    :root{
+      --color-primary: #0000ee;
+      --color-border: #000;
+    }
+    
+    a:focus-visible{
+      outline-width: 3px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+
+<div class="container">
+
+<main id="main">
+
+  <a href="index.html" class="back-link">← Voltar ao início</a>
+
+  <h1>🤖 Clean Architecture e Separação em Camadas</h1>
+
+  <section aria-label="Roteiro de estudos">
+    <h2>📚 Roteiro de Estudos</h2>
+
+    <h3>Semana 1 e 2: Fundamentos de Clean Architecture e Separação em Camadas</h3>
+    
+    <ul>
+      <li><strong>Objetivos:</strong>
+        <ul>
+          <li>Entender fundamentos da arquitetura limpa (Clean Architecture)</li>
+          <li>Compreender separação clara entre apresentação, domínio e infraestrutura.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul>
+      <li><strong>Passos:</strong>
+        <ol>
+          <li>Assista vídeos introdutórios sobre Clean Architecture do Uncle Bob:
+            <ul>
+              <li>Recomendações em Português:
+                <ul>
+                  <li>Canal Otávio Lemos (<a href="https://www.youtube.com/watch?v=HVrwudzbSVI" target="_blank" rel="noopener noreferrer">Clean Architecture Explicada</a>)</li>
+                  <li>Canal Rodrigo Branas (<a href="https://www.youtube.com/watch?v=DTZiNk1eiU8" target="_blank" rel="noopener noreferrer">Clean Architecture - Rodrigo Branas</a>)</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Leia resumos curtos no Medium:
+            <ul>
+              <li><a href="https://medium.com/@romulovicentini/clean-architecture-arquitetura-limpa-para-seu-software-747ca8a3e6da" target="_blank" rel="noopener noreferrer">Introdução ao Clean Architecture – Medium</a></li>
+            </ul>
+          </li>
+          <li>Aprenda na prática organizando um projeto simples em 3 camadas: Apresentação (UI/API), Domínio (Regras de Negócio) e Infraestrutura (banco de dados, chamadas HTTP).</li>
+        </ol>
+      </li>
+    </ul>
+
+    <h3>Semana 3: Princípios SOLID</h3>
+    
+    <ul>
+      <li><strong>Objetivos:</strong>
+        <ul>
+          <li>Começar aprimorando qualidade e legibilidade do código com SOLID, especialmente SRP e DIP.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul>
+      <li><strong>Passos:</strong>
+        <ol>
+          <li>Assista esses vídeos introdutórios:
+            <ul>
+              <li><a href="https://www.youtube.com/watch?v=6SfrO3D4dHM" target="_blank" rel="noopener noreferrer">SOLID em 5 minutos – canal Código Fonte</a></li>
+              <li><a href="https://www.youtube.com/watch?v=vAV4Vy4jfkc" target="_blank" rel="noopener noreferrer">SOLID com exemplos em JavaScript – canal Henrique Bastos</a></li>
+            </ul>
+          </li>
+          <li>Foque principalmente em:
+            <ul>
+              <li>SRP (Single Responsibility Principle — Responsabilidade Única)</li>
+              <li>DIP (Dependency Inversion Principle — Inversão de Dependência)</li>
+            </ul>
+          </li>
+          <li>Crie pequenos exemplos de código, aplicando explicitamente SRP e DIP na sua linguagem preferida.</li>
+        </ol>
+      </li>
+    </ul>
+
+    <h3>Semana 4: Injeção de Dependências (Dependency Injection)</h3>
+    
+    <ul>
+      <li><strong>Objetivos:</strong>
+        <ul>
+          <li>Entender conceito fundamental de DI e começar a aplicá-lo sem necessariamente usar frameworks.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul>
+      <li><strong>Passos:</strong>
+        <ol>
+          <li>Vídeos recomendados:
+            <ul>
+              <li><a href="https://www.youtube.com/watch?v=IKD2-MAkXyQ" target="_blank" rel="noopener noreferrer">Injeção de Dependência e IoC – Código Fonte TV</a></li>
+              <li><a href="https://www.youtube.com/watch?v=tYiiY1rt1YE" target="_blank" rel="noopener noreferrer">Dependency Injection explicado (Gustavo Guanabara)</a></li>
+            </ul>
+          </li>
+          <li>Leia artigos curtos:
+            <ul>
+              <li><a href="https://medium.com/@marcelo.leite.costa/entendendo-inje%C3%A7%C3%A3o-de-depend%C3%AAncia-finalmente-88fae3ca60be" target="_blank" rel="noopener noreferrer">Entendendo Injeção de Dependências (Medium)</a></li>
+            </ul>
+          </li>
+          <li>Implemente DI simples na mão, sem biblioteca/framework, para entender a lógica e prática.</li>
+        </ol>
+      </li>
+    </ul>
+
+    <h3>Semana 5: Domain-Driven Design Básico (DDD)</h3>
+    
+    <ul>
+      <li><strong>Objetivos:</strong>
+        <ul>
+          <li>Entender conceitos básicos: Entidade, Value Object, Agregados, Serviços de Domínio.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul>
+      <li><strong>Passos:</strong>
+        <ol>
+          <li>Vídeos introdutórios sobre DDD:
+            <ul>
+              <li><a href="https://www.youtube.com/watch?v=hYykca6Koog" target="_blank" rel="noopener noreferrer">O que é Domain Driven Design? – Otávio Lemos</a></li>
+              <li><a href="https://www.youtube.com/watch?v=vn77KZCEdDs" target="_blank" rel="noopener noreferrer">DDD básico (Full Cycle)</a></li>
+            </ul>
+          </li>
+          <li>Artigos no Medium:
+            <ul>
+              <li><a href="https://medium.com/@adrianosander/domain-driven-design-ddd-de-forma-simples-e-pr%C3%A1tica-4d26e8c9b299" target="_blank" rel="noopener noreferrer">DDD simplificado – Entidade, Value Object, Agregados</a></li>
+            </ul>
+          </li>
+          <li>Modele um domínio básico de negócio utilizando os conceitos aprendidos.</li>
+        </ol>
+      </li>
+    </ul>
+
+    <h3>Semana 6: Design Patterns</h3>
+    
+    <ul>
+      <li><strong>Objetivos:</strong>
+        <ul>
+          <li>Identificar e aprender principais padrões: Factory, Strategy, Adapter.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul>
+      <li><strong>Passos:</strong>
+        <ol>
+          <li>Vídeos introdutórios:
+            <ul>
+              <li><a href="https://www.youtube.com/watch?v=zHiWqnTWsn4" target="_blank" rel="noopener noreferrer">Design Patterns do zero - código fonte</a></li>
+              <li><a href="https://www.youtube.com/watch?v=lQk-nTVtyB0" target="_blank" rel="noopener noreferrer">Padrões Factory, Strategy, Adapter – Refatorando na Prática</a></li>
+            </ul>
+          </li>
+          <li>Material escrito:
+            <ul>
+              <li><a href="https://medium.com/thiago-aragao/design-patterns-em-5-minutos-82e4da4712f1" target="_blank" rel="noopener noreferrer">Resumo claro dos Design Patterns no Medium</a></li>
+            </ul>
+          </li>
+          <li>Implemente exemplos pequenos usando esses padrões na linguagem que você conhece (Java, JavaScript, C#, Python, etc.).</li>
+        </ol>
+      </li>
+    </ul>
+  </section>
+
+  <hr />
+
+  <section aria-label="Bibliografia recomendada">
+    <h2>📌 Bibliografia recomendada</h2>
+
+    <ul>
+      <li><strong>Clean Architecture</strong>
+        <ul>
+          <li>Livro: "Arquitetura Limpa" (Robert C. Martin)</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul>
+      <li><strong>SOLID</strong>
+        <ul>
+          <li>Livro: "Código Limpo" (Clean Code) - Robert C. Martin</li>
+          <li>Livro: "Clean Architecture" - Robert C. Martin (aborda SOLID junto com arquitetura)</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul>
+      <li><strong>Injeção de Dependência</strong>
+        <ul>
+          <li>Livro: "Dependency Injection Principles, Practices, and Patterns" - Mark Seemann, Steven van Deursen (avançado mas excelente)</li>
+          <li>Artigos médium sugeridos acima já são suficientes</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul>
+      <li><strong>Domain-Driven Design (DDD): básico</strong>
+        <ul>
+          <li>Livro curto: "DDD Distilled" - Vaughn Vernon (aborda conceitos essenciais)</li>
+          <li>Livro original completo é recomendado futuramente: "Domain-Driven Design" - Eric Evans (apenas se aprofundar muito depois)</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul>
+      <li><strong>Design Patterns</strong>
+        <ul>
+          <li>Livro clássico com exemplos interessantes para referência futura: "Head First Design Patterns" – Freeman & Freeman</li>
+          <li>Livro Original Gang of Four (GoF) (mais conceitual e avançado)</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <hr />
+
+  <section aria-label="Dicas adicionais">
+    <h3>🔖 Dicas adicionais</h3>
+
+    <ul>
+      <li>Use um repositório GitHub ou GitLab para praticar cada conceito isoladamente em mini-projetos.</li>
+      <li>Revise semanalmente; uma revisão constante ajuda na consolidação.</li>
+      <li>Não apenas siga tutoriais, mas tente relacionar conceitos diretamente com códigos e sistemas reais que você já trabalha ou já criou.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>
+      © 2025 Paulo Guilherme Pilotti Duarte · 
+      <a href="https://www.linkedin.com/in/paulo-guilherme-pilotti-duarte" target="_blank" rel="noopener noreferrer">LinkedIn</a> · 
+      <a href="https://github.com/paulogpd" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </p>
+  </footer>
+
+</main>
+</div>
+
+</body>
+</html>
