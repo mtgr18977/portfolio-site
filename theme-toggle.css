@@ -1,0 +1,70 @@
+/* theme-toggle.css */
+.theme-toggle {
+    background: var(--card-bg, var(--color-bg-card, #1e1e1e));
+    border: 1px solid var(--border-color, var(--color-border, #333));
+    color: var(--text-main, var(--color-text, #e0e0e0));
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.theme-toggle:hover {
+    background-color: var(--accent-color, #37474f);
+    border-color: var(--hover-border, #546e7a);
+}
+
+/* Light Mode Overrides */
+body.light-mode {
+    --bg-color: #f0f2f5 !important;
+    --color-bg: #f0f2f5 !important;
+    --bg: #f0f2f5 !important;
+
+    --card-bg: #ffffff !important;
+    --color-bg-card: #ffffff !important;
+    --color-bg-alt: #f9fafb !important;
+    --card: #ffffff !important;
+    --sidebar-bg: #ffffff !important;
+    --code-bg: #f3f4f6 !important;
+
+    --text-main: #1f2937 !important;
+    --color-text: #1f2937 !important;
+    --text-color: #1f2937 !important;
+    --text: #1f2937 !important;
+    --heading-color: #111827 !important;
+    --chapter-title: #111827 !important;
+
+    --text-secondary: #6b7280 !important;
+    --text-muted: #6b7280 !important;
+    --color-text-muted: #6b7280 !important;
+    --color-text-light: #9ca3af !important;
+    --muted: #6b7280 !important;
+
+    --border-color: #e5e7eb !important;
+    --color-border: #e5e7eb !important;
+    --btn-border: #d1d5db !important;
+
+    --accent-color: #e5e7eb !important;
+    --color-primary: #2563eb !important;
+
+    --btn-text: #374151 !important;
+    --btn-hover: #e5e7eb !important;
+
+    background-color: var(--bg-color) !important;
+    color: var(--text-main) !important;
+}
+
+body.light-mode .theme-toggle {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--btn-border, #d1d5db);
+    color: var(--btn-text, #374151);
+}
+
+body.light-mode .theme-toggle:hover {
+    background-color: var(--btn-hover, #e5e7eb);
+}

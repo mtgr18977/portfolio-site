@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
+    <link rel="stylesheet" href="theme-toggle.css">
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="description" content="Calculadora PJ x CLT - Compare sua renda como pessoa jurídica versus CLT. Ferramenta completa para análise financeira." />
@@ -14,21 +15,21 @@
 <title>Calculadora PJ x CLT — Paulo Guilherme Pilotti Duarte</title>
 <style>
   :root{
-    --color-primary: #1d4ed8;
-    --color-primary-dark: #1e40af;
-    --color-secondary: #ec4899;
-    --color-secondary-dark: #db2777;
-    --color-text: #222;
-    --color-text-muted: #555;
-    --color-text-light: #666;
-    --color-bg: #fafafa;
-    --color-bg-card: #ffffff;
-    --color-border: #e5e7eb;
-    --color-focus: #3b82f6;
-    --color-success: #10b981;
-    --color-success-bg: #ecfdf5;
-    --color-warning: #f59e0b;
-    --color-danger: #ef4444;
+    --color-primary: #60a5fa;
+    --color-primary-dark: #3b82f6;
+    --color-secondary: #f472b6;
+    --color-secondary-dark: #ec4899;
+    --color-text: #e5e7eb;
+    --color-text-muted: #9ca3af;
+    --color-text-light: #6b7280;
+    --color-bg: #111827;
+    --color-bg-card: #1f2937;
+    --color-border: #374151;
+    --color-focus: #60a5fa;
+    --color-success: #34d399;
+    --color-success-bg: #064e3b;
+    --color-warning: #fbbf24;
+    --color-danger: #f87171;
     --space-xs: 0.25rem;
     --space-sm: 0.5rem;
     --space-md: 1rem;
@@ -51,24 +52,22 @@
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   }
 
-  @media (prefers-color-scheme: dark){
-    :root{
-      --color-primary: #60a5fa;
-      --color-primary-dark: #3b82f6;
-      --color-secondary: #f472b6;
-      --color-secondary-dark: #ec4899;
-      --color-text: #e5e7eb;
-      --color-text-muted: #9ca3af;
-      --color-text-light: #6b7280;
-      --color-bg: #111827;
-      --color-bg-card: #1f2937;
-      --color-border: #374151;
-      --color-focus: #60a5fa;
-      --color-success: #34d399;
-      --color-success-bg: #064e3b;
-      --color-warning: #fbbf24;
-      --color-danger: #f87171;
-    }
+  body.light-mode{
+    --color-primary: #1d4ed8;
+    --color-primary-dark: #1e40af;
+    --color-secondary: #ec4899;
+    --color-secondary-dark: #db2777;
+    --color-text: #222;
+    --color-text-muted: #555;
+    --color-text-light: #666;
+    --color-bg: #fafafa;
+    --color-bg-card: #ffffff;
+    --color-border: #e5e7eb;
+    --color-focus: #3b82f6;
+    --color-success: #10b981;
+    --color-success-bg: #ecfdf5;
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
   }
 
   *,*::before,*::after{box-sizing: border-box;}
@@ -788,5 +787,6 @@
     window.onload = calcular;
 </script>
 
+    <script src="theme-toggle.js"></script>
 </body>
 </html>

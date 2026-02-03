@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="theme-toggle.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Professional portfolio of Paulo Guilherme Pilotti Duarte. Senior Tech Writer." />
@@ -20,25 +21,9 @@
             --live-border: rgba(195, 232, 141, 0.3);
             --border-color: #333;
             --hover-bg: #2c2c2c;
-            
+
             --font-main: 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif;
             --font-mono: 'SFMono-Regular', Consolas, monospace;
-        }
-
-        /* --- LIGHT MODE VARIABLES (SOFT THEME) --- */
-        body.light-mode {
-            /* Soft Light Theme Colors */
-            --bg-color: #f0f2f5;       /* Cinza suave, não branco */
-            --card-bg: #ffffff;       /* Branco para os cards */
-            --text-main: #374151;     /* Cinza escuro para texto */
-            --text-muted: #6b7280;    /* Cinza médio */
-            --heading-color: #111827; /* Quase preto para títulos */
-            --accent-color: #0369a1;  /* Azul mais forte para contraste no claro */
-            --live-color: #15803d;    /* Verde escuro para contraste */
-            --live-bg: #dcfce7;
-            --live-border: #86efac;
-            --border-color: #e5e7eb;  /* Bordas sutis */
-            --hover-bg: #f9fafb;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -61,12 +46,12 @@
             width: 100%;
         }
 
-        /* --- NAVEGAÇÃO E BOTÃO DE TEMA --- */
-        .nav-bar { 
-            margin-bottom: 40px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
+        /* --- NAVEGAÇÃO --- */
+        .nav-bar {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .back-link {
@@ -80,35 +65,14 @@
         }
         .back-link:hover { opacity: 0.8; }
 
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 8px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-family: var(--font-main);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-            background-color: var(--card-bg);
-        }
-
-        .theme-toggle:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-        }
-
         /* --- CABEÇALHO --- */
         header { margin-bottom: 50px; border-bottom: 1px solid var(--border-color); padding-bottom: 30px; }
-        
+
         h1 {
             font-size: 2.5rem;
             font-weight: 700;
             letter-spacing: -0.5px;
-            color: var(--heading-color); /* Usando variável agora */
+            color: var(--heading-color);
             margin-bottom: 10px;
         }
 
@@ -139,7 +103,7 @@
 
         .contact-links a:hover {
             background-color: var(--accent-color);
-            color: #fff; /* Texto branco no hover */
+            color: #fff;
             border-color: var(--accent-color);
         }
 
@@ -169,7 +133,7 @@
         .experience-item:hover {
             transform: translateY(-2px);
             border-color: var(--accent-color);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Sombra suave */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
         .job-header {
@@ -183,11 +147,11 @@
         .job-title {
             font-size: 1.2rem;
             font-weight: 600;
-            color: var(--heading-color); /* Usando variável */
+            color: var(--heading-color);
         }
 
         .company { color: var(--accent-color); font-weight: 400; }
-        
+
         .date {
             font-size: 0.9rem;
             color: var(--text-muted);
@@ -249,7 +213,7 @@
         .project-item:last-child {
             border-bottom: none;
         }
-        
+
         .project-header {
             display: flex;
             align-items: center;
@@ -322,19 +286,15 @@
 <body>
 
     <div class="container">
-        
+
         <div class="nav-bar">
             <a href="index.html" class="back-link">← Back to Dashboard</a>
-            
-            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
-                <span>☀️</span> Light Mode
-            </button>
         </div>
 
         <header>
             <h1>Paulo Guilherme Pilotti Duarte</h1>
             <p class="subtitle">Senior Technical Writer</p>
-            
+
             <div class="contact-links">
                 <a href="https://www.linkedin.com/in/paulogpd/" target="_blank">LinkedIn</a>
                 <a href="https://github.com/mtgr18977" target="_blank">GitHub</a>
@@ -423,7 +383,7 @@
 
         <section>
             <h2>Selected Projects</h2>
-            
+
             <div class="project-item">
                 <div class="project-header">
                     <div class="project-title">
@@ -539,31 +499,7 @@
 
     </div>
 
-    <script>
-        const toggleBtn = document.getElementById('theme-toggle');
-        const body = document.body;
-        
-        // Verifica se há preferência salva
-        const savedTheme = localStorage.getItem('theme');
-        
-        if (savedTheme === 'light') {
-            body.classList.add('light-mode');
-            updateBtnText(true);
-        }
-
-        toggleBtn.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-            const isLight = body.classList.contains('light-mode');
-            
-            // Salva a preferência
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
-            updateBtnText(isLight);
-        });
-
-        function updateBtnText(isLight) {
-            toggleBtn.innerHTML = isLight ? '<span>🌙</span> Dark Mode' : '<span>☀️</span> Light Mode';
-        }
-    </script>
+    <script src="theme-toggle.js"></script>
 
 </body>
 </html>
