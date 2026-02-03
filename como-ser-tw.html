@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="theme-toggle.css">
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="description" content="Complete guide for Technical Writers - references, studies and resources on how to become a Technical Writer." />
@@ -14,22 +15,22 @@
 <title>TW - References and studies — Paulo Guilherme Pilotti Duarte</title>
 <style>
 	:root{
-		--color-primary: #2563eb;
-		--color-primary-dark: #1d4ed8;
-		--color-primary-light: #3b82f6;
-		--color-accent: #10b981;
-		--color-accent-dark: #059669;
-		--color-warning: #f59e0b;
-		--color-text: #1f2937;
-		--color-text-muted: #6b7280;
+		--color-primary: #60a5fa;
+		--color-primary-dark: #3b82f6;
+		--color-primary-light: #93c5fd;
+		--color-accent: #34d399;
+		--color-accent-dark: #10b981;
+		--color-warning: #fbbf24;
+		--color-text: #f9fafb;
+		--color-text-muted: #d1d5db;
 		--color-text-light: #9ca3af;
-		--color-bg: #ffffff;
-		--color-bg-alt: #f9fafb;
-		--color-bg-card: #ffffff;
-		--color-border: #e5e7eb;
-		--color-border-light: #f3f4f6;
-		--color-focus: #3b82f6;
-		--color-code-bg: #f3f4f6;
+		--color-bg: #0f172a;
+		--color-bg-alt: #1e293b;
+		--color-bg-card: #1e293b;
+		--color-border: #334155;
+		--color-border-light: #475569;
+		--color-focus: #60a5fa;
+		--color-code-bg: #334155;
 		--space-xs: 0.25rem;
 		--space-sm: 0.5rem;
 		--space-md: 1rem;
@@ -60,25 +61,23 @@
 		--shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 	}
 
-	@media (prefers-color-scheme: dark){
-		:root{
-			--color-primary: #60a5fa;
-			--color-primary-dark: #3b82f6;
-			--color-primary-light: #93c5fd;
-			--color-accent: #34d399;
-			--color-accent-dark: #10b981;
-			--color-warning: #fbbf24;
-			--color-text: #f9fafb;
-			--color-text-muted: #d1d5db;
-			--color-text-light: #9ca3af;
-			--color-bg: #0f172a;
-			--color-bg-alt: #1e293b;
-			--color-bg-card: #1e293b;
-			--color-border: #334155;
-			--color-border-light: #475569;
-			--color-focus: #60a5fa;
-			--color-code-bg: #334155;
-		}
+	body.light-mode{
+		--color-primary: #2563eb;
+		--color-primary-dark: #1d4ed8;
+		--color-primary-light: #3b82f6;
+		--color-accent: #10b981;
+		--color-accent-dark: #059669;
+		--color-warning: #f59e0b;
+		--color-text: #1f2937;
+		--color-text-muted: #6b7280;
+		--color-text-light: #9ca3af;
+		--color-bg: #ffffff;
+		--color-bg-alt: #f9fafb;
+		--color-bg-card: #ffffff;
+		--color-border: #e5e7eb;
+		--color-border-light: #f3f4f6;
+		--color-focus: #3b82f6;
+		--color-code-bg: #f3f4f6;
 	}
 
 	*,*::before,*::after{box-sizing: border-box;}
@@ -926,5 +925,6 @@
 </main>
 </div>
 
+    <script src="theme-toggle.js"></script>
 </body>
 </html>

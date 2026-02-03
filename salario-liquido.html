@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <link rel="stylesheet" href="theme-toggle.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calculadora Salário Líquido CLT Brasil 2026</title>
 
 <style>
+:root {
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --text-main: #e0e0e0;
+  --border-color: #333;
+  --accent-color: #28a745;
+  --shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
 * { box-sizing: border-box; }
 
 body {
@@ -13,16 +23,18 @@ body {
   max-width: 750px;
   margin: 0 auto;
   padding: 30px 20px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background-color: var(--bg-color);
   min-height: 100vh;
-  color: #333;
+  color: var(--text-main);
+  transition: all 0.3s ease;
 }
 
 .container {
-  background: white;
+  background-color: var(--card-bg);
   padding: 40px;
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
 }
 
 h1 {
@@ -58,9 +70,11 @@ label {
 input[type="number"] {
   width: 100%;
   padding: 14px;
-  border: 2px solid #e1e8ed;
+  border: 2px solid var(--border-color);
   border-radius: 10px;
   font-size: 1em;
+  background-color: var(--card-bg);
+  color: var(--text-main);
 }
 
 .checkbox-group {
@@ -74,9 +88,9 @@ input[type="number"] {
   display: flex;
   align-items: flex-start;
   padding: 15px;
-  border: 2px solid #e9ecef;
+  border: 2px solid var(--border-color);
   border-radius: 12px;
-  background: #fff;
+  background-color: var(--card-bg);
 }
 
 .checkbox-item input {
@@ -215,5 +229,6 @@ function odontoCheckbox() {
 }
 </script>
 
+    <script src="theme-toggle.js"></script>
 </body>
 </html>
