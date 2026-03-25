@@ -10,12 +10,79 @@
   --radius:    6px;
   --mono:      'IBM Plex Mono', ui-monospace, monospace;
   --sans:      'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+
+  /* ── Override legacy dark-mode variables from per-page <style> blocks ── */
+  --bg-color:           #F7F6F2 !important;
+  --alt-bg:             #F0EEE8 !important;
+  --intro-bg:           #F0EEE8 !important;
+  --header-bg:          #FFFFFF !important;
+  --card-bg:            #FFFFFF !important;
+  --card:               #FFFFFF !important;
+  --sidebar-bg:         #FFFFFF !important;
+  --code-bg:            #F0EEE8 !important;
+  --color-bg:           #F7F6F2 !important;
+  --color-bg-card:      #FFFFFF !important;
+  --color-bg-alt:       #F0EEE8 !important;
+  --color-code-bg:      #F0EEE8 !important;
+  --glass:              rgba(255,255,255,0.85) !important;
+  --paper-texture:      #F7F6F2 !important;
+
+  --text-main:          #141412 !important;
+  --text-color:         #141412 !important;
+  --text-muted:         #7A786F !important;
+  --text-secondary:     #7A786F !important;
+  --heading-color:      #141412 !important;
+  --chapter-title:      #141412 !important;
+  --color-text:         #141412 !important;
+  --color-text-muted:   #7A786F !important;
+  --color-text-light:   #9ca3af !important;
+  --link-color:         #1A4731 !important;
+
+  --border-color:       #E2E0D9 !important;
+  --color-border:       #E2E0D9 !important;
+  --color-border-light: #E2E0D9 !important;
+  --hover-border:       #a7c7b5 !important;
+
+  --accent-color:       #1A4731 !important;
+  --hover-bg:           #EBF3EE !important;
+  --primary:            #1A4731 !important;
+  --color-primary:      #1A4731 !important;
+  --color-primary-dark: #0f2d1e !important;
+  --color-primary-light:#EBF3EE !important;
+  --color-accent:       #1A4731 !important;
+  --color-accent-dark:  #0f2d1e !important;
+  --color-secondary:    #7A786F !important;
+  --color-secondary-dark:#5a5850 !important;
+  --color-focus:        #1A4731 !important;
+  --color-success:      #1A4731 !important;
+  --color-success-bg:   #EBF3EE !important;
+  --color-danger:       #dc2626 !important;
+  --color-warning:      #d97706 !important;
+
+  --btn-text:           #141412 !important;
+  --btn-border:         #E2E0D9 !important;
+  --btn-hover:          #EBF3EE !important;
+
+  --font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif !important;
+  --font-main:   'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif !important;
+  --font-body:   'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif !important;
+  --font-ui:     'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif !important;
+  --font-sans:   'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif !important;
+  --font-mono:   'IBM Plex Mono', ui-monospace, monospace !important;
+
+  --shadow:      0 1px 3px rgba(0,0,0,0.07) !important;
+  --shadow-hover:0 4px 16px rgba(26,71,49,.08) !important;
+  --card-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+  --shadow-sm:   0 1px 2px rgba(0,0,0,0.05) !important;
+  --shadow-md:   0 4px 6px rgba(0,0,0,0.07) !important;
+  --shadow-lg:   0 10px 25px rgba(0,0,0,0.10) !important;
+  --shadow-hover:0 4px 16px rgba(26,71,49,.08) !important;
 }
 html { font-size: 15px; }
 body {
-  font-family: var(--sans);
-  background: var(--bg);
-  color: var(--text);
+  font-family: var(--sans) !important;
+  background: var(--bg) !important;
+  color: var(--text) !important;
   line-height: 1.6;
   min-height: 100vh;
 }
