@@ -6,38 +6,36 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title id="page-title">Street Fighter 6 Hub — Referência Completa</title>
   <style>
-    
-    
     body {
-      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      font-family: var(--sans);
       margin: 0;
-      background: linear-gradient(180deg, #071022 0%, #071822 100%);
+      background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       font-size: 15px;
     }
-    
+
     header {
       padding: 32px 28px 20px;
       display: flex;
       gap: 20px;
       align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      background: rgba(11, 18, 32, 0.5);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
     }
-    
+
     .brand {
       display: flex;
       flex-direction: column;
     }
-    
+
     .brand h1 {
       margin: 0;
       font-size: 24px;
       letter-spacing: 0.3px;
       color: var(--text);
     }
-    
+
     .brand p {
       margin: 6px 0 0;
       color: var(--muted);
@@ -54,13 +52,13 @@
     }
 
     nav.sidebar {
-      background: var(--card);
+      background: var(--surface);
       padding: 20px;
       border-radius: 14px;
       height: calc(100vh - 200px);
       overflow: auto;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
     }
 
     .toc {
@@ -68,13 +66,13 @@
       padding: 0;
       margin: 12px 0;
     }
-    
+
     .toc li {
       margin: 8px 0;
     }
-    
+
     .toc a {
-      color: #8dd9e0;
+      color: var(--text);
       text-decoration: none;
       font-size: 15px;
       font-weight: 500;
@@ -83,14 +81,14 @@
       border-radius: 8px;
       transition: all 0.2s;
     }
-    
+
     .toc a:hover {
-      background: rgba(79, 209, 197, 0.1);
+      background: var(--accent-lt);
       color: var(--accent);
     }
 
     .toc a.active {
-      background: rgba(79, 209, 197, 0.15);
+      background: var(--accent-lt);
       color: var(--accent);
       font-weight: 600;
       border-left: 3px solid var(--accent);
@@ -99,14 +97,14 @@
     main {
       padding: 24px;
       border-radius: 14px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: var(--surface);
+      border: 1px solid var(--border);
       min-height: 60vh;
     }
 
     button.copy {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--surface);
+      border: 1px solid var(--border);
       padding: 8px 12px;
       border-radius: 8px;
       color: var(--muted);
@@ -114,12 +112,12 @@
       font-size: 13px;
       transition: all 0.2s;
     }
-    
+
     button.copy:hover {
-      background: rgba(255, 255, 255, 0.08);
+      background: var(--accent-lt);
       color: var(--text);
     }
-    
+
     button.copy:active {
       transform: translateY(1px);
     }
@@ -132,7 +130,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(4px);
       z-index: 1000;
       align-items: center;
@@ -145,10 +143,10 @@
     }
 
     .modal-content {
-      background: linear-gradient(180deg, #0b1220 0%, #071022 100%);
+      background: var(--surface);
       border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
       max-width: 900px;
       width: 100%;
       max-height: 90vh;
@@ -158,10 +156,10 @@
 
     .modal-header {
       padding: 24px 28px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      background: linear-gradient(180deg, #0b1220 0%, rgba(11, 18, 32, 0.98) 100%);
+      background: var(--surface);
       z-index: 10;
       display: flex;
       justify-content: space-between;
@@ -181,8 +179,8 @@
     }
 
     .modal-close {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--surface);
+      border: 1px solid var(--border);
       color: var(--text);
       font-size: 24px;
       width: 40px;
@@ -196,8 +194,8 @@
     }
 
     .modal-close:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.2);
+      background: var(--accent-lt);
+      border-color: var(--border);
     }
 
     .modal-body {
@@ -214,7 +212,7 @@
     .modal-table td {
       padding: 12px 14px;
       text-align: left;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid var(--border);
     }
 
     .modal-table th {
@@ -226,36 +224,22 @@
     }
 
     .modal-table td.code {
-      font-family: 'SFMono-Regular', 'Menlo', monospace;
-      background: rgba(255, 255, 255, 0.02);
+      font-family: var(--mono);
+      background: var(--bg);
       border-radius: 6px;
       font-size: 14px;
     }
 
-    .modal-table .hl-startup {
-      color: #a7f3d0;
-    }
-
-    .modal-table .hl-active {
-      color: #fef08a;
-    }
-
-    .modal-table .hl-recovery {
-      color: #fca5a5;
-    }
-
-    .modal-table .hl-plus {
-      color: #4fd1c5;
-    }
-
-    .modal-table .hl-minus {
-      color: #fca5a5;
-    }
+    .modal-table .hl-startup { color: #15803d; }
+    .modal-table .hl-active  { color: #92400e; }
+    .modal-table .hl-recovery { color: #b91c1c; }
+    .modal-table .hl-plus    { color: var(--accent); }
+    .modal-table .hl-minus   { color: #b91c1c; }
 
     /* Combo Card Styles */
     .combo-card {
-      background: rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 10px;
       padding: 16px;
       transition: all 0.2s;
@@ -263,8 +247,8 @@
     }
 
     .combo-card:hover {
-      background: rgba(0, 0, 0, 0.3);
-      border-color: rgba(79, 209, 197, 0.3);
+      background: var(--accent-lt);
+      border-color: var(--accent);
       transform: translateY(-2px);
     }
 
@@ -279,7 +263,7 @@
       font-size: 15px;
       font-weight: 600;
       color: var(--text);
-      font-family: 'SFMono-Regular', 'Menlo', monospace;
+      font-family: var(--mono);
     }
 
     .combo-card .difficulty-badge {
@@ -292,32 +276,32 @@
     }
 
     .combo-card .difficulty-badge.basico {
-      background: rgba(74, 222, 128, 0.15);
-      color: #4ade80;
-      border: 1px solid rgba(74, 222, 128, 0.3);
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #bbf7d0;
     }
 
     .combo-card .difficulty-badge.intermediario {
-      background: rgba(251, 191, 36, 0.15);
-      color: #fbbf24;
-      border: 1px solid rgba(251, 191, 36, 0.3);
+      background: #fef9c3;
+      color: #92400e;
+      border: 1px solid #fef08a;
     }
 
     .combo-card .difficulty-badge.avancado {
-      background: rgba(239, 68, 68, 0.15);
-      color: #ef4444;
-      border: 1px solid rgba(239, 68, 68, 0.3);
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
     }
 
     .combo-card .combo-notation {
-      font-family: 'SFMono-Regular', 'Menlo', monospace;
+      font-family: var(--mono);
       font-size: 13px;
       color: var(--accent);
       margin-bottom: 8px;
-      background: rgba(79, 209, 197, 0.05);
+      background: var(--accent-lt);
       padding: 8px;
       border-radius: 6px;
-      border: 1px solid rgba(79, 209, 197, 0.1);
+      border: 1px solid var(--border);
     }
 
     .combo-card .combo-info {
@@ -341,7 +325,7 @@
     .combo-card .combo-notes {
       margin-top: 10px;
       padding-top: 10px;
-      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      border-top: 1px solid var(--border);
       font-size: 13px;
       color: var(--muted);
       line-height: 1.5;
@@ -357,8 +341,8 @@
     }
 
     .feature-card {
-      background: rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 12px;
       padding: 28px;
       transition: all 0.3s;
@@ -366,24 +350,24 @@
     }
 
     .feature-card:hover {
-      background: rgba(0, 0, 0, 0.3);
-      border-color: rgba(79, 209, 197, 0.4);
+      background: var(--accent-lt);
+      border-color: var(--accent);
       transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+      box-shadow: var(--shadow-md);
     }
 
     /* Select/Dropdown Styles */
     select {
-      background: rgba(255, 255, 255, 0.08) !important;
+      background: var(--surface) !important;
       color: var(--text) !important;
-      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      border: 1px solid var(--border) !important;
       padding: 10px !important;
       border-radius: 8px !important;
       font-size: 14px !important;
     }
 
     select option {
-      background: #0b1220 !important;
+      background: var(--surface) !important;
       color: var(--text) !important;
       padding: 8px !important;
     }
@@ -391,7 +375,7 @@
     select:focus {
       outline: none;
       border-color: var(--accent) !important;
-      box-shadow: 0 0 0 2px rgba(79, 209, 197, 0.2);
+      box-shadow: 0 0 0 2px var(--accent-lt);
     }
 
     @media (max-width: 880px) {
@@ -399,7 +383,7 @@
         grid-template-columns: 1fr;
         padding: 16px;
       }
-      
+
       .sidebar {
         height: auto;
       }
@@ -423,7 +407,7 @@
     </div>
     <div style="margin-left:auto;display:flex;gap:12px;align-items:center">
       <span id="dynamic-loading-text" style="color:var(--muted);font-size:13px">Carregamento dinâmico otimizado</span>
-      <select id="lang-selector" style="background:rgba(255,255,255,0.1);color:var(--text);border:1px solid rgba(255,255,255,0.2);padding:4px 8px;border-radius:6px;font-size:13px;cursor:pointer">
+      <select id="lang-selector" style="background:var(--surface);color:var(--text);border:1px solid var(--border);padding:4px 8px;border-radius:6px;font-size:13px;cursor:pointer">
         <option value="pt-BR">PT</option>
         <option value="en">EN</option>
       </select>
@@ -451,7 +435,7 @@
       <!-- Home Section -->
       <section id="home" class="content-section active">
         <div style="text-align:center;padding:40px 20px">
-          <h1 id="home-title" style="font-size:42px;margin:0 0 16px;background:linear-gradient(135deg,#4fd1c5,#7dd3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Street Fighter 6 Hub</h1>
+          <h1 id="home-title" style="font-size:42px;margin:0 0 16px;color:var(--accent)">Street Fighter 6 Hub</h1>
           <p id="home-subtitle" style="font-size:18px;color:var(--muted);margin:0 0 40px;max-width:600px;margin-left:auto;margin-right:auto">Seu centro completo de recursos para dominar Street Fighter 6</p>
         </div>
 
@@ -492,7 +476,7 @@
           </div>
         </div>
 
-        <div style="margin-top:60px;padding:32px;background:rgba(79,209,197,0.05);border-radius:12px;border:1px solid rgba(79,209,197,0.15)">
+        <div style="margin-top:60px;padding:32px;background:var(--accent-lt);border-radius:12px;border:1px solid var(--border)">
           <h3 id="how-to-use-title" style="margin:0 0 16px;font-size:18px;color:var(--accent)">💡 Como usar este hub</h3>
           <ul style="margin:0;padding-left:24px;color:var(--muted);line-height:1.8">
             <li id="how-to-use-1">Use a <strong>barra lateral</strong> para navegar entre as seções</li>

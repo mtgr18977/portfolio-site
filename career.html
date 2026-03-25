@@ -6,73 +6,73 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Technical Writing Career FAQs</title>
   <style>
-    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:linear-gradient(180deg,#071022 0%, #071822 100%); color:#e6eef6; line-height:1.6}
-    
-    header{padding:28px 24px 16px; display:flex; gap:20px; align-items:center; border-bottom:1px solid rgba(255,255,255,0.03)}
-    .brand{display:flex;flex-direction:column}
-    .brand h1{margin:0;font-size:20px;letter-spacing:0.2px}
-    .brand p{margin:4px 0 0;color:var(--muted);font-size:13px}
+    body { font-family: var(--sans); margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-    .container{display:grid;grid-template-columns:280px 1fr;gap:24px;padding:24px;max-width:1200px;margin:20px auto}
+    header { padding: 28px 24px 16px; display: flex; gap: 20px; align-items: center; border-bottom: 1px solid var(--border); background: var(--surface); }
+    .brand { display: flex; flex-direction: column; }
+    .brand h1 { margin: 0; font-size: 20px; letter-spacing: 0.2px; }
+    .brand p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
 
-    nav.sidebar{background:var(--card);padding:16px;border-radius:12px;height:calc(100vh - 160px);overflow:auto;border:1px solid var(--glass);position:sticky;top:20px}
-    
-    .toc{list-style:none;padding:0;margin:8px 0}
-    .toc li{margin:6px 0}
-    .toc a{color:#cfeef0;text-decoration:none;font-size:14px;display:block;padding:4px 8px;border-radius:6px;transition:background 0.2s}
-    .toc a:hover{background:rgba(255,255,255,0.05);text-decoration:none}
-    
-    main{padding:24px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border:1px solid rgba(255,255,255,0.03);min-height:60vh}
-    
+    .container { display: grid; grid-template-columns: 280px 1fr; gap: 24px; padding: 24px; max-width: 1200px; margin: 20px auto; }
+
+    nav.sidebar { background: var(--surface); padding: 16px; border-radius: 12px; height: calc(100vh - 160px); overflow: auto; border: 1px solid var(--border); position: sticky; top: 20px; }
+
+    .toc { list-style: none; padding: 0; margin: 8px 0; }
+    .toc li { margin: 6px 0; }
+    .toc a { color: var(--text); text-decoration: none; font-size: 14px; display: block; padding: 4px 8px; border-radius: 6px; transition: background 0.2s; }
+    .toc a:hover { background: var(--accent-lt); text-decoration: none; }
+
+    main { padding: 24px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border); min-height: 60vh; }
+
     .intro {
-        background:rgba(79, 209, 197, 0.1);
-        border:1px solid rgba(79, 209, 197, 0.2);
-        color:#cfeef0;
-        padding:20px;
-        border-radius:8px;
-        margin-bottom:30px;
-        font-size:15px;
+        background: var(--accent-lt);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        font-size: 15px;
     }
-    .intro strong{color:var(--accent)}
+    .intro strong { color: var(--accent); }
 
-    .section{margin-bottom:40px}
-    .section h2{margin:0 0 20px 0;font-size:24px;color:var(--accent);border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:10px}
-    
-    h3{font-size:18px;margin:24px 0 12px 0;color:#fff}
-    
-    ul.resources {list-style:none;padding:0;display:grid;gap:12px}
+    .section { margin-bottom: 40px; }
+    .section h2 { margin: 0 0 20px 0; font-size: 24px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+
+    h3 { font-size: 18px; margin: 24px 0 12px 0; color: var(--text); }
+
+    ul.resources { list-style: none; padding: 0; display: grid; gap: 12px; }
     ul.resources li {
-        background:rgba(255,255,255,0.02);
-        padding:12px 16px;
-        border-radius:8px;
-        border:1px solid rgba(255,255,255,0.02);
-        display:flex;
-        flex-direction:column;
-        gap:4px;
+        background: var(--surface);
+        padding: 12px 16px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
     }
-    
-    ul.resources a {color:#63b3ed;text-decoration:none;font-weight:500}
-    ul.resources a:hover {text-decoration:underline;color:#90cdf4}
-    
-    .date {font-size:12px;color:var(--muted);display:inline-block}
+
+    ul.resources a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    ul.resources a:hover { text-decoration: underline; }
+
+    .date { font-size: 12px; color: var(--muted); display: inline-block; }
 
     .back-link {
-        color:var(--muted);
-        text-decoration:none;
-        font-size:14px;
-        display:flex;
-        align-items:center;
-        gap:6px;
-        padding:6px 12px;
-        border-radius:6px;
-        border:1px solid rgba(255,255,255,0.05);
-        transition:all 0.2s;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        transition: all 0.2s;
     }
-    .back-link:hover {background:rgba(255,255,255,0.05);color:white}
+    .back-link:hover { background: var(--accent-lt); color: var(--text); }
 
-    @media (max-width:880px){
-        .container{grid-template-columns:1fr;padding:12px}
-        .sidebar{height:auto;position:static}
+    @media (max-width: 880px) {
+        .container { grid-template-columns: 1fr; padding: 12px; }
+        .sidebar { height: auto; position: static; }
     }
   </style>
 </head>
