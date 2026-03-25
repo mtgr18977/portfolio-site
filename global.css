@@ -78,13 +78,14 @@
   --shadow-lg:   0 10px 25px rgba(0,0,0,0.10) !important;
   --shadow-hover:0 4px 16px rgba(26,71,49,.08) !important;
 }
-html { font-size: 15px; }
+html { font-size: 100%; }
 body {
-  font-family: var(--sans) !important;
-  background: var(--bg) !important;
-  color: var(--text) !important;
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
   line-height: 1.6;
   min-height: 100vh;
+  font-size: 15px;
 }
 .page {
   max-width: 860px;
