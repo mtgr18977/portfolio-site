@@ -833,11 +833,13 @@ function setupMatchupHelper() {
     diffBadge.className = 'badge';
     
     // Color code difficulty
-    if(matchup.difficulty === 'Advantage') {
+    const isAdvantage = ['Advantage', 'Vantagem', 'Heavy Advantage', 'Grande Vantagem'].includes(matchup.difficulty);
+    const isDisadvantage = ['Disadvantage', 'Desvantagem', 'Heavy Disadvantage', 'Grande Desvantagem'].includes(matchup.difficulty);
+    if(isAdvantage) {
       diffBadge.style.background = 'rgba(74, 222, 128, 0.15)';
       diffBadge.style.color = '#4ade80';
       diffBadge.style.border = '1px solid rgba(74, 222, 128, 0.3)';
-    } else if(matchup.difficulty === 'Disadvantage') {
+    } else if(isDisadvantage) {
       diffBadge.style.background = 'rgba(239, 68, 68, 0.15)';
       diffBadge.style.color = '#ef4444';
       diffBadge.style.border = '1px solid rgba(239, 68, 68, 0.3)';
